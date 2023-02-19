@@ -1,0 +1,74 @@
+XE =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = SIMBALOCO-PC)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = XE)
+    )
+  )
+
+EXTPROC_CONNECTION_DATA =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1))
+    )
+    (CONNECT_DATA =
+      (SID = PLSExtProc)
+      (PRESENTATION = RO)
+    )
+  )
+
+ORACLR_CONNECTION_DATA = 
+  (DESCRIPTION = 
+    (ADDRESS_LIST = 
+      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1)) 
+    ) 
+    (CONNECT_DATA = 
+      (SID = CLRExtProc) 
+      (PRESENTATION = RO) 
+    ) 
+  ) 
+
+TEST1_12C=
+   (DESCRIPTION =
+     (ADDRESS = (PROTOCOL = TCP)(HOST = ind-dessis-n1-scan.indecopi.gob.pe)(PORT = 7575))
+     (CONNECT_DATA =
+       (SERVER = DEDICATED)
+       (SERVICE_NAME = DESA1)
+     )
+   )
+   
+TEST2_12C=
+   (DESCRIPTION =
+     (ADDRESS = (PROTOCOL = TCP)(HOST = ind-dessis-n1-scan.indecopi.gob.pe)(PORT = 7575))
+     (CONNECT_DATA =
+       (SERVER = DEDICATED)
+       (SERVICE_NAME = DESA2)
+     )
+   )
+
+SAS_QA = 
+  (DESCRIPTION = 
+    (ADDRESS = 
+      (PROTOCOL = TCP)
+      (HOST = 172.20.0.138)
+      (PORT = 1521)
+    )
+    (CONNECT_DATA = 
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = DBSAS)
+    )
+  )
+
+APP_OSPE_VIRTUAL = 
+  (DESCRIPTION = 
+    (ADDRESS = 
+      (PROTOCOL = TCP)
+      (HOST = 172.20.0.193)
+      (PORT = 1521)
+    )
+    (CONNECT_DATA = 
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = ospeqa)
+    )
+  )

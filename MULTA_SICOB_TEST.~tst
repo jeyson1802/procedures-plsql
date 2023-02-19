@@ -1,0 +1,20 @@
+PL/SQL Developer Test script 3.0
+6
+begin
+  -- Call the procedure
+  PKG_INTFZ_RECAUDACION.S_GET_MULTA_SICOB(PIN_VC_CUM_ANIO => :PIN_VC_CUM_ANIO,
+                                          PIN_VC_CUM_NRO => :PIN_VC_CUM_NRO,
+                                          POUT_CUR_RETORNO => :POUT_CUR_RETORNO);
+end;
+3
+PIN_VC_CUM_ANIO
+0
+5
+PIN_VC_CUM_NRO
+0
+5
+POUT_CUR_RETORNO
+1
+<Cursor>
+116
+0
