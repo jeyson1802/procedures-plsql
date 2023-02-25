@@ -1,0 +1,1 @@
+grant execute on PKG_INTFZ_REG_MULTA_SICOB_SIA to SICOB;

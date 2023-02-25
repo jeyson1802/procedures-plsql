@@ -1310,10 +1310,10 @@ CREATE OR REPLACE PACKAGE SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_ESTADOS_EXPEDIENTE(PI_V_NRO_EXPEDIENTE IN VARCHAR2,
-                                         PO_CU_RETORNO       OUT CU_REC_SET,
-                                         PO_N_COD_ERROR      OUT NUMBER,
-                                         PO_V_MSJ_ERROR      OUT VARCHAR2);
+  PROCEDURE SCOB_SP_S_ESTADOS_EXPEDIENTE(PIN_VC_NRO_EXPEDIENTE IN VARCHAR2,
+                                         POUT_CUR_RETORNO       OUT CU_REC_SET,
+                                         POUT_NU_COD_ERROR      OUT NUMBER,
+                                         POUT_VC_MSJ_ERROR      OUT VARCHAR2);
                                          
   -- ******************************************************************************
   -- Descripción: Procedure que retorna la lista estados de expediente
@@ -1330,9 +1330,9 @@ CREATE OR REPLACE PACKAGE SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_ESTADO_EXPEDIENTE(PO_CU_RETORNO  OUT CU_REC_SET,
-                                        PO_N_COD_ERROR OUT NUMBER,
-                                        PO_V_MSJ_ERROR OUT VARCHAR2);
+  PROCEDURE SCOB_SP_S_ESTADO_EXPEDIENTE(POUT_CUR_RETORNO       OUT CU_REC_SET,
+                                        POUT_NU_COD_ERROR      OUT NUMBER,
+                                        POUT_VC_MSJ_ERROR      OUT VARCHAR2);
                                         
   -- ******************************************************************************
   -- Descripción: Procedure que retorna la lista motivos de expediente
@@ -1349,10 +1349,10 @@ CREATE OR REPLACE PACKAGE SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_MOTIVO_EXPEDIENTE(PI_N_ID_ESTADO_EXPEDIENTE IN NUMBER,
-                                        PO_CU_RETORNO             OUT CU_REC_SET,
-                                        PO_N_COD_ERROR            OUT NUMBER,
-                                        PO_V_MSJ_ERROR            OUT VARCHAR2);
+  PROCEDURE SCOB_SP_S_MOTIVO_EXPEDIENTE(PIN_NU_ID_ESTADO_EXPEDIENTE IN NUMBER,
+                                        POUT_CUR_RETORNO             OUT CU_REC_SET,
+                                        POUT_NU_COD_ERROR            OUT NUMBER,
+                                        POUT_VC_MSJ_ERROR            OUT VARCHAR2);
                                         
   -- ******************************************************************************
   -- Descripción: Procedure que registra un nuevo estado al expediente
@@ -1369,14 +1369,14 @@ CREATE OR REPLACE PACKAGE SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_I_ESTADOS_EXPEDIENTE(PI_N_ID_ESTADO_EXP  IN NUMBER,
-                                         PI_N_ID_MOTIVO      IN NUMBER,
-                                         PI_N_ID_EXPEDIENTE  IN NUMBER,
-                                         PI_N_ID_MULTA       IN NUMBER,
-                                         PI_V_FECHA_REGISTRO IN VARCHAR,
-                                         PI_V_USUARIO        IN VARCHAR,
-                                         PO_N_COD_ERROR      OUT NUMBER,
-                                         PO_V_MSJ_ERROR      OUT VARCHAR2);
+  PROCEDURE SCOB_SP_I_ESTADOS_EXPEDIENTE(PIN_NU_ID_ESTADO_EXP  IN NUMBER,
+                                         PIN_NU_ID_MOTIVO      IN NUMBER,
+                                         PIN_NU_ID_EXPEDIENTE  IN NUMBER,
+                                         PIN_NU_ID_MULTA       IN NUMBER,
+                                         PIN_VC_FECHA_REGISTRO IN VARCHAR,
+                                         PIN_VC_USUARIO        IN VARCHAR,
+                                         POUT_NU_COD_ERROR      OUT NUMBER,
+                                         POUT_VC_MSJ_ERROR      OUT VARCHAR2);
                                          
   -- ******************************************************************************
   -- Descripción: Procedure que revierte un expediente a no iniciado
@@ -1393,10 +1393,10 @@ CREATE OR REPLACE PACKAGE SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_U_REVERTIR_EXPEDIENTE(PI_N_ID_EXPEDIENTE IN NUMBER,
-                                          PI_V_USUARIO       IN VARCHAR,
-                                          PO_N_COD_ERROR     OUT NUMBER,
-                                          PO_V_MSJ_ERROR     OUT VARCHAR2);
+  PROCEDURE SCOB_SP_U_REVERTIR_EXPEDIENTE(PIN_NU_ID_EXPEDIENTE IN NUMBER,
+                                          PIN_VC_USUARIO       IN VARCHAR,
+                                          POUT_NU_COD_ERROR     OUT NUMBER,
+                                          POUT_VC_MSJ_ERROR     OUT VARCHAR2);
                                           
   -- ******************************************************************************
   -- Descripción: Procedure que cambia estado de embargo a un expediente
@@ -1413,11 +1413,11 @@ CREATE OR REPLACE PACKAGE SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_U_EMBARGO_EXPEDIENTE(PI_N_ID_EXPEDIENTE IN NUMBER,
-                                         PI_V_FLG_EMBARGO   IN VARCHAR,
-                                         PI_V_USUARIO       IN VARCHAR,
-                                         PO_N_COD_ERROR     OUT NUMBER,
-                                         PO_V_MSJ_ERROR     OUT VARCHAR2);
+  PROCEDURE SCOB_SP_U_EMBARGO_EXPEDIENTE(PIN_NU_ID_EXPEDIENTE IN NUMBER,
+                                         PIN_VC_FLG_EMBARGO   IN VARCHAR,
+                                         PIN_VC_USUARIO       IN VARCHAR,
+                                         POUT_NU_COD_ERROR     OUT NUMBER,
+                                         POUT_VC_MSJ_ERROR     OUT VARCHAR2);
 
   -- ******************************************************************************
   -- Descripción: Procedure que genera asiento contable
@@ -1480,10 +1480,10 @@ CREATE OR REPLACE PACKAGE SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_CUMS_EXPEDIENTE(PI_ID_EXPEDIENTE IN NUMBER,
-                                      PO_CU_RETORNO    OUT CU_REC_SET,
-                                      PO_N_COD_ERROR   OUT NUMBER,
-                                      PO_V_MSJ_ERROR   OUT VARCHAR2);
+  PROCEDURE SCOB_SP_S_CUMS_EXPEDIENTE(PIN_NU_ID_EXPEDIENTE IN NUMBER,
+                                      POUT_CUR_RETORNO    OUT CU_REC_SET,
+                                      POUT_NU_COD_ERROR   OUT NUMBER,
+                                      POUT_VC_MSJ_ERROR   OUT VARCHAR2);
                                       
   -- ******************************************************************************
   -- Descripción: Procedure que retorna la lista ccstas de un cums de un expediente
@@ -1500,11 +1500,11 @@ CREATE OR REPLACE PACKAGE SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_COSTAS_CUM_EXPEDIENTE(PI_ID_EXPEDIENTE     IN NUMBER,
-                                            PI_CUM_ID_EXPEDIENTE IN NUMBER,
-                                            PO_CU_RETORNO        OUT CU_REC_SET,
-                                            PO_N_COD_ERROR       OUT NUMBER,
-                                            PO_V_MSJ_ERROR       OUT VARCHAR2);
+  PROCEDURE SCOB_SP_S_COSTAS_CUM_EXPEDIENT(PIN_NUID_EXPEDIENTE     IN NUMBER,
+                                            PIN_NUCUM_ID_EXPEDIENTE IN NUMBER,
+                                            POUT_CUR_RETORNO        OUT CU_REC_SET,
+                                            POUT_NU_COD_ERROR       OUT NUMBER,
+                                            POUT_VC_MSJ_ERROR       OUT VARCHAR2);
 
   -- ******************************************************************************
   -- Descripción: Procedure que registra una costa en un cum expediente acumulado
@@ -1521,21 +1521,20 @@ CREATE OR REPLACE PACKAGE SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************                                 
-  PROCEDURE SCOB_SP_I_SCOB_CUM_EXPED_COSTA(PI_N_ID_EXPEDIENTE           IN T_SCOB_EXPEDIENTE.ID_EXPEDIENTE%TYPE,
-                                           PI_N_ID_CUM_EXPEDIENTE       IN T_SCOB_EXPEDIENTE.ID_EXPEDIENTE%TYPE,
-                                           PI_N_ID_EXPEDIENTE_DOCUMENTO IN T_SCOB_EXPEDIENTE_DOCUMENTO.ID_EXPEDIENTE_DOCUMENTO%TYPE,
-                                           PI_V_ID_COSTAS               IN VARCHAR2,
-                                           PI_V_POR_COSTAS              IN VARCHAR2,
-                                           PI_V_VAL_COSTAS              IN VARCHAR2,
-                                           PI_V_CNT_COSTAS              IN VARCHAR2,
-                                           PI_V_SUB_TOTAL_COSTAS        IN VARCHAR2,
-                                           PI_N_TOTAL_COSTAS            IN T_SCOB_EXPEDIENTE.MONTO_COSTAS%TYPE,
-                                           PI_N_NRO_ITEMS               IN INTEGER,
-                                           PI_V_AUDUSUCREACION          IN T_SCOB_EXPEDIENTE_DOCUMENTO.AUDUSUCREACION%TYPE,
-                                           PI_C_FLG_AGREGAR             IN CHAR,
-                                           PO_N_COD_ERROR               OUT NUMBER,
-                                           PO_V_MSJ_ERROR               OUT VARCHAR2);
-
+PROCEDURE SCOB_SP_I_SCOB_CUM_EXPED_COSTA(PIN_NU_ID_EXPEDIENTE           IN T_SCOB_EXPEDIENTE.ID_EXPEDIENTE%TYPE,
+                                           PIN_NU_ID_CUM_EXPEDIENTE       IN T_SCOB_EXPEDIENTE.ID_EXPEDIENTE%TYPE,
+                                           PIN_NU_ID_EXPEDIENTE_DOCUMENTO IN T_SCOB_EXPEDIENTE_DOCUMENTO.ID_EXPEDIENTE_DOCUMENTO%TYPE,
+                                           PIN_VC_ID_COSTAS               IN VARCHAR2,
+                                           PIN_VC_POR_COSTAS              IN VARCHAR2,
+                                           PIN_VC_VAL_COSTAS              IN VARCHAR2,
+                                           PIN_VC_CNT_COSTAS              IN VARCHAR2,
+                                           PIN_VC_SUB_TOTAL_COSTAS        IN VARCHAR2,
+                                           PIN_NU_TOTAL_COSTAS            IN T_SCOB_EXPEDIENTE.MONTO_COSTAS%TYPE,
+                                           PIN_NU_NRO_ITEMS               IN INTEGER,
+                                           PIN_VC_AUDUSUCREACION          IN T_SCOB_EXPEDIENTE_DOCUMENTO.AUDUSUCREACION%TYPE,
+                                           PIN_CH_FLG_AGREGAR             IN CHAR,
+                                           POUT_NU_COD_ERROR              OUT NUMBER,
+                                           POUT_VC_MSJ_ERROR              OUT VARCHAR2);
                                    
 END SCOB_PK_EXPEDIENTE;
 /
@@ -3033,13 +3032,19 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
     N_MONTO_UIT             T_SCOB_MULTA.MONTO_UIT%TYPE;
     
     --INICIO VICTOR BENDEZU - INCIDENCIA UFC SALDO NULO
-    N_MONTO_COSTAS            T_SCOB_MULTA.MONTO_COSTAS%TYPE;
+    N_MONTO_COSTAS            T_SCOB_MULTA.MONTO_COSTAS%TYPE;    
     N_MONTO_TOTAL_DEUDA       T_SCOB_MULTA.MONTO_TOTAL_DEUDA%TYPE;
     N_TOTAL_AMORTIZADO        T_SCOB_MULTA.TOTAL_AMORTIZADO%TYPE;
     N_TOTAL_AMORTIZADO_COSTAS T_SCOB_MULTA.TOTAL_AMORTIZADO_COSTAS%TYPE;
     N_TOTAL_AMORTIZADO_DEUDA  T_SCOB_MULTA.TOTAL_AMORTIZACION_DEUDA%TYPE;
     N_SALDO                   T_SCOB_MULTA.SALDO%TYPE;
     N_SALDO_COSTAS            T_SCOB_MULTA.SALDO_COSTAS%TYPE;
+    N_MONTO_INTERES           T_SCOB_MULTA.MONTO_INTERES%TYPE;
+    N_MONTO_INTERES_MORATORIO T_SCOB_MULTA.MONTO_INTERES_MORATORIO%TYPE;
+    N_SALDO_IC                T_SCOB_MULTA.SALDO_IC%TYPE;
+    N_SALDO_IM                T_SCOB_MULTA.SALDO_IM%TYPE;
+    N_TOTAL_AMORTIZADO_IC    T_SCOB_MULTA.TOTAL_AMORTIZADO_IC%TYPE;
+    N_TOTAL_AMORTIZADO_IM     T_SCOB_MULTA.TOTAL_AMORTIZADO_IM%TYPE;
     --FIN VICTOR BENDEZU - INCIDENCIA UFC SALDO NULO
     
     N_SALDO_TOTAL_DEUDA     T_SCOB_MULTA.SALDO_TOTAL_DEUDA%TYPE;
@@ -3162,6 +3167,12 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
            SUM(MULT.TOTAL_AMORTIZACION_DEUDA),
            SUM(MULT.SALDO),
            SUM(MULT.SALDO_COSTAS),     
+           SUM(MULT.MONTO_INTERES),
+           SUM(MULT.MONTO_INTERES_MORATORIO),
+           SUM(MULT.SALDO_IC),
+           SUM(MULT.SALDO_IM),
+           SUM(MULT.TOTAL_AMORTIZADO_IC),
+           SUM(MULT.TOTAL_AMORTIZADO_IM),
            --FIN VICTOR BENDEZU - INCIDENCIA UFC SALDO NULO                            
            SUM(MULT.SALDO_TOTAL_DEUDA)
       INTO C_FLG_TIPO_MULTA,
@@ -3178,6 +3189,12 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
            N_TOTAL_AMORTIZADO_DEUDA,
            N_SALDO,
            N_SALDO_COSTAS,
+           N_MONTO_INTERES,
+           N_MONTO_INTERES_MORATORIO,
+           N_SALDO_IC,
+           N_SALDO_IM,
+           N_TOTAL_AMORTIZADO_IC,
+           N_TOTAL_AMORTIZADO_IM,
            --FIN VICTOR BENDEZU - INCIDENCIA UFC SALDO NULO 
            N_SALDO_TOTAL_DEUDA
       FROM T_SCOB_MULTA MULT
@@ -3217,6 +3234,12 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
          TOTAL_AMORTIZADO_DEUDA,
          SALDO,
          SALDO_COSTAS,
+         MONTO_INTERES,
+         MONTO_INTERES_MORATORIO,
+         SALDO_IC,
+         SALDO_IM,
+         TOTAL_AMORTIZADO_IC,
+         TOTAL_AMORTIZADO_IM,
          --FIN VICTOR BENDEZU - INCIDENCIA UFC SALDO NULO
          SALDO_TOTAL_DEUDA,
          POR_ASOCU,
@@ -3247,6 +3270,12 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
          N_TOTAL_AMORTIZADO_DEUDA,
          N_SALDO,
          N_SALDO_COSTAS,
+         N_MONTO_INTERES,
+         N_MONTO_INTERES_MORATORIO,
+         N_SALDO_IC,
+         N_SALDO_IM,
+         N_TOTAL_AMORTIZADO_IC,
+         N_TOTAL_AMORTIZADO_IM,
          --FIN VICTOR BENDEZU - INCIDENCIA UFC SALDO NULO  
          N_SALDO_TOTAL_DEUDA,
          N_VALOR_POR_ASOCU,
@@ -3278,6 +3307,12 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
              TOTAL_AMORTIZADO_DEUDA  = NVL(EXPE.TOTAL_AMORTIZADO_DEUDA, 0) + N_TOTAL_AMORTIZADO_DEUDA,
              SALDO                   = NVL(EXPE.SALDO, 0) + N_SALDO,
              SALDO_COSTAS            = NVL(EXPE.SALDO_COSTAS, 0) + N_SALDO_COSTAS,
+             MONTO_INTERES = NVL(EXPE.MONTO_INTERES,0) + N_MONTO_INTERES,
+             MONTO_INTERES_MORATORIO = NVL(EXPE.MONTO_INTERES_MORATORIO,0) + N_MONTO_INTERES_MORATORIO,
+             SALDO_IC = NVL(EXPE.SALDO_IC,0) + N_SALDO_IC,
+             SALDO_IM = NVL(EXPE.SALDO_IM,0) + N_SALDO_IM,
+             TOTAL_AMORTIZADO_IC = NVL(EXPE.TOTAL_AMORTIZADO_IC,0) + N_TOTAL_AMORTIZADO_IC,
+             TOTAL_AMORTIZADO_IM = NVL(EXPE.TOTAL_AMORTIZADO_IM,0) + N_TOTAL_AMORTIZADO_IM,
              --FIN VICTOR BENDEZU - INCIDENCIA UFC SALDO NULO  
              SALDO_TOTAL_DEUDA         = NVL(EXPE.SALDO_TOTAL_DEUDA, 0) +
                                   N_SALDO_TOTAL_DEUDA,
@@ -10157,7 +10192,7 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
     -- Modificacion :
     -- Autor        :
     -- Modificado   :
-    -- Proposito    : 
+    -- Proposito    : Procesos en linea
     -----------------------------------------------------------
     */
     (
@@ -10174,6 +10209,7 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
     AS
       V_NU_ID_EXPEDIENTE NUMBER;
       V_NU_EXISTE NUMBER;
+      V_NU_ID_MULTA               USR_SICOB.T_SCOB_MULTA.ID_MULTA%TYPE;    
     BEGIN
       
       -- MULTA CERO PARA EXPEDIENTE - PODER JUDICIAL
@@ -10286,6 +10322,31 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
                 AUDUSUMODIFICACION    = PI_VC_USUARIO_LOGIN
           WHERE ID_EXPEDIENTE = V_NU_ID_EXPEDIENTE;
                
+          --INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA    
+          V_NU_ID_MULTA:= SCOB_PK_EXPEDIENTE.SCOB_FN_MUL_ANTIGUO(V_NU_ID_EXPEDIENTE); -- SI ES EXP ACUMULADO APLICA SOLO AL CUM MAS ANTIGUO
+          USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_U_EXPEDIENTE_CERO_A_SIA(PIN_NU_ID_MULTA => V_NU_ID_MULTA,
+                                                                            POUT_NU_COD_RESULT => PO_NU_RETORNO,
+                                                                            POUT_VC_MSG_RESULT => PO_VC_MSJ_ERROR);
+          IF PO_NU_RETORNO < 0 THEN
+             ROLLBACK;
+             RETURN;
+          END IF;
+          USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_BN_X_EXP(PIN_NU_ID_EXPEDIENTE => V_NU_ID_EXPEDIENTE,
+                                           POUT_NU_COD_RESULT => PO_NU_RETORNO,
+                                           POUT_VC_MSG_RESULT => PO_VC_MSJ_ERROR);
+          IF PO_NU_RETORNO < 0 THEN
+             ROLLBACK;
+             RETURN;
+          END IF;
+          USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_ASBANC_X_EXP(PIN_NU_ID_EXPEDIENTE => V_NU_ID_EXPEDIENTE,
+                                           POUT_NU_COD_RESULT => PO_NU_RETORNO,
+                                           POUT_VC_MSG_RESULT => PO_VC_MSJ_ERROR);
+          IF PO_NU_RETORNO < 0 THEN
+             ROLLBACK;
+             RETURN;
+          END IF;    
+          --FIN VICTOR BENDEZU - MIGRACION SICOB A SIA
+          
           PO_NU_COD_ERROR := 0;
           PO_NU_RETORNO   := 1;
        END;
@@ -10552,7 +10613,7 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
   -- Descripción: Procedure que retorna la lista estados de un expediente
   --
   --
-  -- Output Parameters: PO_CU_RETORNO, PO_N_COD_ERROR , PO_V_MSJ_ERROR
+  -- Output Parameters: POUT_CUR_RETORNO, POUT_NU_COD_ERROR , POUT_VC_MSJ_ERROR
   --
   --
   -- Author:      Victor Bendezú
@@ -10563,16 +10624,16 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_ESTADOS_EXPEDIENTE(PI_V_NRO_EXPEDIENTE IN VARCHAR2,
-                                         PO_CU_RETORNO       OUT CU_REC_SET,
-                                         PO_N_COD_ERROR      OUT NUMBER,
-                                         PO_V_MSJ_ERROR      OUT VARCHAR2) AS
+  PROCEDURE SCOB_SP_S_ESTADOS_EXPEDIENTE(PIN_VC_NRO_EXPEDIENTE IN VARCHAR2,
+                                         POUT_CUR_RETORNO       OUT CU_REC_SET,
+                                         POUT_NU_COD_ERROR      OUT NUMBER,
+                                         POUT_VC_MSJ_ERROR      OUT VARCHAR2) AS
   BEGIN
 
-    PO_N_COD_ERROR := -1;
-    PO_V_MSJ_ERROR := '';
+    POUT_NU_COD_ERROR := -1;
+    POUT_VC_MSJ_ERROR := '';
 
-    OPEN PO_CU_RETORNO FOR 
+    OPEN POUT_CUR_RETORNO FOR 
          
       SELECT EXMU.ID_MULTA AS ID_MULTA,
              EXDO.ID_EXPEDIENTE AS ID_EXPEDIENTE,
@@ -10630,17 +10691,17 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
           ON (EST_EXP.ID_EST_EXP_COB = MOT_EXP.ID_EST_EXP_COB AND
              EXDO.ID_MOTIVO = MOT_EXP.ID_MOTIVO)
        WHERE EXDO.ESTADO = '1'
-         AND EX.ANIO || EX.NRO_EXPEDIENTE = PI_V_NRO_EXPEDIENTE
+         AND EX.ANIO || EX.NRO_EXPEDIENTE = PIN_VC_NRO_EXPEDIENTE
        ORDER BY ID_DOCUMENTO DESC;
     
   EXCEPTION
     WHEN OTHERS THEN
       
-      PO_N_COD_ERROR := SQLCODE;
-      SELECT CASE WHEN PO_N_COD_ERROR > 0 THEN PO_N_COD_ERROR * -1 ELSE PO_N_COD_ERROR END
-        INTO PO_N_COD_ERROR
+      POUT_NU_COD_ERROR := SQLCODE;
+      SELECT CASE WHEN POUT_NU_COD_ERROR > 0 THEN POUT_NU_COD_ERROR * -1 ELSE POUT_NU_COD_ERROR END
+        INTO POUT_NU_COD_ERROR
         FROM DUAL;
-      PO_V_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
+      POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
     
   END;  
   
@@ -10648,7 +10709,7 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
   -- Descripción: Procedure que retorna la lista estados de expediente
   --
   --
-  -- Output Parameters: PO_CU_RETORNO, PO_N_COD_ERROR , PO_V_MSJ_ERROR
+  -- Output Parameters: POUT_CUR_RETORNO, POUT_NU_COD_ERROR , POUT_VC_MSJ_ERROR
   --
   --
   -- Author:      Victor Bendezú
@@ -10659,15 +10720,15 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_ESTADO_EXPEDIENTE(PO_CU_RETORNO       OUT CU_REC_SET,
-                                        PO_N_COD_ERROR      OUT NUMBER,
-                                        PO_V_MSJ_ERROR      OUT VARCHAR2) AS
+  PROCEDURE SCOB_SP_S_ESTADO_EXPEDIENTE(POUT_CUR_RETORNO       OUT CU_REC_SET,
+                                        POUT_NU_COD_ERROR      OUT NUMBER,
+                                        POUT_VC_MSJ_ERROR      OUT VARCHAR2) AS
   BEGIN
 
-    PO_N_COD_ERROR := -1;
-    PO_V_MSJ_ERROR := '';
+    POUT_NU_COD_ERROR := -1;
+    POUT_VC_MSJ_ERROR := '';
 
-    OPEN PO_CU_RETORNO FOR 
+    OPEN POUT_CUR_RETORNO FOR 
          
       SELECT T.ID_EST_EXP_COB, T.CODIGO, T.DESCRIPCION, T.ESTADO
         FROM USR_SICOB.T_SCOB_EST_EXP_COB T
@@ -10676,11 +10737,11 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
   EXCEPTION
     WHEN OTHERS THEN
       
-      PO_N_COD_ERROR := SQLCODE;
-      SELECT CASE WHEN PO_N_COD_ERROR > 0 THEN PO_N_COD_ERROR * -1 ELSE PO_N_COD_ERROR END
-        INTO PO_N_COD_ERROR
+      POUT_NU_COD_ERROR := SQLCODE;
+      SELECT CASE WHEN POUT_NU_COD_ERROR > 0 THEN POUT_NU_COD_ERROR * -1 ELSE POUT_NU_COD_ERROR END
+        INTO POUT_NU_COD_ERROR
         FROM DUAL;
-      PO_V_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
+      POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
     
   END;  
   
@@ -10688,7 +10749,7 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
   -- Descripción: Procedure que retorna la lista motivos de expediente
   --
   --
-  -- Output Parameters: PO_CU_RETORNO, PO_N_COD_ERROR , PO_V_MSJ_ERROR
+  -- Output Parameters: POUT_CUR_RETORNO, POUT_NU_COD_ERROR , POUT_VC_MSJ_ERROR
   --
   --
   -- Author:      Victor Bendezú
@@ -10699,30 +10760,30 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_MOTIVO_EXPEDIENTE(PI_N_ID_ESTADO_EXPEDIENTE IN NUMBER,
-                                        PO_CU_RETORNO             OUT CU_REC_SET,
-                                        PO_N_COD_ERROR            OUT NUMBER,
-                                        PO_V_MSJ_ERROR            OUT VARCHAR2) AS
+  PROCEDURE SCOB_SP_S_MOTIVO_EXPEDIENTE(PIN_NU_ID_ESTADO_EXPEDIENTE IN NUMBER,
+                                        POUT_CUR_RETORNO             OUT CU_REC_SET,
+                                        POUT_NU_COD_ERROR            OUT NUMBER,
+                                        POUT_VC_MSJ_ERROR            OUT VARCHAR2) AS
   BEGIN
 
-    PO_N_COD_ERROR := -1;
-    PO_V_MSJ_ERROR := '';
+    POUT_NU_COD_ERROR := -1;
+    POUT_VC_MSJ_ERROR := '';
 
-    OPEN PO_CU_RETORNO FOR 
+    OPEN POUT_CUR_RETORNO FOR 
          
       SELECT T.ID_MOTIVO, T.CODIGO, T.DESCRIPCION, T.ESTADO
         FROM USR_SICOB.T_SCOB_EST_EXP_COB_MOTIVO T
-       WHERE T.ID_EST_EXP_COB = PI_N_ID_ESTADO_EXPEDIENTE
+       WHERE T.ID_EST_EXP_COB = PIN_NU_ID_ESTADO_EXPEDIENTE
          AND T.ESTADO = '1';
     
   EXCEPTION
     WHEN OTHERS THEN
       
-      PO_N_COD_ERROR := SQLCODE;
-      SELECT CASE WHEN PO_N_COD_ERROR > 0 THEN PO_N_COD_ERROR * -1 ELSE PO_N_COD_ERROR END
-        INTO PO_N_COD_ERROR
+      POUT_NU_COD_ERROR := SQLCODE;
+      SELECT CASE WHEN POUT_NU_COD_ERROR > 0 THEN POUT_NU_COD_ERROR * -1 ELSE POUT_NU_COD_ERROR END
+        INTO POUT_NU_COD_ERROR
         FROM DUAL;
-      PO_V_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
+      POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
     
   END;  
   
@@ -10730,7 +10791,7 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
   -- Descripción: Procedure que registra un nuevo estado al expediente
   --
   --
-  -- Output Parameters: PO_N_COD_ERROR , PO_V_MSJ_ERROR
+  -- Output Parameters: POUT_NU_COD_ERROR , POUT_VC_MSJ_ERROR
   --
   --
   -- Author:      Victor Bendezú
@@ -10741,51 +10802,51 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_I_ESTADOS_EXPEDIENTE(PI_N_ID_ESTADO_EXP  IN NUMBER,
-                                         PI_N_ID_MOTIVO      IN NUMBER,
-                                         PI_N_ID_EXPEDIENTE  IN NUMBER,
-                                         PI_N_ID_MULTA       IN NUMBER,
-                                         PI_V_FECHA_REGISTRO IN VARCHAR,
-                                         PI_V_USUARIO        IN VARCHAR,
-                                         PO_N_COD_ERROR      OUT NUMBER,
-                                         PO_V_MSJ_ERROR      OUT VARCHAR2) AS 
+  PROCEDURE SCOB_SP_I_ESTADOS_EXPEDIENTE(PIN_NU_ID_ESTADO_EXP  IN NUMBER,
+                                         PIN_NU_ID_MOTIVO      IN NUMBER,
+                                         PIN_NU_ID_EXPEDIENTE  IN NUMBER,
+                                         PIN_NU_ID_MULTA       IN NUMBER,
+                                         PIN_VC_FECHA_REGISTRO IN VARCHAR,
+                                         PIN_VC_USUARIO        IN VARCHAR,
+                                         POUT_NU_COD_ERROR      OUT NUMBER,
+                                         POUT_VC_MSJ_ERROR      OUT VARCHAR2) AS 
                                          
-  V_ID_EXPEDIENTE_ESTADO T_SCOB_EXPEDIENTE_ESTADO.ID_EXPEDIENTE_ESTADO%TYPE;
-  V_AUDFECCREACION       T_SCOB_EXPEDIENTE_ESTADO.AUDFECCREACION%TYPE;                                              
+  V_NU_ID_EXPEDIENTE_ESTADO T_SCOB_EXPEDIENTE_ESTADO.ID_EXPEDIENTE_ESTADO%TYPE;
+  V_DT_AUDFECCREACION       T_SCOB_EXPEDIENTE_ESTADO.AUDFECCREACION%TYPE;                                              
                                                 
   BEGIN
     
      BEGIN
     
-      SELECT REGI.AUDFECCREACION INTO V_AUDFECCREACION
+      SELECT REGI.AUDFECCREACION INTO V_DT_AUDFECCREACION
         FROM (SELECT EXES.*
                 FROM T_SCOB_EXPEDIENTE_ESTADO EXES
-               WHERE EXES.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE
+               WHERE EXES.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE
                ORDER BY 1 DESC) REGI
        WHERE ROWNUM = 1;
        
     EXCEPTION
       WHEN NO_DATA_FOUND THEN
-        PO_V_MSJ_ERROR := 'NO CONFORME : NO HAY DATOS DE T_SCOB_EXPEDIENTE_ESTADO CON : ID_EXPEDIENTE => ' ||
-                          PI_N_ID_EXPEDIENTE;
+        POUT_VC_MSJ_ERROR := 'NO CONFORME : NO HAY DATOS DE T_SCOB_EXPEDIENTE_ESTADO CON : ID_EXPEDIENTE => ' ||
+                          PIN_NU_ID_EXPEDIENTE;
         RAISE EX_CONTROLADO;
       WHEN OTHERS THEN
-        PO_V_MSJ_ERROR := 'NO CONFORME : SCOB_SP_I_ESTADOS_EXPEDIENTE - CONSULTA T_SCOB_EXPEDIENTE_ESTADO - ERROR : ' ||
+        POUT_VC_MSJ_ERROR := 'NO CONFORME : SCOB_SP_I_ESTADOS_EXPEDIENTE - CONSULTA T_SCOB_EXPEDIENTE_ESTADO - ERROR : ' ||
                           SQLERRM;
         RAISE EX_CONTROLADO;
     END;  
     
-    IF TO_DATE(PI_V_FECHA_REGISTRO,'DD/MM/YYYY') > TO_DATE(SYSDATE,'DD/MM/YY') THEN
-      PO_V_MSJ_ERROR := 'LA FECHA NO PUEDE SER MAYOR A LA DE HOY';
+    IF TO_DATE(PIN_VC_FECHA_REGISTRO,'DD/MM/YYYY') > TO_DATE(SYSDATE,'DD/MM/YY') THEN
+      POUT_VC_MSJ_ERROR := 'LA FECHA NO PUEDE SER MAYOR A LA DE HOY';
       RAISE EX_CONTROLADO;
     END IF;
     
-    IF V_AUDFECCREACION > TO_DATE(PI_V_FECHA_REGISTRO,'DD/MM/YYYY') THEN
-      PO_V_MSJ_ERROR := 'LA FECHA NO PUEDE SER MENOR A LA ULTIMA FECHA REGISTRADA POR LOS ESTADOS DEL EXPEDIENTE';
+    IF V_DT_AUDFECCREACION > TO_DATE(PIN_VC_FECHA_REGISTRO,'DD/MM/YYYY') THEN
+      POUT_VC_MSJ_ERROR := 'LA FECHA NO PUEDE SER MENOR A LA ULTIMA FECHA REGISTRADA POR LOS ESTADOS DEL EXPEDIENTE';
       RAISE EX_CONTROLADO;
     END IF;
   
-    V_ID_EXPEDIENTE_ESTADO := USR_SICOB.SCOB_SQ_EXPEDIENTE_ESTADO.NEXTVAL;
+    V_NU_ID_EXPEDIENTE_ESTADO := USR_SICOB.SCOB_SQ_EXPEDIENTE_ESTADO.NEXTVAL;
     
     INSERT INTO USR_SICOB.T_SCOB_EXPEDIENTE_ESTADO
       (ID_EXPEDIENTE_ESTADO,
@@ -10796,21 +10857,21 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
        ID_EXPEDIENTE,
        ID_MOTIVO)
     VALUES
-      (V_ID_EXPEDIENTE_ESTADO,
-       PI_N_ID_ESTADO_EXP,
+      (V_NU_ID_EXPEDIENTE_ESTADO,
+       PIN_NU_ID_ESTADO_EXP,
        SCOB_PK_CONSTANTES.C_ESTADO_ACTIVO,
-       TO_DATE(PI_V_FECHA_REGISTRO,'DD/MM/YYYY'),
-       PI_V_USUARIO,
-       PI_N_ID_EXPEDIENTE,
-       PI_N_ID_MOTIVO);
+       TO_DATE(PIN_VC_FECHA_REGISTRO,'DD/MM/YYYY'),
+       PIN_VC_USUARIO,
+       PIN_NU_ID_EXPEDIENTE,
+       PIN_NU_ID_MOTIVO);
      
     UPDATE USR_SICOB.T_SCOB_EXPEDIENTE
-       SET ID_MOTIVO             = PI_N_ID_MOTIVO,
-           ESTADO_EXPEDIENTE     = PI_N_ID_ESTADO_EXP,
-           FEC_ESTADO_EXPEDIENTE = TO_DATE(PI_V_FECHA_REGISTRO,'DD/MM/YYYY'),
+       SET ID_MOTIVO             = PIN_NU_ID_MOTIVO,
+           ESTADO_EXPEDIENTE     = PIN_NU_ID_ESTADO_EXP,
+           FEC_ESTADO_EXPEDIENTE = TO_DATE(PIN_VC_FECHA_REGISTRO,'DD/MM/YYYY'),
            AUDFECMODIFICACION    = SYSDATE,
-           AUDUSUMODIFICACION    = PI_V_USUARIO
-     WHERE ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE;
+           AUDUSUMODIFICACION    = PIN_VC_USUARIO
+     WHERE ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE;
      
     INSERT INTO USR_SICOB.T_SCOB_AUDITORIA
             (NU_ID_AUDITORIA,
@@ -10830,37 +10891,37 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
           VALUES
             (USR_SICOB.SEQ_T_AUDITORIA_ID.NEXTVAL,
              4,
-             PI_N_ID_MULTA,
-             PI_N_ID_EXPEDIENTE,
+             PIN_NU_ID_MULTA,
+             PIN_NU_ID_EXPEDIENTE,
              'T_SCOB_EXPEDIENTE_ESTADO',
              'ID_EXPEDIENTE_ESTADO',
              NULL,
-             V_ID_EXPEDIENTE_ESTADO,
+             V_NU_ID_EXPEDIENTE_ESTADO,
              NULL,
              'I',
              'AGREGO ESTADO DEL EXPEDIENTE ID_ESTADO = ' 
-             || V_ID_EXPEDIENTE_ESTADO,
-             PI_V_USUARIO,
+             || V_NU_ID_EXPEDIENTE_ESTADO,
+             PIN_VC_USUARIO,
              SYSDATE,
              '1');
              
     COMMIT;
     
-    PO_N_COD_ERROR := 0;
-    PO_V_MSJ_ERROR := 'CONFORME';
+    POUT_NU_COD_ERROR := 0;
+    POUT_VC_MSJ_ERROR := 'CONFORME';
                      
   EXCEPTION
     
     WHEN EX_CONTROLADO THEN
-      PO_N_COD_ERROR := -1;
+      POUT_NU_COD_ERROR := -1;
       
     WHEN OTHERS THEN
       
-      PO_N_COD_ERROR := SQLCODE;
-      SELECT CASE WHEN PO_N_COD_ERROR > 0 THEN PO_N_COD_ERROR * -1 ELSE PO_N_COD_ERROR END
-        INTO PO_N_COD_ERROR
+      POUT_NU_COD_ERROR := SQLCODE;
+      SELECT CASE WHEN POUT_NU_COD_ERROR > 0 THEN POUT_NU_COD_ERROR * -1 ELSE POUT_NU_COD_ERROR END
+        INTO POUT_NU_COD_ERROR
         FROM DUAL;
-      PO_V_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
+      POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
       ROLLBACK;
       
    END;
@@ -10881,20 +10942,20 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_U_REVERTIR_EXPEDIENTE(PI_N_ID_EXPEDIENTE IN NUMBER,
-                                          PI_V_USUARIO       IN VARCHAR,
-                                          PO_N_COD_ERROR     OUT NUMBER,
-                                          PO_V_MSJ_ERROR     OUT VARCHAR2) AS
+  PROCEDURE SCOB_SP_U_REVERTIR_EXPEDIENTE(PIN_NU_ID_EXPEDIENTE IN NUMBER,
+                                          PIN_VC_USUARIO       IN VARCHAR,
+                                          POUT_NU_COD_ERROR     OUT NUMBER,
+                                          POUT_VC_MSJ_ERROR     OUT VARCHAR2) AS
                                           
   REG_T_SCOB_EXPEDIENTE_MULTA T_SCOB_EXPEDIENTE_MULTA%ROWTYPE;                                      
   REG_T_SCOB_EXPEDIENTE       T_SCOB_EXPEDIENTE%ROWTYPE;
   
-  V_ID_EXPEDIENTE_ESTADO      T_SCOB_EXPEDIENTE_ESTADO.ID_EXPEDIENTE_ESTADO%TYPE;
+  V_NU_ID_EXPEDIENTE_ESTADO      T_SCOB_EXPEDIENTE_ESTADO.ID_EXPEDIENTE_ESTADO%TYPE;
   
   CURSOR CURSOR_T_SCOB_EXPEDIENTE_MULTA IS
    SELECT EM.*
      FROM USR_SICOB.T_SCOB_EXPEDIENTE_MULTA EM
-    WHERE EM.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE
+    WHERE EM.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE
     AND EM.ESTADO = '1';
 
   BEGIN
@@ -10903,25 +10964,25 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
     SELECT EXPE.*
       INTO REG_T_SCOB_EXPEDIENTE
       FROM USR_SICOB.T_SCOB_EXPEDIENTE EXPE
-     WHERE EXPE.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE;
+     WHERE EXPE.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE;
      
     -- VALIDAMOS LOS ESTADOS DEL EXPEDIENTE
     IF REG_T_SCOB_EXPEDIENTE.ESTADO_EXPEDIENTE <> 1 AND REG_T_SCOB_EXPEDIENTE.ESTADO_EXPEDIENTE <> 3 THEN
-      PO_V_MSJ_ERROR := 'ESTADO DEL EXPEDIENTE DEBE SER PRE-COACTIVO O EN EJECUCION COACTIVA';
+      POUT_VC_MSJ_ERROR := 'ESTADO DEL EXPEDIENTE DEBE SER PRE-COACTIVO O EN EJECUCION COACTIVA';
       RAISE EX_CONTROLADO;
     END IF;
     
     -- VALIDAMOS EL MES DE LA REVERSION RESPECTO A LA FECHA DE EXPEDIENTE
     IF TO_CHAR(REG_T_SCOB_EXPEDIENTE.FEC_INGRESO, 'mmyyyy') <> TO_CHAR(SYSDATE, 'mmyyyy')  THEN
-      PO_V_MSJ_ERROR := 'SOLO PUEDE REVERTIR EN EL MISMO MES DE LA GENERACION DEL EXPEDIENTE';
+      POUT_VC_MSJ_ERROR := 'SOLO PUEDE REVERTIR EN EL MISMO MES DE LA GENERACION DEL EXPEDIENTE';
       RAISE EX_CONTROLADO;
     END IF;
     
     -- SE OBTIENE EL ULTIMO ESTADO EXPEDIENTE ACTIVO
-    SELECT REGI.ID_EXPEDIENTE_ESTADO INTO V_ID_EXPEDIENTE_ESTADO
+    SELECT REGI.ID_EXPEDIENTE_ESTADO INTO V_NU_ID_EXPEDIENTE_ESTADO
         FROM (SELECT EXES.*
                 FROM T_SCOB_EXPEDIENTE_ESTADO EXES
-               WHERE EXES.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE
+               WHERE EXES.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE
                AND EXES.ESTADO = '1'
                ORDER BY 1 DESC) REGI
        WHERE ROWNUM = 1;
@@ -10929,28 +10990,49 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
     -- SE ACTUALIZA EL ULTIMO ESTADO EXPEDIENTE ACTIVO
     UPDATE USR_SICOB.T_SCOB_EXPEDIENTE_ESTADO EXES
        SET EXES.CH_TIPO_ELIMINACION = '01'
-     WHERE EXES.ID_EXPEDIENTE_ESTADO = V_ID_EXPEDIENTE_ESTADO;
+     WHERE EXES.ID_EXPEDIENTE_ESTADO = V_NU_ID_EXPEDIENTE_ESTADO;
 
     -- ANULACION DEL DOCUMENTO DEL EXPEDIENTE
     UPDATE USR_SICOB.T_SCOB_EXPEDIENTE_DOCUMENTO EXDO
        SET EXDO.ESTADO           = '0',
            EXDO.AUDFECMODIFICACION = SYSDATE,
-           EXDO.AUDUSUMODIFICACION = PI_V_USUARIO 
-     WHERE EXDO.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE;
+           EXDO.AUDUSUMODIFICACION = PIN_VC_USUARIO 
+     WHERE EXDO.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE;
 
     -- ANULACION DE LOS ESTADO DEL EXPEDIENTE
     UPDATE USR_SICOB.T_SCOB_EXPEDIENTE_ESTADO EXES
        SET EXES.ESTADO             = '0',
            EXES.AUDFECMODIFICACION = SYSDATE,
-           EXES.AUDUSUMODIFICACION = PI_V_USUARIO
-     WHERE EXES.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE;    
+           EXES.AUDUSUMODIFICACION = PIN_VC_USUARIO
+     WHERE EXES.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE;    
     
     -- ANULACION DEL EXPEDIENTE
     UPDATE USR_SICOB.T_SCOB_EXPEDIENTE EXPE
        SET EXPE.ESTADO             = '0',
            EXPE.AUDFECMODIFICACION = SYSDATE,
-           EXPE.AUDUSUMODIFICACION = PI_V_USUARIO
-     WHERE EXPE.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE;
+           EXPE.AUDUSUMODIFICACION = PIN_VC_USUARIO
+     WHERE EXPE.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE;
+     
+    -- ANULACION DEL EXPEDIENTE PERSONA
+    UPDATE USR_SICOB.T_SCOB_EXPEDIENTE_PERSONA EXPE
+       SET EXPE.ESTADO             = '0',
+           EXPE.AUDFECMODIFICACION = SYSDATE,
+           EXPE.AUDUSUMODIFICACION = PIN_VC_USUARIO
+     WHERE EXPE.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE;
+     
+    -- ANULACION DEL EXPEDIENTE DOCUMENTO COACTIVO
+    UPDATE USR_SICOB.T_SCOB_EXPED_COACTIVO_DOC EXCO
+       SET EXCO.ESTADO             = '0',
+           EXCO.AUDFECMODIFICACION = SYSDATE,
+           EXCO.AUDUSUMODIFICACION = PIN_VC_USUARIO
+     WHERE EXCO.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE;
+    
+    -- ANULACION DEL EXPEDIENTE DOCUMENTO DIRECCION
+    UPDATE USR_SICOB.T_SCOB_EXPED_DOCUMENTO_DIREC EXDD
+       SET EXDD.ESTADO             = '0',
+           EXDD.AUDFECMODIFICACION = SYSDATE,
+           EXDD.AUDUSUMODIFICACION = PIN_VC_USUARIO
+     WHERE EXDD.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE;
 
     -- SI TIENE COSTAS ANULACION DE COSTAS DEL EXPEDIENTE
     IF REG_T_SCOB_EXPEDIENTE.MONTO_COSTAS > 0 THEN
@@ -10958,8 +11040,8 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
       UPDATE USR_SICOB.T_SCOB_EXPEDIENTE_COSTA EXCO
          SET EXCO.ESTADO             = '0',
              EXCO.AUDFECMODIFICACION = SYSDATE,
-             EXCO.AUDUSUMODIFICACION = PI_V_USUARIO
-       WHERE EXCO.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE;
+             EXCO.AUDUSUMODIFICACION = PIN_VC_USUARIO
+       WHERE EXCO.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE;
 
     END IF;
     
@@ -10985,15 +11067,16 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
         UPDATE USR_SICOB.T_SCOB_MULTA_ESTADO MUES
            SET MUES.ESTADO             = '0',
                MUES.AUDFECMODIFICACION = SYSDATE,
-               MUES.AUDUSUMODIFICACION = PI_V_USUARIO
+               MUES.AUDUSUMODIFICACION = PIN_VC_USUARIO
          WHERE MUES.ID_MULTA = REG_T_SCOB_EXPEDIENTE_MULTA.ID_MULTA
            AND MUES.ESTADO_MULTA > 9;
         
-        -- ACTUALIZAR EL ESTADO DE LA MULTA A NO INICIADO CON EL MOTIVO 
+        -- ACTUALIZAR EL ESTADO DE LA MULTA A NO INICIADO CON EL MOTIVO Y EL RECALCULO DEL SALDO
         UPDATE USR_SICOB.T_SCOB_MULTA MULT
            SET MULT.ESTADO_MULTA     = 9,
                MULT.COD_MOTIVO       = 1,
-               MULT.FEC_ESTADO_MULTA = SYSDATE
+               MULT.FEC_ESTADO_MULTA = SYSDATE,
+               MULT.SALDO = MULT.MONTO_UIT - (MULT.TOTAL_AMORTIZADO_IM + MULT.TOTAL_AMORTIZADO + MULT.TOTAL_AMORTIZADO_IC)
          WHERE MULT.ID_MULTA = REG_T_SCOB_EXPEDIENTE_MULTA.ID_MULTA;
        
          INSERT INTO USR_SICOB.T_SCOB_AUDITORIA
@@ -11019,15 +11102,39 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
              'T_SCOB_EXPEDIENTE_ESTADO',
              'ID_EXPEDIENTE_ESTADO',
              NULL,
-             V_ID_EXPEDIENTE_ESTADO,
+             V_NU_ID_EXPEDIENTE_ESTADO,
              NULL,
              'D',
              'ELIMINACION DEL EXPEDIENTE : ' 
               || REG_T_SCOB_EXPEDIENTE.ANIO || REG_T_SCOB_EXPEDIENTE.NRO_EXPEDIENTE,
-             PI_V_USUARIO,
+             PIN_VC_USUARIO,
              SYSDATE,
              '1');
-             
+           
+          --INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA    
+            USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_U_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => REG_T_SCOB_EXPEDIENTE_MULTA.ID_MULTA,
+                                                                      POUT_NU_COD_RESULT => POUT_NU_COD_ERROR,
+                                                                      POUT_VC_MSG_RESULT => POUT_VC_MSJ_ERROR);
+            IF POUT_NU_COD_ERROR < 0 THEN
+              ROLLBACK;
+              RETURN;
+            END IF;
+            USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_BN(PIN_NU_ID_MULTA => REG_T_SCOB_EXPEDIENTE_MULTA.ID_MULTA,
+                                                                 POUT_NU_COD_RESULT => POUT_NU_COD_ERROR,
+                                                                 POUT_VC_MSG_RESULT => POUT_VC_MSJ_ERROR);
+            IF POUT_NU_COD_ERROR < 0 THEN
+              ROLLBACK;
+              RETURN;
+            END IF;
+            USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_ASBANC(PIN_NU_ID_MULTA => REG_T_SCOB_EXPEDIENTE_MULTA.ID_MULTA,
+                                                                     POUT_NU_COD_RESULT => POUT_NU_COD_ERROR,
+                                                                     POUT_VC_MSG_RESULT => POUT_VC_MSJ_ERROR);
+            IF POUT_NU_COD_ERROR < 0 THEN
+              ROLLBACK;
+              RETURN;
+            END IF;    
+            --FIN VICTOR BENDEZU - MIGRACION SICOB A SIA--INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA   
+  
       END LOOP;
         
     CLOSE CURSOR_T_SCOB_EXPEDIENTE_MULTA;    
@@ -11036,26 +11143,29 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
     UPDATE USR_SICOB.T_SCOB_EXPEDIENTE_MULTA EXMU
        SET EXMU.ESTADO             = '0',
            EXMU.AUDFECMODIFICACION = SYSDATE,
-           EXMU.AUDUSUMODIFICACION = PI_V_USUARIO
-     WHERE EXMU.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE;
+           EXMU.AUDUSUMODIFICACION = PIN_VC_USUARIO
+     WHERE EXMU.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE;
+     
+     
      
     COMMIT;
     
-    PO_N_COD_ERROR := 0;
-    PO_V_MSJ_ERROR := 'CONFORME';
+    POUT_NU_COD_ERROR := 0;
+    POUT_VC_MSJ_ERROR := 'CONFORME';
                      
   EXCEPTION
     
     WHEN EX_CONTROLADO THEN
-      PO_N_COD_ERROR := -1;
+      POUT_NU_COD_ERROR := -1;
+      ROLLBACK;
       
     WHEN OTHERS THEN
       
-      PO_N_COD_ERROR := SQLCODE;
-      SELECT CASE WHEN PO_N_COD_ERROR > 0 THEN PO_N_COD_ERROR * -1 ELSE PO_N_COD_ERROR END
-        INTO PO_N_COD_ERROR
+      POUT_NU_COD_ERROR := SQLCODE;
+      SELECT CASE WHEN POUT_NU_COD_ERROR > 0 THEN POUT_NU_COD_ERROR * -1 ELSE POUT_NU_COD_ERROR END
+        INTO POUT_NU_COD_ERROR
         FROM DUAL;
-      PO_V_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
+      POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
       ROLLBACK;
       
  END;
@@ -11075,35 +11185,35 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_U_EMBARGO_EXPEDIENTE(PI_N_ID_EXPEDIENTE IN NUMBER,
-                                         PI_V_FLG_EMBARGO   IN VARCHAR,
-                                         PI_V_USUARIO       IN VARCHAR,
-                                         PO_N_COD_ERROR     OUT NUMBER,
-                                         PO_V_MSJ_ERROR     OUT VARCHAR2) AS
+  PROCEDURE SCOB_SP_U_EMBARGO_EXPEDIENTE(PIN_NU_ID_EXPEDIENTE IN NUMBER,
+                                         PIN_VC_FLG_EMBARGO   IN VARCHAR,
+                                         PIN_VC_USUARIO       IN VARCHAR,
+                                         POUT_NU_COD_ERROR     OUT NUMBER,
+                                         POUT_VC_MSJ_ERROR     OUT VARCHAR2) AS
   BEGIN
 
-    PO_N_COD_ERROR := -1;
-    PO_V_MSJ_ERROR := '';
+    POUT_NU_COD_ERROR := -1;
+    POUT_VC_MSJ_ERROR := '';
 
     UPDATE USR_SICOB.T_SCOB_EXPEDIENTE EX
-       SET EX.FLG_EMBARGO = PI_V_FLG_EMBARGO,
+       SET EX.FLG_EMBARGO = PIN_VC_FLG_EMBARGO,
            EX.AUDFECMODIFICACION = SYSDATE,
-           EX.AUDUSUMODIFICACION = PI_V_USUARIO
-     WHERE EX.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE;
+           EX.AUDUSUMODIFICACION = PIN_VC_USUARIO
+     WHERE EX.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE;
 
-    PO_N_COD_ERROR := 0;
-    PO_V_MSJ_ERROR := 'CONFORME';
+    POUT_NU_COD_ERROR := 0;
+    POUT_VC_MSJ_ERROR := 'CONFORME';
 
     COMMIT;
     
   EXCEPTION
     WHEN OTHERS THEN
       
-      PO_N_COD_ERROR := SQLCODE;
-      SELECT CASE WHEN PO_N_COD_ERROR > 0 THEN PO_N_COD_ERROR * -1 ELSE PO_N_COD_ERROR END
-        INTO PO_N_COD_ERROR
+      POUT_NU_COD_ERROR := SQLCODE;
+      SELECT CASE WHEN POUT_NU_COD_ERROR > 0 THEN POUT_NU_COD_ERROR * -1 ELSE POUT_NU_COD_ERROR END
+        INTO POUT_NU_COD_ERROR
         FROM DUAL;
-      PO_V_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250) || ' - ' || TO_CHAR(PI_N_ID_EXPEDIENTE);
+      POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250) || ' - ' || TO_CHAR(PIN_NU_ID_EXPEDIENTE);
       ROLLBACK;
     
   END;
@@ -11397,16 +11507,16 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_CUMS_EXPEDIENTE(PI_ID_EXPEDIENTE IN NUMBER,
-                                      PO_CU_RETORNO    OUT CU_REC_SET,
-                                      PO_N_COD_ERROR   OUT NUMBER,
-                                      PO_V_MSJ_ERROR   OUT VARCHAR2) AS
+  PROCEDURE SCOB_SP_S_CUMS_EXPEDIENTE(PIN_NU_ID_EXPEDIENTE IN NUMBER,
+                                      POUT_CUR_RETORNO    OUT CU_REC_SET,
+                                      POUT_NU_COD_ERROR   OUT NUMBER,
+                                      POUT_VC_MSJ_ERROR   OUT VARCHAR2) AS
   BEGIN
 
-    PO_N_COD_ERROR := -1;
-    PO_V_MSJ_ERROR := '';
+    POUT_NU_COD_ERROR := -1;
+    POUT_VC_MSJ_ERROR := '';
 
-    OPEN PO_CU_RETORNO FOR 
+    OPEN POUT_CUR_RETORNO FOR 
          
      SELECT *
        FROM (SELECT EX.ANIO || EX.NRO_EXPEDIENTE || ' - ' || MU.ANIO || MU.CUM AS EXP_ACUM,
@@ -11417,26 +11527,26 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
                  ON (SA.ID_MULTA = MU.ID_MULTA)
               INNER JOIN USR_SICOB.T_SCOB_EXPEDIENTE EX
                  ON (SA.ID_EXP_ORIGEN = EX.ID_EXPEDIENTE)
-              WHERE SA.ID_EXP_DESTINO = PI_ID_EXPEDIENTE
+              WHERE SA.ID_EXP_DESTINO = PIN_NU_ID_EXPEDIENTE
              UNION ALL
              SELECT EX.ANIO || EX.NRO_EXPEDIENTE || ' - ' || 'CUM ACUM.' AS EXP_ACUM,
                     0,
                     EX.ID_EXPEDIENTE
                FROM USR_SICOB.T_SCOB_EXPEDIENTE EX
-              WHERE EX.ID_EXPEDIENTE = PI_ID_EXPEDIENTE)
+              WHERE EX.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE)
       ORDER BY 1 ASC;
     
-    PO_N_COD_ERROR := 0;
-    PO_V_MSJ_ERROR := 'CONFORME';
+    POUT_NU_COD_ERROR := 0;
+    POUT_VC_MSJ_ERROR := 'CONFORME';
     
   EXCEPTION
     WHEN OTHERS THEN
       
-      PO_N_COD_ERROR := SQLCODE;
-      SELECT CASE WHEN PO_N_COD_ERROR > 0 THEN PO_N_COD_ERROR * -1 ELSE PO_N_COD_ERROR END
-        INTO PO_N_COD_ERROR
+      POUT_NU_COD_ERROR := SQLCODE;
+      SELECT CASE WHEN POUT_NU_COD_ERROR > 0 THEN POUT_NU_COD_ERROR * -1 ELSE POUT_NU_COD_ERROR END
+        INTO POUT_NU_COD_ERROR
         FROM DUAL;
-      PO_V_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
+      POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
     
   END;  
   
@@ -11455,46 +11565,40 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_COSTAS_CUM_EXPEDIENTE(PI_ID_EXPEDIENTE     IN NUMBER,
-                                            PI_CUM_ID_EXPEDIENTE IN NUMBER,
-                                            PO_CU_RETORNO        OUT CU_REC_SET,
-                                            PO_N_COD_ERROR       OUT NUMBER,
-                                            PO_V_MSJ_ERROR       OUT VARCHAR2) AS
+  PROCEDURE SCOB_SP_S_COSTAS_CUM_EXPEDIENT(PIN_NUID_EXPEDIENTE     IN NUMBER,
+                                            PIN_NUCUM_ID_EXPEDIENTE IN NUMBER,
+                                            POUT_CUR_RETORNO        OUT CU_REC_SET,
+                                            POUT_NU_COD_ERROR       OUT NUMBER,
+                                            POUT_VC_MSJ_ERROR       OUT VARCHAR2) AS
                                             
-  N_SALDO_CAPITAL T_SCOB_EXPEDIENTE.SALDO%TYPE;
-  N_MONTO_UIT     T_SCOB_UIT.MONTO_UIT%TYPE;
+  V_NU_SALDO_CAPITAL T_SCOB_EXPEDIENTE.SALDO%TYPE;
+  V_NU_MONTO_UIT     T_SCOB_UIT.MONTO_UIT%TYPE;
   
   BEGIN
 
-    PO_N_COD_ERROR := -1;
-    PO_V_MSJ_ERROR := '';
+    POUT_NU_COD_ERROR := -1;
+    POUT_VC_MSJ_ERROR := '';
 
-    N_MONTO_UIT := NULL;
+    V_NU_MONTO_UIT := NULL;
     SELECT UIT.MONTO_UIT
-      INTO N_MONTO_UIT
+      INTO V_NU_MONTO_UIT
       FROM T_SCOB_UIT UIT
      WHERE TO_DATE(TO_CHAR(SYSDATE, 'DD/MM/YYYY'), 'DD/MM/YYYY') BETWEEN
            UIT.FECHA_INICIO AND UIT.FECHA_FIN
        AND UIT.ESTADO = '1';
   
-    --obtener el saldo capital del expediente
     SELECT MULT.SALDO +
            (DECODE(MULT.FLG_TIPO_MULTA, '0', 0, NVL(MULT.SALDO_IC, 0)))
-      INTO N_SALDO_CAPITAL
+      INTO V_NU_SALDO_CAPITAL
       FROM T_SCOB_MULTA MULT
      INNER JOIN T_SCOB_EXPEDIENTE_MULTA EXMU
         ON EXMU.ID_MULTA = MULT.ID_MULTA
        AND EXMU.ESTADO = '1'
-    --@JPHR
      INNER JOIN T_SCOB_EXPEDIENTE EXPE
         ON EXMU.ID_EXPEDIENTE = EXPE.ID_EXPEDIENTE
-    --AND EXPE.NRO_CUMS = '1'
-    --AND EXMU.FLG_INACTIVO IS NULL
-     WHERE EXMU.ID_EXPEDIENTE = PI_ID_EXPEDIENTE
-          -- @dcelis Req.44
+     WHERE EXMU.ID_EXPEDIENTE = PIN_NUID_EXPEDIENTE
        AND MULT.ID_MULTA =
            SCOB_PK_EXPEDIENTE.SCOB_FN_MUL_ANTIGUO(EXMU.ID_EXPEDIENTE)
-    -- @dcelis Req.44
     UNION
     SELECT MULT.SALDO +
            (DECODE(MULT.FLG_TIPO_MULTA, '0', 0, NVL(MULT.SALDO_IC, 0)))
@@ -11504,22 +11608,17 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
      INNER JOIN T_SCOB_EXPEDIENTE EXPE
         ON EXMU.ID_EXPEDIENTE = EXPE.ID_EXPEDIENTE
        AND EXPE.NRO_CUMS > 1
-    --AND EXMU.FLG_ACUMULADOR = '1'
-    --AND EXMU.FLG_INACTIVO IS NULL
-     WHERE EXMU.ID_EXPEDIENTE = PI_ID_EXPEDIENTE
-          -- @dcelis Req.44
+     WHERE EXMU.ID_EXPEDIENTE = PIN_NUID_EXPEDIENTE
        AND MULT.ID_MULTA =
            SCOB_PK_EXPEDIENTE.SCOB_FN_MUL_ANTIGUO(EXMU.ID_EXPEDIENTE);
-    -- @dcelis Req.44
     
-    OPEN PO_CU_RETORNO FOR
+    OPEN POUT_CUR_RETORNO FOR
       SELECT
-      --datos grabados de costas
        CSTA.ID_COSTA AS ID_COSTAS,
        CSTA.CODIGO AS COD_COSTAS,
        CSTA.DESCRIPCION AS NOM_COSTAS,
        SUM(ECOS.CNT_COSTA) AS CANT_COSTA,
-       NVL(SUM(ECOS.MONTO_COSTA), 0) AS MONTO_COSTAS, --SUBTOTAL COSTAS ACUMULADA!!.
+       NVL(SUM(ECOS.MONTO_COSTA), 0) AS MONTO_COSTAS,
        
        DECODE(NVL(CSTA.FLG_GASTO, '0'),
               '1',
@@ -11534,22 +11633,22 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
               1,
               DECODE(NVL(CSTA.FLG_UIT_MAX, '0'),
                      '0',
-                     N_MONTO_UIT * (CSTA.PORCENTAJE_UIT / 100),
+                     V_NU_MONTO_UIT * (CSTA.PORCENTAJE_UIT / 100),
                      CASE
-                       WHEN N_SALDO_CAPITAL * (CSTA.PORCENTAJE_UIT / 100) >
-                            N_MONTO_UIT * (CSTA.PORCENTAJE_UIT_MAX / 100) THEN
-                        N_MONTO_UIT * (CSTA.PORCENTAJE_UIT_MAX / 100)
+                       WHEN V_NU_SALDO_CAPITAL * (CSTA.PORCENTAJE_UIT / 100) >
+                            V_NU_MONTO_UIT * (CSTA.PORCENTAJE_UIT_MAX / 100) THEN
+                        V_NU_MONTO_UIT * (CSTA.PORCENTAJE_UIT_MAX / 100)
                        ELSE
-                        N_SALDO_CAPITAL * (CSTA.PORCENTAJE_UIT / 100)
+                        V_NU_SALDO_CAPITAL * (CSTA.PORCENTAJE_UIT / 100)
                      END)) AS VALOR_SOLES,
        
        NVL(CSTA.FLG_GASTO, '0') AS FLG_GASTO,
-       N_SALDO_CAPITAL AS SALDO_CAPITAL,
+       V_NU_SALDO_CAPITAL AS SALDO_CAPITAL,
        NVL(FLG_UIT_MAX, '0') AS FLG_UIT_MAX
         FROM T_SCOB_COSTA CSTA
         LEFT JOIN T_SCOB_EXPEDIENTE_COSTA ECOS
           ON ECOS.ID_COSTA = CSTA.ID_COSTA
-         AND ECOS.ID_EXPEDIENTE = PI_CUM_ID_EXPEDIENTE
+         AND ECOS.ID_EXPEDIENTE = PIN_NUCUM_ID_EXPEDIENTE
          AND ECOS.ESTADO = SCOB_PK_CONSTANTES.C_ESTADO_ACTIVO
        WHERE CSTA.ESTADO = SCOB_PK_CONSTANTES.C_ESTADO_ACTIVO
        GROUP BY CSTA.ID_COSTA,
@@ -11558,24 +11657,21 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
                 CSTA.FLG_UIT_MAX,
                 CSTA.PORCENTAJE_UIT,
                 CSTA.PORCENTAJE_UIT_MAX,
-                --@0002:Ini
-                --ECOS.PORCENTAJE_UIT,
-                --@0002:Fin
                 CSTA.FLG_GASTO
        ORDER BY TO_NUMBER(NVL(CSTA.CODIGO, 0)) ASC,
                 NVL(CSTA.FLG_GASTO, 0) DESC;
                
-    PO_N_COD_ERROR := 0;
-    PO_V_MSJ_ERROR := 'CONFORME';
+    POUT_NU_COD_ERROR := 0;
+    POUT_VC_MSJ_ERROR := 'CONFORME';
     
   EXCEPTION
     WHEN OTHERS THEN
       
-      PO_N_COD_ERROR := SQLCODE;
-      SELECT CASE WHEN PO_N_COD_ERROR > 0 THEN PO_N_COD_ERROR * -1 ELSE PO_N_COD_ERROR END
-        INTO PO_N_COD_ERROR
+      POUT_NU_COD_ERROR := SQLCODE;
+      SELECT CASE WHEN POUT_NU_COD_ERROR > 0 THEN POUT_NU_COD_ERROR * -1 ELSE POUT_NU_COD_ERROR END
+        INTO POUT_NU_COD_ERROR
         FROM DUAL;
-      PO_V_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
+      POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
     
   END;  
   
@@ -11594,130 +11690,125 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************   
-  PROCEDURE SCOB_SP_I_SCOB_CUM_EXPED_COSTA(PI_N_ID_EXPEDIENTE           IN T_SCOB_EXPEDIENTE.ID_EXPEDIENTE%TYPE,
-                                           PI_N_ID_CUM_EXPEDIENTE       IN T_SCOB_EXPEDIENTE.ID_EXPEDIENTE%TYPE,
-                                           PI_N_ID_EXPEDIENTE_DOCUMENTO IN T_SCOB_EXPEDIENTE_DOCUMENTO.ID_EXPEDIENTE_DOCUMENTO%TYPE,
-                                           PI_V_ID_COSTAS               IN VARCHAR2,
-                                           PI_V_POR_COSTAS              IN VARCHAR2,
-                                           PI_V_VAL_COSTAS              IN VARCHAR2,
-                                           PI_V_CNT_COSTAS              IN VARCHAR2,
-                                           PI_V_SUB_TOTAL_COSTAS        IN VARCHAR2,
-                                           PI_N_TOTAL_COSTAS            IN T_SCOB_EXPEDIENTE.MONTO_COSTAS%TYPE,
-                                           PI_N_NRO_ITEMS               IN INTEGER,
-                                           PI_V_AUDUSUCREACION          IN T_SCOB_EXPEDIENTE_DOCUMENTO.AUDUSUCREACION%TYPE,
-                                           PI_C_FLG_AGREGAR             IN CHAR,
-                                           PO_N_COD_ERROR               OUT NUMBER,
-                                           PO_V_MSJ_ERROR               OUT VARCHAR2) IS
+  PROCEDURE SCOB_SP_I_SCOB_CUM_EXPED_COSTA(PIN_NU_ID_EXPEDIENTE           IN T_SCOB_EXPEDIENTE.ID_EXPEDIENTE%TYPE,
+                                           PIN_NU_ID_CUM_EXPEDIENTE       IN T_SCOB_EXPEDIENTE.ID_EXPEDIENTE%TYPE,
+                                           PIN_NU_ID_EXPEDIENTE_DOCUMENTO IN T_SCOB_EXPEDIENTE_DOCUMENTO.ID_EXPEDIENTE_DOCUMENTO%TYPE,
+                                           PIN_VC_ID_COSTAS               IN VARCHAR2,
+                                           PIN_VC_POR_COSTAS              IN VARCHAR2,
+                                           PIN_VC_VAL_COSTAS              IN VARCHAR2,
+                                           PIN_VC_CNT_COSTAS              IN VARCHAR2,
+                                           PIN_VC_SUB_TOTAL_COSTAS        IN VARCHAR2,
+                                           PIN_NU_TOTAL_COSTAS            IN T_SCOB_EXPEDIENTE.MONTO_COSTAS%TYPE,
+                                           PIN_NU_NRO_ITEMS               IN INTEGER,
+                                           PIN_VC_AUDUSUCREACION          IN T_SCOB_EXPEDIENTE_DOCUMENTO.AUDUSUCREACION%TYPE,
+                                           PIN_CH_FLG_AGREGAR             IN CHAR,
+                                           POUT_NU_COD_ERROR              OUT NUMBER,
+                                           POUT_VC_MSJ_ERROR              OUT VARCHAR2) IS
                                            
-    N_ID_EXPEDIENTE_COSTA T_SCOB_EXPEDIENTE_COSTA.ID_EXPEDIENTE_COSTA%TYPE;
+    V_NU_ID_EXPEDIENTE_COSTA T_SCOB_EXPEDIENTE_COSTA.ID_EXPEDIENTE_COSTA%TYPE;
   
-    V_ID_COSTAS        VARCHAR2(20);
-    V_POR_COSTAS       VARCHAR2(20);
-    V_VAL_COSTAS       VARCHAR2(20);
-    V_CNT_COSTAS       VARCHAR2(20);
-    V_SUB_TOTAL_COSTAS VARCHAR2(20);
+    V_VC_ID_COSTAS        VARCHAR2(20);
+    V_VC_POR_COSTAS       VARCHAR2(20);
+    V_VC_VAL_COSTAS       VARCHAR2(20);
+    V_VC_CNT_COSTAS       VARCHAR2(20);
+    V_VC_SUB_TOTAL_COSTAS VARCHAR2(20);
   
-    N_POR_COSTAS       T_SCOB_EXPEDIENTE_COSTA.PORCENTAJE_UIT%TYPE;
-    N_VAL_COSTAS       T_SCOB_EXPEDIENTE_COSTA.VALOR_SOLES%TYPE;
-    N_CNT_COSTAS       T_SCOB_EXPEDIENTE_COSTA.CNT_COSTA%TYPE;
-    N_SUB_TOTAL_COSTAS T_SCOB_EXPEDIENTE_COSTA.MONTO_COSTA%TYPE;
-    N_VAL_CNT_COSTA    T_SCOB_EXPEDIENTE_COSTA.CNT_COSTA%TYPE;
-    N_VAL_MTO_COSTA    T_SCOB_EXPEDIENTE_COSTA.MONTO_COSTA%TYPE;
+    V_NU_POR_COSTAS       T_SCOB_EXPEDIENTE_COSTA.PORCENTAJE_UIT%TYPE;
+    V_NU_VAL_COSTAS       T_SCOB_EXPEDIENTE_COSTA.VALOR_SOLES%TYPE;
+    V_NU_CNT_COSTAS       T_SCOB_EXPEDIENTE_COSTA.CNT_COSTA%TYPE;
+    V_NU_SUB_TOTAL_COSTAS T_SCOB_EXPEDIENTE_COSTA.MONTO_COSTA%TYPE;
+    V_NU_VAL_CNT_COSTA    T_SCOB_EXPEDIENTE_COSTA.CNT_COSTA%TYPE;
+    V_NU_VAL_MTO_COSTA    T_SCOB_EXPEDIENTE_COSTA.MONTO_COSTA%TYPE;
   
-    N_CONT INTEGER;
+    V_NU_CONT INTEGER;
     
-    -- Victor Bendezu - EXPEDIENTE A EVALUAR
     REG_T_SCOB_EXPEDIENTE       T_SCOB_EXPEDIENTE%ROWTYPE;        
-    V_NU_ID_MULTA               USR_SICOB.T_SCOB_MULTA.ID_MULTA%TYPE;    
+    V_NU_ID_MULTA            USR_SICOB.T_SCOB_MULTA.ID_MULTA%TYPE;    
  
   BEGIN
     
-    PO_V_MSJ_ERROR := '';
-    PO_N_COD_ERROR := -1;
-    DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>PI_N_ID_EXPEDIENTE>>' || PI_N_ID_EXPEDIENTE);
-    -- Victor Bendezu - SE OBTIENE EL EXPEDIENTE A EVALUAR
+    POUT_VC_MSJ_ERROR := '';
+    POUT_NU_COD_ERROR := -1;
+    DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>PIN_NU_ID_EXPEDIENTE>>' || PIN_NU_ID_EXPEDIENTE);
+
+
     SELECT EXPE.*
       INTO REG_T_SCOB_EXPEDIENTE
       FROM USR_SICOB.T_SCOB_EXPEDIENTE EXPE
-     WHERE EXPE.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE;
+     WHERE EXPE.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE;
      
-    --insertar las costas seleccionadas
-    N_CONT := 1;
-    DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>PI_N_NRO_ITEMS>>' || PI_N_NRO_ITEMS);
-    WHILE (N_CONT <= PI_N_NRO_ITEMS) LOOP
+
+    V_NU_CONT := 1;
+    DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>PIN_NU_NRO_ITEMS>>' || PIN_NU_NRO_ITEMS);
+    WHILE (V_NU_CONT <= PIN_NU_NRO_ITEMS) LOOP
     
-      SCOB_PK_UTILITARIO.SCOB_SP_S_SPLIT(PI_V_ID_COSTAS,
+      SCOB_PK_UTILITARIO.SCOB_SP_S_SPLIT(PIN_VC_ID_COSTAS,
                                          '|',
-                                         N_CONT + 1,
-                                         V_ID_COSTAS);
-      SCOB_PK_UTILITARIO.SCOB_SP_S_SPLIT(PI_V_POR_COSTAS,
+                                         V_NU_CONT + 1,
+                                         V_VC_ID_COSTAS);
+      SCOB_PK_UTILITARIO.SCOB_SP_S_SPLIT(PIN_VC_POR_COSTAS,
                                          '|',
-                                         N_CONT + 1,
-                                         V_POR_COSTAS);
-      SCOB_PK_UTILITARIO.SCOB_SP_S_SPLIT(PI_V_VAL_COSTAS,
+                                         V_NU_CONT + 1,
+                                         V_VC_POR_COSTAS);
+      SCOB_PK_UTILITARIO.SCOB_SP_S_SPLIT(PIN_VC_VAL_COSTAS,
                                          '|',
-                                         N_CONT + 1,
-                                         V_VAL_COSTAS);
-      SCOB_PK_UTILITARIO.SCOB_SP_S_SPLIT(PI_V_CNT_COSTAS,
+                                         V_NU_CONT + 1,
+                                         V_VC_VAL_COSTAS);
+      SCOB_PK_UTILITARIO.SCOB_SP_S_SPLIT(PIN_VC_CNT_COSTAS,
                                          '|',
-                                         N_CONT + 1,
-                                         V_CNT_COSTAS);
-      SCOB_PK_UTILITARIO.SCOB_SP_S_SPLIT(PI_V_SUB_TOTAL_COSTAS,
+                                         V_NU_CONT + 1,
+                                         V_VC_CNT_COSTAS);
+      SCOB_PK_UTILITARIO.SCOB_SP_S_SPLIT(PIN_VC_SUB_TOTAL_COSTAS,
                                          '|',
-                                         N_CONT + 1,
-                                         V_SUB_TOTAL_COSTAS);
+                                         V_NU_CONT + 1,
+                                         V_VC_SUB_TOTAL_COSTAS);
     
-      N_POR_COSTAS       := SCOB_PK_UTILITARIO.SCOB_FN_TEXTO_A_NUMERO(V_POR_COSTAS);
-      N_VAL_COSTAS       := SCOB_PK_UTILITARIO.SCOB_FN_TEXTO_A_NUMERO(V_VAL_COSTAS);
-      N_CNT_COSTAS       := SCOB_PK_UTILITARIO.SCOB_FN_TEXTO_A_NUMERO(V_CNT_COSTAS);
-      N_SUB_TOTAL_COSTAS := SCOB_PK_UTILITARIO.SCOB_FN_TEXTO_A_NUMERO(V_SUB_TOTAL_COSTAS);
+      V_NU_POR_COSTAS       := SCOB_PK_UTILITARIO.SCOB_FN_TEXTO_A_NUMERO(V_VC_POR_COSTAS);
+      V_NU_VAL_COSTAS       := SCOB_PK_UTILITARIO.SCOB_FN_TEXTO_A_NUMERO(V_VC_VAL_COSTAS);
+      V_NU_CNT_COSTAS       := SCOB_PK_UTILITARIO.SCOB_FN_TEXTO_A_NUMERO(V_VC_CNT_COSTAS);
+      V_NU_SUB_TOTAL_COSTAS := SCOB_PK_UTILITARIO.SCOB_FN_TEXTO_A_NUMERO(V_VC_SUB_TOTAL_COSTAS);
     
-      --disminucion de costas
-    
-      IF PI_C_FLG_AGREGAR IN ('0', '1') THEN
+      IF PIN_CH_FLG_AGREGAR IN ('0', '1') THEN
         DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>FLAG>>1');
-        SELECT DECODE(PI_C_FLG_AGREGAR,
+        SELECT DECODE(PIN_CH_FLG_AGREGAR,
                       '0',
-                      -N_SUB_TOTAL_COSTAS,
-                      N_SUB_TOTAL_COSTAS)
-          INTO N_SUB_TOTAL_COSTAS
+                      -V_NU_SUB_TOTAL_COSTAS,
+                      V_NU_SUB_TOTAL_COSTAS)
+          INTO V_NU_SUB_TOTAL_COSTAS
           FROM DUAL;
       
-        SELECT DECODE(PI_C_FLG_AGREGAR, '0', -N_CNT_COSTAS, N_CNT_COSTAS)
-          INTO N_CNT_COSTAS
+        SELECT DECODE(PIN_CH_FLG_AGREGAR, '0', -V_NU_CNT_COSTAS, V_NU_CNT_COSTAS)
+          INTO V_NU_CNT_COSTAS
           FROM DUAL;
       
-        --@0001:Ini:
-        --Evaluo la disminucion de la cantidad UIT y monto.
-        IF PI_C_FLG_AGREGAR = 0 THEN
-          SELECT SUM(EC.CNT_COSTA) + N_CNT_COSTAS AS VAL_CNT_COSTA,
-                 SUM(EC.MONTO_COSTA) + N_SUB_TOTAL_COSTAS AS VAL_MTO_COSTA
-            INTO N_VAL_CNT_COSTA, N_VAL_MTO_COSTA
+        IF PIN_CH_FLG_AGREGAR = 0 THEN
+          SELECT SUM(EC.CNT_COSTA) + V_NU_CNT_COSTAS AS VAL_CNT_COSTA,
+                 SUM(EC.MONTO_COSTA) + V_NU_SUB_TOTAL_COSTAS AS VAL_MTO_COSTA
+            INTO V_NU_VAL_CNT_COSTA, V_NU_VAL_MTO_COSTA
             FROM T_SCOB_EXPEDIENTE_COSTA EC
-           WHERE EC.ID_EXPEDIENTE = PI_N_ID_CUM_EXPEDIENTE
-             AND EC.ID_COSTA = TO_NUMBER(V_ID_COSTAS)
+           WHERE EC.ID_EXPEDIENTE = PIN_NU_ID_CUM_EXPEDIENTE
+             AND EC.ID_COSTA = TO_NUMBER(V_VC_ID_COSTAS)
              AND EC.ESTADO = 1;
         
-          IF N_VAL_CNT_COSTA < 0 THEN
-            PO_N_COD_ERROR := -9;
-            PO_V_MSJ_ERROR := 'No se puede realizar la acci?n. Los valores actualizados generar?n cantidad de costas negativos...';
+          IF V_NU_VAL_CNT_COSTA < 0 THEN
+            POUT_NU_COD_ERROR := -9;
+            POUT_VC_MSJ_ERROR := 'No se puede realizar la acci?n. Los valores actualizados generar?n cantidad de costas negativos...';
             EXIT;
           END IF;
         
-          IF N_VAL_MTO_COSTA < 0 THEN
-            PO_N_COD_ERROR := -9;
-            PO_V_MSJ_ERROR := 'No se puede realizar la acci?n. Los valores actualizados generar?n subtotal de costas negativos...';
+          IF V_NU_VAL_MTO_COSTA < 0 THEN
+            POUT_NU_COD_ERROR := -9;
+            POUT_VC_MSJ_ERROR := 'No se puede realizar la acci?n. Los valores actualizados generar?n subtotal de costas negativos...';
             EXIT;
           END IF;
         END IF;
-        --@0001:Fin
       
-        IF V_ID_COSTAS = '#' THEN
+        IF V_VC_ID_COSTAS = '#' THEN
           EXIT;
         END IF;
       
         SELECT SCOB_SQ_EXPEDIENTE_COSTA.NEXTVAL
-          INTO N_ID_EXPEDIENTE_COSTA
+          INTO V_NU_ID_EXPEDIENTE_COSTA
           FROM DUAL;
         INSERT INTO T_SCOB_EXPEDIENTE_COSTA
           (ID_EXPEDIENTE_COSTA,
@@ -11732,38 +11823,38 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
            ID_EXPEDIENTE_DOCUMENTO,
            ID_EXPEDIENTE)
         VALUES
-          (N_ID_EXPEDIENTE_COSTA,
-           TO_NUMBER(V_ID_COSTAS),
-           N_POR_COSTAS,
-           TRUNC(N_VAL_COSTAS, SCOB_PK_CONSTANTES.C_NRO_DECIMAL_TRUNC),
-           N_CNT_COSTAS,
-           TRUNC(N_SUB_TOTAL_COSTAS, SCOB_PK_CONSTANTES.C_NRO_DECIMAL_TRUNC),
+          (V_NU_ID_EXPEDIENTE_COSTA,
+           TO_NUMBER(V_VC_ID_COSTAS),
+           V_NU_POR_COSTAS,
+           TRUNC(V_NU_VAL_COSTAS, SCOB_PK_CONSTANTES.C_NRO_DECIMAL_TRUNC),
+           V_NU_CNT_COSTAS,
+           TRUNC(V_NU_SUB_TOTAL_COSTAS, SCOB_PK_CONSTANTES.C_NRO_DECIMAL_TRUNC),
            SCOB_PK_CONSTANTES.C_ESTADO_ACTIVO,
            SYSDATE,
-           PI_V_AUDUSUCREACION,
-           DECODE(NVL(PI_N_ID_EXPEDIENTE_DOCUMENTO, 0),
+           PIN_VC_AUDUSUCREACION,
+           DECODE(NVL(PIN_NU_ID_EXPEDIENTE_DOCUMENTO, 0),
                   0,
                   NULL,
-                  PI_N_ID_EXPEDIENTE_DOCUMENTO),
-           PI_N_ID_CUM_EXPEDIENTE);
-           DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>N_ID_EXPEDIENTE_COSTA>>' || N_ID_EXPEDIENTE_COSTA);
-      ELSIF PI_C_FLG_AGREGAR = '2' THEN
+                  PIN_NU_ID_EXPEDIENTE_DOCUMENTO),
+           PIN_NU_ID_CUM_EXPEDIENTE);
+           DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>V_NU_ID_EXPEDIENTE_COSTA>>' || V_NU_ID_EXPEDIENTE_COSTA);
+      ELSIF PIN_CH_FLG_AGREGAR = '2' THEN
         DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>FLAG>>2');
-        IF V_ID_COSTAS = '#' THEN
+        IF V_VC_ID_COSTAS = '#' THEN
           EXIT;
         END IF;
       
         UPDATE T_SCOB_EXPEDIENTE_COSTA T
            SET T.ESTADO = '0'
-         WHERE T.ID_COSTA = TO_NUMBER(V_ID_COSTAS)
-           AND T.ID_EXPEDIENTE = PI_N_ID_CUM_EXPEDIENTE;
-        --AND T.ID_EXPEDIENTE_DOCUMENTO = DECODE(NVL(PI_N_ID_EXPEDIENTE_DOCUMENTO,0),0,NULL,PI_N_ID_EXPEDIENTE_DOCUMENTO);
-        DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>V_ID_COSTAS>>' || V_ID_COSTAS);
+         WHERE T.ID_COSTA = TO_NUMBER(V_VC_ID_COSTAS)
+           AND T.ID_EXPEDIENTE = PIN_NU_ID_CUM_EXPEDIENTE;
+
+        DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>V_VC_ID_COSTAS>>' || V_VC_ID_COSTAS);
+
       END IF;
     
-      N_CONT := N_CONT + 1;
+      V_NU_CONT := V_NU_CONT + 1;
       
-      -- Victor Bendezu - se agrega auditoria solicitada
     INSERT INTO USR_SICOB.T_SCOB_AUDITORIA
             (NU_ID_AUDITORIA,
              NU_ID_TIPO_AUDITORIA,
@@ -11783,137 +11874,136 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
             (USR_SICOB.SEQ_T_AUDITORIA_ID.NEXTVAL,
              5,
              NULL,
-             PI_N_ID_CUM_EXPEDIENTE,
+             PIN_NU_ID_CUM_EXPEDIENTE,
              'T_SCOB_EXPEDIENTE_COSTA',
              'ID_EXPEDIENTE_COSTA',
              NULL,
-             N_ID_EXPEDIENTE_COSTA,
+             V_NU_ID_EXPEDIENTE_COSTA,
              NULL,
              'I',
              'SE AGREGO COSTA DEL TIPO : ' ||
-                 PI_C_FLG_AGREGAR 
+                 PIN_CH_FLG_AGREGAR 
               || '  DEL EXPEDIENTE : ' 
               || REG_T_SCOB_EXPEDIENTE.ANIO || REG_T_SCOB_EXPEDIENTE.NRO_EXPEDIENTE,
-             PI_V_AUDUSUCREACION,
+             PIN_VC_AUDUSUCREACION,
              SYSDATE,
              '1');
              
     END LOOP;
   
-    IF PO_N_COD_ERROR = -9 THEN
+    IF POUT_NU_COD_ERROR = -9 THEN
       RETURN;
     END IF;
   
-    SELECT DECODE(PI_C_FLG_AGREGAR,
+    SELECT DECODE(PIN_CH_FLG_AGREGAR,
                   '0',
-                  -PI_N_TOTAL_COSTAS,
-                  PI_N_TOTAL_COSTAS)
-      INTO N_SUB_TOTAL_COSTAS
+                  -PIN_NU_TOTAL_COSTAS,
+                  PIN_NU_TOTAL_COSTAS)
+      INTO V_NU_SUB_TOTAL_COSTAS
       FROM DUAL;
       
-    DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>PI_C_FLG_AGREGAR>>' || PI_C_FLG_AGREGAR);
-    --actualizacion de monto
-    IF PI_C_FLG_AGREGAR IN ('0', '1') THEN
+    DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>PIN_CH_FLG_AGREGAR>>' || PIN_CH_FLG_AGREGAR);
+
+    IF PIN_CH_FLG_AGREGAR IN ('0', '1') THEN
       UPDATE T_SCOB_MULTA MULT
-         SET MULT.MONTO_COSTAS      = MULT.MONTO_COSTAS + N_SUB_TOTAL_COSTAS,
+         SET MULT.MONTO_COSTAS      = MULT.MONTO_COSTAS + V_NU_SUB_TOTAL_COSTAS,
              MULT.MONTO_TOTAL_DEUDA = MULT.MONTO_TOTAL_DEUDA +
-                                      N_SUB_TOTAL_COSTAS,
-             MULT.SALDO_COSTAS      = MULT.SALDO_COSTAS + N_SUB_TOTAL_COSTAS,
+                                      V_NU_SUB_TOTAL_COSTAS,
+             MULT.SALDO_COSTAS      = MULT.SALDO_COSTAS + V_NU_SUB_TOTAL_COSTAS,
              MULT.SALDO_TOTAL_DEUDA = MULT.SALDO_TOTAL_DEUDA +
-                                      N_SUB_TOTAL_COSTAS,
+                                      V_NU_SUB_TOTAL_COSTAS,
              
-             MULT.AUDUSUMODIFICACION = PI_V_AUDUSUCREACION,
+             MULT.AUDUSUMODIFICACION = PIN_VC_AUDUSUCREACION,
              MULT.AUDFECMODIFICACION = SYSDATE
        WHERE MULT.ID_MULTA IN
              (SELECT EXMU.ID_MULTA
                 FROM T_SCOB_EXPEDIENTE_MULTA EXMU
-               WHERE EXMU.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE
+               WHERE EXMU.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE
                  AND EXMU.ESTADO = '1'
                  AND EXMU.ID_MULTA =
                      SCOB_PK_EXPEDIENTE.SCOB_FN_MUL_ANTIGUO(EXMU.ID_EXPEDIENTE));
-    ELSIF PI_C_FLG_AGREGAR = '2' THEN
+    ELSIF PIN_CH_FLG_AGREGAR = '2' THEN
       BEGIN
         SELECT SUM(EC.CNT_COSTA) AS VAL_CNT_COSTA,
                SUM(EC.MONTO_COSTA) AS VAL_MTO_COSTA
-          INTO N_VAL_CNT_COSTA, N_VAL_MTO_COSTA
+          INTO V_NU_VAL_CNT_COSTA, V_NU_VAL_MTO_COSTA
           FROM T_SCOB_EXPEDIENTE_COSTA EC
-         WHERE EC.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE
+         WHERE EC.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE
            AND EC.ESTADO = 1;
       EXCEPTION
         WHEN NO_DATA_FOUND THEN
-          N_VAL_CNT_COSTA := 0;
-          N_VAL_MTO_COSTA := 0;
+          V_NU_VAL_CNT_COSTA := 0;
+          V_NU_VAL_MTO_COSTA := 0;
       END;
       UPDATE T_SCOB_MULTA MULT
-         SET MULT.MONTO_COSTAS       = NVL(N_VAL_MTO_COSTA, 0),
+         SET MULT.MONTO_COSTAS       = NVL(V_NU_VAL_MTO_COSTA, 0),
              MULT.MONTO_TOTAL_DEUDA  = MULT.MONTO_UIT + MULT.MONTO_INTERES +
                                        MULT.MONTO_INTERES_MORATORIO +
-                                       NVL(N_VAL_MTO_COSTA, 0),
-             MULT.SALDO_COSTAS       = NVL(N_VAL_MTO_COSTA, 0) -
+                                       NVL(V_NU_VAL_MTO_COSTA, 0),
+             MULT.SALDO_COSTAS       = NVL(V_NU_VAL_MTO_COSTA, 0) -
                                        MULT.TOTAL_AMORTIZADO_COSTAS,
              MULT.SALDO_TOTAL_DEUDA =
              (MULT.MONTO_UIT + MULT.MONTO_INTERES +
-             MULT.MONTO_INTERES_MORATORIO + NVL(N_VAL_MTO_COSTA, 0)) -
+             MULT.MONTO_INTERES_MORATORIO + NVL(V_NU_VAL_MTO_COSTA, 0)) -
              (MULT.TOTAL_AMORTIZADO + MULT.TOTAL_AMORTIZADO_IC +
              MULT.TOTAL_AMORTIZADO_IM + MULT.TOTAL_AMORTIZADO_COSTAS),
-             MULT.AUDUSUMODIFICACION = PI_V_AUDUSUCREACION,
+             MULT.AUDUSUMODIFICACION = PIN_VC_AUDUSUCREACION,
              MULT.AUDFECMODIFICACION = SYSDATE
       
        WHERE MULT.ID_MULTA IN
              (SELECT EXMU.ID_MULTA
                 FROM T_SCOB_EXPEDIENTE_MULTA EXMU
-               WHERE EXMU.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE
+               WHERE EXMU.ID_EXPEDIENTE = PIN_NU_ID_EXPEDIENTE
                  AND EXMU.ESTADO = '1'
                  AND EXMU.ID_MULTA =
                      SCOB_PK_EXPEDIENTE.SCOB_FN_MUL_ANTIGUO(EXMU.ID_EXPEDIENTE));
     END IF;
-    SCOB_PK_MULTAS.SCOB_SP_U_ACT_IMPORTES_EXPED(0, PI_N_ID_EXPEDIENTE);        
+    SCOB_PK_MULTAS.SCOB_SP_U_ACT_IMPORTES_EXPED(0, PIN_NU_ID_EXPEDIENTE);        
      
     
-    --INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA    
-    V_NU_ID_MULTA:= SCOB_PK_EXPEDIENTE.SCOB_FN_MUL_ANTIGUO(PI_N_ID_EXPEDIENTE); -- SI ES EXP ACUMULADO APLICA SOLO AL CUM MAS ANTIGUO
+
+    V_NU_ID_MULTA:= SCOB_PK_EXPEDIENTE.SCOB_FN_MUL_ANTIGUO(PIN_NU_ID_EXPEDIENTE);
+
     DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>V_NU_ID_MULTA>>' || V_NU_ID_MULTA);
     USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_U_EXPEDIENTE_CERO_A_SIA(PIN_NU_ID_MULTA => V_NU_ID_MULTA,
-                                                                      POUT_NU_COD_RESULT => PO_N_COD_ERROR,
-                                                                      POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
-    DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>PO_N_COD_ERROR1>>' || PO_N_COD_ERROR);
-    IF PO_N_COD_ERROR < 0 THEN
+                                                                      POUT_NU_COD_RESULT => POUT_NU_COD_ERROR,
+                                                                      POUT_VC_MSG_RESULT => POUT_VC_MSJ_ERROR);
+    DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>POUT_NU_COD_ERROR1>>' || POUT_NU_COD_ERROR);
+    IF POUT_NU_COD_ERROR < 0 THEN
        ROLLBACK;
        RETURN;
     END IF;
-    USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_BN_X_EXP(PIN_NU_ID_EXPEDIENTE => PI_N_ID_EXPEDIENTE,
-                                     POUT_NU_COD_RESULT => PO_N_COD_ERROR,
-                                     POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
-    DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>PO_N_COD_ERROR2>>' || PO_N_COD_ERROR);
-    IF PO_N_COD_ERROR < 0 THEN
+    USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_BN_X_EXP(PIN_NU_ID_EXPEDIENTE => PIN_NU_ID_EXPEDIENTE,
+                                     POUT_NU_COD_RESULT => POUT_NU_COD_ERROR,
+                                     POUT_VC_MSG_RESULT => POUT_VC_MSJ_ERROR);
+    DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>POUT_NU_COD_ERROR2>>' || POUT_NU_COD_ERROR);
+    IF POUT_NU_COD_ERROR < 0 THEN
        ROLLBACK;
        RETURN;
     END IF;
-    USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_ASBANC_X_EXP(PIN_NU_ID_EXPEDIENTE => PI_N_ID_EXPEDIENTE,
-                                     POUT_NU_COD_RESULT => PO_N_COD_ERROR,
-                                     POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
-    DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>PO_N_COD_ERROR3>>' || PO_N_COD_ERROR);
-    IF PO_N_COD_ERROR < 0 THEN
+    USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_ASBANC_X_EXP(PIN_NU_ID_EXPEDIENTE => PIN_NU_ID_EXPEDIENTE,
+                                     POUT_NU_COD_RESULT => POUT_NU_COD_ERROR,
+                                     POUT_VC_MSG_RESULT => POUT_VC_MSJ_ERROR);
+    DBMS_OUTPUT.put_line('SCOB_SP_I_T_SCOB_EXPED_COSTA>>POUT_NU_COD_ERROR3>>' || POUT_NU_COD_ERROR);
+    IF POUT_NU_COD_ERROR < 0 THEN
        ROLLBACK;
        RETURN;
     END IF;    
-    --FIN VICTOR BENDEZU - MIGRACION SICOB A SIA
             
-    PO_N_COD_ERROR := 0;
-    --commit;
-    ----
+    POUT_NU_COD_ERROR := 0;
+    
   EXCEPTION
     WHEN OTHERS THEN
-      PO_N_COD_ERROR := SQLCODE;
+      POUT_NU_COD_ERROR := SQLCODE;
       SELECT CASE
-               WHEN PO_N_COD_ERROR > 0 THEN
-                PO_N_COD_ERROR * -1
+               WHEN POUT_NU_COD_ERROR > 0 THEN
+                POUT_NU_COD_ERROR * -1
                ELSE
-                PO_N_COD_ERROR
+                POUT_NU_COD_ERROR
              END
-        INTO PO_N_COD_ERROR
+        INTO POUT_NU_COD_ERROR
         FROM DUAL;
-      PO_V_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
+      POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
       ROLLBACK;
   END;
   

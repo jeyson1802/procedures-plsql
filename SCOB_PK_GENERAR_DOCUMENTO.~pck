@@ -231,8 +231,8 @@ CREATE OR REPLACE PACKAGE SCOB_PK_GENERAR_DOCUMENTO IS
         -----------------------------------------------------------
         -- Modificacion :
         -- Autor        :
-        -- Modificado   :
-        -- Proposito    :
+        -- Modificado   : 2023-02-14
+        -- Proposito    : Procesos en linea
         -----------------------------------------------------------
         */
     (PI_N_ID_EXPEDIENTE IN T_SCOB_EXPEDIENTE.ID_EXPEDIENTE%TYPE,
@@ -1761,8 +1761,8 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_GENERAR_DOCUMENTO IS
         -----------------------------------------------------------
         -- Modificacion :
         -- Autor        :
-        -- Modificado   :
-        -- Proposito    :
+        -- Modificado   : 2023-02-14
+        -- Proposito    : Procesos en linea
         -----------------------------------------------------------
         */
     (
@@ -1866,7 +1866,7 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_GENERAR_DOCUMENTO IS
     
         /*obtener el estado actual del expediente*/
         SELECT EXPE.ESTADO_EXPEDIENTE INTO I_ESTADO_EXPEDIENTE_ACTUAL FROM T_SCOB_EXPEDIENTE EXPE WHERE EXPE.ID_EXPEDIENTE = PI_N_ID_EXPEDIENTE;
-    
+        DBMS_OUTPUT.put_line('SCOB_SP_I_GEN_DOCS_BY_FRACCION>>PI_N_ID_EXPEDIENTE>>' || PI_N_ID_EXPEDIENTE);
         IF ((PI_I_COD_TIPO_ASOCIACION = SCOB_PK_CONSTANTES.C_TIPO_ASOC_REQUERIR_PAGO OR
            PI_I_COD_TIPO_ASOCIACION = SCOB_PK_CONSTANTES.C_TIPO_ASOC_A_PERDIDA OR
            PI_I_COD_TIPO_ASOCIACION = SCOB_PK_CONSTANTES.C_TIPO_ASOC_DEJAR_SIN_EFCTO OR
@@ -1905,7 +1905,8 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_GENERAR_DOCUMENTO IS
          WHERE EXFR.ID_EXPED_FRACCIONAR = PI_N_ID_EXPED_FRACCIONAR
            AND EXFR.COD_TIPO_ASOCIACION = PI_I_COD_TIPO_ASOCIACION
            AND EXFR.ESTADO = SCOB_PK_CONSTANTES.C_ESTADO_ACTIVO;
-    
+    DBMS_OUTPUT.put_line('SCOB_SP_I_GEN_DOCS_BY_FRACCION>>PI_N_ID_EXPED_FRACCIONAR>>' || PI_N_ID_EXPED_FRACCIONAR);
+    DBMS_OUTPUT.put_line('SCOB_SP_I_GEN_DOCS_BY_FRACCION>>I_EXISTE>>' || I_EXISTE);
         IF I_EXISTE > 0 THEN
             PO_V_MSJ_ERROR := 'No se puede realizar la accion. Este tipo de documento antes ha sido generado.';
             PO_N_COD_ERROR := -12;
@@ -1943,7 +1944,7 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_GENERAR_DOCUMENTO IS
             ON MDET.ID_MULTA = MULT.ID_MULTA
            AND MDET.FLG_ACTUAL = '1'
          WHERE MULT.ID_MULTA = N_ID_MULTA;
-    
+    DBMS_OUTPUT.put_line('SCOB_SP_I_GEN_DOCS_BY_FRACCION>>PI_I_COD_TIPO_ASOCIACION>>' || PI_I_COD_TIPO_ASOCIACION);
         IF PI_I_COD_TIPO_ASOCIACION = SCOB_PK_CONSTANTES.C_TIPO_ASOC_SUSPEND_FRACCIONAR THEN
             --VALIDA EL CAMBIO DE ESTADO:03.11.2011
             SCOB_PK_VALIDA_ESTADO.SCOB_SP_S_VAL_ESTADO_EXPED(PI_N_ID_EXPEDIENTE,
@@ -2115,6 +2116,9 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_GENERAR_DOCUMENTO IS
                                    PO_N_COD_ERROR,
                                    PO_V_MSJ_ERROR);
     
+     DBMS_OUTPUT.put_line('SCOB_SP_I_GEN_DOCS_BY_FRACCION>>SCOB_SP_I_GENERA_DOCUMENTO>>PO_N_COD_ERROR>>' || PO_N_COD_ERROR);
+     DBMS_OUTPUT.put_line('SCOB_SP_I_GEN_DOCS_BY_FRACCION>>SCOB_SP_I_GENERA_DOCUMENTO>>PO_V_MSJ_ERROR>>' || PO_V_MSJ_ERROR);
+     
         IF PO_N_COD_ERROR < 0 THEN
             ROLLBACK;
             RETURN;
@@ -2342,6 +2346,26 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_GENERAR_DOCUMENTO IS
             ELSE
                 NULL;
         END CASE;
+     DBMS_OUTPUT.put_line('SCOB_SP_I_GEN_DOCS_BY_FRACCION>>SP_DO_GRABAR_BN_X_EXP>>PI_N_ID_EXPEDIENTE>>' || PI_N_ID_EXPEDIENTE);
+        --INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA    
+        USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_BN_X_EXP(PIN_NU_ID_EXPEDIENTE => PI_N_ID_EXPEDIENTE,
+                                         POUT_NU_COD_RESULT => PO_N_COD_ERROR,
+                                         POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+        DBMS_OUTPUT.put_line('SCOB_SP_I_GEN_DOCS_BY_FRACCION>>SP_DO_GRABAR_BN_X_EXP>>PO_N_COD_ERROR>>' || PO_N_COD_ERROR);
+        DBMS_OUTPUT.put_line('SCOB_SP_I_GEN_DOCS_BY_FRACCION>>SP_DO_GRABAR_BN_X_EXP>>PO_V_MSJ_ERROR>>' || PO_V_MSJ_ERROR);
+        IF PO_N_COD_ERROR < 0 THEN
+           ROLLBACK;
+           RETURN;
+        END IF;
+        USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_ASBANC_X_EXP(PIN_NU_ID_EXPEDIENTE => PI_N_ID_EXPEDIENTE,
+                                         POUT_NU_COD_RESULT => PO_N_COD_ERROR,
+                                         POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+        DBMS_OUTPUT.put_line('SCOB_SP_I_GEN_DOCS_BY_FRACCION>>SP_DO_GRABAR_ASBANC_X_EXP>>PO_N_COD_ERROR>>' || PO_N_COD_ERROR);
+        IF PO_N_COD_ERROR < 0 THEN
+           ROLLBACK;
+           RETURN;
+        END IF;    
+        --FIN VICTOR BENDEZU - MIGRACION SICOB A SIA
     
         PO_N_RETORNO   := N_GENERADOR_DOCUMENTO;
         PO_N_COD_ERROR := N_GENERADOR_DOCUMENTO;

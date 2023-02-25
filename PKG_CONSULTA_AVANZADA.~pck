@@ -21,288 +21,288 @@ CREATE OR REPLACE PACKAGE PKG_CONSULTA_AVANZADA IS
 
   PROCEDURE SCOB_SP_S_MULTA_AVANZADA_NUEVO(
                                          -----------------------------------------------------------------------------------------------
-                                         /*001*/PI_V_AREA_MACRO IN VARCHAR2 --AREA MACRO
+                                         /*001*/PIN_VC_AREA_MACRO IN VARCHAR2 --AREA MACRO
                                          /*002*/,
-                                         PI_V_CUM_INI IN VARCHAR2 --CUM
+                                         PIN_VC_CUM_INI IN VARCHAR2 --CUM
                                          /*003*/,
-                                         PI_V_CUM_FIN IN VARCHAR2 --CUM
+                                         PIN_VC_CUM_FIN IN VARCHAR2 --CUM
                                          /*004*/,
-                                         PI_V_FEC_GEN_CUM_INI IN VARCHAR2 --FECHA GENERACION CUM INI
+                                         PIN_VC_FEC_GEN_CUM_INI IN VARCHAR2 --FECHA GENERACION CUM INI
                                          /*005*/,
-                                         PI_V_FEC_GEN_CUM_FIN IN VARCHAR2 --FECHA GENERACION CUM FIN
+                                         PIN_VC_FEC_GEN_CUM_FIN IN VARCHAR2 --FECHA GENERACION CUM FIN
                                          /*006*/,
-                                         PI_V_ID_SEDE IN VARCHAR2 --SEDE
+                                         PIN_VC_ID_SEDE IN VARCHAR2 --SEDE
                                          /*007*/,
-                                         PI_V_ID_COD_DPTO_SEDE IN VARCHAR2 --CODIGO DEPARTAMENTO SEDE
+                                         PIN_VC_ID_COD_DPTO_SEDE IN VARCHAR2 --CODIGO DEPARTAMENTO SEDE
                                          /*008*/,
-                                         PI_V_ID_COD_PROV_SEDE IN VARCHAR2 --CODIGO PROVINCIA SEDE
+                                         PIN_VC_ID_COD_PROV_SEDE IN VARCHAR2 --CODIGO PROVINCIA SEDE
                                          /*009*/,
-                                         PI_V_ID_COD_DIST_SEDE IN VARCHAR2 --CODIGO DISTRITO SEDE
+                                         PIN_VC_ID_COD_DIST_SEDE IN VARCHAR2 --CODIGO DISTRITO SEDE
                                          /*010*/,
-                                         PI_V_ID_ORG_RESOL IN VARCHAR2 --ORGANO RESOLUTIVO
+                                         PIN_VC_ID_ORG_RESOL IN VARCHAR2 --ORGANO RESOLUTIVO
                                          /*011*/,
-                                         PI_V_ID_COD_DPTO_ORGR IN VARCHAR2 --CODIGO DEPARTAMENTO ORGANO RESOLUTIVO
+                                         PIN_VC_ID_COD_DPTO_ORGR IN VARCHAR2 --CODIGO DEPARTAMENTO ORGANO RESOLUTIVO
                                          /*012*/,
-                                         PI_V_ID_COD_PROV_ORGR IN VARCHAR2 --CODIGO PROVINCIA ORGANO RESOLUTIVO
+                                         PIN_VC_ID_COD_PROV_ORGR IN VARCHAR2 --CODIGO PROVINCIA ORGANO RESOLUTIVO
                                          /*013*/,
-                                         PI_V_ID_COD_DIST_ORGR IN VARCHAR2 --CODIGO DISTRITO ORGANO RESOLUTIVO
+                                         PIN_VC_ID_COD_DIST_ORGR IN VARCHAR2 --CODIGO DISTRITO ORGANO RESOLUTIVO
                                          /*014*/,
-                                         PI_V_ID_NRO_INSTANCIA IN VARCHAR2 --NUMERO DE INSTANCIA
+                                         PIN_VC_ID_NRO_INSTANCIA IN VARCHAR2 --NUMERO DE INSTANCIA
                                          /*015*/,
-                                         PI_V_ID_MATERIA IN VARCHAR2 --MATERIA
+                                         PIN_VC_ID_MATERIA IN VARCHAR2 --MATERIA
                                          /*016*/,
-                                         PI_V_ID_SUB_MATERIA IN VARCHAR2 --SUBMATERIA
+                                         PIN_VC_ID_SUB_MATERIA IN VARCHAR2 --SUBMATERIA
                                          /*017*/,
-                                         PI_V_NRO_EXP_UNICO_INI IN VARCHAR2 --NRO. EXPEDIENTE ADMINISTRATIVO
+                                         PIN_VC_NRO_EXP_UNICO_INI IN VARCHAR2 --NRO. EXPEDIENTE ADMINISTRATIVO
                                          /*018*/,
-                                         PI_V_NRO_EXP_UNICO_FIN IN VARCHAR2 --NRO. EXPEDIENTE ADMINISTRATIVO
+                                         PIN_VC_NRO_EXP_UNICO_FIN IN VARCHAR2 --NRO. EXPEDIENTE ADMINISTRATIVO
                                          /*019*/,
-                                         PI_V_NROEXPADM_NIVEL IN VARCHAR2 --NRO. EXPEDIENTE ANTIGUO
+                                         PIN_VC_NROEXPADM_NIVEL IN VARCHAR2 --NRO. EXPEDIENTE ANTIGUO
                                          /*020*/,
-                                         PI_V_NRO_RESOL IN VARCHAR2 --NRO. RESOLUCION OR
+                                         PIN_VC_NRO_RESOL IN VARCHAR2 --NRO. RESOLUCION OR
                                          /*021*/,
-                                         PI_V_FEC_RESO_OR_INI IN VARCHAR2 --FECHA RESOLUCION OR INI
+                                         PIN_VC_FEC_RESO_OR_INI IN VARCHAR2 --FECHA RESOLUCION OR INI
                                          /*022*/,
-                                         PI_V_FEC_RESO_OR_FIN IN VARCHAR2 --FECHA RESOLUCION OR FIN
+                                         PIN_VC_FEC_RESO_OR_FIN IN VARCHAR2 --FECHA RESOLUCION OR FIN
                                          /*023*/,
-                                         PI_V_FEC_NOTIFI_OR_INI IN VARCHAR2 --FECHA NOTIFICACION RESOLUCION INI
+                                         PIN_VC_FEC_NOTIFI_OR_INI IN VARCHAR2 --FECHA NOTIFICACION RESOLUCION INI
                                          /*024*/,
-                                         PI_V_FEC_NOTIFI_OR_FIN IN VARCHAR2 --FECHA NOTIFICACION RESOLUCION FIN
+                                         PIN_VC_FEC_NOTIFI_OR_FIN IN VARCHAR2 --FECHA NOTIFICACION RESOLUCION FIN
                                          /*025*/,
-                                         PI_V_FEC_GENERACION_SEC_INI IN VARCHAR2 --FECHA GENERACION SEC
+                                         PIN_VC_FEC_GENERACION_SEC_INI IN VARCHAR2 --FECHA GENERACION SEC
                                          /*026*/,
-                                         PI_V_FEC_GENERACION_SEC_FIN IN VARCHAR2 --FECHA GENERACION SEC
+                                         PIN_VC_FEC_GENERACION_SEC_FIN IN VARCHAR2 --FECHA GENERACION SEC
                                          ---
                                          /*027*/,
-                                         PI_V_FEC_RECEPCION_AEC_INI IN VARCHAR2 --FECHA RECEPCION AEC INICIO
+                                         PIN_VC_FEC_RECEPCION_AEC_INI IN VARCHAR2 --FECHA RECEPCION AEC INICIO
                                          /*028*/,
-                                         PI_V_FEC_RECEPCION_AEC_FIN IN VARCHAR2 --FECHA RECEPCION AEC FIN
+                                         PIN_VC_FEC_RECEPCION_AEC_FIN IN VARCHAR2 --FECHA RECEPCION AEC FIN
                                          /*029*/,
-                                         PI_V_ANIO_INGRESO_AEC_INI IN VARCHAR2 --AÑO INGRESO AL AEC INI
+                                         PIN_VC_ANIO_INGRESO_AEC_INI IN VARCHAR2 --AÑO INGRESO AL AEC INI
                                          /*030*/,
-                                         PI_V_ANIO_INGRESO_AEC_FIN IN VARCHAR2 --AÑO INGRESO AL AEC FIN
+                                         PIN_VC_ANIO_INGRESO_AEC_FIN IN VARCHAR2 --AÑO INGRESO AL AEC FIN
                                          /*031*/,
-                                         PI_V_NRO_INGRESO_AEC_INI IN VARCHAR2 --NRO. INGRESO AEC
+                                         PIN_VC_NRO_INGRESO_AEC_INI IN VARCHAR2 --NRO. INGRESO AEC
                                          /*032*/,
-                                         PI_V_NRO_INGRESO_AEC_FIN IN VARCHAR2 --NRO. INGRESO AEC
+                                         PIN_VC_NRO_INGRESO_AEC_FIN IN VARCHAR2 --NRO. INGRESO AEC
                                          ---
                                          /*033*/,
-                                         PI_V_ANIO_FILE_INI IN VARCHAR2 --AÑO FILE INI
+                                         PIN_VC_ANIO_FILE_INI IN VARCHAR2 --AÑO FILE INI
                                          /*034*/,
-                                         PI_V_ANIO_FILE_FIN IN VARCHAR2 --AÑO FILE FIN
+                                         PIN_VC_ANIO_FILE_FIN IN VARCHAR2 --AÑO FILE FIN
                                          /*035*/,
-                                         PI_V_NRO_FILE_INI IN VARCHAR2 --NRO. FILE
+                                         PIN_VC_NRO_FILE_INI IN VARCHAR2 --NRO. FILE
                                          /*036*/,
-                                         PI_V_NRO_FILE_FIN IN VARCHAR2 --NRO. FILE
+                                         PIN_VC_NRO_FILE_FIN IN VARCHAR2 --NRO. FILE
                                          /*037*/,
-                                         PI_V_FEC_RECEPCION_FILE_INI IN VARCHAR2 --FECHA RECEPCION FILE INICIO
+                                         PIN_VC_FEC_RECEPCION_FILE_INI IN VARCHAR2 --FECHA RECEPCION FILE INICIO
                                          /*038*/,
-                                         PI_V_FEC_RECEPCION_FILE_FIN IN VARCHAR2 --FECHA RECEPCION FILE FIN
+                                         PIN_VC_FEC_RECEPCION_FILE_FIN IN VARCHAR2 --FECHA RECEPCION FILE FIN
                                          ---
                                          /*039*/,
-                                         PI_N_VALOR_UIT_INI IN NUMBER --NRO UIT INI
+                                         PIN_NU_VALOR_UIT_INI IN NUMBER --NRO UIT INI
                                          /*040*/,
-                                         PI_N_VALOR_UIT_FIN IN NUMBER --NRO UIT FIN
+                                         PIN_NU_VALOR_UIT_FIN IN NUMBER --NRO UIT FIN
                                          /*041*/,
-                                         PI_N_MONTO_UIT_INI IN NUMBER --MONTO UIT INI
+                                         PIN_NU_MONTO_UIT_INI IN NUMBER --MONTO UIT INI
                                          /*042*/,
-                                         PI_N_MONTO_UIT_FIN IN NUMBER --MONTO UIT FIN
+                                         PIN_NU_MONTO_UIT_FIN IN NUMBER --MONTO UIT FIN
                                          /*043*/,
-                                         PI_N_SALDO_INI IN NUMBER --SALDO UIT INI
+                                         PIN_NU_SALDO_INI IN NUMBER --SALDO UIT INI
                                          /*044*/,
-                                         PI_N_SALDO_FIN IN NUMBER --SALDO UIT FIN
+                                         PIN_NU_SALDO_FIN IN NUMBER --SALDO UIT FIN
                                          /*045*/,
-                                         PI_V_ID_TIPO_MULTA IN VARCHAR2 --TIPO MULTA (SOLIDARIA/INDIVIDUAL)
+                                         PIN_VC_ID_TIPO_MULTA IN VARCHAR2 --TIPO MULTA (SOLIDARIA/INDIVIDUAL)
                                          /*046*/,
-                                         PI_V_COD_ESTADO_MULTA_RESOL IN VARCHAR2 --ESTADO DE LA MULTA RESOLUTIVO
+                                         PIN_VC_COD_ESTADO_MULTA_RESOL IN VARCHAR2 --ESTADO DE LA MULTA RESOLUTIVO
                                          /*047*/,
-                                         PI_V_COD_ESTADO_PAGO IN VARCHAR2 --ESTADO PAGO DE LA MULTA
+                                         PIN_VC_COD_ESTADO_PAGO IN VARCHAR2 --ESTADO PAGO DE LA MULTA
                                          /*048*/,
-                                         PI_V_FEC_ESTADO_MULTA_OR_INI IN VARCHAR2 --FECHA ESTADO MULTA OR INI
+                                         PIN_VC_FEC_ESTADO_MULTA_OR_INI IN VARCHAR2 --FECHA ESTADO MULTA OR INI
                                          /*049*/,
-                                         PI_V_FEC_ESTADO_MULTA_OR_FIN IN VARCHAR2 --FECHA ESTADO MULTA OR FIN
+                                         PIN_VC_FEC_ESTADO_MULTA_OR_FIN IN VARCHAR2 --FECHA ESTADO MULTA OR FIN
                                          /*050*/,
-                                         PI_V_FEC_ESTADO_MULTA_COB_INI IN VARCHAR2 --FECHA ESTADO MULTA COBRANZA
+                                         PIN_VC_FEC_ESTADO_MULTA_COB_INI IN VARCHAR2 --FECHA ESTADO MULTA COBRANZA
                                          /*051*/,
-                                         PI_V_FEC_ESTADO_MULTA_COB_FIN IN VARCHAR2 --FECHA ESTADO MULTA COBRANZA
+                                         PIN_VC_FEC_ESTADO_MULTA_COB_FIN IN VARCHAR2 --FECHA ESTADO MULTA COBRANZA
                                          /*052*/,
-                                         PI_V_COD_ESTADO_MULTA_COB IN VARCHAR2 --ESTADO DE LA MULTA COBRANZA
+                                         PIN_VC_COD_ESTADO_MULTA_COB IN VARCHAR2 --ESTADO DE LA MULTA COBRANZA
                                          /*053*/,
-                                         PI_V_COD_MOTIVO_MULTA_COB IN VARCHAR2 --MOTIVO MULTA COBRANZA
+                                         PIN_VC_COD_MOTIVO_MULTA_COB IN VARCHAR2 --MOTIVO MULTA COBRANZA
                                          /*054*/,
-                                         PI_V_IND_TIPO_PAGO IN VARCHAR2 --INDICADOR DE PAGO
+                                         PIN_VC_IND_TIPO_PAGO IN VARCHAR2 --INDICADOR DE PAGO
                                          /*055*/,
-                                         PI_C_FLG_ASOCU_MULTA IN CHAR --INDICADOR % ASOCU > 0
+                                         PIN_CH_FLG_ASOCU_MULTA IN CHAR --INDICADOR % ASOCU > 0
                                          -----------------------------------------------------------------------------------------------
                                          /*056*/,
-                                         PI_V_COD_ESTADO_EXPED_COB IN VARCHAR2 --ESTADO EXPEDIENTE COBRANZA
+                                         PIN_VC_COD_ESTADO_EXPED_COB IN VARCHAR2 --ESTADO EXPEDIENTE COBRANZA
                                          /*057*/,
-                                         PI_V_ANIO IN VARCHAR2 --AÑO EXPEDIENTE COBRANZA
+                                         PIN_VC_ANIO IN VARCHAR2 --AÑO EXPEDIENTE COBRANZA
                                          /*058*/,
-                                         PI_V_NRO_EXP_COB_INI IN VARCHAR2 --NRO. EXPEDIENTE COBRANZA
+                                         PIN_VC_NRO_EXP_COB_INI IN VARCHAR2 --NRO. EXPEDIENTE COBRANZA
                                          /*059*/,
-                                         PI_V_NRO_EXP_COB_FIN IN VARCHAR2 --NRO. EXPEDIENTE COBRANZA
+                                         PIN_VC_NRO_EXP_COB_FIN IN VARCHAR2 --NRO. EXPEDIENTE COBRANZA
                                          /*060*/,
-                                         PI_V_FEC_GEN_EXPED_COB_INI IN VARCHAR2 --FECHA GENERACION EXPED COBRANZA INI
+                                         PIN_VC_FEC_GEN_EXPED_COB_INI IN VARCHAR2 --FECHA GENERACION EXPED COBRANZA INI
                                          /*061*/,
-                                         PI_V_FEC_GEN_EXPED_COB_FIN IN VARCHAR2 --FECHA GENERACION EXPED COBRANZA FIN
+                                         PIN_VC_FEC_GEN_EXPED_COB_FIN IN VARCHAR2 --FECHA GENERACION EXPED COBRANZA FIN
                                          -------
                                          /*062*/,
-                                         PI_V_GESTOR_COBRANZA IN VARCHAR2 --GESTOR DE COBRANZA
+                                         PIN_VC_GESTOR_COBRANZA IN VARCHAR2 --GESTOR DE COBRANZA
                                          /*063*/,
-                                         PI_V_FEC_EMI_REC_INI IN VARCHAR2 --FECHA DE EMISIÓN DE LA REC
+                                         PIN_VC_FEC_EMI_REC_INI IN VARCHAR2 --FECHA DE EMISIÓN DE LA REC
                                          /*064*/,
-                                         PI_V_FEC_EMI_REC_FIN IN VARCHAR2 --FECHA DE EMISIÓN DE LA REC
+                                         PIN_VC_FEC_EMI_REC_FIN IN VARCHAR2 --FECHA DE EMISIÓN DE LA REC
                                          /*065*/,
-                                         PI_V_FEC_NOTI_REC_INI IN VARCHAR2 --FECHA DE NOTIFICACIÓN DE LA REC
+                                         PIN_VC_FEC_NOTI_REC_INI IN VARCHAR2 --FECHA DE NOTIFICACIÓN DE LA REC
                                          /*066*/,
-                                         PI_V_FEC_NOTI_REC_FIN IN VARCHAR2 --FECHA DE NOTIFICACIÓN DE LA REC
+                                         PIN_VC_FEC_NOTI_REC_FIN IN VARCHAR2 --FECHA DE NOTIFICACIÓN DE LA REC
                                          /*067*/,
-                                         PI_V_COD_MOTIVO_EXPED_COB IN VARCHAR2 --MOTIVO EXPEDIENTE COBRANZA---------
+                                         PIN_VC_COD_MOTIVO_EXPED_COB IN VARCHAR2 --MOTIVO EXPEDIENTE COBRANZA---------
                                          /*068*/,
-                                         PI_V_FEC_EST_EXPED_COB_INI IN VARCHAR2 --FECHA DE ESTADO DEL EXPEDIENTE
+                                         PIN_VC_FEC_EST_EXPED_COB_INI IN VARCHAR2 --FECHA DE ESTADO DEL EXPEDIENTE
                                          /*069*/,
-                                         PI_V_FEC_EST_EXPED_COB_FIN IN VARCHAR2 --FECHA DE ESTADO DEL EXPEDIENTE
+                                         PIN_VC_FEC_EST_EXPED_COB_FIN IN VARCHAR2 --FECHA DE ESTADO DEL EXPEDIENTE
                                          /*070*/,
-                                         PI_V_NUM_ENV_ARCH_INI IN VARCHAR2 --Nº ENVIO A ARCHIVO CENTRAL
+                                         PIN_VC_NUM_ENV_ARCH_INI IN VARCHAR2 --Nº ENVIO A ARCHIVO CENTRAL
                                          /*071*/,
-                                         PI_V_NUM_ENV_ARCH_FIN IN VARCHAR2 --Nº ENVIO A ARCHIVO CENTRAL
+                                         PIN_VC_NUM_ENV_ARCH_FIN IN VARCHAR2 --Nº ENVIO A ARCHIVO CENTRAL
                                          /*072*/,
-                                         PI_V_FEC_ENVI_ARCH_INI IN VARCHAR2 --FECHA DE ENVÍO A ARCHIVO CENTRAL
+                                         PIN_VC_FEC_ENVI_ARCH_INI IN VARCHAR2 --FECHA DE ENVÍO A ARCHIVO CENTRAL
                                          /*073*/,
-                                         PI_V_FEC_ENVI_ARCH_FIN IN VARCHAR2 --FECHA DE ENVÍO A ARCHIVO CENTRAL
+                                         PIN_VC_FEC_ENVI_ARCH_FIN IN VARCHAR2 --FECHA DE ENVÍO A ARCHIVO CENTRAL
                                          /*074*/,
-                                         PI_V_NRO_OFIC_SUNAT_INI IN VARCHAR2 --Nº DE OFICIO DE LA SUNAT
+                                         PIN_VC_NRO_OFIC_SUNAT_INI IN VARCHAR2 --Nº DE OFICIO DE LA SUNAT
                                          /*075*/,
-                                         PI_V_NRO_OFIC_SUNAT_FIN IN VARCHAR2 --Nº DE OFICIO DE LA SUNAT
+                                         PIN_VC_NRO_OFIC_SUNAT_FIN IN VARCHAR2 --Nº DE OFICIO DE LA SUNAT
                                          /*076*/,
-                                         PI_N_DERE_ANTIDUMP_INI IN NUMBER --DERECHOS ANTIDUMPING
+                                         PIN_NU_DERE_ANTIDUMP_INI IN NUMBER --DERECHOS ANTIDUMPING
                                          /*077*/,
-                                         PI_N_DERE_ANTIDUMP_FIN IN NUMBER --DERECHOS ANTIDUMPING
+                                         PIN_NU_DERE_ANTIDUMP_FIN IN NUMBER --DERECHOS ANTIDUMPING
                                          /*078*/,
-                                         PI_V_NRO_PARTI_INI IN VARCHAR2 --PARTIDA ARANCELARIA
+                                         PIN_VC_NRO_PARTI_INI IN VARCHAR2 --PARTIDA ARANCELARIA
                                          /*079*/,
-                                         PI_V_NRO_PARTI_FIN IN VARCHAR2 --PARTIDA ARANCELARIA
+                                         PIN_VC_NRO_PARTI_FIN IN VARCHAR2 --PARTIDA ARANCELARIA
                                          /*080*/,
-                                         PI_V_NRO_DUA_INI IN VARCHAR2 --Nº DUA
+                                         PIN_VC_NRO_DUA_INI IN VARCHAR2 --Nº DUA
                                          /*081*/,
-                                         PI_V_NRO_DUA_FIN IN VARCHAR2 --Nº DUA
+                                         PIN_VC_NRO_DUA_FIN IN VARCHAR2 --Nº DUA
                                          /*082*/,
-                                         PI_V_NRO_LIQ_COB_INI IN VARCHAR2 --Nº LIQUIDACIÓN DE COBRANZA
+                                         PIN_VC_NRO_LIQ_COB_INI IN VARCHAR2 --Nº LIQUIDACIÓN DE COBRANZA
                                          /*083*/,
-                                         PI_V_NRO_LIQ_COB_FIN IN VARCHAR2 --Nº LIQUIDACIÓN DE COBRANZA
+                                         PIN_VC_NRO_LIQ_COB_FIN IN VARCHAR2 --Nº LIQUIDACIÓN DE COBRANZA
                                          /*084*/,
-                                         PI_V_ID_INTENDENCIA IN VARCHAR2 --INTENDENCIA ANTIDUMPING
+                                         PIN_VC_ID_INTENDENCIA IN VARCHAR2 --INTENDENCIA ANTIDUMPING
                                          /*085*/,
-                                         PI_C_FLG_IND_EMBARGO IN CHAR --INDICADOR TIENE EMBARGO?
+                                         PIN_CH_FLG_IND_EMBARGO IN CHAR --INDICADOR TIENE EMBARGO?
                                          /*086*/,
-                                         PI_V_FEC_ASIG_GESTOR_INI IN VARCHAR2 --FECHA DE ASIGNACION DE GESTOR INI
+                                         PIN_VC_FEC_ASIG_GESTOR_INI IN VARCHAR2 --FECHA DE ASIGNACION DE GESTOR INI
                                          /*087*/,
-                                         PI_V_FEC_ASIG_GESTOR_FIN IN VARCHAR2 --FECHA DE ASIGNACION DE GESTOR FIN
+                                         PIN_VC_FEC_ASIG_GESTOR_FIN IN VARCHAR2 --FECHA DE ASIGNACION DE GESTOR FIN
                                          /*088*/,
-                                         PI_V_FEC_CARTA_PRECOACTIVA_INI IN VARCHAR2 --FECHA DE CARTA PRECOACTIVA INICIO
+                                         PIN_VC_FEV_VC_CARTA_PRECOACTIVA_INI IN VARCHAR2 --FECHA DE CARTA PRECOACTIVA INICIO
                                          /*089*/,
-                                         PI_V_FEC_CARTA_PRECOACTIVA_FIN IN VARCHAR2 --FECHA DE CARTA PRECOACTIVA FIN
+                                         PIN_VC_FEV_VC_CARTA_PRECOACTIVA_FIN IN VARCHAR2 --FECHA DE CARTA PRECOACTIVA FIN
                                          /*090*/,
-                                         PI_V_ID_EXPECTATIVA_COBRO IN VARCHAR2 --CADENA CODIGOS ESPECTATIVA DE COBRO
+                                         PIN_VC_ID_EXPECTATIVA_COBRO IN VARCHAR2 --CADENA CODIGOS ESPECTATIVA DE COBRO
                                          
                                          -----------------------------------------------------------------------------------------------
                                          --DENUNCIANTE
                                          /*091*/,
-                                         PI_V_D_CODSANCIONA_INI IN VARCHAR2 --CÓDIGO DEL INDECOPI
+                                         PIN_VC_D_CODSANCIONA_INI IN VARCHAR2 --CÓDIGO DEL INDECOPI
                                          /*092*/,
-                                         PI_V_D_CODSANCIONA_FIN IN VARCHAR2 --CÓDIGO DEL INDECOPI
+                                         PIN_VC_D_CODSANCIONA_FIN IN VARCHAR2 --CÓDIGO DEL INDECOPI
                                          /*093*/,
-                                         PI_I_D_TIP_PERSONA IN INTEGER --TIPO DE PERSONERÍA
+                                         PIN_NU_D_TIP_PERSONA IN INTEGER --TIPO DE PERSONERÍA
                                          /*094*/,
-                                         PI_V_D_RAZON_SOCIAL IN VARCHAR2 --RAZÓN SOCIAL
+                                         PIN_VC_D_RAZON_SOCIAL IN VARCHAR2 --RAZÓN SOCIAL
                                          /*095*/,
-                                         PI_V_D_APE_PATERNO IN VARCHAR2 --APELLIDO PATERNO
+                                         PIN_VC_D_APE_PATERNO IN VARCHAR2 --APELLIDO PATERNO
                                          /*096*/,
-                                         PI_V_D_APE_MATERNO IN VARCHAR2 --APELLIDO MATERNO
+                                         PIN_VC_D_APE_MATERNO IN VARCHAR2 --APELLIDO MATERNO
                                          /*097*/,
-                                         PI_V_D_APE_CASADA IN VARCHAR2 --APELLIDO CASADA
+                                         PIN_VC_D_APE_CASADA IN VARCHAR2 --APELLIDO CASADA
                                          /*098*/,
-                                         PI_V_D_PRI_NOMBRE IN VARCHAR2 --PRIMER NOMBRE
+                                         PIN_VC_D_PRI_NOMBRE IN VARCHAR2 --PRIMER NOMBRE
                                          /*099*/,
-                                         PI_V_D_SEG_NOMBRE IN VARCHAR2 --SEGUNDO NOMBRE
+                                         PIN_VC_D_SEG_NOMBRE IN VARCHAR2 --SEGUNDO NOMBRE
                                          /*100*/,
-                                         PI_I_D_TIPO_DOC IN INTEGER --TIPO DE DOCUMENTO
+                                         PIN_NU_D_TIPO_DOC IN INTEGER --TIPO DE DOCUMENTO
                                          /*101*/,
-                                         PI_V_D_NRO_DOC IN VARCHAR2 --Nº DE DOCUMENTO DE IDENTIDAD
+                                         PIN_VC_D_NRO_DOC IN VARCHAR2 --Nº DE DOCUMENTO DE IDENTIDAD
                                          /*102*/,
-                                         PI_I_D_TIP_EMPRESA IN INTEGER --TIPO DE EMPRESA
+                                         PIN_NU_D_TIP_EMPRESA IN INTEGER --TIPO DE EMPRESA
                                          /*103*/,
-                                         PI_N_D_ID_SECT_ECONO IN NUMBER --CIIU (ACTIVIDAD ECONOMICA)
+                                         PIN_NU_D_ID_SECT_ECONO IN NUMBER --CIIU (ACTIVIDAD ECONOMICA)
                                          /*104*/,
-                                         PI_C_D_FLG_ASOCU IN CHAR --FLAG ASOCU
+                                         PIN_CH_D_FLG_ASOCU IN CHAR --FLAG ASOCU
                                          /*105*/,
-                                         PI_C_D_FL_OFICIO IN CHAR --INDICADOR DENUNCIANTE DE OFICIO=INDECOPI
+                                         PIN_CH_D_FL_OFICIO IN CHAR --INDICADOR DENUNCIANTE DE OFICIO=INDECOPI
                                          --DENUNCIADO
                                          /*106*/,
-                                         PI_V_DO_CODSANCIONA_INI IN VARCHAR2 --CÓDIGO DEL INDECOPI
+                                         PIN_VC_DO_CODSANCIONA_INI IN VARCHAR2 --CÓDIGO DEL INDECOPI
                                          /*107*/,
-                                         PI_V_DO_CODSANCIONA_FIN IN VARCHAR2 --CÓDIGO DEL INDECOPI
+                                         PIN_VC_DO_CODSANCIONA_FIN IN VARCHAR2 --CÓDIGO DEL INDECOPI
                                          /*108*/,
-                                         PI_I_DO_TIP_PERSONA IN INTEGER --TIPO DE PERSONERÍA
+                                         PIN_NU_DO_TIP_PERSONA IN INTEGER --TIPO DE PERSONERÍA
                                          /*109*/,
-                                         PI_V_DO_RAZON_SOCIAL IN VARCHAR2 --RAZÓN SOCIAL
+                                         PIN_VC_DO_RAZON_SOCIAL IN VARCHAR2 --RAZÓN SOCIAL
                                          /*110*/,
-                                         PI_V_DO_APE_PATERNO IN VARCHAR2 --APELLIDO PATERNO
+                                         PIN_VC_DO_APE_PATERNO IN VARCHAR2 --APELLIDO PATERNO
                                          /*111*/,
-                                         PI_V_DO_APE_MATERNO IN VARCHAR2 --APELLIDO MATERNO
+                                         PIN_VC_DO_APE_MATERNO IN VARCHAR2 --APELLIDO MATERNO
                                          /*112*/,
-                                         PI_V_DO_APE_CASADA IN VARCHAR2 --APELLIDO CASADA
+                                         PIN_VC_DO_APE_CASADA IN VARCHAR2 --APELLIDO CASADA
                                          /*113*/,
-                                         PI_V_DO_PRI_NOMBRE IN VARCHAR2 --PRIMER NOMBRE
+                                         PIN_VC_DO_PRI_NOMBRE IN VARCHAR2 --PRIMER NOMBRE
                                          /*114*/,
-                                         PI_V_DO_SEG_NOMBRE IN VARCHAR2 --SEGUNDO NOMBRE
+                                         PIN_VC_DO_SEG_NOMBRE IN VARCHAR2 --SEGUNDO NOMBRE
                                          /*115*/,
-                                         PI_I_DO_TIPO_DOC IN INTEGER --TIPO DE DOCUMENTO
+                                         PIN_NU_DO_TIPO_DOC IN INTEGER --TIPO DE DOCUMENTO
                                          /*116*/,
-                                         PI_V_DO_NRO_DOC IN VARCHAR2 --Nº DE DOCUMENTO DE IDENTIDAD
+                                         PIN_VC_DO_NRO_DOC IN VARCHAR2 --Nº DE DOCUMENTO DE IDENTIDAD
                                          /*117*/,
-                                         PI_I_DO_TIP_EMPRESA IN INTEGER --TIPO DE EMPRESA
+                                         PIN_NU_DO_TIP_EMPRESA IN INTEGER --TIPO DE EMPRESA
                                          /*118*/,
-                                         PI_N_DO_ID_SECT_ECONO IN NUMBER --CIIU (ACTIVIDAD ECONOMICA)
+                                         PIN_NU_DO_ID_SECT_ECONO IN NUMBER --CIIU (ACTIVIDAD ECONOMICA)
                                          /*119*/,
-                                         PI_C_DO_FLG_ASOCU IN CHAR --FLAG ASOCU
+                                         PIN_CH_DO_FLG_ASOCU IN CHAR --FLAG ASOCU
                                          --SANCIONADO
                                          /*120*/,
-                                         PI_V_S_CODSANCIONA_INI IN VARCHAR2 --CÓDIGO DEL INDECOPI
+                                         PIN_VC_S_CODSANCIONA_INI IN VARCHAR2 --CÓDIGO DEL INDECOPI
                                          /*121*/,
-                                         PI_V_S_CODSANCIONA_FIN IN VARCHAR2 --CÓDIGO DEL INDECOPI
+                                         PIN_VC_S_CODSANCIONA_FIN IN VARCHAR2 --CÓDIGO DEL INDECOPI
                                          /*122*/,
-                                         PI_I_S_TIP_PERSONA IN INTEGER --TIPO DE PERSONERÍA
+                                         PIN_NU_S_TIP_PERSONA IN INTEGER --TIPO DE PERSONERÍA
                                          /*123*/,
-                                         PI_V_S_RAZON_SOCIAL IN VARCHAR2 --RAZÓN SOCIAL
+                                         PIN_VC_S_RAZON_SOCIAL IN VARCHAR2 --RAZÓN SOCIAL
                                          /*124*/,
-                                         PI_V_S_APE_PATERNO IN VARCHAR2 --APELLIDO PATERNO
+                                         PIN_VC_S_APE_PATERNO IN VARCHAR2 --APELLIDO PATERNO
                                          /*125*/,
-                                         PI_V_S_APE_MATERNO IN VARCHAR2 --APELLIDO MATERNO
+                                         PIN_VC_S_APE_MATERNO IN VARCHAR2 --APELLIDO MATERNO
                                          /*126*/,
-                                         PI_V_S_APE_CASADA IN VARCHAR2 --APELLIDO CASADA
+                                         PIN_VC_S_APE_CASADA IN VARCHAR2 --APELLIDO CASADA
                                          /*127*/,
-                                         PI_V_S_PRI_NOMBRE IN VARCHAR2 --PRIMER NOMBRE
+                                         PIN_VC_S_PRI_NOMBRE IN VARCHAR2 --PRIMER NOMBRE
                                          /*128*/,
-                                         PI_V_S_SEG_NOMBRE IN VARCHAR2 --SEGUNDO NOMBRE
+                                         PIN_VC_S_SEG_NOMBRE IN VARCHAR2 --SEGUNDO NOMBRE
                                          /*129*/,
-                                         PI_I_S_TIPO_DOC IN INTEGER --TIPO DE DOCUMENTO
+                                         PIN_NU_S_TIPO_DOC IN INTEGER --TIPO DE DOCUMENTO
                                          /*130*/,
-                                         PI_V_S_NRO_DOC IN VARCHAR2 --Nº DE DOCUMENTO DE IDENTIDAD
+                                         PIN_VC_S_NRO_DOC IN VARCHAR2 --Nº DE DOCUMENTO DE IDENTIDAD
                                          /*131*/,
-                                         PI_I_S_TIP_EMPRESA IN INTEGER --TIPO DE EMPRESA
+                                         PIN_NU_S_TIP_EMPRESA IN INTEGER --TIPO DE EMPRESA
                                          /*132*/,
-                                         PI_N_S_ID_SECT_ECONO IN NUMBER --CIIU (ACTIVIDAD ECONOMICA)
+                                         PIN_NU_S_ID_SECT_ECONO IN NUMBER --CIIU (ACTIVIDAD ECONOMICA)
                                          /*133*/,
-                                         PI_C_S_FLG_ASOCU IN CHAR --FLAG ASOCU
+                                         PIN_CH_S_FLG_ASOCU IN CHAR --FLAG ASOCU
                                          --@0002:INI
                                          /*134*/,
-                                         PI_C_S_FLG_BUSCAR_BY_CONTENIDO IN CHAR --0=NO;1=SI
+                                         PIN_CH_S_FLG_BUSCAR_BY_CONTENIDO IN CHAR --0=NO;1=SI
                                          --@0002:FIN
                                          -----------------------------------------------------------------------------------------------
                                         ,
-                                         PO_CU_RETORNO OUT CU_REC_SET);
+                                         POUT_CUR_RETORNO OUT CU_REC_SET);
                                          
 
 END PKG_CONSULTA_AVANZADA;
@@ -312,396 +312,396 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONSULTA_AVANZADA IS
    
   PROCEDURE SCOB_SP_S_MULTA_AVANZADA_NUEVO(
                                          -----------------------------------------------------------------------------------------------
-                                         /*001*/PI_V_AREA_MACRO IN VARCHAR2 --AREA MACRO
+                                         /*001*/PIN_VC_AREA_MACRO IN VARCHAR2 --AREA MACRO
                                          /*002*/,
-                                         PI_V_CUM_INI IN VARCHAR2 --CUM
+                                         PIN_VC_CUM_INI IN VARCHAR2 --CUM
                                          /*003*/,
-                                         PI_V_CUM_FIN IN VARCHAR2 --CUM
+                                         PIN_VC_CUM_FIN IN VARCHAR2 --CUM
                                          /*004*/,
-                                         PI_V_FEC_GEN_CUM_INI IN VARCHAR2 --FECHA GENERACION CUM INI
+                                         PIN_VC_FEC_GEN_CUM_INI IN VARCHAR2 --FECHA GENERACION CUM INI
                                          /*005*/,
-                                         PI_V_FEC_GEN_CUM_FIN IN VARCHAR2 --FECHA GENERACION CUM FIN
+                                         PIN_VC_FEC_GEN_CUM_FIN IN VARCHAR2 --FECHA GENERACION CUM FIN
                                          /*006*/,
-                                         PI_V_ID_SEDE IN VARCHAR2 --SEDE
+                                         PIN_VC_ID_SEDE IN VARCHAR2 --SEDE
                                          /*007*/,
-                                         PI_V_ID_COD_DPTO_SEDE IN VARCHAR2 --CODIGO DEPARTAMENTO SEDE
+                                         PIN_VC_ID_COD_DPTO_SEDE IN VARCHAR2 --CODIGO DEPARTAMENTO SEDE
                                          /*008*/,
-                                         PI_V_ID_COD_PROV_SEDE IN VARCHAR2 --CODIGO PROVINCIA SEDE
+                                         PIN_VC_ID_COD_PROV_SEDE IN VARCHAR2 --CODIGO PROVINCIA SEDE
                                          /*009*/,
-                                         PI_V_ID_COD_DIST_SEDE IN VARCHAR2 --CODIGO DISTRITO SEDE
+                                         PIN_VC_ID_COD_DIST_SEDE IN VARCHAR2 --CODIGO DISTRITO SEDE
                                          /*010*/,
-                                         PI_V_ID_ORG_RESOL IN VARCHAR2 --ORGANO RESOLUTIVO
+                                         PIN_VC_ID_ORG_RESOL IN VARCHAR2 --ORGANO RESOLUTIVO
                                          /*011*/,
-                                         PI_V_ID_COD_DPTO_ORGR IN VARCHAR2 --CODIGO DEPARTAMENTO ORGANO RESOLUTIVO
+                                         PIN_VC_ID_COD_DPTO_ORGR IN VARCHAR2 --CODIGO DEPARTAMENTO ORGANO RESOLUTIVO
                                          /*012*/,
-                                         PI_V_ID_COD_PROV_ORGR IN VARCHAR2 --CODIGO PROVINCIA ORGANO RESOLUTIVO
+                                         PIN_VC_ID_COD_PROV_ORGR IN VARCHAR2 --CODIGO PROVINCIA ORGANO RESOLUTIVO
                                          /*013*/,
-                                         PI_V_ID_COD_DIST_ORGR IN VARCHAR2 --CODIGO DISTRITO ORGANO RESOLUTIVO
+                                         PIN_VC_ID_COD_DIST_ORGR IN VARCHAR2 --CODIGO DISTRITO ORGANO RESOLUTIVO
                                          /*014*/,
-                                         PI_V_ID_NRO_INSTANCIA IN VARCHAR2 --NUMERO DE INSTANCIA
+                                         PIN_VC_ID_NRO_INSTANCIA IN VARCHAR2 --NUMERO DE INSTANCIA
                                          /*015*/,
-                                         PI_V_ID_MATERIA IN VARCHAR2 --MATERIA
+                                         PIN_VC_ID_MATERIA IN VARCHAR2 --MATERIA
                                          /*016*/,
-                                         PI_V_ID_SUB_MATERIA IN VARCHAR2 --SUBMATERIA
+                                         PIN_VC_ID_SUB_MATERIA IN VARCHAR2 --SUBMATERIA
                                          /*017*/,
-                                         PI_V_NRO_EXP_UNICO_INI IN VARCHAR2 --NRO. EXPEDIENTE ADMINISTRATIVO
+                                         PIN_VC_NRO_EXP_UNICO_INI IN VARCHAR2 --NRO. EXPEDIENTE ADMINISTRATIVO
                                          /*018*/,
-                                         PI_V_NRO_EXP_UNICO_FIN IN VARCHAR2 --NRO. EXPEDIENTE ADMINISTRATIVO
+                                         PIN_VC_NRO_EXP_UNICO_FIN IN VARCHAR2 --NRO. EXPEDIENTE ADMINISTRATIVO
                                          /*019*/,
-                                         PI_V_NROEXPADM_NIVEL IN VARCHAR2 --NRO. EXPEDIENTE ANTIGUO
+                                         PIN_VC_NROEXPADM_NIVEL IN VARCHAR2 --NRO. EXPEDIENTE ANTIGUO
                                          /*020*/,
-                                         PI_V_NRO_RESOL IN VARCHAR2 --NRO. RESOLUCION OR
+                                         PIN_VC_NRO_RESOL IN VARCHAR2 --NRO. RESOLUCION OR
                                          /*021*/,
-                                         PI_V_FEC_RESO_OR_INI IN VARCHAR2 --FECHA RESOLUCION OR INI
+                                         PIN_VC_FEC_RESO_OR_INI IN VARCHAR2 --FECHA RESOLUCION OR INI
                                          /*022*/,
-                                         PI_V_FEC_RESO_OR_FIN IN VARCHAR2 --FECHA RESOLUCION OR FIN
+                                         PIN_VC_FEC_RESO_OR_FIN IN VARCHAR2 --FECHA RESOLUCION OR FIN
                                          /*023*/,
-                                         PI_V_FEC_NOTIFI_OR_INI IN VARCHAR2 --FECHA NOTIFICACION RESOLUCION INI
+                                         PIN_VC_FEC_NOTIFI_OR_INI IN VARCHAR2 --FECHA NOTIFICACION RESOLUCION INI
                                          /*024*/,
-                                         PI_V_FEC_NOTIFI_OR_FIN IN VARCHAR2 --FECHA NOTIFICACION RESOLUCION FIN
+                                         PIN_VC_FEC_NOTIFI_OR_FIN IN VARCHAR2 --FECHA NOTIFICACION RESOLUCION FIN
                                          /*025*/,
-                                         PI_V_FEC_GENERACION_SEC_INI IN VARCHAR2 --FECHA GENERACION SEC
+                                         PIN_VC_FEC_GENERACION_SEC_INI IN VARCHAR2 --FECHA GENERACION SEC
                                          /*026*/,
-                                         PI_V_FEC_GENERACION_SEC_FIN IN VARCHAR2 --FECHA GENERACION SEC
+                                         PIN_VC_FEC_GENERACION_SEC_FIN IN VARCHAR2 --FECHA GENERACION SEC
                                          ---
                                          /*027*/,
-                                         PI_V_FEC_RECEPCION_AEC_INI IN VARCHAR2 --FECHA RECEPCION AEC INICIO
+                                         PIN_VC_FEC_RECEPCION_AEC_INI IN VARCHAR2 --FECHA RECEPCION AEC INICIO
                                          /*028*/,
-                                         PI_V_FEC_RECEPCION_AEC_FIN IN VARCHAR2 --FECHA RECEPCION AEC FIN
+                                         PIN_VC_FEC_RECEPCION_AEC_FIN IN VARCHAR2 --FECHA RECEPCION AEC FIN
                                          /*029*/,
-                                         PI_V_ANIO_INGRESO_AEC_INI IN VARCHAR2 --AÑO INGRESO AL AEC INI
+                                         PIN_VC_ANIO_INGRESO_AEC_INI IN VARCHAR2 --AÑO INGRESO AL AEC INI
                                          /*030*/,
-                                         PI_V_ANIO_INGRESO_AEC_FIN IN VARCHAR2 --AÑO INGRESO AL AEC FIN
+                                         PIN_VC_ANIO_INGRESO_AEC_FIN IN VARCHAR2 --AÑO INGRESO AL AEC FIN
                                          /*031*/,
-                                         PI_V_NRO_INGRESO_AEC_INI IN VARCHAR2 --NRO. INGRESO AEC
+                                         PIN_VC_NRO_INGRESO_AEC_INI IN VARCHAR2 --NRO. INGRESO AEC
                                          /*032*/,
-                                         PI_V_NRO_INGRESO_AEC_FIN IN VARCHAR2 --NRO. INGRESO AEC
+                                         PIN_VC_NRO_INGRESO_AEC_FIN IN VARCHAR2 --NRO. INGRESO AEC
                                          ---
                                          /*033*/,
-                                         PI_V_ANIO_FILE_INI IN VARCHAR2 --AÑO FILE INI
+                                         PIN_VC_ANIO_FILE_INI IN VARCHAR2 --AÑO FILE INI
                                          /*034*/,
-                                         PI_V_ANIO_FILE_FIN IN VARCHAR2 --AÑO FILE FIN
+                                         PIN_VC_ANIO_FILE_FIN IN VARCHAR2 --AÑO FILE FIN
                                          /*035*/,
-                                         PI_V_NRO_FILE_INI IN VARCHAR2 --NRO. FILE
+                                         PIN_VC_NRO_FILE_INI IN VARCHAR2 --NRO. FILE
                                          /*036*/,
-                                         PI_V_NRO_FILE_FIN IN VARCHAR2 --NRO. FILE
+                                         PIN_VC_NRO_FILE_FIN IN VARCHAR2 --NRO. FILE
                                          /*037*/,
-                                         PI_V_FEC_RECEPCION_FILE_INI IN VARCHAR2 --FECHA RECEPCION FILE INICIO
+                                         PIN_VC_FEC_RECEPCION_FILE_INI IN VARCHAR2 --FECHA RECEPCION FILE INICIO
                                          /*038*/,
-                                         PI_V_FEC_RECEPCION_FILE_FIN IN VARCHAR2 --FECHA RECEPCION FILE FIN
+                                         PIN_VC_FEC_RECEPCION_FILE_FIN IN VARCHAR2 --FECHA RECEPCION FILE FIN
                                          ---
                                          /*039*/,
-                                         PI_N_VALOR_UIT_INI IN NUMBER --NRO UIT INI
+                                         PIN_NU_VALOR_UIT_INI IN NUMBER --NRO UIT INI
                                          /*040*/,
-                                         PI_N_VALOR_UIT_FIN IN NUMBER --NRO UIT FIN
+                                         PIN_NU_VALOR_UIT_FIN IN NUMBER --NRO UIT FIN
                                          /*041*/,
-                                         PI_N_MONTO_UIT_INI IN NUMBER --MONTO UIT INI
+                                         PIN_NU_MONTO_UIT_INI IN NUMBER --MONTO UIT INI
                                          /*042*/,
-                                         PI_N_MONTO_UIT_FIN IN NUMBER --MONTO UIT FIN
+                                         PIN_NU_MONTO_UIT_FIN IN NUMBER --MONTO UIT FIN
                                          /*043*/,
-                                         PI_N_SALDO_INI IN NUMBER --SALDO UIT INI
+                                         PIN_NU_SALDO_INI IN NUMBER --SALDO UIT INI
                                          /*044*/,
-                                         PI_N_SALDO_FIN IN NUMBER --SALDO UIT FIN
+                                         PIN_NU_SALDO_FIN IN NUMBER --SALDO UIT FIN
                                          /*045*/,
-                                         PI_V_ID_TIPO_MULTA IN VARCHAR2 --TIPO MULTA (SOLIDARIA/INDIVIDUAL)
+                                         PIN_VC_ID_TIPO_MULTA IN VARCHAR2 --TIPO MULTA (SOLIDARIA/INDIVIDUAL)
                                          /*046*/,
-                                         PI_V_COD_ESTADO_MULTA_RESOL IN VARCHAR2 --ESTADO DE LA MULTA RESOLUTIVO
+                                         PIN_VC_COD_ESTADO_MULTA_RESOL IN VARCHAR2 --ESTADO DE LA MULTA RESOLUTIVO
                                          /*047*/,
-                                         PI_V_COD_ESTADO_PAGO IN VARCHAR2 --ESTADO PAGO DE LA MULTA
+                                         PIN_VC_COD_ESTADO_PAGO IN VARCHAR2 --ESTADO PAGO DE LA MULTA
                                          /*048*/,
-                                         PI_V_FEC_ESTADO_MULTA_OR_INI IN VARCHAR2 --FECHA ESTADO MULTA OR INI
+                                         PIN_VC_FEC_ESTADO_MULTA_OR_INI IN VARCHAR2 --FECHA ESTADO MULTA OR INI
                                          /*049*/,
-                                         PI_V_FEC_ESTADO_MULTA_OR_FIN IN VARCHAR2 --FECHA ESTADO MULTA OR FIN
+                                         PIN_VC_FEC_ESTADO_MULTA_OR_FIN IN VARCHAR2 --FECHA ESTADO MULTA OR FIN
                                          /*050*/,
-                                         PI_V_FEC_ESTADO_MULTA_COB_INI IN VARCHAR2 --FECHA ESTADO MULTA COBRANZA
+                                         PIN_VC_FEC_ESTADO_MULTA_COB_INI IN VARCHAR2 --FECHA ESTADO MULTA COBRANZA
                                          /*051*/,
-                                         PI_V_FEC_ESTADO_MULTA_COB_FIN IN VARCHAR2 --FECHA ESTADO MULTA COBRANZA
+                                         PIN_VC_FEC_ESTADO_MULTA_COB_FIN IN VARCHAR2 --FECHA ESTADO MULTA COBRANZA
                                          /*052*/,
-                                         PI_V_COD_ESTADO_MULTA_COB IN VARCHAR2 --ESTADO DE LA MULTA COBRANZA
+                                         PIN_VC_COD_ESTADO_MULTA_COB IN VARCHAR2 --ESTADO DE LA MULTA COBRANZA
                                          /*053*/,
-                                         PI_V_COD_MOTIVO_MULTA_COB IN VARCHAR2 --MOTIVO MULTA COBRANZA
+                                         PIN_VC_COD_MOTIVO_MULTA_COB IN VARCHAR2 --MOTIVO MULTA COBRANZA
                                          /*054*/,
-                                         PI_V_IND_TIPO_PAGO IN VARCHAR2 --INDICADOR DE PAGO
+                                         PIN_VC_IND_TIPO_PAGO IN VARCHAR2 --INDICADOR DE PAGO
                                          /*055*/,
-                                         PI_C_FLG_ASOCU_MULTA IN CHAR --INDICADOR % ASOCU > 0
+                                         PIN_CH_FLG_ASOCU_MULTA IN CHAR --INDICADOR % ASOCU > 0
                                          -----------------------------------------------------------------------------------------------
                                          /*056*/,
-                                         PI_V_COD_ESTADO_EXPED_COB IN VARCHAR2 --ESTADO EXPEDIENTE COBRANZA
+                                         PIN_VC_COD_ESTADO_EXPED_COB IN VARCHAR2 --ESTADO EXPEDIENTE COBRANZA
                                          /*057*/,
-                                         PI_V_ANIO IN VARCHAR2 --AÑO EXPEDIENTE COBRANZA
+                                         PIN_VC_ANIO IN VARCHAR2 --AÑO EXPEDIENTE COBRANZA
                                          /*058*/,
-                                         PI_V_NRO_EXP_COB_INI IN VARCHAR2 --NRO. EXPEDIENTE COBRANZA
+                                         PIN_VC_NRO_EXP_COB_INI IN VARCHAR2 --NRO. EXPEDIENTE COBRANZA
                                          /*059*/,
-                                         PI_V_NRO_EXP_COB_FIN IN VARCHAR2 --NRO. EXPEDIENTE COBRANZA
+                                         PIN_VC_NRO_EXP_COB_FIN IN VARCHAR2 --NRO. EXPEDIENTE COBRANZA
                                          /*060*/,
-                                         PI_V_FEC_GEN_EXPED_COB_INI IN VARCHAR2 --FECHA GENERACION EXPED COBRANZA INI
+                                         PIN_VC_FEC_GEN_EXPED_COB_INI IN VARCHAR2 --FECHA GENERACION EXPED COBRANZA INI
                                          /*061*/,
-                                         PI_V_FEC_GEN_EXPED_COB_FIN IN VARCHAR2 --FECHA GENERACION EXPED COBRANZA FIN
+                                         PIN_VC_FEC_GEN_EXPED_COB_FIN IN VARCHAR2 --FECHA GENERACION EXPED COBRANZA FIN
                                          -------
                                          /*062*/,
-                                         PI_V_GESTOR_COBRANZA IN VARCHAR2 --GESTOR DE COBRANZA
+                                         PIN_VC_GESTOR_COBRANZA IN VARCHAR2 --GESTOR DE COBRANZA
                                          /*063*/,
-                                         PI_V_FEC_EMI_REC_INI IN VARCHAR2 --FECHA DE EMISIÓN DE LA REC
+                                         PIN_VC_FEC_EMI_REC_INI IN VARCHAR2 --FECHA DE EMISIÓN DE LA REC
                                          /*064*/,
-                                         PI_V_FEC_EMI_REC_FIN IN VARCHAR2 --FECHA DE EMISIÓN DE LA REC
+                                         PIN_VC_FEC_EMI_REC_FIN IN VARCHAR2 --FECHA DE EMISIÓN DE LA REC
                                          /*065*/,
-                                         PI_V_FEC_NOTI_REC_INI IN VARCHAR2 --FECHA DE NOTIFICACIÓN DE LA REC
+                                         PIN_VC_FEC_NOTI_REC_INI IN VARCHAR2 --FECHA DE NOTIFICACIÓN DE LA REC
                                          /*066*/,
-                                         PI_V_FEC_NOTI_REC_FIN IN VARCHAR2 --FECHA DE NOTIFICACIÓN DE LA REC
+                                         PIN_VC_FEC_NOTI_REC_FIN IN VARCHAR2 --FECHA DE NOTIFICACIÓN DE LA REC
                                          /*067*/,
-                                         PI_V_COD_MOTIVO_EXPED_COB IN VARCHAR2 --MOTIVO EXPEDIENTE COBRANZA---------
+                                         PIN_VC_COD_MOTIVO_EXPED_COB IN VARCHAR2 --MOTIVO EXPEDIENTE COBRANZA---------
                                          /*068*/,
-                                         PI_V_FEC_EST_EXPED_COB_INI IN VARCHAR2 --FECHA DE ESTADO DEL EXPEDIENTE
+                                         PIN_VC_FEC_EST_EXPED_COB_INI IN VARCHAR2 --FECHA DE ESTADO DEL EXPEDIENTE
                                          /*069*/,
-                                         PI_V_FEC_EST_EXPED_COB_FIN IN VARCHAR2 --FECHA DE ESTADO DEL EXPEDIENTE
+                                         PIN_VC_FEC_EST_EXPED_COB_FIN IN VARCHAR2 --FECHA DE ESTADO DEL EXPEDIENTE
                                          /*070*/,
-                                         PI_V_NUM_ENV_ARCH_INI IN VARCHAR2 --Nº ENVIO A ARCHIVO CENTRAL
+                                         PIN_VC_NUM_ENV_ARCH_INI IN VARCHAR2 --Nº ENVIO A ARCHIVO CENTRAL
                                          /*071*/,
-                                         PI_V_NUM_ENV_ARCH_FIN IN VARCHAR2 --Nº ENVIO A ARCHIVO CENTRAL
+                                         PIN_VC_NUM_ENV_ARCH_FIN IN VARCHAR2 --Nº ENVIO A ARCHIVO CENTRAL
                                          /*072*/,
-                                         PI_V_FEC_ENVI_ARCH_INI IN VARCHAR2 --FECHA DE ENVÍO A ARCHIVO CENTRAL
+                                         PIN_VC_FEC_ENVI_ARCH_INI IN VARCHAR2 --FECHA DE ENVÍO A ARCHIVO CENTRAL
                                          /*073*/,
-                                         PI_V_FEC_ENVI_ARCH_FIN IN VARCHAR2 --FECHA DE ENVÍO A ARCHIVO CENTRAL
+                                         PIN_VC_FEC_ENVI_ARCH_FIN IN VARCHAR2 --FECHA DE ENVÍO A ARCHIVO CENTRAL
                                          /*074*/,
-                                         PI_V_NRO_OFIC_SUNAT_INI IN VARCHAR2 --Nº DE OFICIO DE LA SUNAT
+                                         PIN_VC_NRO_OFIC_SUNAT_INI IN VARCHAR2 --Nº DE OFICIO DE LA SUNAT
                                          /*075*/,
-                                         PI_V_NRO_OFIC_SUNAT_FIN IN VARCHAR2 --Nº DE OFICIO DE LA SUNAT
+                                         PIN_VC_NRO_OFIC_SUNAT_FIN IN VARCHAR2 --Nº DE OFICIO DE LA SUNAT
                                          /*076*/,
-                                         PI_N_DERE_ANTIDUMP_INI IN NUMBER --DERECHOS ANTIDUMPING
+                                         PIN_NU_DERE_ANTIDUMP_INI IN NUMBER --DERECHOS ANTIDUMPING
                                          /*077*/,
-                                         PI_N_DERE_ANTIDUMP_FIN IN NUMBER --DERECHOS ANTIDUMPING
+                                         PIN_NU_DERE_ANTIDUMP_FIN IN NUMBER --DERECHOS ANTIDUMPING
                                          /*078*/,
-                                         PI_V_NRO_PARTI_INI IN VARCHAR2 --PARTIDA ARANCELARIA
+                                         PIN_VC_NRO_PARTI_INI IN VARCHAR2 --PARTIDA ARANCELARIA
                                          /*079*/,
-                                         PI_V_NRO_PARTI_FIN IN VARCHAR2 --PARTIDA ARANCELARIA
+                                         PIN_VC_NRO_PARTI_FIN IN VARCHAR2 --PARTIDA ARANCELARIA
                                          /*080*/,
-                                         PI_V_NRO_DUA_INI IN VARCHAR2 --Nº DUA
+                                         PIN_VC_NRO_DUA_INI IN VARCHAR2 --Nº DUA
                                          /*081*/,
-                                         PI_V_NRO_DUA_FIN IN VARCHAR2 --Nº DUA
+                                         PIN_VC_NRO_DUA_FIN IN VARCHAR2 --Nº DUA
                                          /*082*/,
-                                         PI_V_NRO_LIQ_COB_INI IN VARCHAR2 --Nº LIQUIDACIÓN DE COBRANZA
+                                         PIN_VC_NRO_LIQ_COB_INI IN VARCHAR2 --Nº LIQUIDACIÓN DE COBRANZA
                                          /*083*/,
-                                         PI_V_NRO_LIQ_COB_FIN IN VARCHAR2 --Nº LIQUIDACIÓN DE COBRANZA
+                                         PIN_VC_NRO_LIQ_COB_FIN IN VARCHAR2 --Nº LIQUIDACIÓN DE COBRANZA
                                          /*084*/,
-                                         PI_V_ID_INTENDENCIA IN VARCHAR2 --INTENDENCIA ANTIDUMPING
+                                         PIN_VC_ID_INTENDENCIA IN VARCHAR2 --INTENDENCIA ANTIDUMPING
                                          /*085*/,
-                                         PI_C_FLG_IND_EMBARGO IN CHAR --INDICADOR TIENE EMBARGO?
+                                         PIN_CH_FLG_IND_EMBARGO IN CHAR --INDICADOR TIENE EMBARGO?
                                          /*086*/,
-                                         PI_V_FEC_ASIG_GESTOR_INI IN VARCHAR2 --FECHA DE ASIGNACION DE GESTOR INI
+                                         PIN_VC_FEC_ASIG_GESTOR_INI IN VARCHAR2 --FECHA DE ASIGNACION DE GESTOR INI
                                          /*087*/,
-                                         PI_V_FEC_ASIG_GESTOR_FIN IN VARCHAR2 --FECHA DE ASIGNACION DE GESTOR FIN
+                                         PIN_VC_FEC_ASIG_GESTOR_FIN IN VARCHAR2 --FECHA DE ASIGNACION DE GESTOR FIN
                                          /*088*/,
-                                         PI_V_FEC_CARTA_PRECOACTIVA_INI IN VARCHAR2 --FECHA DE CARTA PRECOACTIVA INICIO
+                                         PIN_VC_FEV_VC_CARTA_PRECOACTIVA_INI IN VARCHAR2 --FECHA DE CARTA PRECOACTIVA INICIO
                                          /*089*/,
-                                         PI_V_FEC_CARTA_PRECOACTIVA_FIN IN VARCHAR2 --FECHA DE CARTA PRECOACTIVA FIN
+                                         PIN_VC_FEV_VC_CARTA_PRECOACTIVA_FIN IN VARCHAR2 --FECHA DE CARTA PRECOACTIVA FIN
                                          /*090*/,
-                                         PI_V_ID_EXPECTATIVA_COBRO IN VARCHAR2 --CADENA CODIGOS ESPECTATIVA DE COBRO
+                                         PIN_VC_ID_EXPECTATIVA_COBRO IN VARCHAR2 --CADENA CODIGOS ESPECTATIVA DE COBRO
                                          
                                          -----------------------------------------------------------------------------------------------
                                          --DENUNCIANTE
                                          /*091*/,
-                                         PI_V_D_CODSANCIONA_INI IN VARCHAR2 --CÓDIGO DEL INDECOPI
+                                         PIN_VC_D_CODSANCIONA_INI IN VARCHAR2 --CÓDIGO DEL INDECOPI
                                          /*092*/,
-                                         PI_V_D_CODSANCIONA_FIN IN VARCHAR2 --CÓDIGO DEL INDECOPI
+                                         PIN_VC_D_CODSANCIONA_FIN IN VARCHAR2 --CÓDIGO DEL INDECOPI
                                          /*093*/,
-                                         PI_I_D_TIP_PERSONA IN INTEGER --TIPO DE PERSONERÍA
+                                         PIN_NU_D_TIP_PERSONA IN INTEGER --TIPO DE PERSONERÍA
                                          /*094*/,
-                                         PI_V_D_RAZON_SOCIAL IN VARCHAR2 --RAZÓN SOCIAL
+                                         PIN_VC_D_RAZON_SOCIAL IN VARCHAR2 --RAZÓN SOCIAL
                                          /*095*/,
-                                         PI_V_D_APE_PATERNO IN VARCHAR2 --APELLIDO PATERNO
+                                         PIN_VC_D_APE_PATERNO IN VARCHAR2 --APELLIDO PATERNO
                                          /*096*/,
-                                         PI_V_D_APE_MATERNO IN VARCHAR2 --APELLIDO MATERNO
+                                         PIN_VC_D_APE_MATERNO IN VARCHAR2 --APELLIDO MATERNO
                                          /*097*/,
-                                         PI_V_D_APE_CASADA IN VARCHAR2 --APELLIDO CASADA
+                                         PIN_VC_D_APE_CASADA IN VARCHAR2 --APELLIDO CASADA
                                          /*098*/,
-                                         PI_V_D_PRI_NOMBRE IN VARCHAR2 --PRIMER NOMBRE
+                                         PIN_VC_D_PRI_NOMBRE IN VARCHAR2 --PRIMER NOMBRE
                                          /*099*/,
-                                         PI_V_D_SEG_NOMBRE IN VARCHAR2 --SEGUNDO NOMBRE
+                                         PIN_VC_D_SEG_NOMBRE IN VARCHAR2 --SEGUNDO NOMBRE
                                          /*100*/,
-                                         PI_I_D_TIPO_DOC IN INTEGER --TIPO DE DOCUMENTO
+                                         PIN_NU_D_TIPO_DOC IN INTEGER --TIPO DE DOCUMENTO
                                          /*101*/,
-                                         PI_V_D_NRO_DOC IN VARCHAR2 --Nº DE DOCUMENTO DE IDENTIDAD
+                                         PIN_VC_D_NRO_DOC IN VARCHAR2 --Nº DE DOCUMENTO DE IDENTIDAD
                                          /*102*/,
-                                         PI_I_D_TIP_EMPRESA IN INTEGER --TIPO DE EMPRESA
+                                         PIN_NU_D_TIP_EMPRESA IN INTEGER --TIPO DE EMPRESA
                                          /*103*/,
-                                         PI_N_D_ID_SECT_ECONO IN NUMBER --CIIU (ACTIVIDAD ECONOMICA)
+                                         PIN_NU_D_ID_SECT_ECONO IN NUMBER --CIIU (ACTIVIDAD ECONOMICA)
                                          /*104*/,
-                                         PI_C_D_FLG_ASOCU IN CHAR --FLAG ASOCU
+                                         PIN_CH_D_FLG_ASOCU IN CHAR --FLAG ASOCU
                                          /*105*/,
-                                         PI_C_D_FL_OFICIO IN CHAR --INDICADOR DENUNCIANTE DE OFICIO=INDECOPI
+                                         PIN_CH_D_FL_OFICIO IN CHAR --INDICADOR DENUNCIANTE DE OFICIO=INDECOPI
                                          --DENUNCIADO
                                          /*106*/,
-                                         PI_V_DO_CODSANCIONA_INI IN VARCHAR2 --CÓDIGO DEL INDECOPI
+                                         PIN_VC_DO_CODSANCIONA_INI IN VARCHAR2 --CÓDIGO DEL INDECOPI
                                          /*107*/,
-                                         PI_V_DO_CODSANCIONA_FIN IN VARCHAR2 --CÓDIGO DEL INDECOPI
+                                         PIN_VC_DO_CODSANCIONA_FIN IN VARCHAR2 --CÓDIGO DEL INDECOPI
                                          /*108*/,
-                                         PI_I_DO_TIP_PERSONA IN INTEGER --TIPO DE PERSONERÍA
+                                         PIN_NU_DO_TIP_PERSONA IN INTEGER --TIPO DE PERSONERÍA
                                          /*109*/,
-                                         PI_V_DO_RAZON_SOCIAL IN VARCHAR2 --RAZÓN SOCIAL
+                                         PIN_VC_DO_RAZON_SOCIAL IN VARCHAR2 --RAZÓN SOCIAL
                                          /*110*/,
-                                         PI_V_DO_APE_PATERNO IN VARCHAR2 --APELLIDO PATERNO
+                                         PIN_VC_DO_APE_PATERNO IN VARCHAR2 --APELLIDO PATERNO
                                          /*111*/,
-                                         PI_V_DO_APE_MATERNO IN VARCHAR2 --APELLIDO MATERNO
+                                         PIN_VC_DO_APE_MATERNO IN VARCHAR2 --APELLIDO MATERNO
                                          /*112*/,
-                                         PI_V_DO_APE_CASADA IN VARCHAR2 --APELLIDO CASADA
+                                         PIN_VC_DO_APE_CASADA IN VARCHAR2 --APELLIDO CASADA
                                          /*113*/,
-                                         PI_V_DO_PRI_NOMBRE IN VARCHAR2 --PRIMER NOMBRE
+                                         PIN_VC_DO_PRI_NOMBRE IN VARCHAR2 --PRIMER NOMBRE
                                          /*114*/,
-                                         PI_V_DO_SEG_NOMBRE IN VARCHAR2 --SEGUNDO NOMBRE
+                                         PIN_VC_DO_SEG_NOMBRE IN VARCHAR2 --SEGUNDO NOMBRE
                                          /*115*/,
-                                         PI_I_DO_TIPO_DOC IN INTEGER --TIPO DE DOCUMENTO
+                                         PIN_NU_DO_TIPO_DOC IN INTEGER --TIPO DE DOCUMENTO
                                          /*116*/,
-                                         PI_V_DO_NRO_DOC IN VARCHAR2 --Nº DE DOCUMENTO DE IDENTIDAD
+                                         PIN_VC_DO_NRO_DOC IN VARCHAR2 --Nº DE DOCUMENTO DE IDENTIDAD
                                          /*117*/,
-                                         PI_I_DO_TIP_EMPRESA IN INTEGER --TIPO DE EMPRESA
+                                         PIN_NU_DO_TIP_EMPRESA IN INTEGER --TIPO DE EMPRESA
                                          /*118*/,
-                                         PI_N_DO_ID_SECT_ECONO IN NUMBER --CIIU (ACTIVIDAD ECONOMICA)
+                                         PIN_NU_DO_ID_SECT_ECONO IN NUMBER --CIIU (ACTIVIDAD ECONOMICA)
                                          /*119*/,
-                                         PI_C_DO_FLG_ASOCU IN CHAR --FLAG ASOCU
+                                         PIN_CH_DO_FLG_ASOCU IN CHAR --FLAG ASOCU
                                          --SANCIONADO
                                          /*120*/,
-                                         PI_V_S_CODSANCIONA_INI IN VARCHAR2 --CÓDIGO DEL INDECOPI
+                                         PIN_VC_S_CODSANCIONA_INI IN VARCHAR2 --CÓDIGO DEL INDECOPI
                                          /*121*/,
-                                         PI_V_S_CODSANCIONA_FIN IN VARCHAR2 --CÓDIGO DEL INDECOPI
+                                         PIN_VC_S_CODSANCIONA_FIN IN VARCHAR2 --CÓDIGO DEL INDECOPI
                                          /*122*/,
-                                         PI_I_S_TIP_PERSONA IN INTEGER --TIPO DE PERSONERÍA
+                                         PIN_NU_S_TIP_PERSONA IN INTEGER --TIPO DE PERSONERÍA
                                          /*123*/,
-                                         PI_V_S_RAZON_SOCIAL IN VARCHAR2 --RAZÓN SOCIAL
+                                         PIN_VC_S_RAZON_SOCIAL IN VARCHAR2 --RAZÓN SOCIAL
                                          /*124*/,
-                                         PI_V_S_APE_PATERNO IN VARCHAR2 --APELLIDO PATERNO
+                                         PIN_VC_S_APE_PATERNO IN VARCHAR2 --APELLIDO PATERNO
                                          /*125*/,
-                                         PI_V_S_APE_MATERNO IN VARCHAR2 --APELLIDO MATERNO
+                                         PIN_VC_S_APE_MATERNO IN VARCHAR2 --APELLIDO MATERNO
                                          /*126*/,
-                                         PI_V_S_APE_CASADA IN VARCHAR2 --APELLIDO CASADA
+                                         PIN_VC_S_APE_CASADA IN VARCHAR2 --APELLIDO CASADA
                                          /*127*/,
-                                         PI_V_S_PRI_NOMBRE IN VARCHAR2 --PRIMER NOMBRE
+                                         PIN_VC_S_PRI_NOMBRE IN VARCHAR2 --PRIMER NOMBRE
                                          /*128*/,
-                                         PI_V_S_SEG_NOMBRE IN VARCHAR2 --SEGUNDO NOMBRE
+                                         PIN_VC_S_SEG_NOMBRE IN VARCHAR2 --SEGUNDO NOMBRE
                                          /*129*/,
-                                         PI_I_S_TIPO_DOC IN INTEGER --TIPO DE DOCUMENTO
+                                         PIN_NU_S_TIPO_DOC IN INTEGER --TIPO DE DOCUMENTO
                                          /*130*/,
-                                         PI_V_S_NRO_DOC IN VARCHAR2 --Nº DE DOCUMENTO DE IDENTIDAD
+                                         PIN_VC_S_NRO_DOC IN VARCHAR2 --Nº DE DOCUMENTO DE IDENTIDAD
                                          /*131*/,
-                                         PI_I_S_TIP_EMPRESA IN INTEGER --TIPO DE EMPRESA
+                                         PIN_NU_S_TIP_EMPRESA IN INTEGER --TIPO DE EMPRESA
                                          /*132*/,
-                                         PI_N_S_ID_SECT_ECONO IN NUMBER --CIIU (ACTIVIDAD ECONOMICA)
+                                         PIN_NU_S_ID_SECT_ECONO IN NUMBER --CIIU (ACTIVIDAD ECONOMICA)
                                          /*133*/,
-                                         PI_C_S_FLG_ASOCU IN CHAR --FLAG ASOCU
+                                         PIN_CH_S_FLG_ASOCU IN CHAR --FLAG ASOCU
                                          --@0002:INI
                                          /*134*/,
-                                         PI_C_S_FLG_BUSCAR_BY_CONTENIDO IN CHAR --0=NO;1=SI
+                                         PIN_CH_S_FLG_BUSCAR_BY_CONTENIDO IN CHAR --0=NO;1=SI
                                          --@0002:FIN
                                          -----------------------------------------------------------------------------------------------
                                         ,
-                                         PO_CU_RETORNO OUT CU_REC_SET) IS
+                                         POUT_CUR_RETORNO OUT CU_REC_SET) IS
   
-    C_FLG_ADMINISTRADO CHAR(1);
-    C_FLG_SANCIONADO   CHAR(1);
-    C_FLG_DENUNCIADO   CHAR(1);
-    C_FLG_DENUNCIANTE  CHAR(1);
+    V_CH_FLG_ADMINISTRADO CHAR(1);
+    V_CH_FLG_SANCIONADO   CHAR(1);
+    V_CH_FLG_DENUNCIADO   CHAR(1);
+    V_CH_FLG_DENUNCIANTE  CHAR(1);
   
-    V_SQL_ADMIN_SELECT   VARCHAR2(8000);
-    V_SQL_ADMIN_WHERE_D  VARCHAR2(8000);
-    V_SQL_ADMIN_WHERE_DO VARCHAR2(8000);
-    V_SQL_ADMIN_WHERE_S  VARCHAR2(8000);
+    V_VC_SQL_ADMIN_SELECT   VARCHAR2(8000);
+    V_VC_SQL_ADMIN_WHERE_D  VARCHAR2(8000);
+    V_VC_SQL_ADMIN_WHERE_DO VARCHAR2(8000);
+    V_VC_SQL_ADMIN_WHERE_S  VARCHAR2(8000);
   
-    V_SQL_SELECT_1   VARCHAR2(8000);
-    V_SQL_SELECT_2   VARCHAR2(8000);
-    V_SQL_SELECT_3   VARCHAR2(8000);
-    V_SQL_SELECT_4   VARCHAR2(8000);
-    V_SQL_SELECT_5   VARCHAR2(8000);
-    V_SQL_JOIN_1     VARCHAR2(8000);
-    V_SQL_JOIN_2     VARCHAR2(8000);
-    V_SQL_JOIN_3     VARCHAR2(8000);
-    V_SQL_JOIN_4     VARCHAR2(8000);
-    V_SQL_JOIN_5     VARCHAR2(8000);
-    V_SQL_WHERE_1    VARCHAR2(8000);
-    V_SQL_WHERE_2    VARCHAR2(8000);
-    V_SQL_WHERE_3    VARCHAR2(8000);
-    V_SQL_WHERE_4    VARCHAR2(8000);
-    V_SQL_WHERE_5    VARCHAR2(8000);
-    V_SQL_WHERE_6    VARCHAR2(8000);
-    V_SQL_WHERE_7    VARCHAR2(8000);
-    V_SQL_WHERE_8    VARCHAR2(8000);
-    V_SQL_WHERE_9    VARCHAR2(8000);
-    V_SQL_WHERE_10   VARCHAR2(8000);
-    V_SQL_WHERE_11   VARCHAR2(8000);
-    V_SQL_WHERE_12   VARCHAR2(8000);
-    C_CAR_PORCENTAJE VARCHAR(1);
+    V_VC_SQL_SELECT_1   VARCHAR2(8000);
+    V_VC_SQL_SELECT_2   VARCHAR2(8000);
+    V_VC_SQL_SELECT_3   VARCHAR2(8000);
+    V_VC_SQL_SELECT_4   VARCHAR2(8000);
+    V_VC_SQL_SELECT_5   VARCHAR2(8000);
+    V_VC_SQL_JOIN_1     VARCHAR2(8000);
+    V_VC_SQL_JOIN_2     VARCHAR2(8000);
+    V_VC_SQL_JOIN_3     VARCHAR2(8000);
+    V_VC_SQL_JOIN_4     VARCHAR2(8000);
+    V_VC_SQL_JOIN_5     VARCHAR2(8000);
+    V_VC_SQL_WHERE_1    VARCHAR2(8000);
+    V_VC_SQL_WHERE_2    VARCHAR2(8000);
+    V_VC_SQL_WHERE_3    VARCHAR2(8000);
+    V_VC_SQL_WHERE_4    VARCHAR2(8000);
+    V_VC_SQL_WHERE_5    VARCHAR2(8000);
+    V_VC_SQL_WHERE_6    VARCHAR2(8000);
+    V_VC_SQL_WHERE_7    VARCHAR2(8000);
+    V_VC_SQL_WHERE_8    VARCHAR2(8000);
+    V_VC_SQL_WHERE_9    VARCHAR2(8000);
+    V_VC_SQL_WHERE_10   VARCHAR2(8000);
+    V_VC_SQL_WHERE_11   VARCHAR2(8000);
+    V_VC_SQL_WHERE_12   VARCHAR2(8000);
+    V_VC_CAR_PORCENTAJE VARCHAR(1);
   BEGIN
     --@0002:INI
-    C_CAR_PORCENTAJE := '';
-    IF PI_C_S_FLG_BUSCAR_BY_CONTENIDO = '1' THEN
-      C_CAR_PORCENTAJE := '%';
+    V_VC_CAR_PORCENTAJE := '';
+    IF PIN_CH_S_FLG_BUSCAR_BY_CONTENIDO = '1' THEN
+      V_VC_CAR_PORCENTAJE := '%';
     END IF;
     --@0002:FIN
   
     --CONTROL DEL FILTRO SANCIONADO
-    C_FLG_ADMINISTRADO := '0';
-    C_FLG_SANCIONADO   := '0';
-    C_FLG_DENUNCIADO   := '0';
-    C_FLG_DENUNCIANTE  := '0';
+    V_CH_FLG_ADMINISTRADO := '0';
+    V_CH_FLG_SANCIONADO   := '0';
+    V_CH_FLG_DENUNCIADO   := '0';
+    V_CH_FLG_DENUNCIANTE  := '0';
   
-    V_SQL_WHERE_1  := '';
-    V_SQL_WHERE_2  := '';
-    V_SQL_WHERE_3  := '';
-    V_SQL_WHERE_4  := '';
-    V_SQL_WHERE_5  := '';
-    V_SQL_WHERE_6  := '';
-    V_SQL_WHERE_7  := '';
-    V_SQL_WHERE_8  := '';
-    V_SQL_WHERE_9  := '';
-    V_SQL_WHERE_10 := '';
-    V_SQL_WHERE_11 := '';
-    V_SQL_WHERE_12 := '';
+    V_VC_SQL_WHERE_1  := '';
+    V_VC_SQL_WHERE_2  := '';
+    V_VC_SQL_WHERE_3  := '';
+    V_VC_SQL_WHERE_4  := '';
+    V_VC_SQL_WHERE_5  := '';
+    V_VC_SQL_WHERE_6  := '';
+    V_VC_SQL_WHERE_7  := '';
+    V_VC_SQL_WHERE_8  := '';
+    V_VC_SQL_WHERE_9  := '';
+    V_VC_SQL_WHERE_10 := '';
+    V_VC_SQL_WHERE_11 := '';
+    V_VC_SQL_WHERE_12 := '';
   
-    IF PI_V_S_CODSANCIONA_INI IS NOT NULL OR
-       PI_V_S_CODSANCIONA_FIN IS NOT NULL OR PI_I_S_TIP_PERSONA <> 0 OR
-       PI_V_S_RAZON_SOCIAL IS NOT NULL OR PI_V_S_APE_PATERNO IS NOT NULL OR
-       PI_V_S_APE_MATERNO IS NOT NULL OR PI_V_S_APE_CASADA IS NOT NULL OR
-       PI_V_S_PRI_NOMBRE IS NOT NULL OR PI_V_S_SEG_NOMBRE IS NOT NULL OR
-       PI_I_S_TIPO_DOC <> 0 OR PI_V_S_NRO_DOC IS NOT NULL OR
-       PI_I_S_TIP_EMPRESA <> 0 OR PI_N_S_ID_SECT_ECONO <> 0 OR
-       PI_C_S_FLG_ASOCU <> '0' THEN
-      C_FLG_SANCIONADO := '1';
-      IF C_FLG_ADMINISTRADO = '0' THEN
-        C_FLG_ADMINISTRADO := '1';
+    IF PIN_VC_S_CODSANCIONA_INI IS NOT NULL OR
+       PIN_VC_S_CODSANCIONA_FIN IS NOT NULL OR PIN_NU_S_TIP_PERSONA <> 0 OR
+       PIN_VC_S_RAZON_SOCIAL IS NOT NULL OR PIN_VC_S_APE_PATERNO IS NOT NULL OR
+       PIN_VC_S_APE_MATERNO IS NOT NULL OR PIN_VC_S_APE_CASADA IS NOT NULL OR
+       PIN_VC_S_PRI_NOMBRE IS NOT NULL OR PIN_VC_S_SEG_NOMBRE IS NOT NULL OR
+       PIN_NU_S_TIPO_DOC <> 0 OR PIN_VC_S_NRO_DOC IS NOT NULL OR
+       PIN_NU_S_TIP_EMPRESA <> 0 OR PIN_NU_S_ID_SECT_ECONO <> 0 OR
+       PIN_CH_S_FLG_ASOCU <> '0' THEN
+      V_CH_FLG_SANCIONADO := '1';
+      IF V_CH_FLG_ADMINISTRADO = '0' THEN
+        V_CH_FLG_ADMINISTRADO := '1';
       END IF;
     END IF;
   
-    IF (PI_V_DO_CODSANCIONA_INI IS NOT NULL OR
-       PI_V_DO_CODSANCIONA_FIN IS NOT NULL OR PI_I_DO_TIP_PERSONA <> 0 OR
-       PI_V_DO_RAZON_SOCIAL IS NOT NULL OR PI_V_DO_APE_PATERNO IS NOT NULL OR
-       PI_V_DO_APE_MATERNO IS NOT NULL OR PI_V_DO_APE_CASADA IS NOT NULL OR
-       PI_V_DO_PRI_NOMBRE IS NOT NULL OR PI_V_DO_SEG_NOMBRE IS NOT NULL OR
-       PI_I_DO_TIPO_DOC <> 0 OR PI_V_DO_NRO_DOC IS NOT NULL OR
-       PI_I_DO_TIP_EMPRESA <> 0 OR PI_N_DO_ID_SECT_ECONO <> 0 OR
-       PI_C_DO_FLG_ASOCU <> '0') THEN
-      C_FLG_DENUNCIADO := '1';
-      IF C_FLG_ADMINISTRADO = '0' THEN
-        C_FLG_ADMINISTRADO := '1';
+    IF (PIN_VC_DO_CODSANCIONA_INI IS NOT NULL OR
+       PIN_VC_DO_CODSANCIONA_FIN IS NOT NULL OR PIN_NU_DO_TIP_PERSONA <> 0 OR
+       PIN_VC_DO_RAZON_SOCIAL IS NOT NULL OR PIN_VC_DO_APE_PATERNO IS NOT NULL OR
+       PIN_VC_DO_APE_MATERNO IS NOT NULL OR PIN_VC_DO_APE_CASADA IS NOT NULL OR
+       PIN_VC_DO_PRI_NOMBRE IS NOT NULL OR PIN_VC_DO_SEG_NOMBRE IS NOT NULL OR
+       PIN_NU_DO_TIPO_DOC <> 0 OR PIN_VC_DO_NRO_DOC IS NOT NULL OR
+       PIN_NU_DO_TIP_EMPRESA <> 0 OR PIN_NU_DO_ID_SECT_ECONO <> 0 OR
+       PIN_CH_DO_FLG_ASOCU <> '0') THEN
+      V_CH_FLG_DENUNCIADO := '1';
+      IF V_CH_FLG_ADMINISTRADO = '0' THEN
+        V_CH_FLG_ADMINISTRADO := '1';
       END IF;
     END IF;
   
-    IF (PI_V_D_CODSANCIONA_INI IS NOT NULL OR
-       PI_V_D_CODSANCIONA_FIN IS NOT NULL OR PI_I_D_TIP_PERSONA <> 0 OR
-       PI_V_D_RAZON_SOCIAL IS NOT NULL OR PI_V_D_APE_PATERNO IS NOT NULL OR
-       PI_V_D_APE_MATERNO IS NOT NULL OR PI_V_D_APE_CASADA IS NOT NULL OR
-       PI_V_D_PRI_NOMBRE IS NOT NULL OR PI_V_D_SEG_NOMBRE IS NOT NULL OR
-       PI_I_D_TIPO_DOC <> 0 OR PI_V_D_NRO_DOC IS NOT NULL OR
-       PI_I_D_TIP_EMPRESA <> 0 OR PI_N_D_ID_SECT_ECONO <> 0 OR
-       PI_C_D_FLG_ASOCU <> '0' OR PI_C_D_FL_OFICIO <> '0') THEN
-      C_FLG_DENUNCIANTE := '1';
-      IF C_FLG_ADMINISTRADO = '0' THEN
-        C_FLG_ADMINISTRADO := '1';
+    IF (PIN_VC_D_CODSANCIONA_INI IS NOT NULL OR
+       PIN_VC_D_CODSANCIONA_FIN IS NOT NULL OR PIN_NU_D_TIP_PERSONA <> 0 OR
+       PIN_VC_D_RAZON_SOCIAL IS NOT NULL OR PIN_VC_D_APE_PATERNO IS NOT NULL OR
+       PIN_VC_D_APE_MATERNO IS NOT NULL OR PIN_VC_D_APE_CASADA IS NOT NULL OR
+       PIN_VC_D_PRI_NOMBRE IS NOT NULL OR PIN_VC_D_SEG_NOMBRE IS NOT NULL OR
+       PIN_NU_D_TIPO_DOC <> 0 OR PIN_VC_D_NRO_DOC IS NOT NULL OR
+       PIN_NU_D_TIP_EMPRESA <> 0 OR PIN_NU_D_ID_SECT_ECONO <> 0 OR
+       PIN_CH_D_FLG_ASOCU <> '0' OR PIN_CH_D_FL_OFICIO <> '0') THEN
+      V_CH_FLG_DENUNCIANTE := '1';
+      IF V_CH_FLG_ADMINISTRADO = '0' THEN
+        V_CH_FLG_ADMINISTRADO := '1';
       END IF;
     END IF;
   
     EXECUTE IMMEDIATE 'TRUNCATE TABLE T_SCOB_TMP_ADMINISTRADO';
     --OBTENER A TODOS LOS ADMINISTRADOS
-    IF C_FLG_ADMINISTRADO = '1' THEN
+    IF V_CH_FLG_ADMINISTRADO = '1' THEN
     
-      V_SQL_ADMIN_SELECT := '
+      V_VC_SQL_ADMIN_SELECT := '
       INSERT INTO T_SCOB_TMP_ADMINISTRADO(
           ID_MULTA, TIPO_ADMINISTRADO, ID_PERSONA
       )
@@ -727,346 +727,346 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONSULTA_AVANZADA IS
       INNER JOIN T_SCOB_PERSONA PERS ON PERS.ID_PERSONA = ADMINISTRADO.ID_PERSONA
       ';
     
-      V_SQL_ADMIN_WHERE_D := '
+      V_VC_SQL_ADMIN_WHERE_D := '
       WHERE ADMINISTRADO.ID_MULTA IS NOT NULL ';
     
-      IF C_FLG_DENUNCIANTE = '1' THEN
+      IF V_CH_FLG_DENUNCIANTE = '1' THEN
       
-        V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
       AND (ADMINISTRADO.TIPO_ADMINISTRADO = ''3'' --denunciante
       ';
       
         --CODIGO INDECOPI
-        IF PI_V_D_CODSANCIONA_INI IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        IF PIN_VC_D_CODSANCIONA_INI IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
              AND TO_NUMBER(PERS.COD_SANCIONADO) BETWEEN TO_NUMBER(' ||
-                                 PI_V_D_CODSANCIONA_INI ||
+                                 PIN_VC_D_CODSANCIONA_INI ||
                                  ') AND TO_NUMBER(' ||
-                                 PI_V_D_CODSANCIONA_FIN || ')';
+                                 PIN_VC_D_CODSANCIONA_FIN || ')';
         
         END IF;
       
         --TIPO PERSONERIA
-        IF PI_I_D_TIP_PERSONA <> 0 THEN
-          V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        IF PIN_NU_D_TIP_PERSONA <> 0 THEN
+          V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
              AND PERS.TIPO_PERSONA=' ||
-                                 PI_I_D_TIP_PERSONA;
+                                 PIN_NU_D_TIP_PERSONA;
         END IF;
       
         --TIPO DOCUMENTO
-        IF PI_I_D_TIPO_DOC <> 0 THEN
-          V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        IF PIN_NU_D_TIPO_DOC <> 0 THEN
+          V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
              AND PERS.TIPO_DOC=' ||
-                                 PI_I_D_TIPO_DOC;
+                                 PIN_NU_D_TIPO_DOC;
         END IF;
       
         --NRO DOCUMENTO
-        IF PI_V_D_NRO_DOC IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        IF PIN_VC_D_NRO_DOC IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
              AND PERS.NRO_DOC=''' ||
-                                 PI_V_D_NRO_DOC || '''';
+                                 PIN_VC_D_NRO_DOC || '''';
         END IF;
       
         --APELLIDOS Y NOMBRES
-        IF PI_V_D_APE_PATERNO IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        IF PIN_VC_D_APE_PATERNO IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
              AND PERS.APE_PATERNO LIKE ''' ||
-                                 C_CAR_PORCENTAJE || PI_V_D_APE_PATERNO ||
+                                 V_VC_CAR_PORCENTAJE || PIN_VC_D_APE_PATERNO ||
                                  '%''';
         END IF;
       
-        IF PI_V_D_APE_MATERNO IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        IF PIN_VC_D_APE_MATERNO IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
              AND PERS.APE_MATERNO LIKE ''' ||
-                                 C_CAR_PORCENTAJE || PI_V_D_APE_MATERNO ||
+                                 V_VC_CAR_PORCENTAJE || PIN_VC_D_APE_MATERNO ||
                                  '%''';
         END IF;
       
-        IF PI_V_D_APE_CASADA IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        IF PIN_VC_D_APE_CASADA IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
              AND PERS.APE_CASADA LIKE ''' ||
-                                 C_CAR_PORCENTAJE || PI_V_D_APE_CASADA ||
+                                 V_VC_CAR_PORCENTAJE || PIN_VC_D_APE_CASADA ||
                                  '%''';
         END IF;
       
-        IF PI_V_D_PRI_NOMBRE IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        IF PIN_VC_D_PRI_NOMBRE IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
              AND PERS.PRI_NOMBRE LIKE ''' ||
-                                 C_CAR_PORCENTAJE || PI_V_D_PRI_NOMBRE ||
+                                 V_VC_CAR_PORCENTAJE || PIN_VC_D_PRI_NOMBRE ||
                                  '%''';
         END IF;
       
-        IF PI_V_D_SEG_NOMBRE IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        IF PIN_VC_D_SEG_NOMBRE IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
              AND PERS.SEG_NOMBRE LIKE ''' ||
-                                 C_CAR_PORCENTAJE || PI_V_D_SEG_NOMBRE ||
+                                 V_VC_CAR_PORCENTAJE || PIN_VC_D_SEG_NOMBRE ||
                                  '%''';
         END IF;
       
         --DENOMINACION O RAZON SOCIAL
-        IF PI_V_D_RAZON_SOCIAL IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        IF PIN_VC_D_RAZON_SOCIAL IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
              AND PERS.RAZON_SOCIAL LIKE ''' ||
-                                 C_CAR_PORCENTAJE || PI_V_D_RAZON_SOCIAL ||
+                                 V_VC_CAR_PORCENTAJE || PIN_VC_D_RAZON_SOCIAL ||
                                  '%''';
         END IF;
       
         --TIPO DE EMPRESA
-        IF PI_I_D_TIP_EMPRESA <> 0 THEN
-          V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        IF PIN_NU_D_TIP_EMPRESA <> 0 THEN
+          V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
              AND PERS.TIP_EMPRESA=' ||
-                                 PI_I_D_TIP_EMPRESA;
+                                 PIN_NU_D_TIP_EMPRESA;
         END IF;
       
         --SECTOR ECONOMICO
-        IF PI_N_D_ID_SECT_ECONO <> 0 THEN
-          V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        IF PIN_NU_D_ID_SECT_ECONO <> 0 THEN
+          V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
              AND PERS.ID_SECTOR_ECONOMICO=' ||
-                                 PI_N_D_ID_SECT_ECONO;
+                                 PIN_NU_D_ID_SECT_ECONO;
         END IF;
       
         --INDICADOR DENUNCIANTE DE OFICIO = INDECOPI
-        IF PI_C_D_FL_OFICIO = '1' THEN
-          V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        IF PIN_CH_D_FL_OFICIO = '1' THEN
+          V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
              AND PERS.ID_PERSONA=' ||
                                  SCOB_PK_CONSTANTES.C_ID_ADMINISTRADO_INDECOPI;
         END IF;
       
-        V_SQL_ADMIN_WHERE_D := V_SQL_ADMIN_WHERE_D || '
+        V_VC_SQL_ADMIN_WHERE_D := V_VC_SQL_ADMIN_WHERE_D || '
       )';
       
       END IF;
     
-      IF C_FLG_DENUNCIADO = '1' THEN
-        IF C_FLG_DENUNCIANTE = '1' THEN
-          V_SQL_ADMIN_WHERE_DO := '
+      IF V_CH_FLG_DENUNCIADO = '1' THEN
+        IF V_CH_FLG_DENUNCIANTE = '1' THEN
+          V_VC_SQL_ADMIN_WHERE_DO := '
               OR(ADMINISTRADO.TIPO_ADMINISTRADO = ''2'' --denunciado';
         ELSE
-          V_SQL_ADMIN_WHERE_DO := '
+          V_VC_SQL_ADMIN_WHERE_DO := '
               AND(ADMINISTRADO.TIPO_ADMINISTRADO = ''2'' --denunciado';
         END IF;
       
         --CODIGO INDECOPI
-        IF PI_V_D_CODSANCIONA_INI IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_DO := V_SQL_ADMIN_WHERE_DO || '
+        IF PIN_VC_D_CODSANCIONA_INI IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_DO := V_VC_SQL_ADMIN_WHERE_DO || '
              AND TO_NUMBER(PERS.COD_SANCIONADO) BETWEEN TO_NUMBER(' ||
-                                  PI_V_DO_CODSANCIONA_INI ||
+                                  PIN_VC_DO_CODSANCIONA_INI ||
                                   ') AND TO_NUMBER(' ||
-                                  PI_V_DO_CODSANCIONA_FIN || ')';
+                                  PIN_VC_DO_CODSANCIONA_FIN || ')';
         END IF;
       
         --TIPO PERSONERIA
-        IF PI_I_DO_TIP_PERSONA <> 0 THEN
-          V_SQL_ADMIN_WHERE_DO := V_SQL_ADMIN_WHERE_DO || '
+        IF PIN_NU_DO_TIP_PERSONA <> 0 THEN
+          V_VC_SQL_ADMIN_WHERE_DO := V_VC_SQL_ADMIN_WHERE_DO || '
              AND PERS.TIPO_PERSONA=' ||
-                                  PI_I_DO_TIP_PERSONA;
+                                  PIN_NU_DO_TIP_PERSONA;
         END IF;
       
         --TIPO DOCUMENTO
-        IF PI_I_DO_TIPO_DOC <> 0 THEN
-          V_SQL_ADMIN_WHERE_DO := V_SQL_ADMIN_WHERE_DO || '
+        IF PIN_NU_DO_TIPO_DOC <> 0 THEN
+          V_VC_SQL_ADMIN_WHERE_DO := V_VC_SQL_ADMIN_WHERE_DO || '
              AND PERS.TIPO_DOC=' ||
-                                  PI_I_DO_TIPO_DOC;
+                                  PIN_NU_DO_TIPO_DOC;
         END IF;
       
         --NRO DOCUMENTO
-        IF PI_V_DO_NRO_DOC IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_DO := V_SQL_ADMIN_WHERE_DO || '
+        IF PIN_VC_DO_NRO_DOC IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_DO := V_VC_SQL_ADMIN_WHERE_DO || '
              AND PERS.NRO_DOC=''' ||
-                                  PI_V_DO_NRO_DOC || '''';
+                                  PIN_VC_DO_NRO_DOC || '''';
         END IF;
       
         --APELLIDOS Y NOMBRES
-        IF PI_V_DO_APE_PATERNO IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_DO := V_SQL_ADMIN_WHERE_DO || '
+        IF PIN_VC_DO_APE_PATERNO IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_DO := V_VC_SQL_ADMIN_WHERE_DO || '
              AND PERS.APE_PATERNO LIKE ''' ||
-                                  C_CAR_PORCENTAJE || PI_V_DO_APE_PATERNO ||
+                                  V_VC_CAR_PORCENTAJE || PIN_VC_DO_APE_PATERNO ||
                                   '%''';
         END IF;
       
-        IF PI_V_DO_APE_MATERNO IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_DO := V_SQL_ADMIN_WHERE_DO || '
+        IF PIN_VC_DO_APE_MATERNO IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_DO := V_VC_SQL_ADMIN_WHERE_DO || '
              AND PERS.APE_MATERNO LIKE ''' ||
-                                  C_CAR_PORCENTAJE || PI_V_DO_APE_MATERNO ||
+                                  V_VC_CAR_PORCENTAJE || PIN_VC_DO_APE_MATERNO ||
                                   '%''';
         END IF;
       
-        IF PI_V_DO_APE_CASADA IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_DO := V_SQL_ADMIN_WHERE_DO || '
+        IF PIN_VC_DO_APE_CASADA IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_DO := V_VC_SQL_ADMIN_WHERE_DO || '
              AND PERS.APE_CASADA LIKE ''' ||
-                                  C_CAR_PORCENTAJE || PI_V_DO_APE_CASADA ||
+                                  V_VC_CAR_PORCENTAJE || PIN_VC_DO_APE_CASADA ||
                                   '%''';
         END IF;
       
-        IF PI_V_DO_PRI_NOMBRE IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_DO := V_SQL_ADMIN_WHERE_DO || '
+        IF PIN_VC_DO_PRI_NOMBRE IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_DO := V_VC_SQL_ADMIN_WHERE_DO || '
              AND PERS.PRI_NOMBRE LIKE ''' ||
-                                  C_CAR_PORCENTAJE || PI_V_DO_PRI_NOMBRE ||
+                                  V_VC_CAR_PORCENTAJE || PIN_VC_DO_PRI_NOMBRE ||
                                   '%''';
         END IF;
       
-        IF PI_V_DO_SEG_NOMBRE IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_DO := V_SQL_ADMIN_WHERE_DO || '
+        IF PIN_VC_DO_SEG_NOMBRE IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_DO := V_VC_SQL_ADMIN_WHERE_DO || '
              AND PERS.SEG_NOMBRE LIKE ''' ||
-                                  C_CAR_PORCENTAJE || PI_V_DO_SEG_NOMBRE ||
+                                  V_VC_CAR_PORCENTAJE || PIN_VC_DO_SEG_NOMBRE ||
                                   '%''';
         END IF;
       
         --DENOMINACION O RAZON SOCIAL
-        IF PI_V_DO_RAZON_SOCIAL IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_DO := V_SQL_ADMIN_WHERE_DO || '
+        IF PIN_VC_DO_RAZON_SOCIAL IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_DO := V_VC_SQL_ADMIN_WHERE_DO || '
              AND PERS.RAZON_SOCIAL LIKE ''' ||
-                                  C_CAR_PORCENTAJE || PI_V_DO_RAZON_SOCIAL ||
+                                  V_VC_CAR_PORCENTAJE || PIN_VC_DO_RAZON_SOCIAL ||
                                   '%''';
         END IF;
       
         --TIPO DE EMPRESA
-        IF PI_I_DO_TIP_EMPRESA <> 0 THEN
-          V_SQL_ADMIN_WHERE_DO := V_SQL_ADMIN_WHERE_DO || '
+        IF PIN_NU_DO_TIP_EMPRESA <> 0 THEN
+          V_VC_SQL_ADMIN_WHERE_DO := V_VC_SQL_ADMIN_WHERE_DO || '
              AND PERS.TIP_EMPRESA=' ||
-                                  PI_I_DO_TIP_EMPRESA;
+                                  PIN_NU_DO_TIP_EMPRESA;
         END IF;
       
         --SECTOR ECONOMICO
-        IF PI_N_DO_ID_SECT_ECONO <> 0 THEN
-          V_SQL_ADMIN_WHERE_DO := V_SQL_ADMIN_WHERE_DO || '
+        IF PIN_NU_DO_ID_SECT_ECONO <> 0 THEN
+          V_VC_SQL_ADMIN_WHERE_DO := V_VC_SQL_ADMIN_WHERE_DO || '
              AND PERS.ID_SECTOR_ECONOMICO=' ||
-                                  PI_N_DO_ID_SECT_ECONO;
+                                  PIN_NU_DO_ID_SECT_ECONO;
         END IF;
       
-        IF PI_C_DO_FLG_ASOCU = '1' THEN
-          V_SQL_ADMIN_WHERE_DO := V_SQL_ADMIN_WHERE_DO || '
+        IF PIN_CH_DO_FLG_ASOCU = '1' THEN
+          V_VC_SQL_ADMIN_WHERE_DO := V_VC_SQL_ADMIN_WHERE_DO || '
              AND PERS.FLG_ASOCU=''' ||
-                                  PI_C_DO_FLG_ASOCU || '''';
+                                  PIN_CH_DO_FLG_ASOCU || '''';
         END IF;
       
-        V_SQL_ADMIN_WHERE_DO := V_SQL_ADMIN_WHERE_DO || '
+        V_VC_SQL_ADMIN_WHERE_DO := V_VC_SQL_ADMIN_WHERE_DO || '
           )';
       END IF;
     
-      IF C_FLG_SANCIONADO = '1' THEN
-        IF C_FLG_DENUNCIADO = '1' OR C_FLG_DENUNCIANTE = '1' THEN
-          V_SQL_ADMIN_WHERE_S := '
+      IF V_CH_FLG_SANCIONADO = '1' THEN
+        IF V_CH_FLG_DENUNCIADO = '1' OR V_CH_FLG_DENUNCIANTE = '1' THEN
+          V_VC_SQL_ADMIN_WHERE_S := '
               OR(ADMINISTRADO.TIPO_ADMINISTRADO = ''1'' --sancionado';
         ELSE
-          V_SQL_ADMIN_WHERE_S := '
+          V_VC_SQL_ADMIN_WHERE_S := '
               AND(ADMINISTRADO.TIPO_ADMINISTRADO = ''1'' --sancionado';
         END IF;
       
         --CODIGO INDECOPI
-        IF PI_V_S_CODSANCIONA_INI IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_S := V_SQL_ADMIN_WHERE_S || '
+        IF PIN_VC_S_CODSANCIONA_INI IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_S := V_VC_SQL_ADMIN_WHERE_S || '
              AND TO_NUMBER(PERS.COD_SANCIONADO) BETWEEN TO_NUMBER(' ||
-                                 PI_V_S_CODSANCIONA_INI ||
+                                 PIN_VC_S_CODSANCIONA_INI ||
                                  ') AND TO_NUMBER(' ||
-                                 PI_V_S_CODSANCIONA_FIN || ')';
+                                 PIN_VC_S_CODSANCIONA_FIN || ')';
         END IF;
       
         --TIPO PERSONERIA
-        IF PI_I_S_TIP_PERSONA <> 0 THEN
-          V_SQL_ADMIN_WHERE_S := V_SQL_ADMIN_WHERE_S || '
+        IF PIN_NU_S_TIP_PERSONA <> 0 THEN
+          V_VC_SQL_ADMIN_WHERE_S := V_VC_SQL_ADMIN_WHERE_S || '
              AND PERS.TIPO_PERSONA=' ||
-                                 PI_I_S_TIP_PERSONA;
+                                 PIN_NU_S_TIP_PERSONA;
         END IF;
       
         --TIPO DOCUMENTO
-        IF PI_I_S_TIPO_DOC <> 0 THEN
-          V_SQL_ADMIN_WHERE_S := V_SQL_ADMIN_WHERE_S || '
+        IF PIN_NU_S_TIPO_DOC <> 0 THEN
+          V_VC_SQL_ADMIN_WHERE_S := V_VC_SQL_ADMIN_WHERE_S || '
              AND PERS.TIPO_DOC=' ||
-                                 PI_I_S_TIPO_DOC;
+                                 PIN_NU_S_TIPO_DOC;
         END IF;
       
         --NRO DOCUMENTO
-        IF PI_V_S_NRO_DOC IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_S := V_SQL_ADMIN_WHERE_S || '
+        IF PIN_VC_S_NRO_DOC IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_S := V_VC_SQL_ADMIN_WHERE_S || '
              AND PERS.NRO_DOC=''' ||
-                                 PI_V_S_NRO_DOC || '''';
+                                 PIN_VC_S_NRO_DOC || '''';
         END IF;
       
         --APELLIDOS Y NOMBRES
-        IF PI_V_S_APE_PATERNO IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_S := V_SQL_ADMIN_WHERE_S || '
+        IF PIN_VC_S_APE_PATERNO IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_S := V_VC_SQL_ADMIN_WHERE_S || '
              AND PERS.APE_PATERNO LIKE ''' ||
-                                 C_CAR_PORCENTAJE || PI_V_S_APE_PATERNO ||
+                                 V_VC_CAR_PORCENTAJE || PIN_VC_S_APE_PATERNO ||
                                  '%''';
         END IF;
       
-        IF PI_V_S_APE_MATERNO IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_S := V_SQL_ADMIN_WHERE_S || '
+        IF PIN_VC_S_APE_MATERNO IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_S := V_VC_SQL_ADMIN_WHERE_S || '
              AND PERS.APE_MATERNO LIKE ''' ||
-                                 C_CAR_PORCENTAJE || PI_V_S_APE_MATERNO ||
+                                 V_VC_CAR_PORCENTAJE || PIN_VC_S_APE_MATERNO ||
                                  '%''';
         END IF;
       
-        IF PI_V_S_APE_CASADA IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_S := V_SQL_ADMIN_WHERE_S || '
+        IF PIN_VC_S_APE_CASADA IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_S := V_VC_SQL_ADMIN_WHERE_S || '
              AND PERS.APE_CASADA LIKE ''' ||
-                                 C_CAR_PORCENTAJE || PI_V_S_APE_CASADA ||
+                                 V_VC_CAR_PORCENTAJE || PIN_VC_S_APE_CASADA ||
                                  '%''';
         END IF;
       
-        IF PI_V_S_PRI_NOMBRE IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_S := V_SQL_ADMIN_WHERE_S || '
+        IF PIN_VC_S_PRI_NOMBRE IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_S := V_VC_SQL_ADMIN_WHERE_S || '
              AND PERS.PRI_NOMBRE LIKE ''' ||
-                                 C_CAR_PORCENTAJE || PI_V_S_PRI_NOMBRE ||
+                                 V_VC_CAR_PORCENTAJE || PIN_VC_S_PRI_NOMBRE ||
                                  '%''';
         END IF;
       
-        IF PI_V_S_SEG_NOMBRE IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_S := V_SQL_ADMIN_WHERE_S || '
+        IF PIN_VC_S_SEG_NOMBRE IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_S := V_VC_SQL_ADMIN_WHERE_S || '
              AND PERS.SEG_NOMBRE LIKE ''' ||
-                                 C_CAR_PORCENTAJE || PI_V_S_SEG_NOMBRE ||
+                                 V_VC_CAR_PORCENTAJE || PIN_VC_S_SEG_NOMBRE ||
                                  '%''';
         END IF;
       
         --DENOMINACION O RAZON SOCIAL
-        IF PI_V_S_RAZON_SOCIAL IS NOT NULL THEN
-          V_SQL_ADMIN_WHERE_S := V_SQL_ADMIN_WHERE_S || '
+        IF PIN_VC_S_RAZON_SOCIAL IS NOT NULL THEN
+          V_VC_SQL_ADMIN_WHERE_S := V_VC_SQL_ADMIN_WHERE_S || '
              AND PERS.RAZON_SOCIAL LIKE ''' ||
-                                 C_CAR_PORCENTAJE || PI_V_S_RAZON_SOCIAL ||
+                                 V_VC_CAR_PORCENTAJE || PIN_VC_S_RAZON_SOCIAL ||
                                  '%''';
         END IF;
       
         --TIPO DE EMPRESA
-        IF PI_I_S_TIP_EMPRESA <> 0 THEN
-          V_SQL_ADMIN_WHERE_S := V_SQL_ADMIN_WHERE_S || '
+        IF PIN_NU_S_TIP_EMPRESA <> 0 THEN
+          V_VC_SQL_ADMIN_WHERE_S := V_VC_SQL_ADMIN_WHERE_S || '
              AND PERS.TIP_EMPRESA=' ||
-                                 PI_I_S_TIP_EMPRESA;
+                                 PIN_NU_S_TIP_EMPRESA;
         END IF;
       
         --SECTOR ECONOMICO
-        IF PI_N_S_ID_SECT_ECONO <> 0 THEN
-          V_SQL_ADMIN_WHERE_S := V_SQL_ADMIN_WHERE_S || '
+        IF PIN_NU_S_ID_SECT_ECONO <> 0 THEN
+          V_VC_SQL_ADMIN_WHERE_S := V_VC_SQL_ADMIN_WHERE_S || '
              AND PERS.ID_SECTOR_ECONOMICO=' ||
-                                 PI_N_S_ID_SECT_ECONO;
+                                 PIN_NU_S_ID_SECT_ECONO;
         END IF;
       
-        IF PI_C_S_FLG_ASOCU = '1' THEN
-          V_SQL_ADMIN_WHERE_S := V_SQL_ADMIN_WHERE_S || '
+        IF PIN_CH_S_FLG_ASOCU = '1' THEN
+          V_VC_SQL_ADMIN_WHERE_S := V_VC_SQL_ADMIN_WHERE_S || '
              AND PERS.FLG_ASOCU=''' ||
-                                 PI_C_S_FLG_ASOCU || '''';
+                                 PIN_CH_S_FLG_ASOCU || '''';
         END IF;
       
-        V_SQL_ADMIN_WHERE_S := V_SQL_ADMIN_WHERE_S || '
+        V_VC_SQL_ADMIN_WHERE_S := V_VC_SQL_ADMIN_WHERE_S || '
           )';
       END IF;
     
-      DBMS_OUTPUT.PUT_LINE(V_SQL_ADMIN_SELECT);
-      DBMS_OUTPUT.PUT_LINE(V_SQL_ADMIN_WHERE_D);
-      DBMS_OUTPUT.PUT_LINE(V_SQL_ADMIN_WHERE_DO);
-      DBMS_OUTPUT.PUT_LINE(V_SQL_ADMIN_WHERE_S);
+      DBMS_OUTPUT.PUT_LINE(V_VC_SQL_ADMIN_SELECT);
+      DBMS_OUTPUT.PUT_LINE(V_VC_SQL_ADMIN_WHERE_D);
+      DBMS_OUTPUT.PUT_LINE(V_VC_SQL_ADMIN_WHERE_DO);
+      DBMS_OUTPUT.PUT_LINE(V_VC_SQL_ADMIN_WHERE_S);
     
-      EXECUTE IMMEDIATE V_SQL_ADMIN_SELECT || V_SQL_ADMIN_WHERE_D ||
-                        V_SQL_ADMIN_WHERE_DO || V_SQL_ADMIN_WHERE_S;
+      EXECUTE IMMEDIATE V_VC_SQL_ADMIN_SELECT || V_VC_SQL_ADMIN_WHERE_D ||
+                        V_VC_SQL_ADMIN_WHERE_DO || V_VC_SQL_ADMIN_WHERE_S;
     
     END IF;
   
-    IF C_FLG_ADMINISTRADO = '0' THEN
+    IF V_CH_FLG_ADMINISTRADO = '0' THEN
       INSERT INTO T_SCOB_TMP_ADMINISTRADO (ID_MULTA) VALUES ('0');
     END IF;
   
     --MOSTRAR LOS DATOS DE LA CONSULTA
-    V_SQL_SELECT_1 := '
+    V_VC_SQL_SELECT_1 := '
     SELECT
     ROWNUM AS NRO_REG,
     MULT.ID_MULTA AS ID_MULTA,
@@ -1092,7 +1092,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONSULTA_AVANZADA IS
   
   
     scob_pk_utilitario.scob_fn_dias_laborables_neg(to_char(NIVEL1.FEC_RESOLUCION,''DD/MM/YYYY''),to_char(NIVEL1.FEC_REGISTRO,''DD/MM/YYYY'')) AS CANTIDAD_OR,';
-  v_sql_select_2 :=
+  V_VC_SQL_select_2 :=
     '--SEGUNDA INSTANCIA
     NIVEL2.NRO_RESOLUCION AS NRO_RESOL_COMISION,
     NIVEL2.FEC_REGISTRO AS FEC_REG_COMISION,
@@ -1115,7 +1115,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONSULTA_AVANZADA IS
     scob_pk_utilitario.scob_fn_dias_laborables_neg(to_char(NIVEL3.FEC_RESOLUCION,''DD/MM/YYYY''),to_char(NIVEL3.FEC_REGISTRO,''DD/MM/YYYY'')) AS CANTIDAD_SALA,
     ------------------------------------------------------
     ';       
-    V_SQL_SELECT_3 := 'TIPO_MULTA.TXT_DESCRIPCION AS NOM_TIPO_MULTA, --tipo_multa
+    V_VC_SQL_SELECT_3 := 'TIPO_MULTA.TXT_DESCRIPCION AS NOM_TIPO_MULTA, --tipo_multa
     scob_pk_expediente.SCOB_FN_DENUNCIANTES_MULTA(mdet.id_multa,0) AS NOM_DENUNCIANTE, --denunciante
     scob_pk_expediente.SCOB_FN_DENUNCIADOS_MULTA(mdet.id_multa,0) AS NOM_DENUNCIADO, --denunciado
     scob_pk_expediente.SCOB_FN_SANCIONADOS_MULTA(mdet.id_multa,0) AS NOM_SANCIONADO, --sancionado
@@ -1154,7 +1154,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONSULTA_AVANZADA IS
     --FIN CAMPOS ANTIDUMPING
     -----------------------------------
   ';
-    V_SQL_SELECT_4 := 'NVL(MDET.VALOR_UIT,0) AS VALOR_UIT,
+    V_VC_SQL_SELECT_4 := 'NVL(MDET.VALOR_UIT,0) AS VALOR_UIT,
     MULT.MONTO_UIT AS MONTO_UIT,
     MULT.MONTO_INTERES AS MONTO_IC,
     MULT.MONTO_INTERES_MORATORIO AS MONTO_INTERES_IM,
@@ -1186,7 +1186,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONSULTA_AVANZADA IS
     DECODE(MOTIVO_MULT.ID_MOTIVO,0,NULL,MOTIVO_MULT.DESCRIPCION) AS NOM_MOTIVO_MULTA, --moti_multacobra
     MULT.FEC_ULT_IMPROCEDENCIA AS FEC_ULT_OBSERVACION_AEC,
   ';
-    V_SQL_SELECT_5 := 'MULT.FEC_INGRESO_FILE  AS FEC_ULT_INGRESO_AEC,
+    V_VC_SQL_SELECT_5 := 'MULT.FEC_INGRESO_FILE  AS FEC_ULT_INGRESO_AEC,
     EXPE.ANIO||EXPE.NRO_EXPEDIENTE AS NRO_EXPED_COB, --nro_expe_cobranza
     EXPE.FEC_INGRESO AS FEC_GENERACION_EXPED_COB, --fec_gen_exp_cobran
     USUA.USUARIO AS USU_GESTOR_COBRANZA, --gestor_cobranza
@@ -1234,7 +1234,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONSULTA_AVANZADA IS
     NULL AS NRO_FILE_CUM_ALFA ';
     
     --JOINS
-    V_SQL_JOIN_1 := '
+    V_VC_SQL_JOIN_1 := '
   FROM T_SCOB_MULTA MULT
   INNER JOIN T_SCOB_MULTA_DETAL MDET
        ON MDET.ID_MULTA = MULT.ID_MULTA
@@ -1245,8 +1245,8 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONSULTA_AVANZADA IS
     FROM T_SCOB_TMP_ADMINISTRADO
   ) ADMINISTRADO
   ON (
-     (' || C_FLG_ADMINISTRADO || ' = ''0'' AND ''0''=ADMINISTRADO.ID_MULTA)OR
-     (' || C_FLG_ADMINISTRADO ||
+     (' || V_CH_FLG_ADMINISTRADO || ' = ''0'' AND ''0''=ADMINISTRADO.ID_MULTA)OR
+     (' || V_CH_FLG_ADMINISTRADO ||
                     ' <> ''0'' AND ADMINISTRADO.ID_MULTA = MULT.ID_MULTA)
   )
   LEFT JOIN (SELECT DET.ID_MULTA,
@@ -1317,7 +1317,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONSULTA_AVANZADA IS
         ON EST_DEUDA.ID_TABLA = 34 --ESTADO DEUDA PAGO
         AND TO_NUMBER(EST_DEUDA.COD_INTERNO) = MULT.COD_ESTADO_PAGO';
   
-    V_SQL_JOIN_2 := '
+    V_VC_SQL_JOIN_2 := '
   LEFT JOIN T_SCOB_TABLA_DET EST_MULTA_OR
         ON EST_MULTA_OR.ID_TABLA = 5 --ESTADO MULTA OR
         AND TO_NUMBER(EST_MULTA_OR.COD_INTERNO) = MDET.ESTADO_MULTA
@@ -1336,7 +1336,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONSULTA_AVANZADA IS
        AND MCOB.FLG_ACTUAL = ''1''
        AND MCOB.ESTADO = ''1''';
   
-    V_SQL_JOIN_3 := '
+    V_VC_SQL_JOIN_3 := '
   LEFT JOIN T_SCOB_EST_MUL_COB_MOTIVO MOTIVO_MULT --motivo multa cobranza
        ON MOTIVO_MULT.ID_MOTIVO = MULT.COD_MOTIVO
   LEFT JOIN T_SCOB_EXPEDIENTE_MULTA EXMU
@@ -1357,7 +1357,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONSULTA_AVANZADA IS
   LEFT JOIN T_SCOB_PARTIDA PART
        ON PART.ID_PARTIDA = MUAN.ID_PARTIDA';
   
-    V_SQL_JOIN_4 := '
+    V_VC_SQL_JOIN_4 := '
   LEFT JOIN T_SCOB_MULTA_ARCHIVO_CENTRAL EXPED_ARCH_CEN
        ON EXPED_ARCH_CEN.ID_MULTA = MULT.ID_MULTA
        AND EXPED_ARCH_CEN.FLG_ACTUAL = ''1''
@@ -1366,515 +1366,515 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONSULTA_AVANZADA IS
        ON ARCH_CEN.ID_ARCHIVO_CENTRAL = EXPED_ARCH_CEN.ID_MULTA_ARCHIVO_CENTRAL
        AND ARCH_CEN.ESTADO = ''1''';
   
-    V_SQL_WHERE_1 := V_SQL_WHERE_1 || '
+    V_VC_SQL_WHERE_1 := V_VC_SQL_WHERE_1 || '
   WHERE MULT.ESTADO = ''1''';
   
     ---------------------------------------------------------------------------
     -- FILTROS MULTA
     ---------------------------------------------------------------------------
     --AREA MACRO
-    IF PI_V_AREA_MACRO IS NOT NULL THEN
-      V_SQL_WHERE_1 := V_SQL_WHERE_1 || '
-     AND INSTR(''' || PI_V_AREA_MACRO ||
+    IF PIN_VC_AREA_MACRO IS NOT NULL THEN
+      V_VC_SQL_WHERE_1 := V_VC_SQL_WHERE_1 || '
+     AND INSTR(''' || PIN_VC_AREA_MACRO ||
                        ''',''|'' || TO_CHAR(TIPO_PROC.ID_TIPO_PROCEDIMIENTO) || ''|'' )>0';
     END IF;
   
     --CODIGO MULTA
-    IF PI_V_CUM_INI IS NOT NULL THEN
-      V_SQL_WHERE_1 := V_SQL_WHERE_1 || '
+    IF PIN_VC_CUM_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_1 := V_VC_SQL_WHERE_1 || '
      AND MULT.ANIO||MULT.CUM BETWEEN ''' ||
-                       PI_V_CUM_INI || ''' AND ''' || PI_V_CUM_FIN || '''';
+                       PIN_VC_CUM_INI || ''' AND ''' || PIN_VC_CUM_FIN || '''';
     END IF;
   
     --FECHA GENERACION MULTA
-    IF PI_V_FEC_GEN_CUM_INI IS NOT NULL THEN
-      V_SQL_WHERE_1 := V_SQL_WHERE_1 || '
+    IF PIN_VC_FEC_GEN_CUM_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_1 := V_VC_SQL_WHERE_1 || '
      AND TO_DATE(TO_CHAR(MULT.FEC_INGRESO,''DD/MM/YYYY''),''DD/MM/YYYY'')
-     BETWEEN TO_DATE(''' || PI_V_FEC_GEN_CUM_INI ||
+     BETWEEN TO_DATE(''' || PIN_VC_FEC_GEN_CUM_INI ||
                        ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                       PI_V_FEC_GEN_CUM_FIN || ''',''DD/MM/YYYY'')
+                       PIN_VC_FEC_GEN_CUM_FIN || ''',''DD/MM/YYYY'')
      ';
     END IF;
   
     --SEDE
-    IF PI_V_ID_SEDE IS NOT NULL THEN
-      V_SQL_WHERE_1 := V_SQL_WHERE_1 || '
-     AND INSTR(''' || PI_V_ID_SEDE ||
+    IF PIN_VC_ID_SEDE IS NOT NULL THEN
+      V_VC_SQL_WHERE_1 := V_VC_SQL_WHERE_1 || '
+     AND INSTR(''' || PIN_VC_ID_SEDE ||
                        ''',''|'' || TO_CHAR(MULT.ID_SEDE) || ''|'' )>0';
     END IF;
   
     --UBIGEO SEDE
-    IF PI_V_ID_COD_DPTO_SEDE IS NOT NULL THEN
-      V_SQL_WHERE_1 := V_SQL_WHERE_1 || '
-     AND SEDE.COD_DPTO=''' || PI_V_ID_COD_DPTO_SEDE || '''';
+    IF PIN_VC_ID_COD_DPTO_SEDE IS NOT NULL THEN
+      V_VC_SQL_WHERE_1 := V_VC_SQL_WHERE_1 || '
+     AND SEDE.COD_DPTO=''' || PIN_VC_ID_COD_DPTO_SEDE || '''';
     END IF;
   
-    IF PI_V_ID_COD_PROV_SEDE IS NOT NULL THEN
-      V_SQL_WHERE_2 := V_SQL_WHERE_2 || '
-     AND SEDE.COD_PROV=''' || PI_V_ID_COD_PROV_SEDE || '''';
+    IF PIN_VC_ID_COD_PROV_SEDE IS NOT NULL THEN
+      V_VC_SQL_WHERE_2 := V_VC_SQL_WHERE_2 || '
+     AND SEDE.COD_PROV=''' || PIN_VC_ID_COD_PROV_SEDE || '''';
     END IF;
   
-    IF PI_V_ID_COD_DIST_SEDE IS NOT NULL THEN
-      V_SQL_WHERE_2 := V_SQL_WHERE_2 || '
-     AND SEDE.COD_DIST=''' || PI_V_ID_COD_DIST_SEDE || '''';
+    IF PIN_VC_ID_COD_DIST_SEDE IS NOT NULL THEN
+      V_VC_SQL_WHERE_2 := V_VC_SQL_WHERE_2 || '
+     AND SEDE.COD_DIST=''' || PIN_VC_ID_COD_DIST_SEDE || '''';
     END IF;
   
     --ORGANO RESOLUTIVO
-    IF PI_V_ID_ORG_RESOL IS NOT NULL THEN
-      V_SQL_WHERE_2 := V_SQL_WHERE_2 || '
-     AND INSTR(''' || PI_V_ID_ORG_RESOL ||
+    IF PIN_VC_ID_ORG_RESOL IS NOT NULL THEN
+      V_VC_SQL_WHERE_2 := V_VC_SQL_WHERE_2 || '
+     AND INSTR(''' || PIN_VC_ID_ORG_RESOL ||
                        ''',''|'' || TO_CHAR(MDET.ID_ORGANO_RESOLUTIVO) || ''|'' )>0';
     END IF;
   
     --UBIGEO ORGANO RESOLUTIVO
-    IF PI_V_ID_COD_DPTO_ORGR IS NOT NULL THEN
-      V_SQL_WHERE_2 := V_SQL_WHERE_2 || '
-     AND ORGR.COD_DPTO=''' || PI_V_ID_COD_DPTO_ORGR || '''';
+    IF PIN_VC_ID_COD_DPTO_ORGR IS NOT NULL THEN
+      V_VC_SQL_WHERE_2 := V_VC_SQL_WHERE_2 || '
+     AND ORGR.COD_DPTO=''' || PIN_VC_ID_COD_DPTO_ORGR || '''';
     END IF;
   
-    IF PI_V_ID_COD_PROV_ORGR IS NOT NULL THEN
-      V_SQL_WHERE_2 := V_SQL_WHERE_2 || '
-     AND ORGR.COD_PROV=''' || PI_V_ID_COD_PROV_ORGR || '''';
+    IF PIN_VC_ID_COD_PROV_ORGR IS NOT NULL THEN
+      V_VC_SQL_WHERE_2 := V_VC_SQL_WHERE_2 || '
+     AND ORGR.COD_PROV=''' || PIN_VC_ID_COD_PROV_ORGR || '''';
     END IF;
-    IF PI_V_ID_COD_DIST_ORGR IS NOT NULL THEN
-      V_SQL_WHERE_3 := V_SQL_WHERE_3 || '
-     AND ORGR.COD_DIST=''' || PI_V_ID_COD_DIST_ORGR || '''';
+    IF PIN_VC_ID_COD_DIST_ORGR IS NOT NULL THEN
+      V_VC_SQL_WHERE_3 := V_VC_SQL_WHERE_3 || '
+     AND ORGR.COD_DIST=''' || PIN_VC_ID_COD_DIST_ORGR || '''';
     END IF;
   
     --TIPO INSTANCIA
-    IF PI_V_ID_NRO_INSTANCIA IS NOT NULL THEN
-      V_SQL_WHERE_3 := V_SQL_WHERE_3 || '
-     AND INSTR(''' || PI_V_ID_NRO_INSTANCIA ||
+    IF PIN_VC_ID_NRO_INSTANCIA IS NOT NULL THEN
+      V_VC_SQL_WHERE_3 := V_VC_SQL_WHERE_3 || '
+     AND INSTR(''' || PIN_VC_ID_NRO_INSTANCIA ||
                        ''',''|'' || TO_CHAR(ORGR.TIPO_INSTANCIA) || ''|'' )>0';
     END IF;
   
     --MATERIA
-    IF PI_V_ID_MATERIA IS NOT NULL THEN
-      V_SQL_WHERE_3 := V_SQL_WHERE_3 || '
-     AND INSTR(''' || PI_V_ID_MATERIA ||
+    IF PIN_VC_ID_MATERIA IS NOT NULL THEN
+      V_VC_SQL_WHERE_3 := V_VC_SQL_WHERE_3 || '
+     AND INSTR(''' || PIN_VC_ID_MATERIA ||
                        ''',''|'' || TO_CHAR(MULT.ID_MATERIA) || ''|'' )>0';
     END IF;
   
     --SUBMATERIA
-    IF PI_V_ID_SUB_MATERIA IS NOT NULL THEN
-      V_SQL_WHERE_3 := V_SQL_WHERE_3 || '
-     AND INSTR(''' || PI_V_ID_SUB_MATERIA ||
+    IF PIN_VC_ID_SUB_MATERIA IS NOT NULL THEN
+      V_VC_SQL_WHERE_3 := V_VC_SQL_WHERE_3 || '
+     AND INSTR(''' || PIN_VC_ID_SUB_MATERIA ||
                        ''',''|'' || TO_CHAR(MULT.ID_SUB_MATERIA) || ''|'' )>0';
     END IF;
   
     --NUMERO EXPEDIENTE UNICO
-    IF PI_V_NRO_EXP_UNICO_INI IS NOT NULL THEN
-      V_SQL_WHERE_3 := V_SQL_WHERE_3 || '
+    IF PIN_VC_NRO_EXP_UNICO_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_3 := V_VC_SQL_WHERE_3 || '
      AND TO_NUMBER(MULT.NRO_EXPED_UNICO) --@0001
-        BETWEEN ''' || PI_V_NRO_EXP_UNICO_INI ||
-                       ''' and ''' || PI_V_NRO_EXP_UNICO_FIN || '''';
+        BETWEEN ''' || PIN_VC_NRO_EXP_UNICO_INI ||
+                       ''' and ''' || PIN_VC_NRO_EXP_UNICO_FIN || '''';
     END IF;
   
     --NUMERO EXPEDIENTE ADMINISTRATIVO
-    IF PI_V_NROEXPADM_NIVEL IS NOT NULL THEN
-      V_SQL_WHERE_3 := V_SQL_WHERE_3 || '
+    IF PIN_VC_NROEXPADM_NIVEL IS NOT NULL THEN
+      V_VC_SQL_WHERE_3 := V_VC_SQL_WHERE_3 || '
      AND MDET.NRO_EXP_NIVEL LIKE ''' ||
-                       PI_V_NROEXPADM_NIVEL || '%''';
+                       PIN_VC_NROEXPADM_NIVEL || '%''';
     END IF;
   
     --NRO RESOLUCION OR
-    IF PI_V_NRO_RESOL IS NOT NULL THEN
-      V_SQL_WHERE_3 := V_SQL_WHERE_3 || '
+    IF PIN_VC_NRO_RESOL IS NOT NULL THEN
+      V_VC_SQL_WHERE_3 := V_VC_SQL_WHERE_3 || '
      AND NIVEL1.NRO_RESOLUCION LIKE ''' ||
-                       PI_V_NRO_RESOL || '%''';
+                       PIN_VC_NRO_RESOL || '%''';
     END IF;
   
     --FECHA RESOLUCION OR
-    IF PI_V_FEC_RESO_OR_INI IS NOT NULL THEN
-      V_SQL_WHERE_3 := V_SQL_WHERE_3 || '
+    IF PIN_VC_FEC_RESO_OR_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_3 := V_VC_SQL_WHERE_3 || '
      AND TO_DATE(TO_CHAR(MDET.FEC_RESOLUCION,''DD/MM/YYYY''),''DD/MM/YYYY'')
-         BETWEEN TO_DATE(''' || PI_V_FEC_RESO_OR_INI ||
+         BETWEEN TO_DATE(''' || PIN_VC_FEC_RESO_OR_INI ||
                        ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                       PI_V_FEC_RESO_OR_FIN || ''',''DD/MM/YYYY'')';
+                       PIN_VC_FEC_RESO_OR_FIN || ''',''DD/MM/YYYY'')';
     END IF;
   
     --FECHA NOTIFICACION RESOLUCION OR
-    IF PI_V_FEC_NOTIFI_OR_INI IS NOT NULL THEN
-      V_SQL_WHERE_4 := V_SQL_WHERE_4 || '
+    IF PIN_VC_FEC_NOTIFI_OR_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_4 := V_VC_SQL_WHERE_4 || '
      AND TO_DATE(TO_CHAR(MDET.FEC_NOTIFICACION_RESOLUCION,''DD/MM/YYYY''),''DD/MM/YYYY'')
          BETWEEN TO_DATE(''' ||
-                       PI_V_FEC_NOTIFI_OR_INI ||
+                       PIN_VC_FEC_NOTIFI_OR_INI ||
                        ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                       PI_V_FEC_NOTIFI_OR_FIN || ''',''DD/MM/YYYY'')';
+                       PIN_VC_FEC_NOTIFI_OR_FIN || ''',''DD/MM/YYYY'')';
     END IF;
   
     --FECHA GENERACION DE LA SEC
-    IF PI_V_FEC_GENERACION_SEC_INI IS NOT NULL THEN
-      V_SQL_WHERE_4 := V_SQL_WHERE_4 || '
+    IF PIN_VC_FEC_GENERACION_SEC_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_4 := V_VC_SQL_WHERE_4 || '
      AND TO_DATE(TO_CHAR(MULT.FEC_GENERACION_SEC,''DD/MM/YYYY''),''DD/MM/YYYY'')
          BETWEEN TO_DATE(''' ||
-                       PI_V_FEC_GENERACION_SEC_INI ||
+                       PIN_VC_FEC_GENERACION_SEC_INI ||
                        ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                       PI_V_FEC_GENERACION_SEC_FIN || ''',''DD/MM/YYYY'')';
+                       PIN_VC_FEC_GENERACION_SEC_FIN || ''',''DD/MM/YYYY'')';
     END IF;
   
     --FECHA INGRESO AL AEC
-    IF PI_V_FEC_RECEPCION_AEC_INI IS NOT NULL THEN
-      V_SQL_WHERE_4 := V_SQL_WHERE_4 || '
+    IF PIN_VC_FEC_RECEPCION_AEC_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_4 := V_VC_SQL_WHERE_4 || '
      AND TO_DATE(TO_CHAR(MULT.FEC_INGRESO_FILE,''DD/MM/YYYY''),''DD/MM/YYYY'')
          BETWEEN TO_DATE(''' ||
-                       PI_V_FEC_RECEPCION_AEC_INI ||
+                       PIN_VC_FEC_RECEPCION_AEC_INI ||
                        ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                       PI_V_FEC_RECEPCION_AEC_FIN || ''',''DD/MM/YYYY'')';
+                       PIN_VC_FEC_RECEPCION_AEC_FIN || ''',''DD/MM/YYYY'')';
     END IF;
   
     --AÑO INGRESO AL AEC
-    IF PI_V_ANIO_INGRESO_AEC_INI IS NOT NULL THEN
-      V_SQL_WHERE_4 := V_SQL_WHERE_4 || '
+    IF PIN_VC_ANIO_INGRESO_AEC_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_4 := V_VC_SQL_WHERE_4 || '
      AND MCOB.ANIO
-         BETWEEN ''' || PI_V_ANIO_INGRESO_AEC_INI ||
-                       ''' AND ''' || PI_V_ANIO_INGRESO_AEC_FIN || '''';
+         BETWEEN ''' || PIN_VC_ANIO_INGRESO_AEC_INI ||
+                       ''' AND ''' || PIN_VC_ANIO_INGRESO_AEC_FIN || '''';
     END IF;
   
     --NRO INGRESO AL AEC
-    IF PI_V_NRO_INGRESO_AEC_INI IS NOT NULL THEN
-      V_SQL_WHERE_4 := V_SQL_WHERE_4 || '
+    IF PIN_VC_NRO_INGRESO_AEC_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_4 := V_VC_SQL_WHERE_4 || '
      AND MCOB.NRO_INGRESO
          BETWEEN ''' ||
-                       LPAD(PI_V_NRO_INGRESO_AEC_INI, 4, '0000') ||
+                       LPAD(PIN_VC_NRO_INGRESO_AEC_INI, 4, '0000') ||
                        ''' AND ''' ||
-                       LPAD(PI_V_NRO_INGRESO_AEC_FIN, 4, '0000') || '''';
+                       LPAD(PIN_VC_NRO_INGRESO_AEC_FIN, 4, '0000') || '''';
     END IF;
   
     --AÑO FILE
-    IF PI_V_ANIO_FILE_INI IS NOT NULL THEN
-      V_SQL_WHERE_4 := V_SQL_WHERE_4 || '
+    IF PIN_VC_ANIO_FILE_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_4 := V_VC_SQL_WHERE_4 || '
      AND MULT.ANIO_FILE_AEC BETWEEN ''' ||
-                       PI_V_ANIO_FILE_INI || ''' AND ''' ||
-                       PI_V_ANIO_FILE_FIN || '''';
+                       PIN_VC_ANIO_FILE_INI || ''' AND ''' ||
+                       PIN_VC_ANIO_FILE_FIN || '''';
     END IF;
   
     --NRO FILE
-    IF PI_V_NRO_FILE_INI IS NOT NULL THEN
-      V_SQL_WHERE_4 := V_SQL_WHERE_4 || '
+    IF PIN_VC_NRO_FILE_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_4 := V_VC_SQL_WHERE_4 || '
      AND MULT.NRO_FILE_AEC
          BETWEEN ''' ||
-                       LPAD(PI_V_NRO_FILE_INI, 10, '0000000000') ||
+                       LPAD(PIN_VC_NRO_FILE_INI, 10, '0000000000') ||
                        ''' AND ''' ||
-                       LPAD(PI_V_NRO_FILE_FIN, 10, '0000000000') || '''';
+                       LPAD(PIN_VC_NRO_FILE_FIN, 10, '0000000000') || '''';
     END IF;
   
     --VALOR UIT
-    IF PI_N_VALOR_UIT_INI > 0 THEN
-      V_SQL_WHERE_5 := V_SQL_WHERE_5 || '
+    IF PIN_NU_VALOR_UIT_INI > 0 THEN
+      V_VC_SQL_WHERE_5 := V_VC_SQL_WHERE_5 || '
      AND MDET.VALOR_UIT
-         BETWEEN ' || PI_N_VALOR_UIT_INI || ' AND ' ||
-                       PI_N_VALOR_UIT_FIN;
+         BETWEEN ' || PIN_NU_VALOR_UIT_INI || ' AND ' ||
+                       PIN_NU_VALOR_UIT_FIN;
     END IF;
   
     --MONTO UIT
-    IF PI_N_MONTO_UIT_INI > 0 THEN
-      V_SQL_WHERE_5 := V_SQL_WHERE_5 || '
+    IF PIN_NU_MONTO_UIT_INI > 0 THEN
+      V_VC_SQL_WHERE_5 := V_VC_SQL_WHERE_5 || '
      AND MULT.MONTO_UIT
-         BETWEEN ' || PI_N_MONTO_UIT_INI || ' AND ' ||
-                       PI_N_MONTO_UIT_FIN;
+         BETWEEN ' || PIN_NU_MONTO_UIT_INI || ' AND ' ||
+                       PIN_NU_MONTO_UIT_FIN;
     END IF;
   
     --SALDO UIT
-    IF PI_N_SALDO_INI > 0 THEN
-      V_SQL_WHERE_5 := V_SQL_WHERE_5 || '
+    IF PIN_NU_SALDO_INI > 0 THEN
+      V_VC_SQL_WHERE_5 := V_VC_SQL_WHERE_5 || '
      AND MULT.SALDO
-         BETWEEN ' || PI_N_SALDO_INI || ' AND ' ||
-                       PI_N_SALDO_FIN;
+         BETWEEN ' || PIN_NU_SALDO_INI || ' AND ' ||
+                       PIN_NU_SALDO_FIN;
     END IF;
   
     --TIPO MULTA
-    IF PI_V_ID_TIPO_MULTA IS NOT NULL THEN
-      V_SQL_WHERE_5 := V_SQL_WHERE_5 || '
-     AND INSTR(''' || PI_V_ID_TIPO_MULTA ||
+    IF PIN_VC_ID_TIPO_MULTA IS NOT NULL THEN
+      V_VC_SQL_WHERE_5 := V_VC_SQL_WHERE_5 || '
+     AND INSTR(''' || PIN_VC_ID_TIPO_MULTA ||
                        ''',''|'' || MULT.FLG_TIPO_MULTA || ''|'' )>0';
     END IF;
   
     --ESTADO MULTA OR
-    IF PI_V_COD_ESTADO_MULTA_RESOL IS NOT NULL THEN
-      V_SQL_WHERE_5 := V_SQL_WHERE_5 || '
-     AND INSTR(''' || PI_V_COD_ESTADO_MULTA_RESOL ||
+    IF PIN_VC_COD_ESTADO_MULTA_RESOL IS NOT NULL THEN
+      V_VC_SQL_WHERE_5 := V_VC_SQL_WHERE_5 || '
+     AND INSTR(''' || PIN_VC_COD_ESTADO_MULTA_RESOL ||
                        ''',''|'' || TO_CHAR(MDET.ESTADO_MULTA) || ''|'' )>0';
     END IF;
   
     --ESTADO PAGO MULTA
-    IF PI_V_COD_ESTADO_PAGO IS NOT NULL THEN
-      V_SQL_WHERE_5 := V_SQL_WHERE_5 || '
-     AND INSTR(''' || PI_V_COD_ESTADO_PAGO ||
+    IF PIN_VC_COD_ESTADO_PAGO IS NOT NULL THEN
+      V_VC_SQL_WHERE_5 := V_VC_SQL_WHERE_5 || '
+     AND INSTR(''' || PIN_VC_COD_ESTADO_PAGO ||
                        ''',''|'' || TO_CHAR(MULT.COD_ESTADO_PAGO) || ''|'' )>0';
     END IF;
   
     --FECHA ESTADO MULTA OR
-    IF PI_V_FEC_ESTADO_MULTA_OR_INI IS NOT NULL THEN
-      V_SQL_WHERE_6 := V_SQL_WHERE_6 || '
+    IF PIN_VC_FEC_ESTADO_MULTA_OR_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_6 := V_VC_SQL_WHERE_6 || '
      AND TO_DATE(TO_CHAR(MDET.FEC_ESTADO_MULTA,''DD/MM/YYYY''),''DD/MM/YYYY'')
          BETWEEN TO_DATE(''' ||
-                       PI_V_FEC_ESTADO_MULTA_OR_INI ||
+                       PIN_VC_FEC_ESTADO_MULTA_OR_INI ||
                        ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                       PI_V_FEC_ESTADO_MULTA_OR_FIN || ''',''DD/MM/YYYY'')';
+                       PIN_VC_FEC_ESTADO_MULTA_OR_FIN || ''',''DD/MM/YYYY'')';
     END IF;
   
     --FECHA ESTADO MULTA COB
-    IF PI_V_FEC_ESTADO_MULTA_COB_INI IS NOT NULL THEN
-      V_SQL_WHERE_6 := V_SQL_WHERE_6 || '
+    IF PIN_VC_FEC_ESTADO_MULTA_COB_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_6 := V_VC_SQL_WHERE_6 || '
      AND TO_DATE(TO_CHAR(MULT.FEC_ESTADO_MULTA,''DD/MM/YYYY''),''DD/MM/YYYY'')
          BETWEEN TO_DATE(''' ||
-                       PI_V_FEC_ESTADO_MULTA_COB_INI ||
+                       PIN_VC_FEC_ESTADO_MULTA_COB_INI ||
                        ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                       PI_V_FEC_ESTADO_MULTA_COB_FIN ||
+                       PIN_VC_FEC_ESTADO_MULTA_COB_FIN ||
                        ''',''DD/MM/YYYY'')';
     END IF;
   
     --ESTADO MULTA COBRANZA
-    IF PI_V_COD_ESTADO_MULTA_COB IS NOT NULL THEN
-      V_SQL_WHERE_6 := V_SQL_WHERE_6 || '
-     AND INSTR(''' || PI_V_COD_ESTADO_MULTA_COB ||
+    IF PIN_VC_COD_ESTADO_MULTA_COB IS NOT NULL THEN
+      V_VC_SQL_WHERE_6 := V_VC_SQL_WHERE_6 || '
+     AND INSTR(''' || PIN_VC_COD_ESTADO_MULTA_COB ||
                        ''',''|'' || TO_CHAR(MULT.ESTADO_MULTA) || ''|'' )>0';
     END IF;
   
     --MOTIVO MULTA COBRANZA
-    IF PI_V_COD_MOTIVO_MULTA_COB IS NOT NULL THEN
-      V_SQL_WHERE_6 := V_SQL_WHERE_6 || '
-     AND INSTR(''' || PI_V_COD_MOTIVO_MULTA_COB ||
+    IF PIN_VC_COD_MOTIVO_MULTA_COB IS NOT NULL THEN
+      V_VC_SQL_WHERE_6 := V_VC_SQL_WHERE_6 || '
+     AND INSTR(''' || PIN_VC_COD_MOTIVO_MULTA_COB ||
                        ''',''|'' || MULT.COD_MOTIVO || ''|'' )>0';
     END IF;
   
     --INDICADOR DE PAGO
-    IF PI_V_IND_TIPO_PAGO IS NOT NULL THEN
-      V_SQL_WHERE_6 := V_SQL_WHERE_6 || '
-     AND INSTR(''' || PI_V_IND_TIPO_PAGO ||
+    IF PIN_VC_IND_TIPO_PAGO IS NOT NULL THEN
+      V_VC_SQL_WHERE_6 := V_VC_SQL_WHERE_6 || '
+     AND INSTR(''' || PIN_VC_IND_TIPO_PAGO ||
                        ''',''|'' || TO_CHAR(SIT_MULTA.COD_SITUACION_MULTA) || ''|'' )>0';
     END IF;
   
     --INDICADOR PORCENTAJE ASOCU MULTA
-    IF PI_C_FLG_ASOCU_MULTA <> '0' THEN
-      V_SQL_WHERE_6 := V_SQL_WHERE_6 || '
+    IF PIN_CH_FLG_ASOCU_MULTA <> '0' THEN
+      V_VC_SQL_WHERE_6 := V_VC_SQL_WHERE_6 || '
      AND NVL(MDET.POR_ASOCU,0) > 0';
     END IF;
   
     --EXPECTATIVA DE COBRO
-    IF PI_V_ID_EXPECTATIVA_COBRO IS NOT NULL THEN
-      V_SQL_WHERE_7 := V_SQL_WHERE_7 || '
-     AND INSTR(''' || PI_V_ID_EXPECTATIVA_COBRO ||
+    IF PIN_VC_ID_EXPECTATIVA_COBRO IS NOT NULL THEN
+      V_VC_SQL_WHERE_7 := V_VC_SQL_WHERE_7 || '
+     AND INSTR(''' || PIN_VC_ID_EXPECTATIVA_COBRO ||
                        ''',''|'' || TO_CHAR(EXPE.COD_EXPECTATIVA_COBRO) || ''|'' )>0';
     END IF;
   
     --INDICADOR EMBARGO
-    IF PI_C_FLG_IND_EMBARGO <> '0' THEN
-      V_SQL_WHERE_7 := V_SQL_WHERE_7 || '
+    IF PIN_CH_FLG_IND_EMBARGO <> '0' THEN
+      V_VC_SQL_WHERE_7 := V_VC_SQL_WHERE_7 || '
      AND NVL(EXPE.FLG_EMBARGO,''0'') = ''1''';
     END IF;
   
     --FECHA ULTIMA GENERACION PRECOACTIVO
-    IF PI_V_FEC_CARTA_PRECOACTIVA_INI IS NOT NULL THEN
-      V_SQL_WHERE_7 := V_SQL_WHERE_7 || '
+    IF PIN_VC_FEV_VC_CARTA_PRECOACTIVA_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_7 := V_VC_SQL_WHERE_7 || '
      AND TO_DATE(TO_CHAR(MULT.FEC_ULT_GEN_PRECOACTIVA,''DD/MM/YYYY''),''DD/MM/YYYY'')
          BETWEEN TO_DATE(''' ||
-                       PI_V_FEC_CARTA_PRECOACTIVA_INI ||
+                       PIN_VC_FEV_VC_CARTA_PRECOACTIVA_INI ||
                        ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                       PI_V_FEC_CARTA_PRECOACTIVA_FIN ||
+                       PIN_VC_FEV_VC_CARTA_PRECOACTIVA_FIN ||
                        ''',''DD/MM/YYYY'')';
     END IF;
   
     --FECHA RECEPCION FILE
-    IF PI_V_FEC_RECEPCION_FILE_INI IS NOT NULL THEN
-      V_SQL_WHERE_7 := V_SQL_WHERE_7 || '
+    IF PIN_VC_FEC_RECEPCION_FILE_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_7 := V_VC_SQL_WHERE_7 || '
      AND TO_DATE(TO_CHAR(MULT.FEC_INGRESO_AEC,''DD/MM/YYYY''),''DD/MM/YYYY'')
          BETWEEN TO_DATE(''' ||
-                       PI_V_FEC_RECEPCION_FILE_INI ||
+                       PIN_VC_FEC_RECEPCION_FILE_INI ||
                        ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                       PI_V_FEC_RECEPCION_FILE_FIN || ''',''DD/MM/YYYY'')';
+                       PIN_VC_FEC_RECEPCION_FILE_FIN || ''',''DD/MM/YYYY'')';
     END IF;
   
     ---------------------------------------------------------------------------
     -- FILTROS EXPEDIENTE
     ---------------------------------------------------------------------------
     --ESTADO EXPEDIENTE COBRANZA
-    IF PI_V_COD_ESTADO_EXPED_COB IS NOT NULL THEN
-      V_SQL_WHERE_7 := V_SQL_WHERE_7 || '
-     AND INSTR(''' || PI_V_COD_ESTADO_EXPED_COB ||
+    IF PIN_VC_COD_ESTADO_EXPED_COB IS NOT NULL THEN
+      V_VC_SQL_WHERE_7 := V_VC_SQL_WHERE_7 || '
+     AND INSTR(''' || PIN_VC_COD_ESTADO_EXPED_COB ||
                        ''',''|'' || TO_CHAR(EXPE.ESTADO_EXPEDIENTE) || ''|'' )>0';
     END IF;
   
     --AÑO EXPEDIENTE COBRANZA
-    IF PI_V_ANIO IS NOT NULL THEN
-      V_SQL_WHERE_7 := V_SQL_WHERE_7 || '
-     AND EXPE.ANIO=''' || PI_V_ANIO || '''';
+    IF PIN_VC_ANIO IS NOT NULL THEN
+      V_VC_SQL_WHERE_7 := V_VC_SQL_WHERE_7 || '
+     AND EXPE.ANIO=''' || PIN_VC_ANIO || '''';
     END IF;
   
     --NRO EXPEDIENTE COBRANZA
-    IF PI_V_NRO_EXP_COB_INI > 0 THEN
-      V_SQL_WHERE_7 := V_SQL_WHERE_7 || '
+    IF PIN_VC_NRO_EXP_COB_INI > 0 THEN
+      V_VC_SQL_WHERE_7 := V_VC_SQL_WHERE_7 || '
      AND EXPE.NRO_EXPEDIENTE
-         BETWEEN lpad(''' || PI_V_NRO_EXP_COB_INI ||
+         BETWEEN lpad(''' || PIN_VC_NRO_EXP_COB_INI ||
                        ''',10,''0000000000'') AND lpad(''' ||
-                       PI_V_NRO_EXP_COB_FIN || ''',10,''0000000000'')';
+                       PIN_VC_NRO_EXP_COB_FIN || ''',10,''0000000000'')';
     END IF;
   
     --FECHA GENERACION EXPEDIENTE COBRANZA
-    IF PI_V_FEC_GEN_EXPED_COB_INI IS NOT NULL THEN
-      V_SQL_WHERE_8 := V_SQL_WHERE_8 || '
+    IF PIN_VC_FEC_GEN_EXPED_COB_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_8 := V_VC_SQL_WHERE_8 || '
      AND TO_DATE(TO_CHAR(EXPE.FEC_INGRESO,''DD/MM/YYYY''),''DD/MM/YYYY'')
          BETWEEN TO_DATE(''' ||
-                       PI_V_FEC_GEN_EXPED_COB_INI ||
+                       PIN_VC_FEC_GEN_EXPED_COB_INI ||
                        ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                       PI_V_FEC_GEN_EXPED_COB_FIN || ''',''DD/MM/YYYY'')';
+                       PIN_VC_FEC_GEN_EXPED_COB_FIN || ''',''DD/MM/YYYY'')';
     END IF;
   
     --GESTOR COBRANZA
-    IF PI_V_GESTOR_COBRANZA IS NOT NULL THEN
-      V_SQL_WHERE_8 := V_SQL_WHERE_8 || '
-     AND INSTR(''' || PI_V_GESTOR_COBRANZA ||
+    IF PIN_VC_GESTOR_COBRANZA IS NOT NULL THEN
+      V_VC_SQL_WHERE_8 := V_VC_SQL_WHERE_8 || '
+     AND INSTR(''' || PIN_VC_GESTOR_COBRANZA ||
                        ''',''|'' || TO_CHAR(MULT.ID_USUARIO_ASIG_COBRANZA) || ''|'' )>0';
     END IF;
   
     --FECHA EMISION DE LA REC
-    IF PI_V_FEC_EMI_REC_INI IS NOT NULL THEN
-      V_SQL_WHERE_8 := V_SQL_WHERE_8 || '
+    IF PIN_VC_FEC_EMI_REC_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_8 := V_VC_SQL_WHERE_8 || '
      AND TO_DATE(TO_CHAR(MULT.FEC_EMISION_REC,''DD/MM/YYYY''),''DD/MM/YYYY'')
-         BETWEEN TO_DATE(''' || PI_V_FEC_EMI_REC_INI ||
+         BETWEEN TO_DATE(''' || PIN_VC_FEC_EMI_REC_INI ||
                        ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                       NVL(PI_V_FEC_EMI_REC_FIN, PI_V_FEC_EMI_REC_INI) ||
+                       NVL(PIN_VC_FEC_EMI_REC_FIN, PIN_VC_FEC_EMI_REC_INI) ||
                        ''',''DD/MM/YYYY'')';
     END IF;
   
     --FECHA NOTIFICACION DE LA REC
-    IF PI_V_FEC_NOTI_REC_INI IS NOT NULL THEN
-      V_SQL_WHERE_8 := V_SQL_WHERE_8 || '
+    IF PIN_VC_FEC_NOTI_REC_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_8 := V_VC_SQL_WHERE_8 || '
      AND TO_DATE(TO_CHAR(MULT.FEC_NOTIF_REC,''DD/MM/YYYY''),''DD/MM/YYYY'')
-         BETWEEN TO_DATE(''' || PI_V_FEC_NOTI_REC_INI ||
+         BETWEEN TO_DATE(''' || PIN_VC_FEC_NOTI_REC_INI ||
                        ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                       PI_V_FEC_NOTI_REC_FIN || ''',''DD/MM/YYYY'')';
+                       PIN_VC_FEC_NOTI_REC_FIN || ''',''DD/MM/YYYY'')';
     END IF;
   
     --MOTIVO EXPEDIENTE COBRANZA
-    IF PI_V_COD_MOTIVO_EXPED_COB IS NOT NULL THEN
-      V_SQL_WHERE_8 := V_SQL_WHERE_8 || '
-     AND INSTR(''' || PI_V_COD_MOTIVO_EXPED_COB ||
+    IF PIN_VC_COD_MOTIVO_EXPED_COB IS NOT NULL THEN
+      V_VC_SQL_WHERE_8 := V_VC_SQL_WHERE_8 || '
+     AND INSTR(''' || PIN_VC_COD_MOTIVO_EXPED_COB ||
                        ''',''|'' || TO_CHAR(EXPE.ID_MOTIVO) || ''|'' )>0';
     END IF;
   
     --FECHA ULTIMO ESTADO EXPEDIENTE
-    IF PI_V_FEC_EST_EXPED_COB_INI IS NOT NULL THEN
-      V_SQL_WHERE_9 := V_SQL_WHERE_9 || '
+    IF PIN_VC_FEC_EST_EXPED_COB_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_9 := V_VC_SQL_WHERE_9 || '
      AND TO_DATE(TO_CHAR(EXPE.FEC_ESTADO_EXPEDIENTE,''DD/MM/YYYY''),''DD/MM/YYYY'')
          BETWEEN TO_DATE(''' ||
-                       PI_V_FEC_EST_EXPED_COB_INI ||
+                       PIN_VC_FEC_EST_EXPED_COB_INI ||
                        ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                       PI_V_FEC_EST_EXPED_COB_FIN || ''',''DD/MM/YYYY'')';
+                       PIN_VC_FEC_EST_EXPED_COB_FIN || ''',''DD/MM/YYYY'')';
     END IF;
   
     --NUMERO DE ENVIO A ARCHIVO CENTRAL
-    IF PI_V_NUM_ENV_ARCH_INI IS NOT NULL THEN
-      V_SQL_WHERE_9 := V_SQL_WHERE_9 || '
+    IF PIN_VC_NUM_ENV_ARCH_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_9 := V_VC_SQL_WHERE_9 || '
      AND ARCH_CEN.NRO_ORDEN
-         BETWEEN LPAD(''' || PI_V_NUM_ENV_ARCH_INI ||
+         BETWEEN LPAD(''' || PIN_VC_NUM_ENV_ARCH_INI ||
                        ''',4,''0000'') AND LPAD(''' ||
-                       PI_V_NUM_ENV_ARCH_FIN || ''',4,''0000'')';
+                       PIN_VC_NUM_ENV_ARCH_FIN || ''',4,''0000'')';
     END IF;
   
     --FECHA ENVIO ARCHIVO CENTRAL
-    IF PI_V_FEC_ENVI_ARCH_INI IS NOT NULL THEN
-      V_SQL_WHERE_9 := V_SQL_WHERE_9 || '
+    IF PIN_VC_FEC_ENVI_ARCH_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_9 := V_VC_SQL_WHERE_9 || '
      AND TO_DATE(TO_CHAR(ARCH_CEN.FEC_ENVIO,''DD/MM/YYYY''),''DD/MM/YYYY'')
          BETWEEN TO_DATE(''' ||
-                       PI_V_FEC_ENVI_ARCH_INI ||
+                       PIN_VC_FEC_ENVI_ARCH_INI ||
                        ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                       PI_V_FEC_ENVI_ARCH_FIN || ''',''DD/MM/YYYY'')';
+                       PIN_VC_FEC_ENVI_ARCH_FIN || ''',''DD/MM/YYYY'')';
     END IF;
   
     --NRO OFICIO SUNAT
-    IF PI_V_NRO_OFIC_SUNAT_INI IS NOT NULL THEN
-      V_SQL_WHERE_9 := V_SQL_WHERE_9 || '
+    IF PIN_VC_NRO_OFIC_SUNAT_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_9 := V_VC_SQL_WHERE_9 || '
      AND (MUAN.NRO_OFICIO_SUNAT_CODIGO || MUAN.NRO_OFICIO_SUNAT_ANIO ||
      MUAN.NRO_OFICIO_SUNAT_PREFIJO || MUAN.NRO_OFICIO_SUNAT_CORRELATIVO)
-     BETWEEN ''' || PI_V_NRO_OFIC_SUNAT_INI ||
-                       ''' AND ''' || PI_V_NRO_OFIC_SUNAT_FIN || '''';
+     BETWEEN ''' || PIN_VC_NRO_OFIC_SUNAT_INI ||
+                       ''' AND ''' || PIN_VC_NRO_OFIC_SUNAT_FIN || '''';
     END IF;
   
     --DERECHO ANTIDUMOPING
-    IF PI_N_DERE_ANTIDUMP_INI > 0 THEN
-      V_SQL_WHERE_9 := V_SQL_WHERE_9 || '
+    IF PIN_NU_DERE_ANTIDUMP_INI > 0 THEN
+      V_VC_SQL_WHERE_9 := V_VC_SQL_WHERE_9 || '
      AND MUAN.MONTO_ANTIDUMPING
-         BETWEEN ' || PI_N_DERE_ANTIDUMP_INI ||
-                       ' AND ' || PI_N_DERE_ANTIDUMP_FIN;
+         BETWEEN ' || PIN_NU_DERE_ANTIDUMP_INI ||
+                       ' AND ' || PIN_NU_DERE_ANTIDUMP_FIN;
     END IF;
   
     --PARTIDA ARANCELARIA
-    IF PI_V_NRO_PARTI_INI IS NOT NULL THEN
-      V_SQL_WHERE_10 := V_SQL_WHERE_10 || '
+    IF PIN_VC_NRO_PARTI_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_10 := V_VC_SQL_WHERE_10 || '
       AND PART.CODIGO
-      BETWEEN lpad(''' || PI_V_NRO_PARTI_INI ||
+      BETWEEN lpad(''' || PIN_VC_NRO_PARTI_INI ||
                         ''',10,''0000000000'') AND lpad(''' ||
-                        PI_V_NRO_PARTI_FIN || ''',10,''0000000000'')';
+                        PIN_VC_NRO_PARTI_FIN || ''',10,''0000000000'')';
     END IF;
   
     --MEMO ANTIDUMPING --FALTA EL CAMPO NO EXISTE EN LA INTERFAZ
     --NRO DUA
-    IF PI_V_NRO_DUA_INI IS NOT NULL THEN
-      V_SQL_WHERE_10 := V_SQL_WHERE_10 || '
+    IF PIN_VC_NRO_DUA_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_10 := V_VC_SQL_WHERE_10 || '
      AND (MUAN.NRO_DUA_CODIGO || MUAN.NRO_DUA_ANIO || MUAN.NRO_DUA_CORRELATIVO)
-         BETWEEN ''' || PI_V_NRO_DUA_INI ||
-                        ''' AND ''' || PI_V_NRO_DUA_FIN || '''';
+         BETWEEN ''' || PIN_VC_NRO_DUA_INI ||
+                        ''' AND ''' || PIN_VC_NRO_DUA_FIN || '''';
     END IF;
   
     --NRO LIQUIDACION COBRANZA
-    IF PI_V_NRO_LIQ_COB_INI IS NOT NULL THEN
-      V_SQL_WHERE_10 := V_SQL_WHERE_10 || '
+    IF PIN_VC_NRO_LIQ_COB_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_10 := V_VC_SQL_WHERE_10 || '
      AND (MUAN.NRO_LIQUIDACION_CODIGO || MUAN.NRO_LIQUIDACION_ANIO || MUAN.NRO_LIQUIDACION_CORRELATIVO)
-         BETWEEN ''' || PI_V_NRO_LIQ_COB_INI ||
-                        ''' AND ''' || PI_V_NRO_LIQ_COB_FIN || '''';
+         BETWEEN ''' || PIN_VC_NRO_LIQ_COB_INI ||
+                        ''' AND ''' || PIN_VC_NRO_LIQ_COB_FIN || '''';
     END IF;
   
     --INTENDENCIA
-    IF PI_V_ID_INTENDENCIA IS NOT NULL THEN
-      V_SQL_WHERE_10 := V_SQL_WHERE_10 || '
-     AND INSTR(''' || PI_V_ID_INTENDENCIA ||
+    IF PIN_VC_ID_INTENDENCIA IS NOT NULL THEN
+      V_VC_SQL_WHERE_10 := V_VC_SQL_WHERE_10 || '
+     AND INSTR(''' || PIN_VC_ID_INTENDENCIA ||
                         ''',''|'' || TO_CHAR(MUAN.ID_INTENDENCIA) || ''|'' )>0';
     END IF;
   
     --FECHA ASIGNACION GESTOR COBRANZA
-    IF PI_V_FEC_ASIG_GESTOR_INI IS NOT NULL THEN
-      V_SQL_WHERE_11 := V_SQL_WHERE_11 || '
+    IF PIN_VC_FEC_ASIG_GESTOR_INI IS NOT NULL THEN
+      V_VC_SQL_WHERE_11 := V_VC_SQL_WHERE_11 || '
      AND TO_DATE(TO_CHAR(MULT.FECHA_ASIG_COBRANZA,''DD/MM/YYYY''),''DD/MM/YYYY'')
          BETWEEN TO_DATE(''' ||
-                        PI_V_FEC_ASIG_GESTOR_INI ||
+                        PIN_VC_FEC_ASIG_GESTOR_INI ||
                         ''',''DD/MM/YYYY'') AND TO_DATE(''' ||
-                        PI_V_FEC_ASIG_GESTOR_FIN || ''',''DD/MM/YYYY'')';
+                        PIN_VC_FEC_ASIG_GESTOR_FIN || ''',''DD/MM/YYYY'')';
     END IF;
   
-    --V_SQL_WHERE_12 := V_SQL_WHERE_12 || ' ORDER BY CUM DESC';
+    --V_VC_SQL_WHERE_12 := V_VC_SQL_WHERE_12 || ' ORDER BY CUM DESC';
   
-    DBMS_OUTPUT.PUT_LINE(V_SQL_SELECT_1);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_SELECT_2);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_SELECT_3);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_SELECT_4);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_SELECT_5);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_SELECT_1);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_SELECT_2);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_SELECT_3);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_SELECT_4);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_SELECT_5);
     ---
-    DBMS_OUTPUT.PUT_LINE(V_SQL_JOIN_1);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_JOIN_2);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_JOIN_3);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_JOIN_4);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_JOIN_5);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_JOIN_1);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_JOIN_2);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_JOIN_3);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_JOIN_4);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_JOIN_5);
     ---
-    DBMS_OUTPUT.PUT_LINE(V_SQL_WHERE_1);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_WHERE_2);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_WHERE_3);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_WHERE_4);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_WHERE_5);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_WHERE_1);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_WHERE_2);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_WHERE_3);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_WHERE_4);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_WHERE_5);
     ---
-    DBMS_OUTPUT.PUT_LINE(V_SQL_WHERE_6);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_WHERE_7);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_WHERE_8);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_WHERE_9);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_WHERE_10);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_WHERE_11);
-    DBMS_OUTPUT.PUT_LINE(V_SQL_WHERE_12);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_WHERE_6);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_WHERE_7);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_WHERE_8);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_WHERE_9);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_WHERE_10);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_WHERE_11);
+    DBMS_OUTPUT.PUT_LINE(V_VC_SQL_WHERE_12);
   
-    OPEN PO_CU_RETORNO FOR
+    OPEN POUT_CUR_RETORNO FOR
     --SELECT SYSDATE FROM DUAL;
     
-    V_SQL_SELECT_1 || V_SQL_SELECT_2 || V_SQL_SELECT_3 || V_SQL_SELECT_4 || V_SQL_SELECT_5 || V_SQL_JOIN_1 || V_SQL_JOIN_2 || V_SQL_JOIN_3 || V_SQL_JOIN_4 || V_SQL_JOIN_5 || V_SQL_WHERE_1 || V_SQL_WHERE_2 || V_SQL_WHERE_3 || V_SQL_WHERE_4 || V_SQL_WHERE_5 || V_SQL_WHERE_6 || V_SQL_WHERE_7 || V_SQL_WHERE_8 || V_SQL_WHERE_9 || V_SQL_WHERE_10 || V_SQL_WHERE_11 || V_SQL_WHERE_12;
+    V_VC_SQL_SELECT_1 || V_VC_SQL_SELECT_2 || V_VC_SQL_SELECT_3 || V_VC_SQL_SELECT_4 || V_VC_SQL_SELECT_5 || V_VC_SQL_JOIN_1 || V_VC_SQL_JOIN_2 || V_VC_SQL_JOIN_3 || V_VC_SQL_JOIN_4 || V_VC_SQL_JOIN_5 || V_VC_SQL_WHERE_1 || V_VC_SQL_WHERE_2 || V_VC_SQL_WHERE_3 || V_VC_SQL_WHERE_4 || V_VC_SQL_WHERE_5 || V_VC_SQL_WHERE_6 || V_VC_SQL_WHERE_7 || V_VC_SQL_WHERE_8 || V_VC_SQL_WHERE_9 || V_VC_SQL_WHERE_10 || V_VC_SQL_WHERE_11 || V_VC_SQL_WHERE_12;
   
     COMMIT;
   

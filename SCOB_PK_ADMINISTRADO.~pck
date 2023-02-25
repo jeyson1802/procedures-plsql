@@ -715,19 +715,19 @@ procedure SCOB_SP_I_CONTACTO
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_SANCIONADO_ACTUAL(PI_V_COD_INDECOPI   IN T_SCOB_PERSONA.COD_SANCIONADO%TYPE,
-                                        PI_I_TIPO_PERSONA   IN T_SCOB_PERSONA.TIPO_PERSONA%TYPE,
-                                        PI_I_TIPO_DOC       IN T_SCOB_PERSONA.TIPO_DOC%TYPE,
-                                        PI_V_NRO_DOC        IN T_SCOB_PERSONA.NRO_DOC%TYPE,
-                                        PI_V_APE_PATERNO    IN T_SCOB_PERSONA.APE_PATERNO%TYPE,
-                                        PI_V_APE_MATERNO    IN T_SCOB_PERSONA.APE_MATERNO%TYPE,
-                                        PI_V_APE_CASADA     IN T_SCOB_PERSONA.APE_CASADA%TYPE,
-                                        PI_V_PRI_NOMBRE     IN T_SCOB_PERSONA.PRI_NOMBRE%TYPE,
-                                        PI_V_SEG_NOMBRE     IN T_SCOB_PERSONA.SEG_NOMBRE%TYPE,
-                                        PI_V_RAZON_SOCIAL   IN T_SCOB_PERSONA.RAZON_SOCIAL%TYPE,
-                                        PO_CU_RETORNO       OUT CU_REC_SET,
-                                        PO_N_COD_ERROR      OUT NUMBER,
-                                        PO_V_MSJ_ERROR      OUT VARCHAR2);
+  PROCEDURE SCOB_SP_S_SANCIONADO_ACTUAL(PIN_VC_COD_INDECOPI   IN T_SCOB_PERSONA.COD_SANCIONADO%TYPE,
+                                        PIN_NU_TIPO_PERSONA   IN T_SCOB_PERSONA.TIPO_PERSONA%TYPE,
+                                        PIN_NU_TIPO_DOC       IN T_SCOB_PERSONA.TIPO_DOC%TYPE,
+                                        PIN_VC_NRO_DOC        IN T_SCOB_PERSONA.NRO_DOC%TYPE,
+                                        PIN_VC_APE_PATERNO    IN T_SCOB_PERSONA.APE_PATERNO%TYPE,
+                                        PIN_VC_APE_MATERNO    IN T_SCOB_PERSONA.APE_MATERNO%TYPE,
+                                        PIN_VC_APE_CASADA     IN T_SCOB_PERSONA.APE_CASADA%TYPE,
+                                        PIN_VC_PRI_NOMBRE     IN T_SCOB_PERSONA.PRI_NOMBRE%TYPE,
+                                        PIN_VC_SEG_NOMBRE     IN T_SCOB_PERSONA.SEG_NOMBRE%TYPE,
+                                        PIN_VC_RAZON_SOCIAL   IN T_SCOB_PERSONA.RAZON_SOCIAL%TYPE,
+                                        POUT_CUR_RETORNO       OUT CU_REC_SET,
+                                        POUT_NU_COD_ERROR      OUT NUMBER,
+                                        POUT_VC_MSJ_ERROR      OUT VARCHAR2);
                                         
   -- ******************************************************************************
   -- Descripción: Procedure que retorna la lista de cums de una persona
@@ -744,10 +744,10 @@ procedure SCOB_SP_I_CONTACTO
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_CUMS_PERSONA(PI_I_ID_PERSONA IN T_SCOB_PERSONA.ID_PERSONA%TYPE,
-                                   PO_CU_RETORNO   OUT CU_REC_SET,
-                                   PO_N_COD_ERROR  OUT NUMBER,
-                                   PO_V_MSJ_ERROR  OUT VARCHAR2);
+  PROCEDURE SCOB_SP_S_CUMS_PERSONA(PIN_NU_ID_PERSONA IN T_SCOB_PERSONA.ID_PERSONA%TYPE,
+                                   POUT_CUR_RETORNO   OUT CU_REC_SET,
+                                   POUT_NU_COD_ERROR  OUT NUMBER,
+                                   POUT_VC_MSJ_ERROR  OUT VARCHAR2);
                                    
   -- ******************************************************************************
   -- Descripción: Procedure que retorna la lista de administrados para el reemplazo
@@ -764,11 +764,11 @@ procedure SCOB_SP_I_CONTACTO
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_ADMIN_REEMPLAZO(PI_V_COD_INDECOPI   IN T_SCOB_PERSONA.COD_SANCIONADO%TYPE,                                       
-                                             PI_V_RAZON_SOCIAL   IN T_SCOB_PERSONA.RAZON_SOCIAL%TYPE,
-                                             PO_CU_RETORNO       OUT CU_REC_SET,
-                                             PO_N_COD_ERROR      OUT NUMBER,
-                                             PO_V_MSJ_ERROR      OUT VARCHAR2);
+  PROCEDURE SCOB_SP_S_ADMIN_REEMPLAZO(PIN_VC_COD_INDECOPI   IN T_SCOB_PERSONA.COD_SANCIONADO%TYPE,                                       
+                                      PIN_VC_RAZON_SOCIAL   IN T_SCOB_PERSONA.RAZON_SOCIAL%TYPE,
+                                      POUT_CUR_RETORNO       OUT CU_REC_SET,
+                                      POUT_NU_COD_ERROR      OUT NUMBER,
+                                      POUT_VC_MSJ_ERROR      OUT VARCHAR2);
 
   -- ******************************************************************************
   -- Descripción: Procedure que transfiere los cums al nuevo administrado
@@ -785,13 +785,13 @@ procedure SCOB_SP_I_CONTACTO
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_U_ADMINISTRADO_CUMS(PI_N_ID_SANCIONADO_ANTIGUO IN T_SCOB_PERSONA.ID_PERSONA%TYPE,
-                                        PI_N_ID_ADMINISTRADO_NUEVO IN T_SCOB_PERSONA.ID_PERSONA%TYPE,
-                                        PI_V_COD_USUARIO           IN T_SCOB_PERSONA.AUDUSUMODIFICACION%TYPE,
-                                        PI_V_IDS_MULTA             IN VARCHAR2,
-                                        PI_V_IND_INACTIVAR         IN VARCHAR2,
-                                        PO_N_COD_ERROR             OUT NUMBER,
-                                        PO_V_MSJ_ERROR             OUT VARCHAR2);
+  PROCEDURE SCOB_SP_U_ADMINISTRADO_CUMS(PIN_NU_ID_SANCIONADO_ANTIGUO IN T_SCOB_PERSONA.ID_PERSONA%TYPE,
+                                        PIN_NU_ID_ADMINISTRADO_NUEVO IN T_SCOB_PERSONA.ID_PERSONA%TYPE,
+                                        PIN_VC_COD_USUARIO           IN T_SCOB_PERSONA.AUDUSUMODIFICACION%TYPE,
+                                        PIN_VC_IDS_MULTA             IN VARCHAR2,
+                                        PIN_VC_IND_INACTIVAR         IN VARCHAR2,
+                                        POUT_NU_COD_ERROR             OUT NUMBER,
+                                        POUT_VC_MSJ_ERROR             OUT VARCHAR2);
                                              
 end SCOB_PK_ADMINISTRADO;
 /
@@ -3032,44 +3032,44 @@ END SCOB_SP_I_CONTACTO;
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_SANCIONADO_ACTUAL(PI_V_COD_INDECOPI   IN T_SCOB_PERSONA.COD_SANCIONADO%TYPE,
-                                        PI_I_TIPO_PERSONA   IN T_SCOB_PERSONA.TIPO_PERSONA%TYPE,
-                                        PI_I_TIPO_DOC       IN T_SCOB_PERSONA.TIPO_DOC%TYPE,
-                                        PI_V_NRO_DOC        IN T_SCOB_PERSONA.NRO_DOC%TYPE,
-                                        PI_V_APE_PATERNO    IN T_SCOB_PERSONA.APE_PATERNO%TYPE,
-                                        PI_V_APE_MATERNO    IN T_SCOB_PERSONA.APE_MATERNO%TYPE,
-                                        PI_V_APE_CASADA     IN T_SCOB_PERSONA.APE_CASADA%TYPE,
-                                        PI_V_PRI_NOMBRE     IN T_SCOB_PERSONA.PRI_NOMBRE%TYPE,
-                                        PI_V_SEG_NOMBRE     IN T_SCOB_PERSONA.SEG_NOMBRE%TYPE,
-                                        PI_V_RAZON_SOCIAL   IN T_SCOB_PERSONA.RAZON_SOCIAL%TYPE,
-                                        PO_CU_RETORNO       OUT CU_REC_SET,
-                                        PO_N_COD_ERROR      OUT NUMBER,
-                                        PO_V_MSJ_ERROR      OUT VARCHAR2) AS
+  PROCEDURE SCOB_SP_S_SANCIONADO_ACTUAL(PIN_VC_COD_INDECOPI   IN T_SCOB_PERSONA.COD_SANCIONADO%TYPE,
+                                        PIN_NU_TIPO_PERSONA   IN T_SCOB_PERSONA.TIPO_PERSONA%TYPE,
+                                        PIN_NU_TIPO_DOC       IN T_SCOB_PERSONA.TIPO_DOC%TYPE,
+                                        PIN_VC_NRO_DOC        IN T_SCOB_PERSONA.NRO_DOC%TYPE,
+                                        PIN_VC_APE_PATERNO    IN T_SCOB_PERSONA.APE_PATERNO%TYPE,
+                                        PIN_VC_APE_MATERNO    IN T_SCOB_PERSONA.APE_MATERNO%TYPE,
+                                        PIN_VC_APE_CASADA     IN T_SCOB_PERSONA.APE_CASADA%TYPE,
+                                        PIN_VC_PRI_NOMBRE     IN T_SCOB_PERSONA.PRI_NOMBRE%TYPE,
+                                        PIN_VC_SEG_NOMBRE     IN T_SCOB_PERSONA.SEG_NOMBRE%TYPE,
+                                        PIN_VC_RAZON_SOCIAL   IN T_SCOB_PERSONA.RAZON_SOCIAL%TYPE,
+                                        POUT_CUR_RETORNO       OUT CU_REC_SET,
+                                        POUT_NU_COD_ERROR      OUT NUMBER,
+                                        POUT_VC_MSJ_ERROR      OUT VARCHAR2) AS
                                         
-   V_COD_INDECOPI   T_SCOB_PERSONA.COD_SANCIONADO%TYPE;
-   V_NRO_DOC        T_SCOB_PERSONA.NRO_DOC%TYPE;
-   V_APE_PATERNO    T_SCOB_PERSONA.APE_PATERNO%TYPE;
-   V_APE_MATERNO    T_SCOB_PERSONA.APE_MATERNO%TYPE;
-   V_APE_CASADA     T_SCOB_PERSONA.APE_CASADA%TYPE;
-   V_PRI_NOMBRE     T_SCOB_PERSONA.PRI_NOMBRE%TYPE;
-   V_SEG_NOMBRE     T_SCOB_PERSONA.SEG_NOMBRE%TYPE;
-   V_RAZON_SOCIAL   T_SCOB_PERSONA.RAZON_SOCIAL%TYPE;      
+   V_VC_COD_INDECOPI   T_SCOB_PERSONA.COD_SANCIONADO%TYPE;
+   V_VC_NRO_DOC        T_SCOB_PERSONA.NRO_DOC%TYPE;
+   V_VC_APE_PATERNO    T_SCOB_PERSONA.APE_PATERNO%TYPE;
+   V_VC_APE_MATERNO    T_SCOB_PERSONA.APE_MATERNO%TYPE;
+   V_VC_APE_CASADA     T_SCOB_PERSONA.APE_CASADA%TYPE;
+   V_VC_PRI_NOMBRE     T_SCOB_PERSONA.PRI_NOMBRE%TYPE;
+   V_VC_SEG_NOMBRE     T_SCOB_PERSONA.SEG_NOMBRE%TYPE;
+   V_VC_RAZON_SOCIAL   T_SCOB_PERSONA.RAZON_SOCIAL%TYPE;      
                                         
    BEGIN
         
-    PO_N_COD_ERROR := -1;
-    PO_V_MSJ_ERROR := '';
+    POUT_NU_COD_ERROR := -1;
+    POUT_VC_MSJ_ERROR := '';
     
-    V_COD_INDECOPI   := NVL(PI_V_COD_INDECOPI, ' ');     
-    V_NRO_DOC        := NVL(PI_V_NRO_DOC, ' ');        
-    V_APE_PATERNO    := NVL(PI_V_APE_PATERNO, ' ');    
-    V_APE_MATERNO    := NVL(PI_V_APE_MATERNO, ' ');    
-    V_APE_CASADA     := NVL(PI_V_APE_CASADA, ' ');     
-    V_PRI_NOMBRE     := NVL(PI_V_PRI_NOMBRE, ' ');     
-    V_SEG_NOMBRE     := NVL(PI_V_SEG_NOMBRE, ' ');     
-    V_RAZON_SOCIAL   := NVL(PI_V_RAZON_SOCIAL, ' ');   
+    V_VC_COD_INDECOPI   := NVL(PIN_VC_COD_INDECOPI, ' ');     
+    V_VC_NRO_DOC        := NVL(PIN_VC_NRO_DOC, ' ');        
+    V_VC_APE_PATERNO    := NVL(PIN_VC_APE_PATERNO, ' ');    
+    V_VC_APE_MATERNO    := NVL(PIN_VC_APE_MATERNO, ' ');    
+    V_VC_APE_CASADA     := NVL(PIN_VC_APE_CASADA, ' ');     
+    V_VC_PRI_NOMBRE     := NVL(PIN_VC_PRI_NOMBRE, ' ');     
+    V_VC_SEG_NOMBRE     := NVL(PIN_VC_SEG_NOMBRE, ' ');     
+    V_VC_RAZON_SOCIAL   := NVL(PIN_VC_RAZON_SOCIAL, ' ');   
     
-    OPEN PO_CU_RETORNO FOR 
+    OPEN POUT_CUR_RETORNO FOR 
     
       SELECT PE.COD_SANCIONADO AS CODIGO_INDECOPI,
            TP.TXT_DESCRIPCION AS TIPO_PERSONERIA,
@@ -3097,26 +3097,26 @@ END SCOB_SP_I_CONTACTO;
       LEFT JOIN USR_SICOB.T_SCOB_TABLA_DET TD
         ON (PE.TIPO_DOC = TD.COD_INTERNO AND TD.ID_TABLA = 10)
      WHERE
-      (PI_I_TIPO_PERSONA = 0 OR (PI_I_TIPO_PERSONA<>0 AND PE.TIPO_PERSONA=PI_I_TIPO_PERSONA))
-      AND (V_COD_INDECOPI=' ' OR (V_COD_INDECOPI<>' ' AND PE.COD_SANCIONADO = LPAD(PI_V_COD_INDECOPI,10,'0000000000')))
-      AND (PI_I_TIPO_DOC=0 OR (PI_I_TIPO_DOC<>0 AND PE.TIPO_DOC = PI_I_TIPO_DOC))
-      AND (V_NRO_DOC=' ' OR
-          (V_NRO_DOC<>' ' AND
-          (PE.NRO_DOC = PI_V_NRO_DOC OR PE.NRO_RUC = TRIM(PI_V_NRO_DOC)))
+      (PIN_NU_TIPO_PERSONA = 0 OR (PIN_NU_TIPO_PERSONA<>0 AND PE.TIPO_PERSONA=PIN_NU_TIPO_PERSONA))
+      AND (V_VC_COD_INDECOPI=' ' OR (V_VC_COD_INDECOPI<>' ' AND PE.COD_SANCIONADO = LPAD(PIN_VC_COD_INDECOPI,10,'0000000000')))
+      AND (PIN_NU_TIPO_DOC=0 OR (PIN_NU_TIPO_DOC<>0 AND PE.TIPO_DOC = PIN_NU_TIPO_DOC))
+      AND (V_VC_NRO_DOC=' ' OR
+          (V_VC_NRO_DOC<>' ' AND
+          (PE.NRO_DOC = PIN_VC_NRO_DOC OR PE.NRO_RUC = TRIM(PIN_VC_NRO_DOC)))
           )
-      AND (V_APE_PATERNO=' ' OR (V_APE_PATERNO<>' ' AND PE.APE_PATERNO LIKE UPPER(PI_V_APE_PATERNO) || '%'))
-      AND (V_APE_MATERNO=' ' OR (V_APE_MATERNO<>' ' AND PE.APE_MATERNO LIKE UPPER(PI_V_APE_MATERNO) || '%'))
-      AND (V_APE_CASADA=' ' OR (V_APE_CASADA<>' ' AND PE.APE_CASADA LIKE UPPER(PI_V_APE_CASADA) || '%'))
-      AND (V_PRI_NOMBRE=' ' OR (V_PRI_NOMBRE<>' ' AND PE.PRI_NOMBRE LIKE UPPER(PI_V_PRI_NOMBRE) || '%'))
-      AND (V_SEG_NOMBRE=' ' OR (V_SEG_NOMBRE<>' ' AND PE.SEG_NOMBRE LIKE UPPER(PI_V_SEG_NOMBRE) || '%'))
-      AND (V_RAZON_SOCIAL=' ' OR PI_I_TIPO_PERSONA<>2 OR(V_RAZON_SOCIAL<>' ' AND PI_I_TIPO_PERSONA=2 AND PE.RAZON_SOCIAL LIKE UPPER(PI_V_RAZON_SOCIAL) || '%'))
-      AND (V_RAZON_SOCIAL=' ' OR PI_I_TIPO_PERSONA<>0 
-        OR (V_RAZON_SOCIAL<>' ' AND PI_I_TIPO_PERSONA=0 AND (
+      AND (V_VC_APE_PATERNO=' ' OR (V_VC_APE_PATERNO<>' ' AND PE.APE_PATERNO LIKE UPPER(PIN_VC_APE_PATERNO) || '%'))
+      AND (V_VC_APE_MATERNO=' ' OR (V_VC_APE_MATERNO<>' ' AND PE.APE_MATERNO LIKE UPPER(PIN_VC_APE_MATERNO) || '%'))
+      AND (V_VC_APE_CASADA=' ' OR (V_VC_APE_CASADA<>' ' AND PE.APE_CASADA LIKE UPPER(PIN_VC_APE_CASADA) || '%'))
+      AND (V_VC_PRI_NOMBRE=' ' OR (V_VC_PRI_NOMBRE<>' ' AND PE.PRI_NOMBRE LIKE UPPER(PIN_VC_PRI_NOMBRE) || '%'))
+      AND (V_VC_SEG_NOMBRE=' ' OR (V_VC_SEG_NOMBRE<>' ' AND PE.SEG_NOMBRE LIKE UPPER(PIN_VC_SEG_NOMBRE) || '%'))
+      AND (V_VC_RAZON_SOCIAL=' ' OR PIN_NU_TIPO_PERSONA<>2 OR(V_VC_RAZON_SOCIAL<>' ' AND PIN_NU_TIPO_PERSONA=2 AND PE.RAZON_SOCIAL LIKE UPPER(PIN_VC_RAZON_SOCIAL) || '%'))
+      AND (V_VC_RAZON_SOCIAL=' ' OR PIN_NU_TIPO_PERSONA<>0 
+        OR (V_VC_RAZON_SOCIAL<>' ' AND PIN_NU_TIPO_PERSONA=0 AND (
         PE.APE_PATERNO || ' ' || 
         PE.APE_MATERNO || ' ' ||
         PE.PRI_NOMBRE || 
-        DECODE(PE.SEG_NOMBRE,NULL,'',' ' || PE.SEG_NOMBRE) ) LIKE UPPER(PI_V_RAZON_SOCIAL) || '%')
-        OR (V_RAZON_SOCIAL<>' ' AND PI_I_TIPO_PERSONA=0 AND PE.RAZON_SOCIAL LIKE UPPER(PI_V_RAZON_SOCIAL) || '%')
+        DECODE(PE.SEG_NOMBRE,NULL,'',' ' || PE.SEG_NOMBRE) ) LIKE UPPER(PIN_VC_RAZON_SOCIAL) || '%')
+        OR (V_VC_RAZON_SOCIAL<>' ' AND PIN_NU_TIPO_PERSONA=0 AND PE.RAZON_SOCIAL LIKE UPPER(PIN_VC_RAZON_SOCIAL) || '%')
             )
       
      GROUP BY PE.COD_SANCIONADO,
@@ -3137,13 +3137,13 @@ END SCOB_SP_I_CONTACTO;
     
     WHEN OTHERS THEN
       
-      PO_N_COD_ERROR := SQLCODE;
-      SELECT CASE WHEN PO_N_COD_ERROR > 0 THEN PO_N_COD_ERROR * -1 ELSE PO_N_COD_ERROR END
-        INTO PO_N_COD_ERROR
+      POUT_NU_COD_ERROR := SQLCODE;
+      SELECT CASE WHEN POUT_NU_COD_ERROR > 0 THEN POUT_NU_COD_ERROR * -1 ELSE POUT_NU_COD_ERROR END
+        INTO POUT_NU_COD_ERROR
         FROM DUAL;
-      PO_V_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
+      POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
   
-  END;            
+  END;          
   
     -- ******************************************************************************
   -- Descripción: Procedure que retorna la lista de cums de una persona
@@ -3160,16 +3160,16 @@ END SCOB_SP_I_CONTACTO;
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_CUMS_PERSONA(PI_I_ID_PERSONA IN T_SCOB_PERSONA.ID_PERSONA%TYPE,
-                                   PO_CU_RETORNO   OUT CU_REC_SET,
-                                   PO_N_COD_ERROR  OUT NUMBER,
-                                   PO_V_MSJ_ERROR  OUT VARCHAR2) AS
+  PROCEDURE SCOB_SP_S_CUMS_PERSONA(PIN_NU_ID_PERSONA IN T_SCOB_PERSONA.ID_PERSONA%TYPE,
+                                   POUT_CUR_RETORNO   OUT CU_REC_SET,
+                                   POUT_NU_COD_ERROR  OUT NUMBER,
+                                   POUT_VC_MSJ_ERROR  OUT VARCHAR2) AS
   BEGIN
 
-    PO_N_COD_ERROR := -1;
-    PO_V_MSJ_ERROR := '';
+    POUT_NU_COD_ERROR := -1;
+    POUT_VC_MSJ_ERROR := '';
 
-    OPEN PO_CU_RETORNO FOR 
+    OPEN POUT_CUR_RETORNO FOR 
          
       SELECT MU.ANIO || MU.CUM AS NRO_CUM,
              DECODE(PE.TIPO_PERSONA,
@@ -3209,17 +3209,17 @@ END SCOB_SP_I_CONTACTO;
          AND MS.COD_TIPO_PERSONA = '1'
          AND MS.FLG_PRINCIPAL = '1'
          AND MS.ESTADO = '1'
-         AND PE.ID_PERSONA = PI_I_ID_PERSONA;
+         AND PE.ID_PERSONA = PIN_NU_ID_PERSONA;
 
     
   EXCEPTION
     WHEN OTHERS THEN
       
-      PO_N_COD_ERROR := SQLCODE;
-      SELECT CASE WHEN PO_N_COD_ERROR > 0 THEN PO_N_COD_ERROR * -1 ELSE PO_N_COD_ERROR END
-        INTO PO_N_COD_ERROR
+      POUT_NU_COD_ERROR := SQLCODE;
+      SELECT CASE WHEN POUT_NU_COD_ERROR > 0 THEN POUT_NU_COD_ERROR * -1 ELSE POUT_NU_COD_ERROR END
+        INTO POUT_NU_COD_ERROR
         FROM DUAL;
-      PO_V_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
+      POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
     
   END;  
   
@@ -3238,24 +3238,24 @@ END SCOB_SP_I_CONTACTO;
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_S_ADMIN_REEMPLAZO(PI_V_COD_INDECOPI   IN T_SCOB_PERSONA.COD_SANCIONADO%TYPE,                                       
-                                             PI_V_RAZON_SOCIAL   IN T_SCOB_PERSONA.RAZON_SOCIAL%TYPE,
-                                             PO_CU_RETORNO       OUT CU_REC_SET,
-                                             PO_N_COD_ERROR      OUT NUMBER,
-                                             PO_V_MSJ_ERROR      OUT VARCHAR2) AS
+  PROCEDURE SCOB_SP_S_ADMIN_REEMPLAZO(PIN_VC_COD_INDECOPI   IN T_SCOB_PERSONA.COD_SANCIONADO%TYPE,                                       
+                                      PIN_VC_RAZON_SOCIAL   IN T_SCOB_PERSONA.RAZON_SOCIAL%TYPE,
+                                      POUT_CUR_RETORNO       OUT CU_REC_SET,
+                                      POUT_NU_COD_ERROR      OUT NUMBER,
+                                      POUT_VC_MSJ_ERROR      OUT VARCHAR2) AS
                                              
-  V_COD_INDECOPI   T_SCOB_PERSONA.COD_SANCIONADO%TYPE;                                      
-  V_RAZON_SOCIAL   T_SCOB_PERSONA.RAZON_SOCIAL%TYPE;                                          
+  V_VC_COD_INDECOPI   T_SCOB_PERSONA.COD_SANCIONADO%TYPE;                                      
+  V_VC_RAZON_SOCIAL   T_SCOB_PERSONA.RAZON_SOCIAL%TYPE;                                          
   
   BEGIN
 
-    PO_N_COD_ERROR := -1;
-    PO_V_MSJ_ERROR := '';
+    POUT_NU_COD_ERROR := -1;
+    POUT_VC_MSJ_ERROR := '';
     
-    V_COD_INDECOPI   := NVL(PI_V_COD_INDECOPI, ' ');         
-    V_RAZON_SOCIAL   := NVL(PI_V_RAZON_SOCIAL, ' ');   
+    V_VC_COD_INDECOPI   := NVL(PIN_VC_COD_INDECOPI, ' ');         
+    V_VC_RAZON_SOCIAL   := NVL(PIN_VC_RAZON_SOCIAL, ' ');   
 
-    OPEN PO_CU_RETORNO FOR 
+    OPEN POUT_CUR_RETORNO FOR 
          
       SELECT PE.COD_SANCIONADO AS CODIGO_INDECOPI,
              TP.TXT_DESCRIPCION AS TIPO_PERSONERIA,
@@ -3275,27 +3275,27 @@ END SCOB_SP_I_CONTACTO;
         LEFT JOIN USR_SICOB.T_SCOB_TABLA_DET TD
           ON (PE.TIPO_DOC = TD.COD_INTERNO AND TD.ID_TABLA = 10)
        WHERE PE.ESTADO = '1'
-         AND (V_COD_INDECOPI = ' ' OR
-             (V_COD_INDECOPI <> ' ' AND
-             PE.COD_SANCIONADO = LPAD(PI_V_COD_INDECOPI, 10, '0000000000')))
-         AND (V_RAZON_SOCIAL = ' ' OR
-             (V_RAZON_SOCIAL <> ' ' AND
+         AND (V_VC_COD_INDECOPI = ' ' OR
+             (V_VC_COD_INDECOPI <> ' ' AND
+             PE.COD_SANCIONADO = LPAD(PIN_VC_COD_INDECOPI, 10, '0000000000')))
+         AND (V_VC_RAZON_SOCIAL = ' ' OR
+             (V_VC_RAZON_SOCIAL <> ' ' AND
              (UPPER(PE.RAZON_SOCIAL) LIKE
-             UPPER('%' || PI_V_RAZON_SOCIAL || '%') OR
-             UPPER(PE.APE_PATERNO) LIKE UPPER('%' || PI_V_RAZON_SOCIAL || '%') OR
-             UPPER(PE.APE_MATERNO) LIKE UPPER('%' || PI_V_RAZON_SOCIAL || '%') OR
-             UPPER(PE.APE_CASADA) LIKE UPPER('%' || PI_V_RAZON_SOCIAL || '%') OR
-             UPPER(PE.PRI_NOMBRE) LIKE UPPER('%' || PI_V_RAZON_SOCIAL || '%') OR
-             UPPER(PE.SEG_NOMBRE) LIKE UPPER('%' || PI_V_RAZON_SOCIAL || '%'))));
+             UPPER('%' || PIN_VC_RAZON_SOCIAL || '%') OR
+             UPPER(PE.APE_PATERNO) LIKE UPPER('%' || PIN_VC_RAZON_SOCIAL || '%') OR
+             UPPER(PE.APE_MATERNO) LIKE UPPER('%' || PIN_VC_RAZON_SOCIAL || '%') OR
+             UPPER(PE.APE_CASADA) LIKE UPPER('%' || PIN_VC_RAZON_SOCIAL || '%') OR
+             UPPER(PE.PRI_NOMBRE) LIKE UPPER('%' || PIN_VC_RAZON_SOCIAL || '%') OR
+             UPPER(PE.SEG_NOMBRE) LIKE UPPER('%' || PIN_VC_RAZON_SOCIAL || '%'))));
 
   EXCEPTION
     WHEN OTHERS THEN
       
-      PO_N_COD_ERROR := SQLCODE;
-      SELECT CASE WHEN PO_N_COD_ERROR > 0 THEN PO_N_COD_ERROR * -1 ELSE PO_N_COD_ERROR END
-        INTO PO_N_COD_ERROR
+      POUT_NU_COD_ERROR := SQLCODE;
+      SELECT CASE WHEN POUT_NU_COD_ERROR > 0 THEN POUT_NU_COD_ERROR * -1 ELSE POUT_NU_COD_ERROR END
+        INTO POUT_NU_COD_ERROR
         FROM DUAL;
-      PO_V_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
+      POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
       
  END;
                     
@@ -3314,13 +3314,13 @@ END SCOB_SP_I_CONTACTO;
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_U_ADMINISTRADO_CUMS(PI_N_ID_SANCIONADO_ANTIGUO IN T_SCOB_PERSONA.ID_PERSONA%TYPE,
-                                        PI_N_ID_ADMINISTRADO_NUEVO IN T_SCOB_PERSONA.ID_PERSONA%TYPE,
-                                        PI_V_COD_USUARIO           IN T_SCOB_PERSONA.AUDUSUMODIFICACION%TYPE,
-                                        PI_V_IDS_MULTA             IN VARCHAR2,
-                                        PI_V_IND_INACTIVAR         IN VARCHAR2,
-                                        PO_N_COD_ERROR             OUT NUMBER,
-                                        PO_V_MSJ_ERROR             OUT VARCHAR2) AS
+  PROCEDURE SCOB_SP_U_ADMINISTRADO_CUMS(PIN_NU_ID_SANCIONADO_ANTIGUO IN T_SCOB_PERSONA.ID_PERSONA%TYPE,
+                                        PIN_NU_ID_ADMINISTRADO_NUEVO IN T_SCOB_PERSONA.ID_PERSONA%TYPE,
+                                        PIN_VC_COD_USUARIO           IN T_SCOB_PERSONA.AUDUSUMODIFICACION%TYPE,
+                                        PIN_VC_IDS_MULTA             IN VARCHAR2,
+                                        PIN_VC_IND_INACTIVAR         IN VARCHAR2,
+                                        POUT_NU_COD_ERROR             OUT NUMBER,
+                                        POUT_VC_MSJ_ERROR             OUT VARCHAR2) AS
                                         
 
   REG_T_SCOB_MULTA_SANCIONADO T_SCOB_MULTA_SANCIONADO%ROWTYPE;                                      
@@ -3337,12 +3337,12 @@ END SCOB_SP_I_CONTACTO;
          
   BEGIN
                                                                                
-    FOR PI_V_ID_MULTA IN (SELECT REGEXP_SUBSTR(PI_V_IDS_MULTA, '[^|]+', 1, LEVEL) VALOR
+    FOR PIN_VC_ID_MULTA IN (SELECT REGEXP_SUBSTR(PIN_VC_IDS_MULTA, '[^|]+', 1, LEVEL) VALOR
                 FROM DUAL
-              CONNECT BY REGEXP_SUBSTR(PI_V_IDS_MULTA, '[^|]+', 1, LEVEL) IS NOT NULL) LOOP
+              CONNECT BY REGEXP_SUBSTR(PIN_VC_IDS_MULTA, '[^|]+', 1, LEVEL) IS NOT NULL) LOOP
       
       
-      OPEN CURSOR_MULTA_SANCIONADO(TO_NUMBER(PI_V_ID_MULTA.VALOR), PI_N_ID_SANCIONADO_ANTIGUO);
+      OPEN CURSOR_MULTA_SANCIONADO(TO_NUMBER(PIN_VC_ID_MULTA.VALOR), PIN_NU_ID_SANCIONADO_ANTIGUO);
       
         LOOP 
             
@@ -3351,15 +3351,15 @@ END SCOB_SP_I_CONTACTO;
           EXIT WHEN CURSOR_MULTA_SANCIONADO%NOTFOUND;    
           
           UPDATE USR_SICOB.T_SCOB_MULTA_SANCIONADO MS 
-            SET MS.ID_PERSONA = PI_N_ID_ADMINISTRADO_NUEVO,
-            MS.AUDUSUMODIFICACION = PI_V_COD_USUARIO,
+            SET MS.ID_PERSONA = PIN_NU_ID_ADMINISTRADO_NUEVO,
+            MS.AUDUSUMODIFICACION = PIN_VC_COD_USUARIO,
             MS. AUDFECMODIFICACION = SYSDATE
             WHERE MS.ID_MULTA_SANCIONADO = REG_T_SCOB_MULTA_SANCIONADO.ID_MULTA_SANCIONADO;
             
           SELECT MULTA.*
              INTO REG_T_SCOB_MULTA
              FROM USR_SICOB.T_SCOB_MULTA MULTA
-            WHERE MULTA.ID_MULTA = TO_NUMBER(PI_V_ID_MULTA.VALOR);
+            WHERE MULTA.ID_MULTA = TO_NUMBER(PIN_VC_ID_MULTA.VALOR);
           
           INSERT INTO USR_SICOB.T_SCOB_AUDITORIA
             (NU_ID_AUDITORIA,
@@ -3379,7 +3379,7 @@ END SCOB_SP_I_CONTACTO;
           VALUES
             (USR_SICOB.SEQ_T_AUDITORIA_ID.NEXTVAL,
              3,
-             TO_NUMBER(PI_V_ID_MULTA.VALOR),
+             TO_NUMBER(PIN_VC_ID_MULTA.VALOR),
              NULL,
              'T_SCOB_MULTA_SANCIONADO',
              'ID_MULTA_SANCIONADO',
@@ -3389,12 +3389,32 @@ END SCOB_SP_I_CONTACTO;
              'U',
              'MODIFICACION DEL CUM = ' || REG_T_SCOB_MULTA.CUM 
                     || ' EN SANCIONADO INICIAL ID_PERSONA=' 
-                    || PI_N_ID_SANCIONADO_ANTIGUO 
+                    || PIN_NU_ID_SANCIONADO_ANTIGUO 
                     || ' REEMPLADO POR ID_PERSONA = ' 
-                    || PI_N_ID_ADMINISTRADO_NUEVO,
-             PI_V_COD_USUARIO,
+                    || PIN_NU_ID_ADMINISTRADO_NUEVO,
+             PIN_VC_COD_USUARIO,
              SYSDATE,
              '1');
+             
+              -- SE ACTUALIZA LA PERSONA SI TUVIERA EXPEDIENTE
+              UPDATE T_SCOB_EXPEDIENTE_PERSONA EP
+                  SET EP.ID_PERSONA = PIN_NU_ID_ADMINISTRADO_NUEVO,
+                      EP.AUDFECMODIFICACION = SYSDATE,
+                      EP.AUDUSUMODIFICACION = PIN_VC_COD_USUARIO
+                WHERE EP.ID_EXPEDIENTE IN (SELECT ID_EXPEDIENTE
+                                             FROM USR_SICOB.T_SCOB_EXPEDIENTE_MULTA
+                                            WHERE ID_MULTA = REG_T_SCOB_MULTA.ID_MULTA
+                                              AND ESTADO = '1');
+                                              
+              -- SE ACTUALIZA LA DIRECCION PERSONA                                
+              UPDATE T_SCOB_MULTA_SANCIONADO_DIREC SD
+                 SET SD.ID_PERSONA_DOMICILIO = 
+                     (SELECT PD.ID_PERSONA_DOMICILIO
+                        FROM T_SCOB_PERSONA_DOMICILIO PD
+                       WHERE PD.ID_PERSONA = PIN_NU_ID_ADMINISTRADO_NUEVO
+                         AND PD.ESTADO = '1' AND ROWNUM = 1)
+               WHERE SD.ID_MULTA_SANCIONADO = REG_T_SCOB_MULTA_SANCIONADO.ID_MULTA_SANCIONADO
+                 AND SD.ESTADO = '1';                                              
                  
         END LOOP;
           
@@ -3403,33 +3423,33 @@ END SCOB_SP_I_CONTACTO;
     END LOOP;
 
     
-    IF PI_V_IND_INACTIVAR = 'S' THEN 
+    IF PIN_VC_IND_INACTIVAR = 'S' THEN 
       
       UPDATE USR_SICOB.T_SCOB_PERSONA T
          SET T.ESTADO             = '0',
-             T.AUDUSUMODIFICACION = PI_V_COD_USUARIO,
+             T.AUDUSUMODIFICACION = PIN_VC_COD_USUARIO,
              T.AUDFECMODIFICACION = SYSDATE
-       WHERE T.ID_PERSONA = PI_N_ID_SANCIONADO_ANTIGUO;
+       WHERE T.ID_PERSONA = PIN_NU_ID_SANCIONADO_ANTIGUO;
 
     END IF;
     
     COMMIT;
     
-    PO_N_COD_ERROR := 0;
-    PO_V_MSJ_ERROR := 'CONFORME';
+    POUT_NU_COD_ERROR := 0;
+    POUT_VC_MSJ_ERROR := 'CONFORME';
                      
   EXCEPTION
     
     WHEN EX_CONTROLADO THEN
-      PO_N_COD_ERROR := -1;
+      POUT_NU_COD_ERROR := -1;
       
     WHEN OTHERS THEN
       
-      PO_N_COD_ERROR := SQLCODE;
-      SELECT CASE WHEN PO_N_COD_ERROR > 0 THEN PO_N_COD_ERROR * -1 ELSE PO_N_COD_ERROR END
-        INTO PO_N_COD_ERROR
+      POUT_NU_COD_ERROR := SQLCODE;
+      SELECT CASE WHEN POUT_NU_COD_ERROR > 0 THEN POUT_NU_COD_ERROR * -1 ELSE POUT_NU_COD_ERROR END
+        INTO POUT_NU_COD_ERROR
         FROM DUAL;
-      PO_V_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
+      POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250);
       ROLLBACK;
       
  END;

@@ -350,6 +350,158 @@ CREATE OR REPLACE PACKAGE SCOB_PK_COBRANZAS IS
      PO_CU_RETORNO          OUT CU_REC_SET
      
      );
+     
+procedure scob_sp_s_multa_avanzada_aec(
+-----------------------------------------------------------------------------------------------
+/*001*/   pi_v_area_macro                        in varchar2      --AREA MACRO
+/*002*/  ,pi_v_cum_ini                           in varchar2      --cum
+/*003*/  ,pi_v_cum_fin                           in varchar2      --cum
+/*004*/  ,pi_v_fec_gen_cum_ini                   in varchar2      --FECHA GENERACION CUM INI
+/*005*/  ,pi_v_fec_gen_cum_fin                   in varchar2      --FECHA GENERACION CUM FIN
+/*006*/  ,pi_v_id_sede                           in varchar2      --sede
+/*007*/  ,PI_V_ID_COD_DPTO_SEDE                  in VARCHAR2      --CODIGO DEPARTAMENTO SEDE
+/*008*/  ,PI_V_ID_COD_PROV_SEDE                  in VARCHAR2      --CODIGO PROVINCIA SEDE
+/*009*/  ,PI_V_ID_COD_DIST_SEDE                  in VARCHAR2      --CODIGO DISTRITO SEDE
+/*010*/  ,pi_v_id_org_resol                      in varchar2      --organo resolutivo
+/*011*/  ,PI_V_ID_COD_DPTO_ORGR                  in VARCHAR2      --CODIGO DEPARTAMENTO ORGANO RESOLUTIVO
+/*012*/  ,PI_V_ID_COD_PROV_ORGR                  in VARCHAR2      --CODIGO PROVINCIA ORGANO RESOLUTIVO
+/*013*/  ,PI_V_ID_COD_DIST_ORGR                  in VARCHAR2      --CODIGO DISTRITO ORGANO RESOLUTIVO
+/*014*/  ,PI_V_ID_NRO_INSTANCIA                  in VARCHAR2      --NUMERO DE INSTANCIA
+/*015*/  ,pi_v_id_materia                        in varchar2      --materia
+/*016*/  ,pi_v_id_sub_materia                    in varchar2      --SUBMATERIA
+/*017*/  ,pi_v_nro_exp_unico_ini                 in varchar2      --nro. expediente administrativo
+/*018*/  ,pi_v_nro_exp_unico_fin                 in varchar2      --nro. expediente administrativo
+/*019*/  ,pi_v_nroExpAdm_nivel                   in varchar2      --nro. expediente antiguo
+/*020*/  ,pi_v_nro_resol                         in varchar2      --nro. resolucion or
+/*021*/  ,pi_v_fec_reso_or_ini                   in varchar2      --FECHA RESOLUCION OR INI
+/*022*/  ,pi_v_fec_reso_or_fin                   in varchar2      --FECHA RESOLUCION OR FIN
+/*023*/  ,pi_v_fec_notifi_or_ini                 in varchar2      --FECHA NOTIFICACION RESOLUCION INI
+/*024*/  ,pi_v_fec_notifi_or_fin                 in varchar2      --FECHA NOTIFICACION RESOLUCION FIN
+/*025*/  ,PI_V_FEC_GENERACION_SEC_INI            in VARCHAR2      --FECHA GENERACION SEC
+/*026*/  ,PI_V_FEC_GENERACION_SEC_FIN            in VARCHAR2      --FECHA GENERACION SEC
+---
+/*027*/  ,pi_v_fec_recepcion_aec_ini             in varchar2      --FECHA RECEPCION AEC INICIO
+/*028*/  ,pi_v_fec_recepcion_aec_fin             in varchar2      --FECHA RECEPCION AEC FIN
+/*029*/  ,PI_V_ANIO_INGRESO_AEC_INI              in varchar2      --AÑO INGRESO AL AEC INI
+/*030*/  ,PI_V_ANIO_INGRESO_AEC_FIN              in varchar2      --AÑO INGRESO AL AEC FIN
+/*031*/  ,PI_V_NRO_INGRESO_AEC_INI               in varchar2      --nro. ingreso aec
+/*032*/  ,PI_V_NRO_INGRESO_AEC_FIN               in varchar2      --nro. ingreso aec
+---
+/*033*/  ,PI_V_ANIO_FILE_INI                     in varchar2      --AÑO FILE INI
+/*034*/  ,PI_V_ANIO_FILE_FIN                     in varchar2      --AÑO FILE FIN
+/*035*/  ,PI_V_NRO_FILE_INI                      in varchar2      --nro. file
+/*036*/  ,PI_V_NRO_FILE_FIN                      in varchar2      --nro. file
+/*037*/  ,pi_v_fec_recepcion_file_ini            in varchar2      --FECHA RECEPCION FILE INICIO
+/*038*/  ,pi_v_fec_recepcion_file_fin            in varchar2      --FECHA RECEPCION FILE FIN
+---
+/*039*/  ,pi_n_valor_uit_ini                     in number        --nro uit ini
+/*040*/  ,pi_n_valor_uit_fin                     in number        --nro uit fin
+/*041*/  ,pi_n_monto_uit_ini                     in NUMBER        --MONTO UIT INI
+/*042*/  ,pi_n_monto_uit_fin                     in NUMBER        --MONTO UIT FIN
+/*043*/  ,pi_n_saldo_ini                         in NUMBER        --SALDO UIT INI
+/*044*/  ,pi_n_saldo_fin                         in NUMBER        --SALDO UIT FIN
+/*045*/  ,pi_v_id_tipo_multa                     in varchar2      --TIPO MULTA (SOLIDARIA/INDIVIDUAL)
+/*046*/  ,pi_v_cod_estado_multa_resol            in varchar2      --estado de la multa resolutivo
+/*047*/  ,pi_v_cod_estado_pago                   in varchar2      --estado pago de la multa
+/*048*/  ,PI_V_FEC_ESTADO_MULTA_OR_INI           in VARCHAR2      --FECHA ESTADO MULTA OR INI
+/*049*/  ,PI_V_FEC_ESTADO_MULTA_OR_FIN           in VARCHAR2      --FECHA ESTADO MULTA OR FIN
+/*050*/  ,PI_V_FEC_ESTADO_MULTA_COB_INI          in VARCHAR2      --FECHA ESTADO MULTA COBRANZA
+/*051*/  ,PI_V_FEC_ESTADO_MULTA_COB_FIN          in VARCHAR2      --FECHA ESTADO MULTA COBRANZA
+/*052*/  ,pi_v_cod_estado_multa_cob              in varchar2      --estado de la multa cobranza
+/*053*/  ,pi_v_cod_motivo_multa_cob              in varchar2      --motivo multa cobranza
+/*054*/  ,PI_V_IND_TIPO_PAGO                     in VARCHAR2      --INDICADOR DE PAGO
+/*055*/  ,pi_c_flg_asocu_multa                   IN CHAR         --INDICADOR % ASOCU > 0
+-----------------------------------------------------------------------------------------------
+/*056*/  ,pi_v_cod_estado_exped_cob              in varchar2      --estado expediente cobranza
+/*057*/  ,pi_v_anio                              in varchar2      --año expediente cobranza
+/*058*/  ,pi_v_nro_exp_cob_ini                   in varchar2      --nro. expediente cobranza
+/*059*/  ,pi_v_nro_exp_cob_fin                   in varchar2      --nro. expediente cobranza
+/*060*/  ,pi_v_fec_gen_exped_cob_ini             in varchar2      --FECHA GENERACION EXPED COBRANZA INI
+/*061*/  ,pi_v_fec_gen_exped_cob_fin             in varchar2      --FECHA GENERACION EXPED COBRANZA FIN
+-------
+/*062*/  ,pi_v_gestor_cobranza                   in varchar2      --Gestor de cobranza
+/*063*/  ,pi_v_fec_emi_rec_ini                   in varchar2      --Fecha de Emisión de la REC
+/*064*/  ,pi_v_fec_emi_rec_fin                   in varchar2      --Fecha de Emisión de la REC
+/*065*/  ,pi_v_fec_noti_rec_ini                  in varchar2      --Fecha de Notificación de la REC
+/*066*/  ,pi_v_fec_noti_rec_fin                  in varchar2      --Fecha de Notificación de la REC
+/*067*/  ,pi_v_cod_motivo_exped_cob              in varchar2      --motivo expediente cobranza---------
+/*068*/  ,pi_v_fec_est_exped_cob_ini             in varchar2      --Fecha de Estado del Expediente
+/*069*/  ,pi_v_fec_est_exped_cob_fin             in varchar2      --Fecha de Estado del Expediente
+/*070*/  ,pi_v_num_env_arch_ini                  in varchar2      --Nº Envio a Archivo Central
+/*071*/  ,pi_v_num_env_arch_fin                  in varchar2      --Nº Envio a Archivo Central
+/*072*/  ,pi_v_fec_envi_arch_ini                 in varchar2      --Fecha de Envío a Archivo Central
+/*073*/  ,pi_v_fec_envi_arch_fin                 in varchar2      --Fecha de Envío a Archivo Central
+/*074*/  ,pi_v_nro_ofic_sunat_ini                in varchar2      --Nº de Oficio de la SUNAT
+/*075*/  ,pi_v_nro_ofic_sunat_fin                in varchar2      --Nº de Oficio de la SUNAT
+/*076*/  ,pi_n_dere_antiDump_ini                 in NUMBER        --Derechos Antidumping
+/*077*/  ,pi_n_dere_antiDump_fin                 in NUMBER        --Derechos Antidumping
+/*078*/  ,pi_v_nro_parti_ini                     in varchar2      --Partida Arancelaria
+/*079*/  ,pi_v_nro_parti_fin                     in varchar2      --Partida Arancelaria
+/*080*/  ,pi_v_nro_dua_ini                       in varchar2      --Nº DUA
+/*081*/  ,pi_v_nro_dua_fin                       in varchar2      --Nº DUA
+/*082*/  ,pi_v_nro_liq_cob_ini                   in varchar2      --Nº Liquidación de Cobranza
+/*083*/  ,pi_v_nro_liq_cob_fin                   in varchar2      --Nº Liquidación de Cobranza
+/*084*/  ,pi_v_id_intendencia                    in varchar2      --Intendencia antidumping
+/*085*/  ,pi_c_flg_ind_embargo                   in char          --INDICADOR TIENE EMBARGO?
+/*086*/  ,pi_v_fec_asig_gestor_ini               in varchar2      --fecha de asignacion de gestor ini
+/*087*/  ,pi_v_fec_asig_gestor_fin               in varchar2      --fecha de asignacion de gestor fin
+/*088*/  ,pi_v_fec_carta_precoactiva_ini         in varchar2      --fecha de carta precoactiva inicio
+/*089*/  ,pi_v_fec_carta_precoactiva_fin         in varchar2      --fecha de carta precoactiva fin
+/*090*/  ,pi_v_id_expectativa_cobro              in varchar2      --cadena codigos espectativa de cobro
+
+-----------------------------------------------------------------------------------------------
+        --denunciante
+/*091*/  ,pi_v_d_codSanciona_ini                 in varchar2      --Código del INDECOPI
+/*092*/  ,pi_v_d_codSanciona_fin                 in varchar2      --Código del INDECOPI
+/*093*/  ,pi_i_d_tip_persona                     in integer       --Tipo de Personería
+/*094*/  ,pi_v_d_razon_social                    in varchar2      --Razón Social
+/*095*/  ,pi_v_d_ape_paterno                     in varchar2      --Apellido Paterno
+/*096*/  ,pi_v_d_ape_materno                     in varchar2      --Apellido Materno
+/*097*/  ,pi_v_d_ape_casada                      in varchar2      --Apellido Casada
+/*098*/  ,pi_v_d_pri_nombre                      in varchar2      --Primer nombre
+/*099*/  ,pi_v_d_seg_nombre                      in varchar2      --Segundo nombre
+/*100*/  ,pi_i_d_tipo_doc                        in integer       --Tipo de Documento
+/*101*/  ,pi_v_d_nro_doc                         in varchar2      --Nº de documento de identidad
+/*102*/  ,pi_i_d_tip_empresa                     in integer       --Tipo de Empresa
+/*103*/  ,pi_n_d_id_sect_econo                   in number        --CIIU (Actividad Economica)
+/*104*/  ,pi_c_d_flg_asocu                       in char          --flag asocu
+/*105*/  ,pi_c_d_fl_oficio                       in char          --indicador denunciante de oficio=Indecopi
+        --denunciado
+/*106*/  ,pi_v_do_codSanciona_ini                in varchar2      --Código del INDECOPI
+/*107*/  ,pi_v_do_codSanciona_fin                in varchar2      --Código del INDECOPI
+/*108*/  ,pi_i_do_tip_persona                    in integer       --Tipo de Personería
+/*109*/  ,pi_v_do_razon_social                   in varchar2      --Razón Social
+/*110*/  ,pi_v_do_ape_paterno                    in varchar2      --Apellido Paterno
+/*111*/  ,pi_v_do_ape_materno                    in varchar2      --Apellido Materno
+/*112*/  ,pi_v_do_ape_casada                     in varchar2      --Apellido Casada
+/*113*/  ,pi_v_do_pri_nombre                     in varchar2      --Primer nombre
+/*114*/  ,pi_v_do_seg_nombre                     in varchar2      --Segundo nombre
+/*115*/  ,pi_i_do_tipo_doc                       in integer       --Tipo de Documento
+/*116*/  ,pi_v_do_nro_doc                        in varchar2      --Nº de documento de identidad
+/*117*/  ,pi_i_do_tip_empresa                    in integer       --Tipo de Empresa
+/*118*/  ,pi_n_do_id_sect_econo                  in number        --CIIU (Actividad Economica)
+/*119*/  ,pi_c_do_flg_asocu                      in char          --flag asocu
+         --sancionado
+/*120*/  ,pi_v_s_codSanciona_ini                 in varchar2      --Código del INDECOPI
+/*121*/  ,pi_v_s_codSanciona_fin                 in varchar2      --Código del INDECOPI
+/*122*/  ,pi_i_s_tip_persona                     in integer       --Tipo de Personería
+/*123*/  ,pi_v_s_razon_social                    in varchar2      --Razón Social
+/*124*/  ,pi_v_s_ape_paterno                     in varchar2      --Apellido Paterno
+/*125*/  ,pi_v_s_ape_materno                     in varchar2      --Apellido Materno
+/*126*/  ,pi_v_s_ape_casada                      in varchar2      --Apellido Casada
+/*127*/  ,pi_v_s_pri_nombre                      in varchar2      --Primer nombre
+/*128*/  ,pi_v_s_seg_nombre                      in varchar2      --Segundo nombre
+/*129*/  ,pi_i_s_tipo_doc                        in integer       --Tipo de Documento
+/*130*/  ,pi_v_s_nro_doc                         in varchar2      --Nº de documento de identidad
+/*131*/  ,pi_i_s_tip_empresa                     in integer       --Tipo de Empresa
+/*132*/  ,pi_n_s_id_sect_econo                   in number        --CIIU (Actividad Economica)
+/*133*/  ,pi_c_s_flg_asocu                       in char           --flag asocu
+--@0002:ini
+/*134*/  ,pi_c_s_flg_buscar_by_contenido         in char           --0=NO;1=SI
+--@0002:fin
+-----------------------------------------------------------------------------------------------
+         ,po_cu_retorno                          out cu_rec_set
+);
     
 END SCOB_PK_COBRANZAS;
 /
@@ -659,7 +811,7 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_COBRANZAS IS
                 ON ACOB.ID_AREA_COBRANZA = MULT.ID_AREA_COBRANZA
              WHERE MULT.ESTADO = SCOB_PK_CONSTANTES.C_ESTADO_ACTIVO
                AND (NVL(PI_V_CUM, ' ') = ' ' OR (NVL(PI_V_CUM, ' ') <> ' ' AND MULT.ANIO || TRIM(MULT.CUM) LIKE '%' || TRIM(PI_V_CUM) || '%'))
-              /*
+              
                AND (NVL(PI_C_ANIO, ' ') = ' ' OR (NVL(PI_C_ANIO, ' ') <> ' ' AND MULT.ANIO = PI_C_ANIO))
                AND (NVL(PI_I_TIPO_PERSONA, 0) = 0 OR (NVL(PI_I_TIPO_PERSONA, 0) <> 0 AND PERS.TIPO_PERSONA = PI_I_TIPO_PERSONA))
                AND (NVL(PI_I_TIPO_DOC, 0) = 0 OR (NVL(PI_I_TIPO_DOC, 0) <> 0 AND PERS.TIPO_DOC = PI_I_TIPO_DOC))
@@ -760,7 +912,7 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_COBRANZAS IS
                    --QUE ESTAN CON ESTADO NO_INICIADO.
                    OR ((PI_C_EVENTO = 1) AND
                    (MULT.ESTADO_MULTA = SCOB_PK_CONSTANTES.C_TBL_EST_MUL_NO_INICIADO AND NVL(MULT.FLG_MULTA_COBRANZA, '0') = '1')))
-                   */
+                   
             ;
     
     END;
@@ -913,9 +1065,16 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_COBRANZAS IS
         END IF;
     
         IF TO_CHAR(D_FEC_GENERACION_SEC, 'DD/MM/YYYY') IS NULL THEN
-            PO_N_COD_ERROR := -13;
-            PO_V_MSJ_ERROR := 'No se puede realizar la acción. No se ha generado la SEC para la multa.';
-            RETURN;
+             
+            -- INICIO INDENCIAS SICOB - VICTOR BENDEZU
+            /*PO_N_COD_ERROR := -13;
+            PO_V_MSJ_ERROR := 'No se puede realizar la acción. No se ha generado la SEC para la multa.';*
+            RETURN;*/
+            
+            UPDATE USR_SICOB.T_SCOB_MULTA
+               SET FEC_GENERACION_SEC = SYSDATE
+             WHERE ID_MULTA = N_ID_MULTA;
+            -- FIN INDENCIAS SICOB - VICTOR BENDEZU
         END IF;
     
         IF C_FLG_MULTA_COBRANZA = '1' THEN
@@ -2292,11 +2451,24 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_COBRANZAS IS
           USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_U_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => V_NU_ID_MULTA,
                                                                              POUT_NU_COD_RESULT => PO_NU_RETORNO,
                                                                              POUT_VC_MSG_RESULT => PO_VC_MSJ_ERROR);
-                  
           IF PO_NU_RETORNO < 0 THEN
              ROLLBACK;
              RETURN;
           END IF;
+          USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_BN(PIN_NU_ID_MULTA => V_NU_ID_MULTA,
+                                     POUT_NU_COD_RESULT => PO_NU_RETORNO,
+                                     POUT_VC_MSG_RESULT => PO_VC_MSJ_ERROR);
+          IF PO_NU_RETORNO < 0 THEN
+             ROLLBACK;
+             RETURN;
+          END IF;
+          USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_ASBANC(PIN_NU_ID_MULTA => V_NU_ID_MULTA,
+                                           POUT_NU_COD_RESULT => PO_NU_RETORNO,
+                                           POUT_VC_MSG_RESULT => PO_VC_MSJ_ERROR);
+          IF PO_NU_RETORNO < 0 THEN
+             ROLLBACK;
+             RETURN;
+          END IF;    
           --FIN VICTOR BENDEZU - MIGRACION SICOB A SIA
             
           PO_NU_COD_ERROR := 0;
@@ -2545,5 +2717,1516 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_COBRANZAS IS
     
     END;
     
+procedure scob_sp_s_multa_avanzada_aec(
+-----------------------------------------------------------------------------------------------
+/*001*/   pi_v_area_macro                        in varchar2      --AREA MACRO
+/*002*/  ,pi_v_cum_ini                           in varchar2      --cum
+/*003*/  ,pi_v_cum_fin                           in varchar2      --cum
+/*004*/  ,pi_v_fec_gen_cum_ini                   in varchar2      --FECHA GENERACION CUM INI
+/*005*/  ,pi_v_fec_gen_cum_fin                   in varchar2      --FECHA GENERACION CUM FIN
+/*006*/  ,pi_v_id_sede                           in varchar2      --sede
+/*007*/  ,PI_V_ID_COD_DPTO_SEDE                  in VARCHAR2      --CODIGO DEPARTAMENTO SEDE
+/*008*/  ,PI_V_ID_COD_PROV_SEDE                  in VARCHAR2      --CODIGO PROVINCIA SEDE
+/*009*/  ,PI_V_ID_COD_DIST_SEDE                  in VARCHAR2      --CODIGO DISTRITO SEDE
+/*010*/  ,pi_v_id_org_resol                      in varchar2      --organo resolutivo
+/*011*/  ,PI_V_ID_COD_DPTO_ORGR                  in VARCHAR2      --CODIGO DEPARTAMENTO ORGANO RESOLUTIVO
+/*012*/  ,PI_V_ID_COD_PROV_ORGR                  in VARCHAR2      --CODIGO PROVINCIA ORGANO RESOLUTIVO
+/*013*/  ,PI_V_ID_COD_DIST_ORGR                  in VARCHAR2      --CODIGO DISTRITO ORGANO RESOLUTIVO
+/*014*/  ,PI_V_ID_NRO_INSTANCIA                  in VARCHAR2      --NUMERO DE INSTANCIA
+/*015*/  ,pi_v_id_materia                        in varchar2      --materia
+/*016*/  ,pi_v_id_sub_materia                    in varchar2      --SUBMATERIA
+/*017*/  ,pi_v_nro_exp_unico_ini                 in varchar2      --nro. expediente administrativo
+/*018*/  ,pi_v_nro_exp_unico_fin                 in varchar2      --nro. expediente administrativo
+/*019*/  ,pi_v_nroExpAdm_nivel                   in varchar2      --nro. expediente antiguo
+/*020*/  ,pi_v_nro_resol                         in varchar2      --nro. resolucion or
+/*021*/  ,pi_v_fec_reso_or_ini                   in varchar2      --FECHA RESOLUCION OR INI
+/*022*/  ,pi_v_fec_reso_or_fin                   in varchar2      --FECHA RESOLUCION OR FIN
+/*023*/  ,pi_v_fec_notifi_or_ini                 in varchar2      --FECHA NOTIFICACION RESOLUCION INI
+/*024*/  ,pi_v_fec_notifi_or_fin                 in varchar2      --FECHA NOTIFICACION RESOLUCION FIN
+/*025*/  ,PI_V_FEC_GENERACION_SEC_INI            in VARCHAR2      --FECHA GENERACION SEC
+/*026*/  ,PI_V_FEC_GENERACION_SEC_FIN            in VARCHAR2      --FECHA GENERACION SEC
+---
+/*027*/  ,pi_v_fec_recepcion_aec_ini             in varchar2      --FECHA RECEPCION AEC INICIO
+/*028*/  ,pi_v_fec_recepcion_aec_fin             in varchar2      --FECHA RECEPCION AEC FIN
+/*029*/  ,PI_V_ANIO_INGRESO_AEC_INI              in varchar2      --AÑO INGRESO AL AEC INI
+/*030*/  ,PI_V_ANIO_INGRESO_AEC_FIN              in varchar2      --AÑO INGRESO AL AEC FIN
+/*031*/  ,PI_V_NRO_INGRESO_AEC_INI               in varchar2      --nro. ingreso aec
+/*032*/  ,PI_V_NRO_INGRESO_AEC_FIN               in varchar2      --nro. ingreso aec
+---
+/*033*/  ,PI_V_ANIO_FILE_INI                     in varchar2      --AÑO FILE INI
+/*034*/  ,PI_V_ANIO_FILE_FIN                     in varchar2      --AÑO FILE FIN
+/*035*/  ,PI_V_NRO_FILE_INI                      in varchar2      --nro. file
+/*036*/  ,PI_V_NRO_FILE_FIN                      in varchar2      --nro. file
+/*037*/  ,pi_v_fec_recepcion_file_ini            in varchar2      --FECHA RECEPCION FILE INICIO
+/*038*/  ,pi_v_fec_recepcion_file_fin            in varchar2      --FECHA RECEPCION FILE FIN
+---
+/*039*/  ,pi_n_valor_uit_ini                     in number        --nro uit ini
+/*040*/  ,pi_n_valor_uit_fin                     in number        --nro uit fin
+/*041*/  ,pi_n_monto_uit_ini                     in NUMBER        --MONTO UIT INI
+/*042*/  ,pi_n_monto_uit_fin                     in NUMBER        --MONTO UIT FIN
+/*043*/  ,pi_n_saldo_ini                         in NUMBER        --SALDO UIT INI
+/*044*/  ,pi_n_saldo_fin                         in NUMBER        --SALDO UIT FIN
+/*045*/  ,pi_v_id_tipo_multa                     in varchar2      --TIPO MULTA (SOLIDARIA/INDIVIDUAL)
+/*046*/  ,pi_v_cod_estado_multa_resol            in varchar2      --estado de la multa resolutivo
+/*047*/  ,pi_v_cod_estado_pago                   in varchar2      --estado pago de la multa
+/*048*/  ,PI_V_FEC_ESTADO_MULTA_OR_INI           in VARCHAR2      --FECHA ESTADO MULTA OR INI
+/*049*/  ,PI_V_FEC_ESTADO_MULTA_OR_FIN           in VARCHAR2      --FECHA ESTADO MULTA OR FIN
+/*050*/  ,PI_V_FEC_ESTADO_MULTA_COB_INI          in VARCHAR2      --FECHA ESTADO MULTA COBRANZA
+/*051*/  ,PI_V_FEC_ESTADO_MULTA_COB_FIN          in VARCHAR2      --FECHA ESTADO MULTA COBRANZA
+/*052*/  ,pi_v_cod_estado_multa_cob              in varchar2      --estado de la multa cobranza
+/*053*/  ,pi_v_cod_motivo_multa_cob              in varchar2      --motivo multa cobranza
+/*054*/  ,PI_V_IND_TIPO_PAGO                     in VARCHAR2      --INDICADOR DE PAGO
+/*055*/  ,pi_c_flg_asocu_multa                   IN CHAR         --INDICADOR % ASOCU > 0
+-----------------------------------------------------------------------------------------------
+/*056*/  ,pi_v_cod_estado_exped_cob              in varchar2      --estado expediente cobranza
+/*057*/  ,pi_v_anio                              in varchar2      --año expediente cobranza
+/*058*/  ,pi_v_nro_exp_cob_ini                   in varchar2      --nro. expediente cobranza
+/*059*/  ,pi_v_nro_exp_cob_fin                   in varchar2      --nro. expediente cobranza
+/*060*/  ,pi_v_fec_gen_exped_cob_ini             in varchar2      --FECHA GENERACION EXPED COBRANZA INI
+/*061*/  ,pi_v_fec_gen_exped_cob_fin             in varchar2      --FECHA GENERACION EXPED COBRANZA FIN
+-------
+/*062*/  ,pi_v_gestor_cobranza                   in varchar2      --Gestor de cobranza
+/*063*/  ,pi_v_fec_emi_rec_ini                   in varchar2      --Fecha de Emisión de la REC
+/*064*/  ,pi_v_fec_emi_rec_fin                   in varchar2      --Fecha de Emisión de la REC
+/*065*/  ,pi_v_fec_noti_rec_ini                  in varchar2      --Fecha de Notificación de la REC
+/*066*/  ,pi_v_fec_noti_rec_fin                  in varchar2      --Fecha de Notificación de la REC
+/*067*/  ,pi_v_cod_motivo_exped_cob              in varchar2      --motivo expediente cobranza---------
+/*068*/  ,pi_v_fec_est_exped_cob_ini             in varchar2      --Fecha de Estado del Expediente
+/*069*/  ,pi_v_fec_est_exped_cob_fin             in varchar2      --Fecha de Estado del Expediente
+/*070*/  ,pi_v_num_env_arch_ini                  in varchar2      --Nº Envio a Archivo Central
+/*071*/  ,pi_v_num_env_arch_fin                  in varchar2      --Nº Envio a Archivo Central
+/*072*/  ,pi_v_fec_envi_arch_ini                 in varchar2      --Fecha de Envío a Archivo Central
+/*073*/  ,pi_v_fec_envi_arch_fin                 in varchar2      --Fecha de Envío a Archivo Central
+/*074*/  ,pi_v_nro_ofic_sunat_ini                in varchar2      --Nº de Oficio de la SUNAT
+/*075*/  ,pi_v_nro_ofic_sunat_fin                in varchar2      --Nº de Oficio de la SUNAT
+/*076*/  ,pi_n_dere_antiDump_ini                 in NUMBER        --Derechos Antidumping
+/*077*/  ,pi_n_dere_antiDump_fin                 in NUMBER        --Derechos Antidumping
+/*078*/  ,pi_v_nro_parti_ini                     in varchar2      --Partida Arancelaria
+/*079*/  ,pi_v_nro_parti_fin                     in varchar2      --Partida Arancelaria
+/*080*/  ,pi_v_nro_dua_ini                       in varchar2      --Nº DUA
+/*081*/  ,pi_v_nro_dua_fin                       in varchar2      --Nº DUA
+/*082*/  ,pi_v_nro_liq_cob_ini                   in varchar2      --Nº Liquidación de Cobranza
+/*083*/  ,pi_v_nro_liq_cob_fin                   in varchar2      --Nº Liquidación de Cobranza
+/*084*/  ,pi_v_id_intendencia                    in varchar2      --Intendencia antidumping
+/*085*/  ,pi_c_flg_ind_embargo                   in char          --INDICADOR TIENE EMBARGO?
+/*086*/  ,pi_v_fec_asig_gestor_ini               in varchar2      --fecha de asignacion de gestor ini
+/*087*/  ,pi_v_fec_asig_gestor_fin               in varchar2      --fecha de asignacion de gestor fin
+/*088*/  ,pi_v_fec_carta_precoactiva_ini         in varchar2      --fecha de carta precoactiva inicio
+/*089*/  ,pi_v_fec_carta_precoactiva_fin         in varchar2      --fecha de carta precoactiva fin
+/*090*/  ,pi_v_id_expectativa_cobro              in varchar2      --cadena codigos espectativa de cobro
+
+-----------------------------------------------------------------------------------------------
+        --denunciante
+/*091*/  ,pi_v_d_codSanciona_ini                 in varchar2      --Código del INDECOPI
+/*092*/  ,pi_v_d_codSanciona_fin                 in varchar2      --Código del INDECOPI
+/*093*/  ,pi_i_d_tip_persona                     in integer       --Tipo de Personería
+/*094*/  ,pi_v_d_razon_social                    in varchar2      --Razón Social
+/*095*/  ,pi_v_d_ape_paterno                     in varchar2      --Apellido Paterno
+/*096*/  ,pi_v_d_ape_materno                     in varchar2      --Apellido Materno
+/*097*/  ,pi_v_d_ape_casada                      in varchar2      --Apellido Casada
+/*098*/  ,pi_v_d_pri_nombre                      in varchar2      --Primer nombre
+/*099*/  ,pi_v_d_seg_nombre                      in varchar2      --Segundo nombre
+/*100*/  ,pi_i_d_tipo_doc                        in integer       --Tipo de Documento
+/*101*/  ,pi_v_d_nro_doc                         in varchar2      --Nº de documento de identidad
+/*102*/  ,pi_i_d_tip_empresa                     in integer       --Tipo de Empresa
+/*103*/  ,pi_n_d_id_sect_econo                   in number        --CIIU (Actividad Economica)
+/*104*/  ,pi_c_d_flg_asocu                       in char          --flag asocu
+/*105*/  ,pi_c_d_fl_oficio                       in char          --indicador denunciante de oficio=Indecopi
+        --denunciado
+/*106*/  ,pi_v_do_codSanciona_ini                in varchar2      --Código del INDECOPI
+/*107*/  ,pi_v_do_codSanciona_fin                in varchar2      --Código del INDECOPI
+/*108*/  ,pi_i_do_tip_persona                    in integer       --Tipo de Personería
+/*109*/  ,pi_v_do_razon_social                   in varchar2      --Razón Social
+/*110*/  ,pi_v_do_ape_paterno                    in varchar2      --Apellido Paterno
+/*111*/  ,pi_v_do_ape_materno                    in varchar2      --Apellido Materno
+/*112*/  ,pi_v_do_ape_casada                     in varchar2      --Apellido Casada
+/*113*/  ,pi_v_do_pri_nombre                     in varchar2      --Primer nombre
+/*114*/  ,pi_v_do_seg_nombre                     in varchar2      --Segundo nombre
+/*115*/  ,pi_i_do_tipo_doc                       in integer       --Tipo de Documento
+/*116*/  ,pi_v_do_nro_doc                        in varchar2      --Nº de documento de identidad
+/*117*/  ,pi_i_do_tip_empresa                    in integer       --Tipo de Empresa
+/*118*/  ,pi_n_do_id_sect_econo                  in number        --CIIU (Actividad Economica)
+/*119*/  ,pi_c_do_flg_asocu                      in char          --flag asocu
+         --sancionado
+/*120*/  ,pi_v_s_codSanciona_ini                 in varchar2      --Código del INDECOPI
+/*121*/  ,pi_v_s_codSanciona_fin                 in varchar2      --Código del INDECOPI
+/*122*/  ,pi_i_s_tip_persona                     in integer       --Tipo de Personería
+/*123*/  ,pi_v_s_razon_social                    in varchar2      --Razón Social
+/*124*/  ,pi_v_s_ape_paterno                     in varchar2      --Apellido Paterno
+/*125*/  ,pi_v_s_ape_materno                     in varchar2      --Apellido Materno
+/*126*/  ,pi_v_s_ape_casada                      in varchar2      --Apellido Casada
+/*127*/  ,pi_v_s_pri_nombre                      in varchar2      --Primer nombre
+/*128*/  ,pi_v_s_seg_nombre                      in varchar2      --Segundo nombre
+/*129*/  ,pi_i_s_tipo_doc                        in integer       --Tipo de Documento
+/*130*/  ,pi_v_s_nro_doc                         in varchar2      --Nº de documento de identidad
+/*131*/  ,pi_i_s_tip_empresa                     in integer       --Tipo de Empresa
+/*132*/  ,pi_n_s_id_sect_econo                   in number        --CIIU (Actividad Economica)
+/*133*/  ,pi_c_s_flg_asocu                       in char           --flag asocu
+--@0002:ini
+/*134*/  ,pi_c_s_flg_buscar_by_contenido         in char           --0=NO;1=SI
+--@0002:fin
+-----------------------------------------------------------------------------------------------
+         ,po_cu_retorno                          out cu_rec_set
+)is
+
+  c_flg_administrado                           char(1);
+  c_flg_sancionado                             char(1);
+  c_flg_denunciado                             char(1);
+  c_flg_denunciante                            char(1);
+
+  v_sql_admin_select                           varchar2(8000);
+  v_sql_admin_where_d                          varchar2(8000);
+  v_sql_admin_where_do                         varchar2(8000);
+  v_sql_admin_where_s                          varchar2(8000);
+
+  v_sql_select_1                               varchar2(8000);
+  v_sql_select_2                               varchar2(8000);
+  v_sql_select_3                               varchar2(8000);
+  v_sql_select_4                               varchar2(8000);
+  v_sql_select_5                               varchar2(8000);
+  v_sql_join_1                                 varchar2(8000);
+  v_sql_join_2                                 varchar2(8000);
+  v_sql_join_3                                 varchar2(8000);
+  v_sql_join_4                                 varchar2(8000);
+  v_sql_join_5                                 varchar2(8000);
+  v_sql_where_1                                varchar2(8000);
+  v_sql_where_2                                varchar2(8000);
+  v_sql_where_3                                varchar2(8000);
+  v_sql_where_4                                varchar2(8000);
+  v_sql_where_5                                varchar2(8000);
+  v_sql_where_6                                varchar2(8000);
+  v_sql_where_7                                varchar2(8000);
+  v_sql_where_8                                varchar2(8000);
+  v_sql_where_9                                varchar2(8000);
+  v_sql_where_10                               varchar2(8000);
+  v_sql_where_11                               varchar2(8000);
+  v_sql_where_12                               varchar2(8000);
+  c_car_porcentaje                             varchar(1);
+begin
+  --@0002:ini
+  c_car_porcentaje := '';
+  if pi_c_s_flg_buscar_by_contenido = '1' then c_car_porcentaje := '%'; end if;
+  --@0002:fin
+
+  --control del filtro sancionado
+  c_flg_administrado := '0';
+  c_flg_sancionado := '0';
+  c_flg_denunciado := '0';
+  c_flg_denunciante := '0';
+
+  v_sql_where_1 := '';
+  v_sql_where_2 := '';
+  v_sql_where_3 := '';
+  v_sql_where_4 := '';
+  v_sql_where_5 := '';
+  v_sql_where_6 := '';
+  v_sql_where_7 := '';
+  v_sql_where_8 := '';
+  v_sql_where_9 := '';
+  v_sql_where_10 := '';
+  v_sql_where_11 := '';
+  v_sql_where_12 := '';
+
+  IF  pi_v_s_codSanciona_ini is not null or
+      pi_v_s_codSanciona_fin is not null or
+      pi_i_s_tip_persona <> 0 or
+      pi_v_s_razon_social is not null or
+      pi_v_s_ape_paterno is not null or
+      pi_v_s_ape_materno is not null or
+      pi_v_s_ape_casada is not null or
+      pi_v_s_pri_nombre is not null or
+      pi_v_s_seg_nombre is not null or
+      pi_i_s_tipo_doc <> 0 or
+      pi_v_s_nro_doc is not null or
+      pi_i_s_tip_empresa <> 0 or
+      pi_n_s_id_sect_econo <> 0 or
+      pi_c_s_flg_asocu<>'0'
+  THEN
+      c_flg_sancionado := '1';
+      if c_flg_administrado = '0' then c_flg_administrado := '1'; end if;
+  END IF;
+
+  IF (
+      pi_v_do_codSanciona_ini is not null or
+      pi_v_do_codSanciona_fin is not null or
+      pi_i_do_tip_persona <> 0 or
+      pi_v_do_razon_social is not null or
+      pi_v_do_ape_paterno is not null or
+      pi_v_do_ape_materno is not null or
+      pi_v_do_ape_casada is not null or
+      pi_v_do_pri_nombre is not null or
+      pi_v_do_seg_nombre is not null or
+      pi_i_do_tipo_doc <> 0 or
+      pi_v_do_nro_doc is not null or
+      pi_i_do_tip_empresa <> 0 or
+      pi_n_do_id_sect_econo <> 0 or
+      pi_c_do_flg_asocu<>'0'
+      )
+  THEN
+      c_flg_denunciado := '1';
+      if c_flg_administrado = '0' then c_flg_administrado := '1'; end if;
+  END IF;
+
+  IF  (
+      pi_v_d_codSanciona_ini is not null or
+      pi_v_d_codSanciona_fin is not null or
+      pi_i_d_tip_persona <> 0 or
+      pi_v_d_razon_social is not null or
+      pi_v_d_ape_paterno is not null or
+      pi_v_d_ape_materno is not null or
+      pi_v_d_ape_casada is not null or
+      pi_v_d_pri_nombre is not null or
+      pi_v_d_seg_nombre is not null or
+      pi_i_d_tipo_doc <> 0 or
+      pi_v_d_nro_doc is not null or
+      pi_i_d_tip_empresa <> 0 or
+      pi_n_d_id_sect_econo <> 0 or
+      pi_c_d_flg_asocu<>'0' or
+      pi_c_d_fl_oficio<>'0'
+      )
+  THEN
+      c_flg_denunciante := '1';
+      if c_flg_administrado = '0' then c_flg_administrado := '1'; end if;
+  END IF;
+
+  --obtener los datos de las intancias de una multa
+  EXECUTE IMMEDIATE 'TRUNCATE TABLE T_SCOB_TMP_INSTANCIAS_MULTA1';
+  INSERT INTO USR_SICOB.T_SCOB_TMP_INSTANCIAS_MULTA1(
+      ID_MULTA,
+      NRO_NIVEL,
+      NRO_RESOLUCION,
+      FEC_RESOLUCION,
+      FEC_NOTIFICACION_RESOLUCION,
+      FEC_ESTADO_SGTE_INSTANCIA,
+      FEC_REGISTRO,
+      LOGIN_USUARIO_REGISTRO,
+      NRO_RESOLUCION_DECLARACION,
+      FEC_CONS_FIRME,
+      FEC_NOTF_CONS_FIRME
+      )(
+        SELECT
+          MDET.ID_MULTA,
+          ORGR.TIPO_INSTANCIA,
+          --MDET.NRO_RESOLUCION_ID,
+          MDET.NRO_RESOLUCION,
+          MDET.FEC_RESOLUCION,
+          MDET.FEC_NOTIFICACION_RESOLUCION,
+          MDET.FEC_ESTADO_SGTE_INSTANCIA,
+          TO_DATE(TO_CHAR(MDET.AUDFECCREACION,'DD/MM/YYYY'),'DD/MM/YYYY'),
+          MDET.AUDUSUCREACION,
+          MDET.NRO_RESOLUCION_DECLARACION,
+          MDET.FEC_DECLARACION AS FEC_CONS_FIRME,
+          MDET.FEC_NOTIFICACION_DECLARACION AS FEC_NOTF_CONS_FIRME
+        FROM T_SCOB_MULTA_DETAL MDET
+        INNER JOIN T_SCOB_ORGANO_RESOLUTIVO ORGR
+              ON ORGR.ID_ORGANO_RESOLUTIVO = MDET.ID_ORGANO_RESOLUTIVO
+        WHERE MDET.ESTADO = '1'
+  );
+  /*EXECUTE IMMEDIATE 'TRUNCATE TABLE T_SCOB_TMP_INSTANCIAS_MULTA';
+  INSERT INTO T_SCOB_TMP_INSTANCIAS_MULTA(
+      ID_MULTA,
+      NRO_NIVEL,
+      NRO_RESOLUCION,
+      FEC_RESOLUCION,
+      FEC_NOTIFICACION_RESOLUCION,
+      FEC_ESTADO_SGTE_INSTANCIA,
+      FEC_REGISTRO,
+      LOGIN_USUARIO_REGISTRO
+  )(
+        SELECT
+          MDET.ID_MULTA,
+          ORGR.TIPO_INSTANCIA,
+          --Req. 30 - @dcelis/begin
+          --MDET.NRO_RESOLUCION_ID,
+          MDET.NRO_RESOLUCION,
+          --Req. 30 - @dcelis/end
+          MDET.FEC_RESOLUCION,
+          MDET.FEC_NOTIFICACION_RESOLUCION,
+          MDET.FEC_ESTADO_SGTE_INSTANCIA,
+          TO_DATE(TO_CHAR(MDET.AUDFECCREACION,'DD/MM/YYYY'),'DD/MM/YYYY'),
+          MDET.AUDUSUCREACION
+        FROM T_SCOB_MULTA_DETAL MDET
+        INNER JOIN T_SCOB_ORGANO_RESOLUTIVO ORGR
+              ON ORGR.ID_ORGANO_RESOLUTIVO = MDET.ID_ORGANO_RESOLUTIVO
+        WHERE MDET.ESTADO = '1'
+
+  );*/
+
+  --obtener la situacion de pago de las multas
+  EXECUTE IMMEDIATE 'TRUNCATE TABLE T_SCOB_TMP_SITUACION_MULTA';
+  INSERT INTO T_SCOB_TMP_SITUACION_MULTA(
+     ID_MULTA,
+     COD_SITUACION_MULTA
+  )
+  SELECT
+    MULT.ID_MULTA,
+    CASE
+       WHEN EXPE.ESTADO_EXPEDIENTE = 4 THEN 3 --'FR'
+       WHEN EXPE.ESTADO_EXPEDIENTE = 5 THEN 4 --'PP'
+       WHEN MULT.NRO_FILE_AEC IS NULL THEN 1 --PAGO VOLUNTARIO
+       ELSE 2 --PAGO COACTIVO
+       --WHEN MULT.IND_DESCUENTO = 1 AND MULT.COD_ESTADO_PAGO IN (4) THEN 1 --'DS'
+       --WHEN MULT.NRO_FILE_AEC IS NULL THEN 2 --'MU'--NO TIENE DESCUENTO Y NO HA INGRESADO A COBRANZA
+       --ELSE 2--'CO'
+    END AS COD_SITUACION_MULTA
+  FROM T_SCOB_MULTA MULT
+  LEFT JOIN T_SCOB_EXPEDIENTE_MULTA EXMU
+       ON EXMU.ID_MULTA = MULT.ID_MULTA
+       AND EXMU.ESTADO = '1'
+  LEFT JOIN T_SCOB_EXPEDIENTE EXPE
+       ON EXPE.ID_EXPEDIENTE = EXMU.ID_EXPEDIENTE
+  WHERE MULT.ESTADO = '1';
+
+  -----------------------------------------------------------------------------------
+  --obtener los administrados
+  -----------------------------------------------------------------------------------
+  --3=DENUNCIANTE
+  -----------------------------------------------------------------------------------
+  /*
+  Dbms_Output.put_line('c_flg_administrado--->' || c_flg_administrado);
+  Dbms_Output.put_line('c_flg_denunciante--->' || c_flg_denunciante);
+  Dbms_Output.put_line('c_flg_sancionado--->' || c_flg_sancionado);
+  Dbms_Output.put_line('c_flg_denunciado--->' || c_flg_denunciado);
+  */
+
+  EXECUTE IMMEDIATE 'TRUNCATE TABLE T_SCOB_TMP_ADMINISTRADO';
+  --obtener a todos los administrados
+  if c_flg_administrado = '1' then
+
+      v_sql_admin_select := '
+      INSERT INTO T_SCOB_TMP_ADMINISTRADO(
+          ID_MULTA, TIPO_ADMINISTRADO, ID_PERSONA
+      )
+      SELECT
+          ADMINISTRADO.ID_MULTA,ADMINISTRADO.TIPO_ADMINISTRADO,PERS.ID_PERSONA
+      FROM (
+          SELECT MDET.ID_MULTA AS ID_MULTA, ''3'' AS TIPO_ADMINISTRADO, --DENUNCIANTE
+                 MDEN.ID_PERSONA  AS ID_PERSONA
+          FROM T_SCOB_MULTA_DETAL MDET
+          INNER JOIN T_SCOB_MULTA_DENUNCIANTE MDEN
+                ON MDEN.ID_MULTA_DETAL = MDET.ID_MULTA_DETAL
+                AND MDEN.ESTADO = ''1''
+          WHERE MDET.FLG_ACTUAL = ''1'' AND MDET.ESTADO = ''1''
+          UNION ALL
+          SELECT MDET.ID_MULTA AS ID_MULTA, MSAN.COD_TIPO_PERSONA AS TIPO_ADMINISTRADO, --SANCIONADO Y DENUNCIADO
+                 MSAN.ID_PERSONA AS ID_PERSONA
+          FROM T_SCOB_MULTA_DETAL MDET
+          INNER JOIN T_SCOB_MULTA_SANCIONADO MSAN
+                ON MSAN.ID_MULTA_DETAL = MDET.ID_MULTA_DETAL
+                AND MSAN.ESTADO = ''1''
+          WHERE MDET.FLG_ACTUAL = ''1'' AND MDET.ESTADO = ''1''
+      )ADMINISTRADO
+      INNER JOIN T_SCOB_PERSONA PERS ON PERS.ID_PERSONA = ADMINISTRADO.ID_PERSONA
+      ';
+
+      v_sql_admin_where_d := '
+      WHERE ADMINISTRADO.ID_MULTA IS NOT NULL ';
+
+      IF c_flg_denunciante = '1' THEN
+
+      v_sql_admin_where_d := v_sql_admin_where_d ||
+      '
+      AND (ADMINISTRADO.TIPO_ADMINISTRADO = ''3'' --denunciante
+      ';
+
+          --CODIGO INDECOPI
+          if pi_v_d_codSanciona_ini is not null then
+             v_sql_admin_where_d := v_sql_admin_where_d ||
+             '
+             AND TO_NUMBER(PERS.COD_SANCIONADO) BETWEEN TO_NUMBER('||pi_v_d_codSanciona_ini||') AND TO_NUMBER('||pi_v_d_codSanciona_fin||')'
+             ;
+
+          end if;
+
+          --TIPO PERSONERIA
+          if pi_i_d_tip_persona<>0 then
+             v_sql_admin_where_d := v_sql_admin_where_d ||
+             '
+             AND PERS.TIPO_PERSONA='||pi_i_d_tip_persona
+             ;
+          end if;
+
+          --TIPO DOCUMENTO
+          if pi_i_d_tipo_doc<>0 then
+             v_sql_admin_where_d := v_sql_admin_where_d ||
+             '
+             AND PERS.TIPO_DOC='||pi_i_d_tipo_doc
+             ;
+          end if;
+
+          --NRO DOCUMENTO
+          if pi_v_d_nro_doc is not null then
+             v_sql_admin_where_d := v_sql_admin_where_d ||
+             '
+             AND PERS.NRO_DOC='''||pi_v_d_nro_doc||''''
+             ;
+          end if;
+
+          --APELLIDOS Y NOMBRES
+          if pi_v_d_ape_paterno is not null then
+             v_sql_admin_where_d := v_sql_admin_where_d ||
+             '
+             AND PERS.APE_PATERNO LIKE '''||c_car_porcentaje||pi_v_d_ape_paterno||'%'''
+             ;
+          end if;
+
+          if pi_v_d_ape_materno is not null then
+             v_sql_admin_where_d := v_sql_admin_where_d ||
+             '
+             AND PERS.APE_MATERNO LIKE '''||c_car_porcentaje||pi_v_d_ape_materno||'%'''
+             ;
+          end if;
+
+          if pi_v_d_ape_casada is not null then
+             v_sql_admin_where_d := v_sql_admin_where_d ||
+             '
+             AND PERS.APE_CASADA LIKE '''||c_car_porcentaje||pi_v_d_ape_casada||'%'''
+             ;
+          end if;
+
+          if pi_v_d_pri_nombre is not null then
+             v_sql_admin_where_d := v_sql_admin_where_d ||
+             '
+             AND PERS.PRI_NOMBRE LIKE '''||c_car_porcentaje||pi_v_d_pri_nombre||'%'''
+             ;
+          end if;
+
+          if pi_v_d_seg_nombre is not null then
+             v_sql_admin_where_d := v_sql_admin_where_d ||
+             '
+             AND PERS.SEG_NOMBRE LIKE '''||c_car_porcentaje||pi_v_d_seg_nombre||'%'''
+             ;
+          end if;
+
+          --DENOMINACION O RAZON SOCIAL
+          if pi_v_d_razon_social is not null then
+             v_sql_admin_where_d := v_sql_admin_where_d ||
+             '
+             AND PERS.RAZON_SOCIAL LIKE '''||c_car_porcentaje||pi_v_d_razon_social ||'%'''
+             ;
+          end if;
+
+          --TIPO DE EMPRESA
+          if pi_i_d_tip_empresa<>0 then
+             v_sql_admin_where_d := v_sql_admin_where_d ||
+             '
+             AND PERS.TIP_EMPRESA=' ||pi_i_d_tip_empresa
+             ;
+          end if;
+
+          --SECTOR ECONOMICO
+          if pi_n_d_id_sect_econo<>0 then
+             v_sql_admin_where_d := v_sql_admin_where_d ||
+             '
+             AND PERS.ID_SECTOR_ECONOMICO='||pi_n_d_id_sect_econo
+             ;
+          end if;
+
+          --INDICADOR DENUNCIANTE DE OFICIO = INDECOPI
+          if pi_c_d_fl_oficio='1' then
+             v_sql_admin_where_d := v_sql_admin_where_d ||
+             '
+             AND PERS.ID_PERSONA='||SCOB_PK_CONSTANTES.C_ID_ADMINISTRADO_INDECOPI;
+          end if;
+
+
+
+
+      v_sql_admin_where_d := v_sql_admin_where_d || '
+      )';
+
+      END IF;
+
+      IF c_flg_denunciado = '1' THEN
+          if  c_flg_denunciante = '1' then
+              v_sql_admin_where_do :=
+              '
+              OR(ADMINISTRADO.TIPO_ADMINISTRADO = ''2'' --denunciado';
+          else
+              v_sql_admin_where_do :=
+              '
+              AND(ADMINISTRADO.TIPO_ADMINISTRADO = ''2'' --denunciado';
+          end if;
+
+          --CODIGO INDECOPI
+          if pi_v_d_codSanciona_ini is not null then
+             v_sql_admin_where_do := v_sql_admin_where_do ||
+             '
+             AND TO_NUMBER(PERS.COD_SANCIONADO) BETWEEN TO_NUMBER('||pi_v_do_codSanciona_ini||') AND TO_NUMBER('||pi_v_do_codSanciona_fin||')'
+             ;
+          end if;
+
+          --TIPO PERSONERIA
+          if pi_i_do_tip_persona<>0 then
+             v_sql_admin_where_do := v_sql_admin_where_do ||
+             '
+             AND PERS.TIPO_PERSONA='||pi_i_do_tip_persona
+             ;
+          end if;
+
+          --TIPO DOCUMENTO
+          if pi_i_do_tipo_doc<>0 then
+             v_sql_admin_where_do := v_sql_admin_where_do ||
+             '
+             AND PERS.TIPO_DOC='||pi_i_do_tipo_doc
+             ;
+          end if;
+
+          --NRO DOCUMENTO
+          if pi_v_do_nro_doc is not null then
+             v_sql_admin_where_do := v_sql_admin_where_do ||
+             '
+             AND PERS.NRO_DOC='''||pi_v_do_nro_doc||''''
+             ;
+          end if;
+
+          --APELLIDOS Y NOMBRES
+          if pi_v_do_ape_paterno is not null then
+             v_sql_admin_where_do := v_sql_admin_where_do ||
+             '
+             AND PERS.APE_PATERNO LIKE '''||c_car_porcentaje||pi_v_do_ape_paterno||'%'''
+             ;
+          end if;
+
+          if pi_v_do_ape_materno is not null then
+             v_sql_admin_where_do := v_sql_admin_where_do ||
+             '
+             AND PERS.APE_MATERNO LIKE '''||c_car_porcentaje||pi_v_do_ape_materno||'%'''
+             ;
+          end if;
+
+          if pi_v_do_ape_casada is not null then
+             v_sql_admin_where_do := v_sql_admin_where_do ||
+             '
+             AND PERS.APE_CASADA LIKE '''||c_car_porcentaje||pi_v_do_ape_casada||'%'''
+             ;
+          end if;
+
+          if pi_v_do_pri_nombre is not null then
+             v_sql_admin_where_do := v_sql_admin_where_do ||
+             '
+             AND PERS.PRI_NOMBRE LIKE '''||c_car_porcentaje||pi_v_do_pri_nombre||'%'''
+             ;
+          end if;
+
+          if pi_v_do_seg_nombre is not null then
+             v_sql_admin_where_do := v_sql_admin_where_do ||
+             '
+             AND PERS.SEG_NOMBRE LIKE '''||c_car_porcentaje||pi_v_do_seg_nombre||'%'''
+             ;
+          end if;
+
+          --DENOMINACION O RAZON SOCIAL
+          if pi_v_do_razon_social is not null then
+             v_sql_admin_where_do := v_sql_admin_where_do ||
+             '
+             AND PERS.RAZON_SOCIAL LIKE '''||c_car_porcentaje||pi_v_do_razon_social ||'%'''
+             ;
+          end if;
+
+          --TIPO DE EMPRESA
+          if pi_i_do_tip_empresa<>0 then
+             v_sql_admin_where_do := v_sql_admin_where_do ||
+             '
+             AND PERS.TIP_EMPRESA=' ||pi_i_do_tip_empresa
+             ;
+          end if;
+
+          --SECTOR ECONOMICO
+          if pi_n_do_id_sect_econo<>0 then
+             v_sql_admin_where_do := v_sql_admin_where_do ||
+             '
+             AND PERS.ID_SECTOR_ECONOMICO='||pi_n_do_id_sect_econo
+             ;
+          end if;
+
+          if pi_c_do_flg_asocu='1' then
+             v_sql_admin_where_do := v_sql_admin_where_do ||
+             '
+             AND PERS.FLG_ASOCU='''||pi_c_do_flg_asocu||''''
+             ;
+          end if;
+
+          v_sql_admin_where_do := v_sql_admin_where_do ||'
+          )';
+      END IF;
+
+      IF c_flg_sancionado = '1' THEN
+          if  c_flg_denunciado = '1' or c_flg_denunciante = '1' then
+              v_sql_admin_where_s :=
+              '
+              OR(ADMINISTRADO.TIPO_ADMINISTRADO = ''1'' --sancionado';
+          else
+              v_sql_admin_where_s :=
+              '
+              AND(ADMINISTRADO.TIPO_ADMINISTRADO = ''1'' --sancionado';
+          end if;
+
+          --CODIGO INDECOPI
+          if pi_v_s_codSanciona_ini is not null then
+             v_sql_admin_where_s := v_sql_admin_where_s ||
+             '
+             AND TO_NUMBER(PERS.COD_SANCIONADO) BETWEEN TO_NUMBER('||pi_v_s_codSanciona_ini||') AND TO_NUMBER('||pi_v_s_codSanciona_fin||')'
+             ;
+          end if;
+
+          --TIPO PERSONERIA
+          if pi_i_s_tip_persona<>0 then
+             v_sql_admin_where_s := v_sql_admin_where_s ||
+             '
+             AND PERS.TIPO_PERSONA='||pi_i_s_tip_persona
+             ;
+          end if;
+
+          --TIPO DOCUMENTO
+          if pi_i_s_tipo_doc<>0 then
+             v_sql_admin_where_s := v_sql_admin_where_s ||
+             '
+             AND PERS.TIPO_DOC='||pi_i_s_tipo_doc
+             ;
+          end if;
+
+          --NRO DOCUMENTO
+          if pi_v_s_nro_doc is not null then
+             v_sql_admin_where_s := v_sql_admin_where_s ||
+             '
+             AND PERS.NRO_DOC='''||pi_v_s_nro_doc||''''
+             ;
+          end if;
+
+          --APELLIDOS Y NOMBRES
+          if pi_v_s_ape_paterno is not null then
+             v_sql_admin_where_s := v_sql_admin_where_s ||
+             '
+             AND PERS.APE_PATERNO LIKE '''||c_car_porcentaje||pi_v_s_ape_paterno||'%'''
+             ;
+          end if;
+
+          if pi_v_s_ape_materno is not null then
+             v_sql_admin_where_s := v_sql_admin_where_s ||
+             '
+             AND PERS.APE_MATERNO LIKE '''||c_car_porcentaje||pi_v_s_ape_materno||'%'''
+             ;
+          end if;
+
+          if pi_v_s_ape_casada is not null then
+             v_sql_admin_where_s := v_sql_admin_where_s ||
+             '
+             AND PERS.APE_CASADA LIKE '''||c_car_porcentaje||pi_v_s_ape_casada||'%'''
+             ;
+          end if;
+
+          if pi_v_s_pri_nombre is not null then
+             v_sql_admin_where_s := v_sql_admin_where_s ||
+             '
+             AND PERS.PRI_NOMBRE LIKE '''||c_car_porcentaje||pi_v_s_pri_nombre||'%'''
+             ;
+          end if;
+
+          if pi_v_s_seg_nombre is not null then
+             v_sql_admin_where_s := v_sql_admin_where_s ||
+             '
+             AND PERS.SEG_NOMBRE LIKE '''||c_car_porcentaje||pi_v_s_seg_nombre||'%'''
+             ;
+          end if;
+
+          --DENOMINACION O RAZON SOCIAL
+          if pi_v_s_razon_social is not null then
+             v_sql_admin_where_s := v_sql_admin_where_s ||
+             '
+             AND PERS.RAZON_SOCIAL LIKE '''||c_car_porcentaje||pi_v_s_razon_social ||'%'''
+             ;
+          end if;
+
+          --TIPO DE EMPRESA
+          if pi_i_s_tip_empresa<>0 then
+             v_sql_admin_where_s := v_sql_admin_where_s ||
+             '
+             AND PERS.TIP_EMPRESA=' ||pi_i_s_tip_empresa
+             ;
+          end if;
+
+          --SECTOR ECONOMICO
+          if pi_n_s_id_sect_econo<>0 then
+             v_sql_admin_where_s := v_sql_admin_where_s ||
+             '
+             AND PERS.ID_SECTOR_ECONOMICO='||pi_n_s_id_sect_econo
+             ;
+          end if;
+
+          if pi_c_s_flg_asocu='1' then
+             v_sql_admin_where_s := v_sql_admin_where_s ||
+             '
+             AND PERS.FLG_ASOCU='''||pi_c_s_flg_asocu||''''
+             ;
+          end if;
+
+          v_sql_admin_where_s := v_sql_admin_where_s ||'
+          )';
+      END IF;
+
+      DBMS_OUTPUT.put_line(v_sql_admin_select);
+      DBMS_OUTPUT.put_line(v_sql_admin_where_d);
+      DBMS_OUTPUT.put_line(v_sql_admin_where_do);
+      DBMS_OUTPUT.put_line(v_sql_admin_where_s);
+
+      EXECUTE IMMEDIATE v_sql_admin_select || v_sql_admin_where_d || v_sql_admin_where_do || v_sql_admin_where_s;
+
+  end if;
+
+  IF c_flg_administrado = '0' THEN
+      INSERT INTO T_SCOB_TMP_ADMINISTRADO(ID_MULTA)
+      VALUES('0');
+  END IF;
+
+
+  --mostrar los datos de la consulta
+  v_sql_select_1 := '
+  SELECT
+    ROWNUM AS NRO_REG,
+    MULT.ID_MULTA AS ID_MULTA,
+    MULT.ANIO || MULT.CUM AS CUM,
+
+  
+  
+
+    MULT.FEC_INGRESO AS FEC_GENERACION_CUM,
+    TIPO_PROC.DESCRIPCION AS NOM_TIPO_PROCEDEMIENTO,
+    ORGR.CODIGO AS COD_ORGANO_RESOLUTIVO,
+    ORGR.DESCRIPCION AS NOM_ORGANO_RESOLUTIVO,
+    SEDE.CODIGO AS COD_SEDE,
+    SEDE.DESCRIPCION AS NOM_SEDE,
+    MATE.DESCRIPCION AS NOM_MATERIA,
+    SUBM.DESCRIPCION AS NOM_SUB_MATERIA,
+    MULT.NRO_EXP_ADMINISTRATIVO AS NRO_EXPEDIENTE_UNICO,
+    MDET.NRO_EXP_NIVEL AS NRO_EXPEDIENTE_ADMINISTRATIVO,
+    --PRIMERA INSTANCIA
+    NIVEL1.NRO_RESOLUCION AS NRO_RESOL_OR, --num_resolu
+    NIVEL1.FEC_REGISTRO AS FEC_REG_OR,
+    NIVEL1.FEC_RESOLUCION AS FEC_EMI_RESOL_OR, --fec_emision
+    NIVEL1.FEC_NOTIFICACION_RESOLUCION AS FEC_NOTIF_RESOL_OR, --fec_notifica
+    NIVEL1.FEC_ESTADO_SGTE_INSTANCIA AS FEC_APELACION,
+    NIVEL1.LOGIN_USUARIO_REGISTRO AS USU_REG_OR,
+
+  
+  
+    scob_pk_utilitario.scob_fn_dias_laborables_neg(to_char(NIVEL1.FEC_RESOLUCION,''DD/MM/YYYY''),to_char(NIVEL1.FEC_REGISTRO,''DD/MM/YYYY'')) AS CANTIDAD_OR,';
+  v_sql_select_2 :=
+    '--SEGUNDA INSTANCIA
+    NIVEL2.NRO_RESOLUCION AS NRO_RESOL_COMISION,
+    NIVEL2.FEC_REGISTRO AS FEC_REG_COMISION,
+    NIVEL2.FEC_RESOLUCION AS FEC_RESOL_COMISION,
+    NIVEL2.FEC_NOTIFICACION_RESOLUCION AS FEC_NOTIF_RESOL_COMISION,
+    NIVEL2.FEC_ESTADO_SGTE_INSTANCIA AS FEC_REVISION,
+    NIVEL2.LOGIN_USUARIO_REGISTRO AS USU_REG_COMISION,
+
+  
+  
+    scob_pk_utilitario.scob_fn_dias_laborables_neg(to_char(NIVEL2.FEC_RESOLUCION,''DD/MM/YYYY''),to_char(NIVEL2.FEC_REGISTRO,''DD/MM/YYYY'')) AS CANTIDAD_COMISION,
+    --TERCERA INSTANCIA
+    NIVEL3.NRO_RESOLUCION AS NRO_RESOL_SALA,
+    NIVEL3.FEC_REGISTRO AS FEC_REG_SALA,
+    NIVEL3.FEC_RESOLUCION  AS FEC_RESOL_SALA,
+    NIVEL3.FEC_NOTIFICACION_RESOLUCION AS FEC_NOTIF_RESOL_SALA,
+    NIVEL3.LOGIN_USUARIO_REGISTRO AS USU_REG_SALA,
+
+  
+    scob_pk_utilitario.scob_fn_dias_laborables_neg(to_char(NIVEL3.FEC_RESOLUCION,''DD/MM/YYYY''),to_char(NIVEL3.FEC_REGISTRO,''DD/MM/YYYY'')) AS CANTIDAD_SALA,
+    ------------------------------------------------------
+    ';
+  v_sql_select_3 :=
+    'TIPO_MULTA.TXT_DESCRIPCION AS NOM_TIPO_MULTA, --tipo_multa
+    scob_pk_expediente.SCOB_FN_DENUNCIANTES_MULTA(mdet.id_multa,0) AS NOM_DENUNCIANTE, --denunciante
+    scob_pk_expediente.SCOB_FN_DENUNCIADOS_MULTA(mdet.id_multa,0) AS NOM_DENUNCIADO, --denunciado
+    scob_pk_expediente.SCOB_FN_SANCIONADOS_MULTA(mdet.id_multa,0) AS NOM_SANCIONADO, --sancionado
+    scob_pk_expediente.SCOB_FN_SANCIONADOS_TIPO_DOC(mdet.id_multa,0) AS NOM_TIPO_DOC_SANCIONADO,
+    scob_pk_expediente.SCOB_FN_SANCIONADOS_NRO_DOC(mdet.id_multa,0) AS NRO_TIPO_DOC_SANCIONADO,
+    scob_pk_expediente.SCOB_FN_SANCIONADOS_COD_INDEC(mdet.id_multa,0) AS COD_INDECOPI_SANCIONADO,
+    scob_pk_expediente.SCOB_FN_SANCIONADOS_CLAS_INDEC(mdet.id_multa,0) AS CLASIF_SANCIONADO,
+    scob_pk_expediente.SCOB_FN_SANCIONADOS_CIIU(mult.id_multa,0) CIIU_SANCIONADO, --act_economica
+    DECODE(NVL(MDET.POR_ASOCU,''0''),''0'',''No'',''Si'') AS IND_ASOCU,
+    NVL(MDET.POR_ASOCU,0) AS PORCENTAJE_ASOCU,
+    --CAMPOS ANTIDUMPING
+    MUAN.TIPO_CAMBIO AS TIPO_CAMBIO_DA,
+    MUAN.MONTO_ANTIDUMPING AS DERECHO_ANTIDUMPING,
+    MUAN.MONTO_INTERES AS MONTO_DA_IC,
+    MUAN.MONTO_INTERES_MORATORIO AS MONTO_DA_IM,
+    --
+    MUAN.NRO_OFICIO_SUNAT_CODIGO || MUAN.NRO_OFICIO_SUNAT_ANIO || MUAN.NRO_OFICIO_SUNAT_PREFIJO || MUAN.NRO_OFICIO_SUNAT_CORRELATIVO AS NRO_OFICIO_SUNAT,
+    NRO_LIQUIDACION_CODIGO ||NRO_LIQUIDACION_ANIO || NRO_LIQUIDACION_CORRELATIVO AS NRO_LIQUIDACION_COBRANZA,
+    PART.CODIGO AS COD_PARTIDA,
+    PART.DESCRIPCION AS NOM_PARTIDA,
+    --NO EXISTE EL CAMPO MEMO EN LA INTERFAZ DE ANTIDUMPING
+    NRO_DUA_CODIGO || NRO_DUA_ANIO || NRO_DUA_CORRELATIVO AS NRO_DUA,
+    MUAN.ID_INTENDENCIA AS COD_INTENDENCIA,
+    INTE.DESCRIPCION AS NOM_INTENDENCIA,
+
+    --DECODE(MUAN.NRO_LIQUIDACION_CODIGO,NULL,'''',MUAN.NRO_LIQUIDACION_CODIGO ||''-''|| MUAN.NRO_LIQUIDACION_ANIO ||''/''|| MUAN.NRO_LIQUIDACION_CORRELATIVO) AS NRO_LIQUIDACION_COBRANZA2,
+    DECODE(MATE.CODIGO,11,DECODE(SUBM.CODIGO,21,MUAN.NRO_LIQUIDACION_CODIGO ||''-''|| MUAN.NRO_LIQUIDACION_ANIO ||''/''|| MUAN.NRO_LIQUIDACION_CORRELATIVO,''''),'''') AS NRO_LIQUIDACION_COBRANZA2,
+    DECODE(MATE.CODIGO,11,DECODE(SUBM.CODIGO,21,TO_CHAR(NIVEL2.FEC_NOTIFICACION_RESOLUCION,''DD/MM/YYYY''),''''),'''') AS FECH_NOT_SUNAT,
+    --'''' AS FECH_NOT_SUNAT,
+    --MUAN.MONTO_ANTIDUMPING AS MONTO_ANTIDUMPING,
+    DECODE(MATE.CODIGO,11,DECODE(SUBM.CODIGO,21,MUAN.NRO_DUA_CODIGO ||''-''|| MUAN.NRO_DUA_ANIO ||''-''|| MUAN.NRO_DUA_CORRELATIVO,''''),'''') AS NRO_DUA2,
+    --DECODE(MUAN.NRO_DUA_CODIGO,NULL,'''',MUAN.NRO_DUA_CODIGO ||''-''|| MUAN.NRO_DUA_ANIO ||''-''|| MUAN.NRO_DUA_CORRELATIVO) AS NRO_DUA2,
+    DECODE(MATE.CODIGO,11,DECODE(SUBM.CODIGO,21,PART.CODIGO||''-''||PART.DESCRIPCION,''''),'''') AS NOM_PARTIDA2,
+    --PART.CODIGO||''-''||PART.DESCRIPCION AS NOM_PARTIDA2,
+    --INTE.DESCRIPCION AS DESC_INTENDENCIA,
+    --FIN CAMPOS ANTIDUMPING
+    -----------------------------------
+  ';
+  v_sql_select_4 :=
+   'NVL(MDET.VALOR_UIT,0) AS VALOR_UIT,
+    MULT.MONTO_UIT AS MONTO_UIT,
+    MULT.MONTO_INTERES AS MONTO_IC,
+    MULT.MONTO_INTERES_MORATORIO AS MONTO_INTERES_IM,
+    MULT.MONTO_COSTAS AS MONTO_COSTAS,
+    --
+    MULT.TOTAL_AMORTIZADO AS TOTAL_AMORTIZADO,
+    MULT.TOTAL_AMORTIZADO_IC AS TOTAL_AMORTIZADO_IC,
+    MULT.TOTAL_AMORTIZADO_IM AS TOTAL_AMORTIZADO_IM,
+    MULT.TOTAL_AMORTIZADO_COSTAS AS TOTAL_AMORTIZADO_COSTAS,
+    --
+    MULT.SALDO AS SALDO, --saldo_capital
+    MULT.SALDO_IC AS SALDO_IC,
+    MULT.SALDO_IM AS SALDO_IM,
+    MULT.SALDO_COSTAS AS SALDO_COSTAS,
+    EST_MULTA_OR.TXT_DESCRIPCION AS NOM_ESTADO_MULTA_OR, --est_multa_resolu
+    EST_DEUDA.TXT_DESCRIPCION AS NOM_ESTADO_PAGO, --est_pago_multa
+    DECODE(MULT.COD_ESTADO_PAGO,''4'',MULT.PORCENTAJE_DESCUENTO,NULL) AS POR_DSCTO_PAGO, --porcen_dscto_pago
+    MULT.FEC_GENERACION_SEC AS FEC_GENERACION_SEC, --fec_gene_sec
+    MULT.ANIO_FILE_AEC AS ANIO_FILE_AEC, --anio_file
+    MULT.FEC_INGRESO_AEC AS FEC_RECEPCION_FILE,
+    ARCO.CODIGO || MULT.NRO_FILE_AEC AS NRO_FILE_AEC, --nro_file
+
+  
+  
+  
+
+    MCOB.NRO_INGRESO AS NRO_INGRESO_AEC,
+    EST_MULTA_COB.TXT_DESCRIPCION AS NOM_ESTADO_MULTA_COB,
+    DECODE(MOTIVO_MULT.ID_MOTIVO,0,NULL,MOTIVO_MULT.DESCRIPCION) AS NOM_MOTIVO_MULTA, --moti_multacobra
+    MULT.FEC_ULT_IMPROCEDENCIA AS FEC_ULT_OBSERVACION_AEC,
+  ';
+  v_sql_select_5 :=
+    'MULT.FEC_INGRESO_FILE  AS FEC_ULT_INGRESO_AEC,
+    EXPE.ANIO||EXPE.NRO_EXPEDIENTE AS NRO_EXPED_COB, --nro_expe_cobranza
+    EXPE.FEC_INGRESO AS FEC_GENERACION_EXPED_COB, --fec_gen_exp_cobran
+    USUA.USUARIO AS USU_GESTOR_COBRANZA, --gestor_cobranza
+    MULT.FECHA_ASIG_COBRANZA AS FEC_ASIG_GESTOR_COBRANZA,
+    MULT.FEC_ULT_GEN_PRECOACTIVA AS FEC_ULT_GEN_PRECOACTIVA,
+    MULT.FEC_EMISION_REC AS FEC_EMISION_REC, --fec_emision_REC
+    MULT.FEC_NOTIF_REC AS FEC_NOTIF_REC, --fec_notifi_REC
+    DECODE(NVL(EXPE.FLG_EMBARGO,''0''),''0'',''No'', ''Si'') AS IND_EMBARGO,
+    EST_EXP.DESCRIPCION AS NOM_ESTADO_EXPED_COB, --est_exp_cobranza
+    MOTIVO_EXPE.DESCRIPCION AS NOM_MOTIVO_EXPED_COB, --moti_exp_cobranza
+    EXPE.FEC_ESTADO_EXPEDIENTE AS FEC_ULT_ESTADO_EXPED_COB, --fec_est_exp_cobran
+    SCOB_PK_UTILITARIO.SCOB_FN_TABLA_DET_DES('||SCOB_PK_CONSTANTES.C_TBL_ESPECTATIVA_COBRO_EXPCOB||',EXPE.COD_EXPECTATIVA_COBRO) AS NOM_EXPECTATIVA_COBRO,
+    scob_pk_expediente.SCOB_FN_SANCIONADOS_REGION(mdet.id_multa,0) AS REGION_SANCIONADO,
+
+    DECODE(EXPE.ID_EXPEDIENTE,NULL,MULT.FEC_ENVIO_RIESGO,MULT.FEC_ENVIO_RIESGO_EXP) AS FEC_MARCA_ENVIO_INFOCORP, --(FECHA EN QUE "MARCA" PARA ENVIAR A INFOCORP)
+    ARCH_CEN.NRO_ORDEN AS NRO_ENVIO_ARCHIVO, --nro_envarch_central
+    ARCH_CEN.FEC_ENVIO AS FEC_ENVIO_ARCHIVO, --fec_envarch_central
+    (CASE
+      WHEN MULT.ESTADO_ENVIO_ARCHIVO = 2 THEN ''ARCHIVO CENTRAL''
+      WHEN MULT.ESTADO_MULTA IN (9,10,11,12,13) THEN ''AEC''
+      ELSE '' '' END) AS UBI_FISICA_EXPEDIENTE,
+    SIT_MULTA.COD_SITUACION_MULTA AS COD_SITUACION_MULTA,
+
+    TIPO_PROC.Codigo   AS vc_cod_tipoproc,
+    MATE.CODIGO        AS VC_COD_MATERIA,
+    SUBM.CODIGO        AS VC_COD_SUBMATERIA,
+    EST_MULTA_OR.COD_INTERNO  AS VC_COD_EST_MULTA,
+    EST_DEUDA.COD_INTERNO     AS VC_COD_EST_PAGO,
+    EST_MULTA_COB.COD_INTERNO AS VC_COD_EST_MULTA_COB,
+    EST_EXP.CODIGO            AS VC_CODIGO_EST_EXP,
+    MOTIVO_EXPE.CODIGO        AS VC_COD_MOTIVO_EXPED_COB,
+    NULL               AS VC_CODIGO_CLASIFICACION,
+    NULL               AS VC_CODIGO_CIIU,
+    (CASE WHEN EXPE.ESTADO_EXPEDIENTE = 4 THEN
+     ''FR'' ELSE ''NF'' END) AS VC_TIPO_MULTA,
+    scob_pk_consulta.fn_getReso_gaf_aprueba(EXPE.id_expediente) AS vc_reso_gaf_APRUEBA,
+    scob_pk_consulta.fn_getFecReso_gaf_aprueba(EXPE.id_expediente) AS vc_FEC_reso_gaf_APRUEBA,
+    scob_pk_consulta.fn_getReso_gaf_perdida(EXPE.id_expediente) AS vc_reso_gaf_PERDIDA,
+    scob_pk_consulta.fn_getFecReso_gaf_perdida(EXPE.id_expediente) AS vc_FEC_reso_gaf_PERDIDA,
+    scob_pk_consulta.SCOB_FN_COD_DENUNCIANTES_MULTA(mdet.id_multa,0) AS VC_NRO_DOC_DENUNCIANTE,
+    DECODE(MULT.COD_MOTIVO, 0, NULL, MULT.COD_MOTIVO) AS VC_COD_MOTIVO_MULTA_COB,
+    scob_pk_consulta.SCOB_FN_CENTRO_DE_COSTO(MULT.ID_MULTA) AS VC_COD_CENTRO_COSTO, 
+
+    NULL AS VC_NRO_REC_DECLA_01,
+    NULL AS DT_RES_CONS_FIRME_01,
+    NULL AS DT_NOTF_CONS_FIRME_01,
+    NULL AS VC_NRO_REC_DECLA_02,
+    NULL AS DT_RES_CONS_FIRME_02,
+    NULL AS DT_NOTF_CONS_FIRME_02,
+    NULL AS VC_NRO_REC_DECLA_03,
+    NULL AS DT_RES_CONS_FIRME_03,
+    NULL AS DT_NOTF_CONS_FIRME_03,
+
+  
+    NULL AS V_ACUM, 
+    NULL AS ES_ACUM,
+    NULL AS ID_EXPEDIENTE,
+    NULL AS UIT_NIVEL1,
+    NULL AS FEC_DECLARACION_NIVEL1,
+    NULL AS F_REGISTRO_NIVEL1,
+    NULL AS UIT_NIVEL2,
+    NULL AS FEC_DECLARACION_NIVEL2,
+    NULL AS F_REGISTRO_NIVEL2,
+    NULL AS UIT_NIVEL3,
+    NULL AS F_REGISTRO_NIVEL3,
+  NULL AS NRO_FILE_CUM_ALFA ';
+  --JOINS
+  v_sql_join_1 := '
+  FROM T_SCOB_MULTA MULT
+  INNER JOIN T_SCOB_MULTA_DETAL MDET
+       ON MDET.ID_MULTA = MULT.ID_MULTA
+       AND MDET.FLG_ACTUAL = ''1''
+       AND MDET.ESTADO = ''1''
+  INNER JOIN (
+    SELECT DISTINCT ID_MULTA AS ID_MULTA
+    FROM T_SCOB_TMP_ADMINISTRADO
+  ) ADMINISTRADO
+  ON (
+     ('||c_flg_administrado||' = ''0'' AND ''0''=ADMINISTRADO.ID_MULTA)OR
+     ('||c_flg_administrado||' <> ''0'' AND ADMINISTRADO.ID_MULTA = MULT.ID_MULTA)
+  )
+  INNER JOIN T_SCOB_TMP_SITUACION_MULTA SIT_MULTA
+        ON SIT_MULTA.ID_MULTA = MULT.ID_MULTA
+  INNER JOIN T_SCOB_MATERIA MATE
+       ON MATE.ID_MATERIA = MULT.ID_MATERIA
+  INNER JOIN T_SCOB_TIPO_PROCEDIMIENTO TIPO_PROC
+       ON TIPO_PROC.ID_TIPO_PROCEDIMIENTO = MATE.ID_TIPO_PROCEDIMIENTO
+  INNER JOIN T_SCOB_SUBMATERIA SUBM
+       ON SUBM.ID_SUBMATERIA = MULT.ID_SUB_MATERIA
+  INNER JOIN T_SCOB_ORGANO_RESOLUTIVO ORGR
+       ON ORGR.ID_ORGANO_RESOLUTIVO = MDET.ID_ORGANO_RESOLUTIVO
+  INNER JOIN T_SCOB_UBIGEO UBIG_ORGR
+       ON UBIG_ORGR.COD_DPTO = ORGR.COD_DPTO
+       AND UBIG_ORGR.COD_PROV = ORGR.COD_PROV
+       AND UBIG_ORGR.COD_DIST = ORGR.COD_DIST
+  INNER JOIN T_SCOB_SEDE SEDE
+       ON SEDE.ID_SEDE = MULT.ID_SEDE
+  INNER JOIN T_SCOB_UBIGEO UBIG_SEDE
+       ON UBIG_SEDE.COD_DPTO = SEDE.COD_DPTO
+       AND UBIG_SEDE.COD_PROV = SEDE.COD_PROV
+       AND UBIG_SEDE.COD_DIST = SEDE.COD_DIST
+  INNER JOIN T_SCOB_TABLA_DET TIPO_MULTA
+        ON TIPO_MULTA.ID_TABLA = 45 --TIPO MULTA
+        AND TO_NUMBER(TIPO_MULTA.COD_INTERNO) = TO_NUMBER(MULT.FLG_TIPO_MULTA)
+  INNER JOIN T_SCOB_TABLA_DET EST_DEUDA
+        ON EST_DEUDA.ID_TABLA = 34 --ESTADO DEUDA PAGO
+        AND TO_NUMBER(EST_DEUDA.COD_INTERNO) = MULT.COD_ESTADO_PAGO';
+
+  v_sql_join_2 := '
+  LEFT JOIN T_SCOB_TABLA_DET EST_MULTA_OR
+        ON EST_MULTA_OR.ID_TABLA = 5 --ESTADO MULTA OR
+        AND TO_NUMBER(EST_MULTA_OR.COD_INTERNO) = MDET.ESTADO_MULTA
+        AND TO_NUMBER(EST_MULTA_OR.TXT_VALOR1) = 1
+  LEFT JOIN T_SCOB_TABLA_DET EST_MULTA_COB
+       ON EST_MULTA_COB.ID_TABLA = 5 --ESTADO MULTA COBRANZA
+       AND TO_NUMBER(EST_MULTA_COB.COD_INTERNO) = MULT.ESTADO_MULTA
+       AND TO_NUMBER(EST_MULTA_COB.TXT_VALOR1) = 2
+  LEFT JOIN T_SCOB_AREA_COBRANZA ARCO
+       ON ARCO.ID_AREA_COBRANZA = MULT.ID_AREA_COBRANZA
+  LEFT JOIN T_SCOB_USUARIO USUA
+       ON USUA.ID_USUARIO = MULT.ID_USUARIO_ASIG_COBRANZA
+  ------------------------------------------------------------------------------
+  ---INSTANCIAS
+  LEFT JOIN T_SCOB_TMP_INSTANCIAS_MULTA1 NIVEL1
+       ON NIVEL1.NRO_NIVEL = '||SCOB_PK_CONSTANTES.C_TBL_TIPO_INSTANCIA_AUTO||'
+       AND NIVEL1.ID_MULTA = MULT.ID_MULTA
+  LEFT JOIN T_SCOB_TMP_INSTANCIAS_MULTA1 NIVEL2
+       ON NIVEL2.NRO_NIVEL = '||SCOB_PK_CONSTANTES.C_TBL_TIPO_INSTANCIA_COMI||'
+       AND NIVEL2.ID_MULTA = MULT.ID_MULTA
+  LEFT JOIN T_SCOB_TMP_INSTANCIAS_MULTA1 NIVEL3
+       ON NIVEL3.NRO_NIVEL = '||SCOB_PK_CONSTANTES.C_TBL_TIPO_INSTANCIA_SALA||'
+       AND NIVEL3.ID_MULTA = MULT.ID_MULTA
+  ------------------------------------------------------------------------------
+  LEFT JOIN T_SCOB_MULTA_COBRANZA MCOB
+       ON MCOB.ID_MULTA = MULT.ID_MULTA
+       AND MCOB.FLG_ACTUAL = ''1''
+       AND MCOB.ESTADO = ''1''';
+
+  v_sql_join_3 := '
+  LEFT JOIN T_SCOB_EST_MUL_COB_MOTIVO MOTIVO_MULT --motivo multa cobranza
+       ON MOTIVO_MULT.ID_MOTIVO = MULT.COD_MOTIVO
+  LEFT JOIN T_SCOB_EXPEDIENTE_MULTA EXMU
+       ON EXMU.ID_MULTA = MULT.ID_MULTA
+       AND EXMU.ESTADO = ''1''
+  LEFT JOIN T_SCOB_EXPEDIENTE EXPE
+       ON EXPE.ID_EXPEDIENTE = EXMU.ID_EXPEDIENTE
+       AND EXPE.ESTADO = ''1''
+  LEFT JOIN T_SCOB_EST_EXP_COB EST_EXP
+       ON EST_EXP.ID_EST_EXP_COB = EXPE.ESTADO_EXPEDIENTE
+  LEFT JOIN T_SCOB_EST_EXP_COB_MOTIVO MOTIVO_EXPE --motivo estado expediente
+       ON MOTIVO_EXPE.ID_MOTIVO = EXPE.ID_MOTIVO
+  LEFT JOIN T_SCOB_MULTA_ANTIDUMPING MUAN
+       ON MUAN.ID_MULTA = MULT.ID_MULTA
+       AND MUAN.ESTADO = ''1''
+  LEFT JOIN T_SCOB_INTENDENCIA INTE
+       ON INTE.ID_INTENDENCIA = MUAN.ID_INTENDENCIA
+  LEFT JOIN T_SCOB_PARTIDA PART
+       ON PART.ID_PARTIDA = MUAN.ID_PARTIDA';
+
+  v_sql_join_4 := '
+  LEFT JOIN T_SCOB_MULTA_ARCHIVO_CENTRAL EXPED_ARCH_CEN
+       ON EXPED_ARCH_CEN.ID_MULTA = MULT.ID_MULTA
+       AND EXPED_ARCH_CEN.FLG_ACTUAL = ''1''
+       AND EXPED_ARCH_CEN.ESTADO = ''1''
+  LEFT JOIN T_SCOB_ARCHIVO_CENTRAL ARCH_CEN
+       ON ARCH_CEN.ID_ARCHIVO_CENTRAL = EXPED_ARCH_CEN.ID_MULTA_ARCHIVO_CENTRAL
+       AND ARCH_CEN.ESTADO = ''1''';
+
+  v_sql_where_1 := v_sql_where_1 || '
+  WHERE MULT.ESTADO = ''1''';
+
+  ---------------------------------------------------------------------------
+  -- FILTROS MULTA
+  ---------------------------------------------------------------------------
+  --AREA MACRO
+  if pi_v_area_macro is not null then
+     v_sql_where_1 := v_sql_where_1 || '
+     AND INSTR('''||pi_v_area_macro||''',''|'' || TO_CHAR(TIPO_PROC.ID_TIPO_PROCEDIMIENTO) || ''|'' )>0';
+  end if;
+
+  --CODIGO MULTA
+  if pi_v_cum_ini is not null then
+     v_sql_where_1 := v_sql_where_1 || '
+     AND MULT.ANIO||MULT.CUM BETWEEN '''||pi_v_cum_ini||''' AND '''||pi_v_cum_fin|| '''';
+  end if;
+
+  --FECHA GENERACION MULTA
+  if pi_v_fec_gen_cum_ini is not null then
+     v_sql_where_1 := v_sql_where_1 || '
+     AND TO_DATE(TO_CHAR(MULT.FEC_INGRESO,''DD/MM/YYYY''),''DD/MM/YYYY'')
+     BETWEEN TO_DATE('''||pi_v_fec_gen_cum_ini||''',''DD/MM/YYYY'') AND TO_DATE('''||pi_v_fec_gen_cum_fin||''',''DD/MM/YYYY'')
+     ';
+  end if;
+
+  --SEDE
+  if pi_v_id_sede is not null then
+     v_sql_where_1 := v_sql_where_1 || '
+     AND INSTR('''||pi_v_id_sede||''',''|'' || TO_CHAR(MULT.ID_SEDE) || ''|'' )>0';
+  end if;
+
+  --UBIGEO SEDE
+  if PI_V_ID_COD_DPTO_SEDE is not null then
+     v_sql_where_1 := v_sql_where_1 || '
+     AND SEDE.COD_DPTO='''||PI_V_ID_COD_DPTO_SEDE||'''';
+  end if;
+
+  if PI_V_ID_COD_PROV_SEDE is not null then
+     v_sql_where_2 := v_sql_where_2 || '
+     AND SEDE.COD_PROV='''||PI_V_ID_COD_PROV_SEDE||'''';
+  end if;
+
+  if PI_V_ID_COD_DIST_SEDE is not null then
+     v_sql_where_2 := v_sql_where_2 || '
+     AND SEDE.COD_DIST='''||PI_V_ID_COD_DIST_SEDE||'''';
+  end if;
+
+  --ORGANO RESOLUTIVO
+  if pi_v_id_org_resol is not null then
+     v_sql_where_2 := v_sql_where_2 || '
+     AND INSTR('''||pi_v_id_org_resol||''',''|'' || TO_CHAR(MDET.ID_ORGANO_RESOLUTIVO) || ''|'' )>0';
+  end if;
+
+  --UBIGEO ORGANO RESOLUTIVO
+  if PI_V_ID_COD_DPTO_ORGR is not null then
+     v_sql_where_2 := v_sql_where_2 || '
+     AND ORGR.COD_DPTO='''||PI_V_ID_COD_DPTO_ORGR||'''';
+  end if;
+
+  if PI_V_ID_COD_PROV_ORGR is not null then
+     v_sql_where_2 := v_sql_where_2 || '
+     AND ORGR.COD_PROV='''||PI_V_ID_COD_PROV_ORGR||'''';
+  end if;
+  if PI_V_ID_COD_DIST_ORGR is not null then
+     v_sql_where_3 := v_sql_where_3 || '
+     AND ORGR.COD_DIST='''||PI_V_ID_COD_DIST_ORGR||'''';
+  end if;
+
+  --TIPO INSTANCIA
+  if PI_V_ID_NRO_INSTANCIA is not null then
+     v_sql_where_3 := v_sql_where_3 || '
+     AND INSTR('''||PI_V_ID_NRO_INSTANCIA||''',''|'' || TO_CHAR(ORGR.TIPO_INSTANCIA) || ''|'' )>0';
+  end if;
+
+  --MATERIA
+  if pi_v_id_materia is not null then
+     v_sql_where_3 := v_sql_where_3 || '
+     AND INSTR('''||pi_v_id_materia||''',''|'' || TO_CHAR(MULT.ID_MATERIA) || ''|'' )>0';
+  end if;
+
+  --SUBMATERIA
+  if pi_v_id_sub_materia is not null then
+     v_sql_where_3 := v_sql_where_3 || '
+     AND INSTR('''||pi_v_id_sub_materia||''',''|'' || TO_CHAR(MULT.ID_SUB_MATERIA) || ''|'' )>0';
+  end if;
+
+  --NUMERO EXPEDIENTE UNICO
+  if pi_v_nro_exp_unico_ini is not null then
+     v_sql_where_3 := v_sql_where_3 || '
+     AND TO_NUMBER(MULT.NRO_EXPED_UNICO) --@0001
+        BETWEEN '''||pi_v_nro_exp_unico_ini||''' and '''||pi_v_nro_exp_unico_fin||'''';
+  end if;
+
+  --NUMERO EXPEDIENTE ADMINISTRATIVO
+  if pi_v_nroExpAdm_nivel is not null then
+     v_sql_where_3 := v_sql_where_3 || '
+     AND MDET.NRO_EXP_NIVEL LIKE '''|| pi_v_nroExpAdm_nivel ||'%''';
+  end if;
+
+  --NRO RESOLUCION OR
+  if pi_v_nro_resol is not null then
+     v_sql_where_3 := v_sql_where_3 || '
+     AND NIVEL1.NRO_RESOLUCION LIKE '''|| pi_v_nro_resol || '%''';
+  end if;
+
+  --FECHA RESOLUCION OR
+  if pi_v_fec_reso_or_ini is not null then
+     v_sql_where_3 := v_sql_where_3 || '
+     AND TO_DATE(TO_CHAR(MDET.FEC_RESOLUCION,''DD/MM/YYYY''),''DD/MM/YYYY'')
+         BETWEEN TO_DATE('''||pi_v_fec_reso_or_ini||''',''DD/MM/YYYY'') AND TO_DATE('''||pi_v_fec_reso_or_fin||''',''DD/MM/YYYY'')';
+  end if;
+
+  --FECHA NOTIFICACION RESOLUCION OR
+  if pi_v_fec_notifi_or_ini is not null then
+     v_sql_where_4 := v_sql_where_4 || '
+     AND TO_DATE(TO_CHAR(MDET.FEC_NOTIFICACION_RESOLUCION,''DD/MM/YYYY''),''DD/MM/YYYY'')
+         BETWEEN TO_DATE('''||pi_v_fec_notifi_or_ini||''',''DD/MM/YYYY'') AND TO_DATE('''||pi_v_fec_notifi_or_fin||''',''DD/MM/YYYY'')';
+  end if;
+
+  --FECHA GENERACION DE LA SEC
+  if PI_V_FEC_GENERACION_SEC_INI is not null then
+     v_sql_where_4 := v_sql_where_4 || '
+     AND TO_DATE(TO_CHAR(MULT.FEC_GENERACION_SEC,''DD/MM/YYYY''),''DD/MM/YYYY'')
+         BETWEEN TO_DATE('''||PI_V_FEC_GENERACION_SEC_INI||''',''DD/MM/YYYY'') AND TO_DATE('''||PI_V_FEC_GENERACION_SEC_FIN||''',''DD/MM/YYYY'')';
+  end if;
+
+  --FECHA INGRESO AL AEC
+  if pi_v_fec_recepcion_aec_ini is not null then
+     v_sql_where_4 := v_sql_where_4 || '
+     AND TO_DATE(TO_CHAR(MULT.FEC_INGRESO_FILE,''DD/MM/YYYY''),''DD/MM/YYYY'')
+         BETWEEN TO_DATE('''||pi_v_fec_recepcion_aec_ini||''',''DD/MM/YYYY'') AND TO_DATE('''||pi_v_fec_recepcion_aec_fin||''',''DD/MM/YYYY'')';
+  end if;
+
+  --AÑO INGRESO AL AEC
+  if PI_V_ANIO_INGRESO_AEC_INI is not null then
+     v_sql_where_4 := v_sql_where_4 || '
+     AND MCOB.ANIO
+         BETWEEN '''||PI_V_ANIO_INGRESO_AEC_INI||''' AND '''||PI_V_ANIO_INGRESO_AEC_FIN||'''';
+  end if;
+
+  --NRO INGRESO AL AEC
+  if PI_V_NRO_INGRESO_AEC_INI is not null then
+     v_sql_where_4 := v_sql_where_4 || '
+     AND MCOB.NRO_INGRESO
+         BETWEEN '''||LPAD(PI_V_NRO_INGRESO_AEC_INI,4,'0000')||''' AND '''||LPAD(PI_V_NRO_INGRESO_AEC_FIN,4,'0000')||'''';
+  end if;
+
+  --AÑO FILE
+  if PI_V_ANIO_FILE_INI is not null then
+     v_sql_where_4 := v_sql_where_4 || '
+     AND MULT.ANIO_FILE_AEC BETWEEN '''||PI_V_ANIO_FILE_INI||''' AND '''||PI_V_ANIO_FILE_FIN||'''';
+  end if;
+
+  --NRO FILE
+  if PI_V_NRO_FILE_INI is not null then
+     v_sql_where_4 := v_sql_where_4 || '
+     AND MULT.NRO_FILE_AEC
+         BETWEEN '''||LPAD(PI_V_NRO_FILE_INI,10,'0000000000')||''' AND '''||LPAD(PI_V_NRO_FILE_FIN,10,'0000000000')||'''';
+  end if;
+
+  --VALOR UIT
+  if pi_n_valor_uit_ini>0 then
+     v_sql_where_5 := v_sql_where_5 || '
+     AND MDET.VALOR_UIT
+         BETWEEN '||pi_n_valor_uit_ini||' AND '||pi_n_valor_uit_fin;
+  end if;
+
+  --MONTO UIT
+  if pi_n_monto_uit_ini>0 then
+     v_sql_where_5 := v_sql_where_5 || '
+     AND MULT.MONTO_UIT
+         BETWEEN '||pi_n_monto_uit_ini||' AND '||pi_n_monto_uit_fin;
+  end if;
+
+  --SALDO UIT
+  if pi_n_saldo_ini>0 then
+     v_sql_where_5 := v_sql_where_5 || '
+     AND MULT.SALDO
+         BETWEEN '||pi_n_saldo_ini||' AND '||pi_n_saldo_fin;
+  end if;
+
+  --TIPO MULTA
+  if pi_v_id_tipo_multa is not null then
+     v_sql_where_5 := v_sql_where_5 || '
+     AND INSTR('''||pi_v_id_tipo_multa||''',''|'' || MULT.FLG_TIPO_MULTA || ''|'' )>0';
+  end if;
+
+  --ESTADO MULTA OR
+  if pi_v_cod_estado_multa_resol is not null then
+     v_sql_where_5 := v_sql_where_5 || '
+     AND INSTR('''||pi_v_cod_estado_multa_resol||''',''|'' || TO_CHAR(MDET.ESTADO_MULTA) || ''|'' )>0';
+  end if;
+
+  --ESTADO PAGO MULTA
+  if pi_v_cod_estado_pago is not null then
+     v_sql_where_5 := v_sql_where_5 || '
+     AND INSTR('''||pi_v_cod_estado_pago||''',''|'' || TO_CHAR(MULT.COD_ESTADO_PAGO) || ''|'' )>0';
+  end if;
+
+  --FECHA ESTADO MULTA OR
+  if PI_V_FEC_ESTADO_MULTA_OR_INI is not null then
+     v_sql_where_6 := v_sql_where_6 || '
+     AND TO_DATE(TO_CHAR(MDET.FEC_ESTADO_MULTA,''DD/MM/YYYY''),''DD/MM/YYYY'')
+         BETWEEN TO_DATE('''||PI_V_FEC_ESTADO_MULTA_OR_INI||''',''DD/MM/YYYY'') AND TO_DATE('''||PI_V_FEC_ESTADO_MULTA_OR_FIN||''',''DD/MM/YYYY'')';
+  end if;
+
+  --FECHA ESTADO MULTA COB
+  if PI_V_FEC_ESTADO_MULTA_COB_INI is not null then
+     v_sql_where_6 := v_sql_where_6 || '
+     AND TO_DATE(TO_CHAR(MULT.FEC_ESTADO_MULTA,''DD/MM/YYYY''),''DD/MM/YYYY'')
+         BETWEEN TO_DATE('''||PI_V_FEC_ESTADO_MULTA_COB_INI||''',''DD/MM/YYYY'') AND TO_DATE('''||PI_V_FEC_ESTADO_MULTA_COB_FIN||''',''DD/MM/YYYY'')';
+  end if;
+
+  --ESTADO MULTA COBRANZA
+  if pi_v_cod_estado_multa_cob is not null then
+     v_sql_where_6 := v_sql_where_6 || '
+     AND INSTR('''||pi_v_cod_estado_multa_cob||''',''|'' || TO_CHAR(MULT.ESTADO_MULTA) || ''|'' )>0';
+  end if;
+
+  --MOTIVO MULTA COBRANZA
+  if pi_v_cod_motivo_multa_cob is not null then
+     v_sql_where_6 := v_sql_where_6 || '
+     AND INSTR('''||pi_v_cod_motivo_multa_cob||''',''|'' || MULT.COD_MOTIVO || ''|'' )>0';
+  end if;
+
+  --INDICADOR DE PAGO
+  if PI_V_IND_TIPO_PAGO is not null then
+     v_sql_where_6 := v_sql_where_6 || '
+     AND INSTR('''||PI_V_IND_TIPO_PAGO||''',''|'' || TO_CHAR(SIT_MULTA.COD_SITUACION_MULTA) || ''|'' )>0';
+  end if;
+
+  --INDICADOR PORCENTAJE ASOCU MULTA
+  if pi_c_flg_asocu_multa<>'0' then
+     v_sql_where_6 := v_sql_where_6 || '
+     AND NVL(MDET.POR_ASOCU,0) > 0';
+  end if;
+
+  --EXPECTATIVA DE COBRO
+  if pi_v_id_expectativa_cobro is not null then
+     v_sql_where_7 := v_sql_where_7 || '
+     AND INSTR('''||pi_v_id_expectativa_cobro||''',''|'' || TO_CHAR(EXPE.COD_EXPECTATIVA_COBRO) || ''|'' )>0';
+  end if;
+
+  --INDICADOR EMBARGO
+  if pi_c_flg_ind_embargo<>'0' then
+     v_sql_where_7 := v_sql_where_7 || '
+     AND NVL(EXPE.FLG_EMBARGO,''0'') = ''1''';
+  end if;
+
+  --FECHA ULTIMA GENERACION PRECOACTIVO
+  if pi_v_fec_carta_precoactiva_ini is not null then
+     v_sql_where_7 := v_sql_where_7 || '
+     AND TO_DATE(TO_CHAR(MULT.FEC_ULT_GEN_PRECOACTIVA,''DD/MM/YYYY''),''DD/MM/YYYY'')
+         BETWEEN TO_DATE('''||pi_v_fec_carta_precoactiva_ini||''',''DD/MM/YYYY'') AND TO_DATE('''||pi_v_fec_carta_precoactiva_fin||''',''DD/MM/YYYY'')';
+  end if;
+
+ --FECHA RECEPCION FILE
+  if pi_v_fec_recepcion_file_ini is not null then
+     v_sql_where_7 := v_sql_where_7 || '
+     AND TO_DATE(TO_CHAR(MULT.FEC_INGRESO_AEC,''DD/MM/YYYY''),''DD/MM/YYYY'')
+         BETWEEN TO_DATE('''||pi_v_fec_recepcion_file_ini||''',''DD/MM/YYYY'') AND TO_DATE('''||pi_v_fec_recepcion_file_fin||''',''DD/MM/YYYY'')';
+  end if;
+
+  ---------------------------------------------------------------------------
+  -- FILTROS EXPEDIENTE
+  ---------------------------------------------------------------------------
+  --ESTADO EXPEDIENTE COBRANZA
+  if pi_v_cod_estado_exped_cob is not null then
+     v_sql_where_7 := v_sql_where_7 || '
+     AND INSTR('''||pi_v_cod_estado_exped_cob||''',''|'' || TO_CHAR(EXPE.ESTADO_EXPEDIENTE) || ''|'' )>0';
+  end if;
+
+  --AÑO EXPEDIENTE COBRANZA
+  if pi_v_anio is not null then
+     v_sql_where_7 := v_sql_where_7 || '
+     AND EXPE.ANIO='''||pi_v_anio||'''';
+  end if;
+
+  --NRO EXPEDIENTE COBRANZA
+  if pi_v_nro_exp_cob_ini>0 then
+     v_sql_where_7 := v_sql_where_7 || '
+     AND EXPE.NRO_EXPEDIENTE
+         BETWEEN lpad('''||pi_v_nro_exp_cob_ini||''',10,''0000000000'') AND lpad('''||pi_v_nro_exp_cob_fin||''',10,''0000000000'')';
+  end if;
+
+  --FECHA GENERACION EXPEDIENTE COBRANZA
+  if pi_v_fec_gen_exped_cob_ini is not null then
+     v_sql_where_8 := v_sql_where_8 || '
+     AND TO_DATE(TO_CHAR(EXPE.FEC_INGRESO,''DD/MM/YYYY''),''DD/MM/YYYY'')
+         BETWEEN TO_DATE('''||pi_v_fec_gen_exped_cob_ini||''',''DD/MM/YYYY'') AND TO_DATE('''||pi_v_fec_gen_exped_cob_fin||''',''DD/MM/YYYY'')';
+  end if;
+
+  --GESTOR COBRANZA
+  if pi_v_gestor_cobranza is not null then
+     v_sql_where_8 := v_sql_where_8 || '
+     AND INSTR('''||pi_v_gestor_cobranza||''',''|'' || TO_CHAR(MULT.ID_USUARIO_ASIG_COBRANZA) || ''|'' )>0';
+  end if;
+
+  --FECHA EMISION DE LA REC
+  if pi_v_fec_emi_rec_ini is not null then
+     v_sql_where_8 := v_sql_where_8 || '
+     AND TO_DATE(TO_CHAR(MULT.FEC_EMISION_REC,''DD/MM/YYYY''),''DD/MM/YYYY'')
+         BETWEEN TO_DATE('''||pi_v_fec_emi_rec_ini||''',''DD/MM/YYYY'') AND TO_DATE('''||nvl(pi_v_fec_emi_rec_fin,pi_v_fec_emi_rec_ini)||''',''DD/MM/YYYY'')';
+  end if;
+
+  --FECHA NOTIFICACION DE LA REC
+  if pi_v_fec_noti_rec_ini is not null then
+     v_sql_where_8 := v_sql_where_8 || '
+     AND TO_DATE(TO_CHAR(MULT.FEC_NOTIF_REC,''DD/MM/YYYY''),''DD/MM/YYYY'')
+         BETWEEN TO_DATE('''||pi_v_fec_noti_rec_ini||''',''DD/MM/YYYY'') AND TO_DATE('''||pi_v_fec_noti_rec_fin||''',''DD/MM/YYYY'')';
+  end if;
+
+  --MOTIVO EXPEDIENTE COBRANZA
+  if pi_v_cod_motivo_exped_cob is not null then
+     v_sql_where_8 := v_sql_where_8 || '
+     AND INSTR('''||pi_v_cod_motivo_exped_cob||''',''|'' || TO_CHAR(EXPE.ID_MOTIVO) || ''|'' )>0';
+  end if;
+
+  --FECHA ULTIMO ESTADO EXPEDIENTE
+  if pi_v_fec_est_exped_cob_ini is not null then
+     v_sql_where_9 := v_sql_where_9 || '
+     AND TO_DATE(TO_CHAR(EXPE.FEC_ESTADO_EXPEDIENTE,''DD/MM/YYYY''),''DD/MM/YYYY'')
+         BETWEEN TO_DATE('''||pi_v_fec_est_exped_cob_ini||''',''DD/MM/YYYY'') AND TO_DATE('''||pi_v_fec_est_exped_cob_fin||''',''DD/MM/YYYY'')';
+  end if;
+
+  --NUMERO DE ENVIO A ARCHIVO CENTRAL
+  if pi_v_num_env_arch_ini is not null then
+     v_sql_where_9 := v_sql_where_9 || '
+     AND ARCH_CEN.NRO_ORDEN
+         BETWEEN LPAD('''||pi_v_num_env_arch_ini||''',4,''0000'') AND LPAD('''||pi_v_num_env_arch_fin||''',4,''0000'')';
+  end if;
+
+  --FECHA ENVIO ARCHIVO CENTRAL
+  if pi_v_fec_envi_arch_ini is not null then
+     v_sql_where_9 := v_sql_where_9 || '
+     AND TO_DATE(TO_CHAR(ARCH_CEN.FEC_ENVIO,''DD/MM/YYYY''),''DD/MM/YYYY'')
+         BETWEEN TO_DATE('''||pi_v_fec_envi_arch_ini||''',''DD/MM/YYYY'') AND TO_DATE('''||pi_v_fec_envi_arch_fin||''',''DD/MM/YYYY'')';
+  end if;
+
+  --NRO OFICIO SUNAT
+  if pi_v_nro_ofic_sunat_ini is not null then
+     v_sql_where_9 := v_sql_where_9 || '
+     AND (MUAN.NRO_OFICIO_SUNAT_CODIGO || MUAN.NRO_OFICIO_SUNAT_ANIO ||
+     MUAN.NRO_OFICIO_SUNAT_PREFIJO || MUAN.NRO_OFICIO_SUNAT_CORRELATIVO)
+     BETWEEN '''||pi_v_nro_ofic_sunat_ini||''' AND '''||pi_v_nro_ofic_sunat_fin||'''';
+  end if;
+
+  --DERECHO ANTIDUMOPING
+  if pi_n_dere_antiDump_ini>0 then
+     v_sql_where_9 := v_sql_where_9 || '
+     AND MUAN.MONTO_ANTIDUMPING
+         BETWEEN '||pi_n_dere_antiDump_ini||' AND '||pi_n_dere_antiDump_fin;
+  end if;
+
+  --PARTIDA ARANCELARIA
+  if pi_v_nro_parti_ini is not null then
+  v_sql_where_10 := v_sql_where_10 || '
+      AND PART.CODIGO
+      BETWEEN lpad('''||pi_v_nro_parti_ini||''',10,''0000000000'') AND lpad('''||pi_v_nro_parti_fin||''',10,''0000000000'')';
+  end if;
+
+  --MEMO ANTIDUMPING --FALTA EL CAMPO NO EXISTE EN LA INTERFAZ
+  --NRO DUA
+  if pi_v_nro_dua_ini is not null then
+     v_sql_where_10 := v_sql_where_10 || '
+     AND (MUAN.NRO_DUA_CODIGO || MUAN.NRO_DUA_ANIO || MUAN.NRO_DUA_CORRELATIVO)
+         BETWEEN '''||pi_v_nro_dua_ini||''' AND '''||pi_v_nro_dua_fin||'''';
+  end if;
+
+  --NRO LIQUIDACION COBRANZA
+  if pi_v_nro_liq_cob_ini is not null then
+     v_sql_where_10 := v_sql_where_10 || '
+     AND (MUAN.NRO_LIQUIDACION_CODIGO || MUAN.NRO_LIQUIDACION_ANIO || MUAN.NRO_LIQUIDACION_CORRELATIVO)
+         BETWEEN '''||pi_v_nro_liq_cob_ini||''' AND '''||pi_v_nro_liq_cob_fin||'''';
+  end if;
+
+  --INTENDENCIA
+  if pi_v_id_intendencia is not null then
+     v_sql_where_10 := v_sql_where_10 || '
+     AND INSTR('''||pi_v_id_intendencia||''',''|'' || TO_CHAR(MUAN.ID_INTENDENCIA) || ''|'' )>0';
+  end if;
+
+ --FECHA ASIGNACION GESTOR COBRANZA
+  if pi_v_fec_asig_gestor_ini is not null then
+     v_sql_where_11 := v_sql_where_11 || '
+     AND TO_DATE(TO_CHAR(MULT.FECHA_ASIG_COBRANZA,''DD/MM/YYYY''),''DD/MM/YYYY'')
+         BETWEEN TO_DATE('''||pi_v_fec_asig_gestor_ini||''',''DD/MM/YYYY'') AND TO_DATE('''||pi_v_fec_asig_gestor_fin||''',''DD/MM/YYYY'')';
+  end if;
+
+  --v_sql_where_12 := v_sql_where_12 || '
+  --ORDER BY CUM DESC';
+
+
+  DBMS_OUTPUT.put_line(v_sql_select_1);
+  DBMS_OUTPUT.put_line(v_sql_select_2);
+  DBMS_OUTPUT.put_line(v_sql_select_3);
+  DBMS_OUTPUT.put_line(v_sql_select_4);
+  DBMS_OUTPUT.put_line(v_sql_select_5);
+  ---
+  DBMS_OUTPUT.put_line(v_sql_join_1);
+  DBMS_OUTPUT.put_line(v_sql_join_2);
+  DBMS_OUTPUT.put_line(v_sql_join_3);
+  DBMS_OUTPUT.put_line(v_sql_join_4);
+  DBMS_OUTPUT.put_line(v_sql_join_5);
+  ---
+  DBMS_OUTPUT.put_line(v_sql_where_1);
+  DBMS_OUTPUT.put_line(v_sql_where_2);
+  DBMS_OUTPUT.put_line(v_sql_where_3);
+  DBMS_OUTPUT.put_line(v_sql_where_4);
+  DBMS_OUTPUT.put_line(v_sql_where_5);
+  ---
+  DBMS_OUTPUT.put_line(v_sql_where_6);
+  DBMS_OUTPUT.put_line(v_sql_where_7);
+  DBMS_OUTPUT.put_line(v_sql_where_8);
+  DBMS_OUTPUT.put_line(v_sql_where_9);
+  DBMS_OUTPUT.put_line(v_sql_where_10);
+  DBMS_OUTPUT.put_line(v_sql_where_11);
+  DBMS_OUTPUT.put_line(v_sql_where_12);
+
+  open po_cu_retorno for
+  --select sysdate from dual;
+
+                     v_sql_select_1 ||
+                     v_sql_select_2 ||
+                     v_sql_select_3 ||
+                     v_sql_select_4 ||
+                     v_sql_select_5 ||
+                     v_sql_join_1 ||
+                     v_sql_join_2 ||
+                     v_sql_join_3 ||
+                     v_sql_join_4 ||
+                     v_sql_join_5 ||
+                     v_sql_where_1 ||
+                     v_sql_where_2||
+                     v_sql_where_3 ||
+                     v_sql_where_4 ||
+                     v_sql_where_5 ||
+                     v_sql_where_6 ||
+                     v_sql_where_7 ||
+                     v_sql_where_8 ||
+                     v_sql_where_9 ||
+                     v_sql_where_10 ||
+                     v_sql_where_11 ||
+                     v_sql_where_12
+                     ;
+
+  COMMIT;
+
+end;
+
 END SCOB_PK_COBRANZAS;
 /

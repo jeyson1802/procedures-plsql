@@ -1558,11 +1558,8 @@ PROCEDURE SCOB_SP_U_RESOLVER_PROB_FECH(PI_D_FEC_RESOLUCION       IN VARCHAR2,
 -- Proposito    :
 -----------------------------------------------------------
 */
-procedure SCOB_SP_S_MONTO_MULTA_BY_CUM
-(
-  PI_VC_CUM           IN T_SCOB_MULTA.CUM%TYPE,
-  po_cu_retorno       out cu_rec_set
-);
+PROCEDURE SCOB_SP_S_MONTO_MULTA_BY_CUM(PIN_VC_CUM       IN T_SCOB_MULTA.CUM%TYPE,
+                                       POUT_CUR_RETORNO OUT CU_REC_SET);
 ---
 
 /*
@@ -1577,24 +1574,25 @@ procedure SCOB_SP_S_MONTO_MULTA_BY_CUM
 -- Proposito    :
 -----------------------------------------------------------
 */
-procedure SCOB_SP_U_MULTA_BY_MONTO(PI_V_ID_MULTA              IN VARCHAR2,
-                                   PI_N_MI_CAPITAL            IN NUMBER,
-                                   PI_N_MI_INTERES_COMP       IN NUMBER,
-                                   PI_N_MI_INTERES_MORA       IN NUMBER,
-                                   PI_N_MI_COSTAS             IN NUMBER,
-                                   PI_N_TA_CAPITAL            IN NUMBER,
-                                   PI_N_TA_INTERES_COMP       IN NUMBER,
-                                   PI_N_TA_INTERES_MORA       IN NUMBER,
-                                   PI_N_TA_COSTAS             IN NUMBER,
-                                   PI_N_S_CAPITAL             IN NUMBER,
-                                   PI_N_S_INTERES_COMP        IN NUMBER,
-                                   PI_N_S_INTERES_MORA        IN NUMBER,
-                                   PI_N_S_COSTAS              IN NUMBER,
-                                   PI_V_NRO_FILE_AEC          IN VARCHAR2,
-                                   PI_V_USUARIO_MOD           IN VARCHAR,
-                                   po_n_retorno               out number,
-                                   po_n_cod_error             out number,
-                                   po_v_msj_error             out varchar2);
+PROCEDURE SCOB_SP_U_MULTA_BY_MONTO(PIN_VC_ID_MULTA              IN VARCHAR2,
+                                   PIN_NU_MI_CAPITAL            IN NUMBER,
+                                   PIN_NU_MI_INTERES_COMP       IN NUMBER,
+                                   PIN_NU_MI_INTERES_MORA       IN NUMBER,
+                                   PIN_NU_MI_COSTAS             IN NUMBER,
+                                   PIN_NU_TA_CAPITAL            IN NUMBER,
+                                   PIN_NU_TA_INTERES_COMP       IN NUMBER,
+                                   PIN_NU_TA_INTERES_MORA       IN NUMBER,
+                                   PIN_NU_TA_COSTAS             IN NUMBER,
+                                   PIN_NU_S_CAPITAL             IN NUMBER,
+                                   PIN_NU_S_INTERES_COMP        IN NUMBER,
+                                   PIN_NU_S_INTERES_MORA        IN NUMBER,
+                                   PIN_NU_S_COSTAS              IN NUMBER,
+                                   PIN_NU_VAL_UIT               IN NUMBER,
+                                   PIN_VC_NRO_FILE_AEC          IN VARCHAR2,
+                                   PIN_VC_USUARIO_MOD           IN VARCHAR,
+                                   POUT_NU_RETORNO              OUT NUMBER,
+                                   POUT_NU_COD_ERROR            OUT NUMBER,
+                                   POUT_VC_MSJ_ERROR            OUT VARCHAR2);
 
                                    
   -- ******************************************************************************
@@ -1613,12 +1611,12 @@ procedure SCOB_SP_U_MULTA_BY_MONTO(PI_V_ID_MULTA              IN VARCHAR2,
   -- ----------------------------------------------------------------
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- ***************************************************************      
-  PROCEDURE SCOB_SP_U_MULTA_BY_ESTADO(PIN_ID_MULTA         IN NUMBER,
-                                      PI_N_COD_ESTADO_PAGO IN NUMBER,
-                                      PI_V_USUARIO_MOD     IN VARCHAR,
-                                      PO_N_RETORNO         OUT NUMBER,
-                                      PO_N_COD_ERROR       OUT NUMBER,
-                                      PO_V_MSJ_ERROR       OUT VARCHAR2);
+  PROCEDURE SCOB_SP_U_MULTA_BY_ESTADO(PIN_NU_ID_MULTA         IN NUMBER,
+                                      PIN_NU_COD_ESTADO_PAGO IN NUMBER,
+                                      PIN_VC_USUARIO_MOD     IN VARCHAR,
+                                      POUT_NU_RETORNO         OUT NUMBER,
+                                      POUT_NU_COD_ERROR       OUT NUMBER,
+                                      POUT_VC_MSJ_ERROR       OUT VARCHAR2);
 
 
 end SCOB_PK_MULTAS;
@@ -1988,8 +1986,8 @@ procedure SCOB_SP_U_MULTA_NIVEL_BY_OR
 -----------------------------------------------------------
 -- Modificacion :
 -- Autor        :
--- Modificado   :
--- Proposito    :
+-- Modificado   : 2023-02-12
+-- Proposito    : Procesos en linea
 -----------------------------------------------------------
 --@0002:RMCA:06.02.2013:que ingrese siempre como dentro del plazo (pruebas de caja: si la fecha plazo es mayor a la fecha actual, no cambiaba el estado en plazo)
 */
@@ -2436,16 +2434,29 @@ begin
   --LLAMADA AL SP CALCULAR DESCUENTO.
   SCOB_PK_JOB.SCOB_PK_ACT_DSCT_MULTA_AFEC(PI_N_ID_MULTA);
   
-  --INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA
-  USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_U_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => PI_N_ID_MULTA,
-                                                                     POUT_NU_COD_RESULT => PO_N_RETORNO,
-                                                                     POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
-  
-  IF PO_N_RETORNO < 0 THEN
-     ROLLBACK;
-     RETURN;
-  END IF;
-  --FIN VICTOR BENDEZU - MIGRACION SICOB A SIA
+    --INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA
+    USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_U_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => PI_N_ID_MULTA,
+                                                                   POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                                                   POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+    IF PO_N_RETORNO < 0 THEN
+       ROLLBACK;
+       RETURN;
+    END IF;
+    USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_BN(PIN_NU_ID_MULTA => PI_N_ID_MULTA,
+                                     POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                     POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+    IF PO_N_RETORNO < 0 THEN
+       ROLLBACK;
+       RETURN;
+    END IF;
+    USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_ASBANC(PIN_NU_ID_MULTA => PI_N_ID_MULTA,
+                                     POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                     POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+    IF PO_N_RETORNO < 0 THEN
+       ROLLBACK;
+       RETURN;
+    END IF;
+    --FIN VICTOR BENDEZU - MIGRACION SICOB A SIA
                                                                   
   po_n_cod_error := 0;
   po_n_retorno := PI_N_ID_MULTA;
@@ -2463,12 +2474,13 @@ begin
 end;
 
 /*****************************************************************
-  * Nombre            :  USR_SICOB.SCOB_SP_I_MULTA_BY_OR
-  * Propósito         :  Registrar la multa por organo resolutivo, Registrar el siguiente nivel de una multa
-  * Creado por        :  RMCA
-  * Fec Creación      :  15-02-2011 RMCA Cambio para identificar el valor NULL en el campo ESTADO_MULTA
-  * Fec Actualización :  12-07-2019 @jalegria Bloquear el registro de multa a usuarios de Protección al consumidor
-  '****************************************************************/
+* Nombre            :  USR_SICOB.SCOB_SP_I_MULTA_BY_OR
+* Propósito         :  Registrar la multa por organo resolutivo, Registrar el siguiente nivel de una multa
+* Creado por        :  RMCA
+* Fec Creación      :  15-02-2011 RMCA Cambio para identificar el valor NULL en el campo ESTADO_MULTA
+* Fec Actualización :  12-07-2019 @jalegria Bloquear el registro de multa a usuarios de Protección al consumidor
+*                      2023-02-12 Procesos en linea
+'****************************************************************/
 procedure SCOB_SP_I_MULTA_BY_OR
 (
   PI_N_ID_MULTA                  IN T_SCOB_MULTA.ID_MULTA%TYPE,
@@ -2795,48 +2807,38 @@ begin
   END;
   END IF;
   
-  --INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA - RECAUDACION EN LINEA
-  IF NVL(PI_N_ID_MULTA,0) <> 0 THEN
-     
-    USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_U_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => N_ID_MULTA,
-                                                                       POUT_NU_COD_RESULT => PO_N_RETORNO,
-                                                                       POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+    --INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA - RECAUDACION EN LINEA
+    IF NVL(PI_N_ID_MULTA,0) <> 0 THEN
+       USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_U_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => N_ID_MULTA,
+                                                                         POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                                                         POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+    ELSE 
+       USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_I_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => N_ID_MULTA,
+                                                                         POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                                                         POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+    END IF;
+    IF PO_N_RETORNO < 0 THEN
+         ROLLBACK;
+         RETURN;
+    END IF;
     
+    PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_BN(PIN_NU_ID_MULTA => N_ID_MULTA,
+                                                     POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                                     POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
     IF PO_N_RETORNO < 0 THEN
-       ROLLBACK;
-       RETURN;
+         ROLLBACK;
+         RETURN;
     END IF;
-
-  ELSE 
-     
-    USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_I_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => N_ID_MULTA,
-                                                                       POUT_NU_COD_RESULT => PO_N_RETORNO,
-                                                                       POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+                                                                         
+    PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_ASBANC(PIN_NU_ID_MULTA => N_ID_MULTA,
+                                                         POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                                         POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);                                                                     
+        
     IF PO_N_RETORNO < 0 THEN
-       ROLLBACK;
-       RETURN;
+         ROLLBACK;
+         RETURN;
     END IF;
-                                                                      
-    SCOB_PK_RECAUDACION_BANCOS.SP_I_RECAUDACION_BN(PIN_NU_ID_MULTA => N_ID_MULTA,
-                                                   POUT_NU_COD_RESULT => PO_N_RETORNO,
-                                                   POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
-    
-    IF PO_N_RETORNO < 0 THEN
-       ROLLBACK;
-       RETURN;
-    END IF;
-                                                                     
-    SCOB_PK_RECAUDACION_BANCOS.SP_I_RECAUDACION_ASBANC(PIN_NU_ID_MULTA => N_ID_MULTA,
-                                                       POUT_NU_COD_RESULT => PO_N_RETORNO,
-                                                       POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);                                                                     
-    
-    IF PO_N_RETORNO < 0 THEN
-       ROLLBACK;
-       RETURN;
-    END IF;
-                                                                                                                                             
-  END IF;
- --FIN VICTOR BENDEZU - MIGRACION SICOB A SIA - RECAUDACION EN LINEA
+    --FIN VICTOR BENDEZU - MIGRACION SICOB A SIA - RECAUDACION EN LINEA
 
   po_n_cod_error := 0;
   po_n_retorno := n_id_multa;
@@ -5514,8 +5516,8 @@ procedure SCOB_SP_I_MULTA_BY_ANTIDUMPING
 -----------------------------------------------------------
 -- Modificacion :
 -- Autor        :
--- Modificado   :
--- Proposito    :
+-- Modificado   : 2023-02-14
+-- Proposito    : Procesos en linea
 -----------------------------------------------------------
 */
 (
@@ -5915,6 +5917,40 @@ begin
   po_n_retorno_det := N_ID_MULTA_NIVEL;
   po_n_retorno_antidumping := N_ID_MULTA_ANTIDUMPING;
 
+    --INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA - RECAUDACION EN LINEA
+    IF NVL(n_id_multa,0) <> 0 THEN
+       USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_U_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => N_ID_MULTA,
+                                                                         POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                                                         POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+    ELSE 
+       USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_I_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => N_ID_MULTA,
+                                                                         POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                                                         POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+    END IF;
+    IF PO_N_RETORNO < 0 THEN
+         ROLLBACK;
+         RETURN;
+    END IF;
+        
+    PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_BN(PIN_NU_ID_MULTA => N_ID_MULTA,
+                                                     POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                                     POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+    IF PO_N_RETORNO < 0 THEN
+         ROLLBACK;
+         RETURN;
+    END IF;
+                                                                             
+    PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_ASBANC(PIN_NU_ID_MULTA => N_ID_MULTA,
+                                                         POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                                         POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);                                                                     
+            
+    IF PO_N_RETORNO < 0 THEN
+         ROLLBACK;
+         RETURN;
+    END IF;
+    --FIN VICTOR BENDEZU - MIGRACION SICOB A SIA - RECAUDACION EN LINEA
+
+  
   commit;
   ----
   exception
@@ -5938,8 +5974,8 @@ procedure SCOB_SP_U_MULTA_BY_ANTIDUMPING
 -----------------------------------------------------------
 -- Modificacion :
 -- Autor        :
--- Modificado   :
--- Proposito    :
+-- Modificado   : 2023-02-14
+-- Proposito    : Procesos en linea 
 -----------------------------------------------------------
 */
 (
@@ -6132,9 +6168,44 @@ begin
   end if;
   --@0001:FIN
 
+    --INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA - RECAUDACION EN LINEA
+    IF NVL(PI_N_ID_MULTA,0) <> 0 THEN
+       USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_U_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => PI_N_ID_MULTA,
+                                                                         POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                                                         POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+    ELSE 
+       USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_I_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => PI_N_ID_MULTA,
+                                                                         POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                                                         POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+    END IF;
+    IF PO_N_RETORNO < 0 THEN
+         ROLLBACK;
+         RETURN;
+    END IF;
+        
+    PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_BN(PIN_NU_ID_MULTA => PI_N_ID_MULTA,
+                                                     POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                                     POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+    IF PO_N_RETORNO < 0 THEN
+         ROLLBACK;
+         RETURN;
+    END IF;
+                                                                             
+    PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_ASBANC(PIN_NU_ID_MULTA => PI_N_ID_MULTA,
+                                                         POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                                         POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);                                                                     
+            
+    IF PO_N_RETORNO < 0 THEN
+         ROLLBACK;
+         RETURN;
+    END IF;
+    --FIN VICTOR BENDEZU - MIGRACION SICOB A SIA - RECAUDACION EN LINEA
+    
+    
   po_n_cod_error := 0;
   po_n_retorno := PI_N_ID_MULTA;
   po_n_retorno_det := PI_N_ID_MULTA_DETAL;
+  
   commit;
   ----
   exception
@@ -7483,7 +7554,8 @@ PROCEDURE SCOB_SP_U_ACT_IMPORTES_EXPED
     N_ID_MULTA      T_SCOB_MULTA.ID_MULTA%TYPE;
     N_ID_EXPEDIENTE T_SCOB_EXPEDIENTE.ID_EXPEDIENTE%TYPE;
 BEGIN
-
+    DBMS_OUTPUT.put_line('SCOB_SP_U_ACT_IMPORTES_EXPED>>PI_N_ID_MULTA>>' || PI_N_ID_MULTA);
+    DBMS_OUTPUT.put_line('SCOB_SP_U_ACT_IMPORTES_EXPED>>PI_N_ID_EXPEDIENTE>>' || PI_N_ID_EXPEDIENTE);
     --OBTENER LA MULTA ALFA DEL EXPEDIENTE
     IF PI_N_ID_MULTA = 0 THEN
         SELECT EXMU.ID_MULTA
@@ -7511,6 +7583,8 @@ BEGIN
     ELSE
         N_ID_EXPEDIENTE := PI_N_ID_EXPEDIENTE;
     END IF;
+    DBMS_OUTPUT.put_line('SCOB_SP_U_ACT_IMPORTES_EXPED>>N_ID_MULTA>>' || N_ID_MULTA);
+    DBMS_OUTPUT.put_line('SCOB_SP_U_ACT_IMPORTES_EXPED>>N_ID_EXPEDIENTE>>' || N_ID_EXPEDIENTE);
     --
     /*FOR A1 IN (SELECT EXMU.ID_MULTA
        FROM T_SCOB_EXPEDIENTE_MULTA EXMU
@@ -9008,7 +9082,7 @@ procedure SCOB_SP_U_EDITA_MULTA_ANTDMPNG
 -- Modificacion :
 -- Autor        :
 -- Modificado   :
--- Proposito    :
+-- Proposito    : 
 -----------------------------------------------------------
 */
 (
@@ -9278,8 +9352,8 @@ procedure SCOB_SP_ELIMINAR_CUM
     -----------------------------------------------------------
     -- Modificacion :
     -- Autor        :
-    -- Modificado   :
-    -- Proposito    :
+    -- Modificado   : 
+    -- Proposito    : 
     -----------------------------------------------------------
     */
 (
@@ -9290,6 +9364,7 @@ procedure SCOB_SP_ELIMINAR_CUM
   po_v_msj_error        out varchar2
 )
 is
+
 begin
   po_v_msj_error :='';
   po_n_retorno := 1;
@@ -9374,6 +9449,9 @@ begin
          ESTADO = '0'
    WHERE INSTR(PI_V_ID_MULTA, '|' || TO_CHAR(ID_MULTA) || '|') > 0;
   ---
+  DBMS_OUTPUT.put_line('SCOB_SP_ELIMINAR_CUM>>PI_V_ID_MULTA>>' || PI_V_ID_MULTA);
+         
+  
   po_n_cod_error := 0;
   --po_n_retorno := 0;
   commit;
@@ -9721,6 +9799,8 @@ PROCEDURE SCOB_U_SOLIC_ELIM_REVER_MULTA
     -- Autor        : @dcelis
     -- Creado       : 30.05.2017
     -- Proposito    : Procesar las solicitudes de Eliminación/Reversión
+    -- MODIFICADO   : 2023-02-19
+    -- MOTIVO       : Procesos en linea
     -----------------------------------------------------------
   */
 (
@@ -9790,9 +9870,11 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('PI_V_ID_SOLIC: '||V1(i));
         -- OBTENEMOS EL TIPO DE SOLICITUD Y EL ID DE LA MULTA
         SELECT NU_TIPO_SOLIC, ID_MULTA INTO V_NU_TIPO_SOLIC,V_ID_MULTA FROM T_SCOB_SOLIC_ELIM WHERE ID_SOLIC_ELIM=V1(i);
+        DBMS_OUTPUT.PUT_LINE('SCOB_U_SOLIC_ELIM_REVER_MULTA>>V_ID_MULTA>>' || V_ID_MULTA);
         -- PROCESAMOS DE ACUERDO AL TIPO DE SOLICITUD
         IF V_NU_TIPO_SOLIC='1' THEN -- ELIMINAR
           DBMS_OUTPUT.PUT_LINE('***ELIMINAR***');
+          DBMS_OUTPUT.put_line('ANTES PO_N_RETORNO>>' || PO_N_RETORNO);
           IF PO_N_RETORNO=1 THEN
             SCOB_PK_MULTAS.SCOB_SP_ELIMINAR_CUM('|'||V_ID_MULTA||'|',V_USUARIO,PO_N_RETORNO,PO_N_COD_ERROR,PO_V_MSJ_ERROR);
           END IF;
@@ -9802,6 +9884,34 @@ BEGIN
             SCOB_PK_MULTAS.SCOB_SP_REVERSION_CUM(V1(i),V_ID_MULTA,V_USUARIO,PO_N_RETORNO,PO_N_COD_ERROR,PO_V_MSJ_ERROR);
           END IF;
         END IF;
+        
+         --INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA
+          USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_D_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => V_ID_MULTA,
+                                                                             POUT_NU_COD_RESULT => po_n_cod_error,
+                                                                             POUT_VC_MSG_RESULT => po_v_msj_error);
+          DBMS_OUTPUT.put_line('SCOB_U_SOLIC_ELIM_REVER_MULTA1>>po_n_cod_error>>' || po_n_cod_error);
+          IF po_n_cod_error < 0 THEN
+             ROLLBACK;
+             RETURN;
+          END IF;
+          USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_BN(PIN_NU_ID_MULTA => V_ID_MULTA,
+                                     POUT_NU_COD_RESULT => po_n_cod_error,
+                                     POUT_VC_MSG_RESULT => po_v_msj_error);
+          DBMS_OUTPUT.put_line('SCOB_U_SOLIC_ELIM_REVER_MULTA2>>po_n_retorno>>' || po_n_cod_error);
+          IF po_n_cod_error < 0 THEN
+             ROLLBACK;
+             RETURN;
+          END IF;
+          USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_ASBANC(PIN_NU_ID_MULTA => V_ID_MULTA,
+                                           POUT_NU_COD_RESULT => po_n_cod_error,
+                                           POUT_VC_MSG_RESULT => po_v_msj_error);
+          DBMS_OUTPUT.put_line('SCOB_U_SOLIC_ELIM_REVER_MULTA3>>po_n_retorno3>>' || po_n_cod_error);
+          IF po_n_cod_error < 0 THEN
+             ROLLBACK;
+             RETURN;
+          END IF;    
+          --FIN VICTOR BENDEZU - MIGRACION SICOB A SIA
+          
         --
         DBMS_OUTPUT.PUT_LINE('PO_N_RETORNO: '||PO_N_RETORNO);
         DBMS_OUTPUT.PUT_LINE('PO_N_COD_ERROR: '||PO_N_COD_ERROR);
@@ -10321,59 +10431,86 @@ PROCEDURE SCOB_SP_U_RESOLVER_PROB_FECH(PI_D_FEC_RESOLUCION       IN VARCHAR2,
 -- Proposito    :
 -----------------------------------------------------------
 */
-procedure SCOB_SP_S_MONTO_MULTA_BY_CUM
-(
-  PI_VC_CUM        IN T_SCOB_MULTA.CUM%TYPE,
-  po_cu_retorno    out cu_rec_set
-)
-AS
-begin
+PROCEDURE SCOB_SP_S_MONTO_MULTA_BY_CUM(PIN_VC_CUM       IN T_SCOB_MULTA.CUM%TYPE,
+                                       POUT_CUR_RETORNO OUT CU_REC_SET) AS
+BEGIN
+
+  OPEN POUT_CUR_RETORNO FOR
   
-  open po_cu_retorno for
-      SELECT MU.ANIO || MU.CUM AS CUM
-      , DECODE(PE.RAZON_SOCIAL,NULL,PE.APE_PATERNO || ' ' || DECODE(PE.APE_MATERNO,NULL,PE.APE_CASADA,PE.APE_MATERNO) || 
-        ' ' || PE.PRI_NOMBRE || ' ' || PE.SEG_NOMBRE, PE.RAZON_SOCIAL) AS NOMBRE
-      , MD.VALOR_UIT 
-      , MD.MONTO_UIT
-      , T.COD_INTERNO
-      , T.TXT_DESCRIPCION
-      , MU.MONTO_UIT AS MI_CAPITAL
-      , MU.MONTO_INTERES AS MI_INTERES_COMP
-      , MU.MONTO_INTERES_MORATORIO AS MI_INTERES_MORA
-      , MU.MONTO_COSTAS AS MI_COSTAS
-      , MU.MONTO_TOTAL_DEUDA AS MI_DEUDA_TOTAL
-      , MU.TOTAL_AMORTIZADO AS TA_CAPITAL
-      , MU.TOTAL_AMORTIZADO_IC AS TA_INTERES_COMP
-      , MU.TOTAL_AMORTIZADO_IM AS TA_INTERES_MORA
-      , MU.TOTAL_AMORTIZADO_COSTAS AS TA_COSTAS
-      , MU.TOTAL_AMORTIZACION_DEUDA AS TA_DEUDA_TOTAL
-      , MU.SALDO AS S_CAPITAL
-      , MU.SALDO_IC AS S_INTERES_COMP
-      , MU.SALDO_IM AS S_INTERES_MORA
-      , MU.SALDO_COSTAS AS S_COSTAS
-      , MU.SALDO_TOTAL_DEUDA AS S_DEUDA_TOTAL
-      , EX.ANIO || EX.NRO_EXPEDIENTE AS EXPEDIENTE_COACTIVO
-      , MU.ID_MULTA
-      , MU.NRO_FILE_AEC
-      , ( SELECT SUM(CI.MONTO_EXCESO) FROM USR_SICOB.T_SCOB_COMPROBANTE_INGRESO CI 
-          WHERE CI.ID_MULTA= MU.ID_MULTA AND CI.ESTADO='1'
-          GROUP BY  CI.ID_MULTA) AS EXCESOS
-      , (MU.MONTO_UIT + MU.MONTO_INTERES + MU.MONTO_INTERES_MORATORIO + MU.MONTO_COSTAS) AS MI_SUBTOTAL
-      , (MU.TOTAL_AMORTIZADO + MU.TOTAL_AMORTIZADO_IC + MU.TOTAL_AMORTIZADO_IM + MU.TOTAL_AMORTIZADO_COSTAS) AS TA_SUBTOTAL
-      , (MU.SALDO + MU.SALDO_IC + MU.SALDO_IM + MU.SALDO_COSTAS) AS S_SUBTOTAL,
-      TO_CHAR(MU.AUDFECMODIFICACION, 'DD/MM/YYYY HH24:MM:SS') AS FEC_MODIFICA,
-      MU.AUDUSUMODIFICACION AS USU_MODIFICA
-      FROM USR_SICOB.T_SCOB_MULTA MU INNER JOIN USR_SICOB.T_SCOB_MULTA_DETAL MD ON 
-      (MU.ID_MULTA = MD.ID_MULTA AND MD.FLG_ACTUAL='1' AND MD.ESTADO='1')
-      INNER JOIN USR_SICOB.T_SCOB_MULTA_SANCIONADO MS ON (MD.ID_MULTA_DETAL= MS.ID_MULTA_DETAL 
-      AND MS.COD_TIPO_PERSONA='1' AND MS.FLG_PRINCIPAL='1' AND MS.ESTADO='1')
-      INNER JOIN USR_SICOB.T_SCOB_PERSONA PE ON (MS.ID_PERSONA=PE.ID_PERSONA)
-      LEFT JOIN USR_SICOB.T_SCOB_TABLA_DET T ON (MU.COD_ESTADO_PAGO=T.COD_INTERNO AND 
-      T.ID_TABLA=34)
-      LEFT OUTER JOIN USR_SICOB.T_SCOB_EXPEDIENTE_MULTA EM ON (MU.ID_MULTA = EM.ID_MULTA)
-      LEFT OUTER JOIN USR_SICOB.T_SCOB_EXPEDIENTE EX ON (EM.ID_EXPEDIENTE = EX.ID_EXPEDIENTE)
-      WHERE MU.ANIO || MU.CUM = PI_VC_CUM;
-end;
+    SELECT MU.ANIO || MU.CUM AS CUM,
+           DECODE(PE.RAZON_SOCIAL,
+                  NULL,
+                  PE.APE_PATERNO || ' ' ||
+                  DECODE(PE.APE_MATERNO, NULL, PE.APE_CASADA, PE.APE_MATERNO) || ' ' ||
+                  PE.PRI_NOMBRE || ' ' || PE.SEG_NOMBRE,
+                  PE.RAZON_SOCIAL) AS NOMBRE,
+           DECODE(PE2.RAZON_SOCIAL,
+                  NULL,
+                  PE2.APE_PATERNO || ' ' ||
+                  DECODE(PE2.APE_MATERNO,
+                         NULL,
+                         PE2.APE_CASADA,
+                         PE2.APE_MATERNO) || ' ' || PE2.PRI_NOMBRE || ' ' ||
+                  PE2.SEG_NOMBRE,
+                  PE2.RAZON_SOCIAL) AS NOMBRE2,
+           MD.VALOR_UIT,
+           MD.MONTO_UIT,
+           T.COD_INTERNO,
+           T.TXT_DESCRIPCION,
+           MU.MONTO_UIT AS MI_CAPITAL,
+           MU.MONTO_INTERES AS MI_INTERES_COMP,
+           MU.MONTO_INTERES_MORATORIO AS MI_INTERES_MORA,
+           MU.MONTO_COSTAS AS MI_COSTAS,
+           MU.MONTO_TOTAL_DEUDA AS MI_DEUDA_TOTAL,
+           MU.TOTAL_AMORTIZADO AS TA_CAPITAL,
+           MU.TOTAL_AMORTIZADO_IC AS TA_INTERES_COMP,
+           MU.TOTAL_AMORTIZADO_IM AS TA_INTERES_MORA,
+           MU.TOTAL_AMORTIZADO_COSTAS AS TA_COSTAS,
+           MU.TOTAL_AMORTIZACION_DEUDA AS TA_DEUDA_TOTAL,
+           MU.SALDO AS S_CAPITAL,
+           MU.SALDO_IC AS S_INTERES_COMP,
+           MU.SALDO_IM AS S_INTERES_MORA,
+           MU.SALDO_COSTAS AS S_COSTAS,
+           MU.SALDO_TOTAL_DEUDA AS S_DEUDA_TOTAL,
+           EX.ANIO || EX.NRO_EXPEDIENTE AS EXPEDIENTE_COACTIVO,
+           MU.ID_MULTA,
+           MU.NRO_FILE_AEC,
+           (SELECT SUM(CI.MONTO_EXCESO)
+              FROM USR_SICOB.T_SCOB_COMPROBANTE_INGRESO CI
+             WHERE CI.ID_MULTA = MU.ID_MULTA
+               AND CI.ESTADO = '1'
+             GROUP BY CI.ID_MULTA) AS EXCESOS,
+           (MU.MONTO_UIT + MU.MONTO_INTERES + MU.MONTO_INTERES_MORATORIO +
+           MU.MONTO_COSTAS) AS MI_SUBTOTAL,
+           (MU.TOTAL_AMORTIZADO + MU.TOTAL_AMORTIZADO_IC +
+           MU.TOTAL_AMORTIZADO_IM + MU.TOTAL_AMORTIZADO_COSTAS) AS TA_SUBTOTAL,
+           (MU.SALDO + MU.SALDO_IC + MU.SALDO_IM + MU.SALDO_COSTAS) AS S_SUBTOTAL,
+           TO_CHAR(MU.AUDFECMODIFICACION, 'DD/MM/YYYY HH24:MM:SS') AS FEC_MODIFICA,
+           MU.AUDUSUMODIFICACION AS USU_MODIFICA
+      FROM USR_SICOB.T_SCOB_MULTA MU
+     INNER JOIN USR_SICOB.T_SCOB_MULTA_DETAL MD
+        ON (MU.ID_MULTA = MD.ID_MULTA AND MD.FLG_ACTUAL = '1' AND
+           MD.ESTADO = '1')
+     INNER JOIN USR_SICOB.T_SCOB_MULTA_SANCIONADO MS
+        ON (MD.ID_MULTA_DETAL = MS.ID_MULTA_DETAL AND
+           MS.COD_TIPO_PERSONA = '1' AND MS.FLG_PRINCIPAL = '1' AND
+           MS.ESTADO = '1')
+      LEFT JOIN USR_SICOB.T_SCOB_MULTA_SANCIONADO MS2
+        ON (MD.ID_MULTA_DETAL = MS2.ID_MULTA_DETAL AND
+           MS2.COD_TIPO_PERSONA = '1' AND MS2.FLG_PRINCIPAL = '0' AND
+           MS2.ESTADO = '1' AND FLG_TIPO_MULTA = '2' AND ROWNUM = 1)
+      LEFT JOIN USR_SICOB.T_SCOB_PERSONA PE2
+        ON (MS2.ID_PERSONA = PE2.ID_PERSONA)
+     INNER JOIN USR_SICOB.T_SCOB_PERSONA PE
+        ON (MS.ID_PERSONA = PE.ID_PERSONA)
+      LEFT JOIN USR_SICOB.T_SCOB_TABLA_DET T
+        ON (MU.COD_ESTADO_PAGO = T.COD_INTERNO AND T.ID_TABLA = 34)
+      LEFT OUTER JOIN USR_SICOB.T_SCOB_EXPEDIENTE_MULTA EM
+        ON (MU.ID_MULTA = EM.ID_MULTA)
+      LEFT OUTER JOIN USR_SICOB.T_SCOB_EXPEDIENTE EX
+        ON (EM.ID_EXPEDIENTE = EX.ID_EXPEDIENTE)
+     WHERE MU.ANIO || MU.CUM = PIN_VC_CUM;
+END;
 --
 
 /*
@@ -10384,76 +10521,125 @@ end;
 -----------------------------------------------------------
 -- Modificacion :
 -- Autor        :
--- Modificado   :
--- Proposito    :
+-- Modificado   : 2023-02-14
+-- Proposito    : Procesos en linea
 -----------------------------------------------------------
 */
-procedure SCOB_SP_U_MULTA_BY_MONTO(PI_V_ID_MULTA              IN VARCHAR2,
-                                   PI_N_MI_CAPITAL            IN NUMBER,
-                                   PI_N_MI_INTERES_COMP       IN NUMBER,
-                                   PI_N_MI_INTERES_MORA       IN NUMBER,
-                                   PI_N_MI_COSTAS             IN NUMBER,
-                                   PI_N_TA_CAPITAL            IN NUMBER,
-                                   PI_N_TA_INTERES_COMP       IN NUMBER,
-                                   PI_N_TA_INTERES_MORA       IN NUMBER,
-                                   PI_N_TA_COSTAS             IN NUMBER,
-                                   PI_N_S_CAPITAL             IN NUMBER,
-                                   PI_N_S_INTERES_COMP        IN NUMBER,
-                                   PI_N_S_INTERES_MORA        IN NUMBER,
-                                   PI_N_S_COSTAS              IN NUMBER,
-                                   PI_V_NRO_FILE_AEC          IN VARCHAR2,
-                                   PI_V_USUARIO_MOD           IN VARCHAR,
-                                   po_n_retorno               out number,
-                                   po_n_cod_error             out number,
-                                   po_v_msj_error             out varchar2) AS
+PROCEDURE SCOB_SP_U_MULTA_BY_MONTO(PIN_VC_ID_MULTA              IN VARCHAR2,
+                                   PIN_NU_MI_CAPITAL            IN NUMBER,
+                                   PIN_NU_MI_INTERES_COMP       IN NUMBER,
+                                   PIN_NU_MI_INTERES_MORA       IN NUMBER,
+                                   PIN_NU_MI_COSTAS             IN NUMBER,
+                                   PIN_NU_TA_CAPITAL            IN NUMBER,
+                                   PIN_NU_TA_INTERES_COMP       IN NUMBER,
+                                   PIN_NU_TA_INTERES_MORA       IN NUMBER,
+                                   PIN_NU_TA_COSTAS             IN NUMBER,
+                                   PIN_NU_S_CAPITAL             IN NUMBER,
+                                   PIN_NU_S_INTERES_COMP        IN NUMBER,
+                                   PIN_NU_S_INTERES_MORA        IN NUMBER,
+                                   PIN_NU_S_COSTAS              IN NUMBER,
+                                   PIN_NU_VAL_UIT               IN NUMBER,
+                                   PIN_VC_NRO_FILE_AEC          IN VARCHAR2,
+                                   PIN_VC_USUARIO_MOD           IN VARCHAR,
+                                   POUT_NU_RETORNO               OUT NUMBER,
+                                   POUT_NU_COD_ERROR             OUT NUMBER,
+                                   POUT_VC_MSJ_ERROR             OUT VARCHAR2) AS
 BEGIN
   
-      po_n_retorno := 0;
-      po_n_cod_error := -1;
-      po_v_msj_error :='';
+      POUT_NU_RETORNO := 0;
+      POUT_NU_COD_ERROR := -1;
+      POUT_VC_MSJ_ERROR :='';
       
-      IF NVL(PI_V_NRO_FILE_AEC,' ') <> ' ' THEN
-          po_n_retorno := -1;
-          po_n_cod_error := po_n_retorno;
-          po_v_msj_error := 'Ya se ha realizado el proceso de cobranza coactiva. No se puede modificar el registro.';
-          return;
+      IF NVL(PIN_VC_NRO_FILE_AEC,' ') <> ' ' THEN
+          POUT_NU_RETORNO := -1;
+          POUT_NU_COD_ERROR := POUT_NU_RETORNO;
+          POUT_VC_MSJ_ERROR := 'Ya se ha realizado el proceso de cobranza coactiva. No se puede modificar el registro.';
+          RETURN;
       END IF;
   
       
       UPDATE USR_SICOB.T_SCOB_MULTA MU 
-      SET MU.MONTO_UIT = PI_N_MI_CAPITAL,
-          MU.MONTO_INTERES = PI_N_MI_INTERES_COMP,
-          MU.MONTO_INTERES_MORATORIO = PI_N_MI_INTERES_MORA,
-          MU.MONTO_COSTAS = PI_N_MI_COSTAS,
-          --POR CONFIRMAR SI VA
-          --MU.MONTO_TOTAL_DEUDA = PI_N_MI_CAPITAL + PI_N_MI_INTERES_COMP + PI_N_MI_INTERES_MORA + PI_N_MI_COSTAS,
-          MU.TOTAL_AMORTIZADO = PI_N_TA_CAPITAL,
-          MU.TOTAL_AMORTIZADO_IC = PI_N_TA_INTERES_COMP,
-          MU.TOTAL_AMORTIZADO_IM = PI_N_TA_INTERES_MORA,
-          MU.TOTAL_AMORTIZADO_COSTAS = PI_N_TA_COSTAS,
-          MU.SALDO = PI_N_S_CAPITAL,
-          MU.SALDO_IC = PI_N_S_INTERES_COMP,
-          MU.SALDO_IM = PI_N_S_INTERES_MORA,
-          MU.SALDO_COSTAS = PI_N_S_COSTAS,
-          MU.SALDO_TOTAL_DEUDA = PI_N_S_CAPITAL + PI_N_S_INTERES_COMP + PI_N_S_INTERES_MORA + PI_N_S_COSTAS,
+      SET MU.MONTO_UIT = PIN_NU_MI_CAPITAL,
+          MU.MONTO_INTERES = PIN_NU_MI_INTERES_COMP,
+          MU.MONTO_INTERES_MORATORIO = PIN_NU_MI_INTERES_MORA,
+          MU.MONTO_COSTAS = PIN_NU_MI_COSTAS,
+          MU.PORCENTAJE_DESCUENTO = PIN_NU_MI_CAPITAL * 0.75,
+          MU.MONTO_TOTAL_DEUDA = PIN_NU_MI_CAPITAL + PIN_NU_MI_INTERES_COMP + PIN_NU_MI_INTERES_MORA + PIN_NU_MI_COSTAS,
+          MU.TOTAL_AMORTIZADO = PIN_NU_TA_CAPITAL,
+          MU.TOTAL_AMORTIZADO_IC = PIN_NU_TA_INTERES_COMP,
+          MU.TOTAL_AMORTIZADO_IM = PIN_NU_TA_INTERES_MORA,
+          MU.TOTAL_AMORTIZADO_COSTAS = PIN_NU_TA_COSTAS,
+          MU.SALDO = PIN_NU_S_CAPITAL,
+          MU.SALDO_IC = PIN_NU_S_INTERES_COMP,
+          MU.SALDO_IM = PIN_NU_S_INTERES_MORA,
+          MU.SALDO_COSTAS = PIN_NU_S_COSTAS,
+          MU.SALDO_TOTAL_DEUDA = PIN_NU_S_CAPITAL + PIN_NU_S_INTERES_COMP + PIN_NU_S_INTERES_MORA + PIN_NU_S_COSTAS,
           MU.AUDFECMODIFICACION = SYSDATE,
-          MU.AUDUSUMODIFICACION = PI_V_USUARIO_MOD
-      WHERE MU.ID_MULTA = PI_V_ID_MULTA;
+          MU.AUDUSUMODIFICACION = PIN_VC_USUARIO_MOD
+      WHERE MU.ID_MULTA = PIN_VC_ID_MULTA;    
+            
+      IF PIN_NU_VAL_UIT > 0 THEN
+         
+          UPDATE USR_SICOB.T_SCOB_MULTA_DETAL MD
+          SET MD.MONTO_UIT = PIN_NU_MI_CAPITAL,
+              MD.VALOR_UIT = PIN_NU_VAL_UIT
+          WHERE MD.ID_MULTA = PIN_VC_ID_MULTA
+                AND MD.FLG_ACTUAL = '1'
+                AND MD.ESTADO = '1';
+        ELSE 
+          
+          UPDATE USR_SICOB.T_SCOB_MULTA_DETAL MD
+          SET MD.MONTO_UIT = PIN_NU_MI_CAPITAL
+          WHERE MD.ID_MULTA = PIN_VC_ID_MULTA
+                AND MD.FLG_ACTUAL = '1'
+                AND MD.ESTADO = '1';
+      END IF;
       
-      po_n_cod_error := 0;
-      po_n_retorno := PI_V_ID_MULTA;
+      POUT_NU_COD_ERROR := 0;
+      POUT_NU_RETORNO := PIN_VC_ID_MULTA;
   
-      commit;
+    --INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA - RECAUDACION EN LINEA
+    USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_U_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => PIN_VC_ID_MULTA,
+                                                                         POUT_NU_COD_RESULT => POUT_NU_RETORNO,
+                                                                         POUT_VC_MSG_RESULT => POUT_VC_MSJ_ERROR);
+    IF POUT_NU_RETORNO < 0 THEN
+         ROLLBACK;
+         RETURN;
+    END IF;
+        
+    PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_BN(PIN_NU_ID_MULTA => PIN_VC_ID_MULTA,
+                                                     POUT_NU_COD_RESULT => POUT_NU_RETORNO,
+                                                     POUT_VC_MSG_RESULT => POUT_VC_MSJ_ERROR);
+    IF POUT_NU_RETORNO < 0 THEN
+         ROLLBACK;
+         RETURN;
+    END IF;
+                                                                             
+    PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_ASBANC(PIN_NU_ID_MULTA => PIN_VC_ID_MULTA,
+                                                         POUT_NU_COD_RESULT => POUT_NU_RETORNO,
+                                                         POUT_VC_MSG_RESULT => POUT_VC_MSJ_ERROR);                                                                     
+            
+    IF POUT_NU_RETORNO < 0 THEN
+         ROLLBACK;
+         RETURN;
+    END IF;
+    --FIN VICTOR BENDEZU - MIGRACION SICOB A SIA - RECAUDACION EN LINEA
+
+
+
+
+
+      COMMIT;
       
       ----
-      exception
-      when others then
-          po_n_cod_error := sqlcode;
-          select case when po_n_cod_error > 0 then po_n_cod_error * -1 else po_n_cod_error end
-          into po_n_cod_error
-          from dual;
-          po_v_msj_error := substr(sqlerrm,1,250) || ' - ' || to_char(po_n_retorno);
-          rollback;
+      EXCEPTION
+      WHEN OTHERS THEN
+          POUT_NU_COD_ERROR := SQLCODE;
+          SELECT CASE WHEN POUT_NU_COD_ERROR > 0 THEN POUT_NU_COD_ERROR * -1 ELSE POUT_NU_COD_ERROR END
+          INTO POUT_NU_COD_ERROR
+          FROM DUAL;
+          POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM,1,250) || ' - ' || TO_CHAR(POUT_NU_RETORNO);
+          ROLLBACK;
 
 END;                             
 --
@@ -10475,37 +10661,47 @@ END;
   -- 30/12/2022     Victor Bendezú  Incidencias SICOB   
   -- *************************************************************** 
   
-  PROCEDURE SCOB_SP_U_MULTA_BY_ESTADO(PIN_ID_MULTA         IN NUMBER,
-                                      PI_N_COD_ESTADO_PAGO IN NUMBER,
-                                      PI_V_USUARIO_MOD     IN VARCHAR,
-                                      PO_N_RETORNO         OUT NUMBER,
-                                      PO_N_COD_ERROR       OUT NUMBER,
-                                      PO_V_MSJ_ERROR       OUT VARCHAR2) AS
+  PROCEDURE SCOB_SP_U_MULTA_BY_ESTADO(PIN_NU_ID_MULTA         IN NUMBER,
+                                      PIN_NU_COD_ESTADO_PAGO IN NUMBER,
+                                      PIN_VC_USUARIO_MOD     IN VARCHAR,
+                                      POUT_NU_RETORNO         OUT NUMBER,
+                                      POUT_NU_COD_ERROR       OUT NUMBER,
+                                      POUT_VC_MSJ_ERROR       OUT VARCHAR2) AS
   BEGIN
 
-    PO_N_RETORNO   := 0;
-    PO_N_COD_ERROR := -1;
-    PO_V_MSJ_ERROR := '';
+    POUT_NU_RETORNO   := 0;
+    POUT_NU_COD_ERROR := -1;
+    POUT_VC_MSJ_ERROR := '';
 
     UPDATE USR_SICOB.T_SCOB_MULTA MU
-       SET MU.COD_ESTADO_PAGO = PI_N_COD_ESTADO_PAGO,
+       SET MU.COD_ESTADO_PAGO = PIN_NU_COD_ESTADO_PAGO,
            MU.AUDFECMODIFICACION = SYSDATE,
-           MU.AUDUSUMODIFICACION = PI_V_USUARIO_MOD
-     WHERE MU.ID_MULTA = PIN_ID_MULTA;
+           MU.AUDUSUMODIFICACION = PIN_VC_USUARIO_MOD
+     WHERE MU.ID_MULTA = PIN_NU_ID_MULTA;
 
-    PO_N_COD_ERROR := 0;
-    PO_N_RETORNO   := PIN_ID_MULTA;
+    UPDATE USR_SICOB.T_SCOB_EXPEDIENTE EX
+       SET EX.COD_ESTADO_PAGO = PIN_NU_COD_ESTADO_PAGO,
+           EX.AUDFECMODIFICACION = SYSDATE,
+           EX.AUDUSUMODIFICACION = PIN_VC_USUARIO_MOD
+     WHERE EX.ID_EXPEDIENTE IN (SELECT ID_EXPEDIENTE
+                          FROM USR_SICOB.T_SCOB_EXPEDIENTE_MULTA
+                         WHERE ID_MULTA = PIN_NU_ID_MULTA
+                         AND ESTADO = '1')
+        AND EX.ESTADO = '1';
+        
+    POUT_NU_COD_ERROR := 0;
+    POUT_NU_RETORNO   := PIN_NU_ID_MULTA;
 
     COMMIT;
     
   EXCEPTION
     WHEN OTHERS THEN
       
-      PO_N_COD_ERROR := SQLCODE;
-      SELECT CASE WHEN PO_N_COD_ERROR > 0 THEN PO_N_COD_ERROR * -1 ELSE PO_N_COD_ERROR END
-        INTO PO_N_COD_ERROR
+      POUT_NU_COD_ERROR := SQLCODE;
+      SELECT CASE WHEN POUT_NU_COD_ERROR > 0 THEN POUT_NU_COD_ERROR * -1 ELSE POUT_NU_COD_ERROR END
+        INTO POUT_NU_COD_ERROR
         FROM DUAL;
-      PO_V_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250) || ' - ' || TO_CHAR(PO_N_RETORNO);
+      POUT_VC_MSJ_ERROR := SUBSTR(SQLERRM, 1, 250) || ' - ' || TO_CHAR(POUT_NU_RETORNO);
       ROLLBACK;
     
   END;
