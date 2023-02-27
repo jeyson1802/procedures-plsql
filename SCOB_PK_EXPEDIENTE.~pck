@@ -3417,21 +3417,35 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
     END IF;
     
     
-    --INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA    
-    SELECT EXMU.ID_MULTA
+     --INICIO VICTOR BENDEZU - MIGRACION SICOB A SIA    
+    /*SELECT EXMU.ID_MULTA
         INTO VN_ID_MULTA
         FROM USR_SICOB.T_SCOB_EXPEDIENTE_MULTA EXMU
        WHERE EXMU.ID_EXPEDIENTE = N_ID_EXPEDIENTE
-       AND EXMU.ESTADO = '1';
-    
+       AND EXMU.ESTADO = '1';*/
+        
+    VN_ID_MULTA:= SCOB_PK_EXPEDIENTE.SCOB_FN_MUL_ANTIGUO(N_ID_EXPEDIENTE); -- SI ES EXP ACUMULADO APLICA SOLO AL CUM MAS ANTIGUO
     USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_I_EXPEDIENTE_SICOB_A_SIA(PIN_NU_ID_MULTA => VN_ID_MULTA,
                                                                             POUT_NU_COD_RESULT => PO_N_RETORNO,
                                                                             POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
-    
     IF PO_N_RETORNO < 0 THEN
        ROLLBACK;
        RETURN;
     END IF;
+    USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_BN_X_EXP(PIN_NU_ID_EXPEDIENTE => N_ID_EXPEDIENTE,
+                                     POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                     POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+    IF PO_N_RETORNO < 0 THEN
+       ROLLBACK;
+       RETURN;
+    END IF;
+    USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_ASBANC_X_EXP(PIN_NU_ID_EXPEDIENTE => N_ID_EXPEDIENTE,
+                                     POUT_NU_COD_RESULT => PO_N_RETORNO,
+                                     POUT_VC_MSG_RESULT => PO_V_MSJ_ERROR);
+    IF PO_N_RETORNO < 0 THEN
+       ROLLBACK;
+       RETURN;
+    END IF;    
     --FIN VICTOR BENDEZU - MIGRACION SICOB A SIA
         
     PO_N_RETORNO := N_ID_EXPEDIENTE;
@@ -11115,6 +11129,42 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
             USR_SIA_INTFZ.PKG_INTFZ_REG_MULTA_SICOB_SIA.SP_U_MULTA_SICOB_A_SIA(PIN_NU_ID_MULTA => REG_T_SCOB_EXPEDIENTE_MULTA.ID_MULTA,
                                                                       POUT_NU_COD_RESULT => POUT_NU_COD_ERROR,
                                                                       POUT_VC_MSG_RESULT => POUT_VC_MSJ_ERROR);
+            -- SOLO PARA PRUEBAS
+            /*INSERT INTO USR_SICOB.T_SCOB_AUDITORIA
+              (NU_ID_AUDITORIA,
+               NU_ID_TIPO_AUDITORIA,
+               NU_ID_MULTA,
+               NU_ID_EXPEDIENTE,
+               VC_TABLA,
+               VC_NOMBRE_LLAVE1,
+               VC_NOMBRE_LLAVE2,
+               NU_ID_LLAVE1,
+               NU_ID_LLAVE2,
+               VC_DML,
+               VC_DESCRIPCION,
+               VC_USUARIO_REGISTRO,
+               DT_FECHA_REGISTRO,
+               NU_ESTADO)
+            VALUES
+              (USR_SICOB.SEQ_T_AUDITORIA_ID.NEXTVAL,
+               95,
+               REG_T_SCOB_EXPEDIENTE_MULTA.ID_MULTA,
+               REG_T_SCOB_EXPEDIENTE_MULTA.ID_EXPEDIENTE,
+               'SCOB_SP_U_REVERTIR_EXPEDIENTE',
+               NULL,
+               NULL,
+               NULL,
+               NULL,
+               'I',
+               'SCOB_SP_U_REVERTIR_EXPEDIENTE>>SP_U_MULTA_SICOB_A_SIA>>PIN_NU_ID_MULTA>>' || REG_T_SCOB_EXPEDIENTE_MULTA.ID_MULTA
+                || '<<POUT_NU_COD_ERROR>>'  || POUT_NU_COD_ERROR
+                || '<<POUT_VC_MSJ_ERROR>>' || POUT_VC_MSJ_ERROR,
+               'ADMIN',
+               SYSDATE,
+             'A');
+             COMMIT;*/
+            -- FIN SOLO PARA PRUEBAS
+            
             IF POUT_NU_COD_ERROR < 0 THEN
               ROLLBACK;
               RETURN;
@@ -11122,6 +11172,7 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
             USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_BN(PIN_NU_ID_MULTA => REG_T_SCOB_EXPEDIENTE_MULTA.ID_MULTA,
                                                                  POUT_NU_COD_RESULT => POUT_NU_COD_ERROR,
                                                                  POUT_VC_MSG_RESULT => POUT_VC_MSJ_ERROR);
+           
             IF POUT_NU_COD_ERROR < 0 THEN
               ROLLBACK;
               RETURN;
@@ -11129,6 +11180,7 @@ CREATE OR REPLACE PACKAGE BODY SCOB_PK_EXPEDIENTE IS
             USR_SICOB.PKG_RECAUDACION_BANCOS.SP_DO_GRABAR_ASBANC(PIN_NU_ID_MULTA => REG_T_SCOB_EXPEDIENTE_MULTA.ID_MULTA,
                                                                      POUT_NU_COD_RESULT => POUT_NU_COD_ERROR,
                                                                      POUT_VC_MSG_RESULT => POUT_VC_MSJ_ERROR);
+           
             IF POUT_NU_COD_ERROR < 0 THEN
               ROLLBACK;
               RETURN;
